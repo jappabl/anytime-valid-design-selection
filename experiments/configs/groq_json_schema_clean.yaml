@@ -1,0 +1,37 @@
+# Groq Llama 3.3 70B - JSON Schema Evaluation (CLEAN RUN)
+# Free tier: 30 RPM, 14.4k requests/day
+
+name: "groq_llama33_70b_json_medium_clean"
+
+sampler:
+  type: "groq"
+  model_id: "llama-3.3-70b-versatile"
+  api_key: null  # Uses GROQ_API_KEY env var
+
+validator:
+  type: "json_schema"
+  require_exact_keys: true
+
+prompts:
+  type: "json_schema"
+  n_prompts: 200
+  complexity: "medium"
+  seed: 42
+
+decoding:
+  temperature: 0.7
+  top_p: 0.95
+  max_tokens: 512
+
+stopping:
+  precision_target: 0.02  # Stop when CI width <= 0.02
+  certification_threshold: null
+  min_samples: 50
+  max_samples: 500
+  max_consecutive_api_failures: 5  # Abort if 5 consecutive empty API responses
+
+statistics:
+  alpha: 0.05
+  method: "betting"
+
+seed: 42

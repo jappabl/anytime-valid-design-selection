@@ -1,0 +1,33 @@
+# Toy model experiment testing certification stopping
+# Certify that p_fail <= 0.01
+
+name: "toy_model_p0.005_certification"
+
+sampler:
+  type: "toy"
+  model_id: "toy_p0.005"
+  failure_probability: 0.005
+
+validator:
+  type: "json_schema"
+
+prompts:
+  type: "json_schema"
+  n_prompts: 200
+  seed: 42
+  complexity: "simple"
+
+decoding:
+  temperature: 0.7
+
+stopping:
+  precision_target: null
+  certification_threshold: 0.01  # Certify p <= 1%
+  min_samples: 50
+  max_samples: 2000
+
+statistics:
+  alpha: 0.05
+  method: "betting"
+
+seed: 42

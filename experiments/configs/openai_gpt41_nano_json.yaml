@@ -1,0 +1,38 @@
+# OpenAI GPT-4.1 Nano - JSON Schema Evaluation
+# Cheapest OpenAI model: $0.10/$0.40 per million tokens
+# ~$0.016 per 150-sample experiment
+
+name: "openai_gpt41_nano_json_extreme"
+
+sampler:
+  type: "openai"
+  model_id: "gpt-4.1-nano"
+  api_key: null  # Uses OPENAI_API_KEY env var
+
+validator:
+  type: "json_schema"
+  require_exact_keys: true
+
+prompts:
+  type: "json_schema"
+  n_prompts: 200
+  complexity: "extreme"
+  seed: 42
+
+decoding:
+  temperature: 0.7
+  top_p: 0.95
+  max_tokens: 512
+
+stopping:
+  precision_target: 0.02  # Stop when CI width <= 0.02
+  certification_threshold: null
+  min_samples: 50
+  max_samples: 500
+  max_consecutive_api_failures: 5  # Abort if 5 consecutive empty API responses
+
+statistics:
+  alpha: 0.05
+  method: "betting"
+
+seed: 42

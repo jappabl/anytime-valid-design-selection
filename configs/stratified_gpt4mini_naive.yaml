@@ -1,0 +1,35 @@
+# Naive Sequential Evaluation - GPT-4o-mini
+# Baseline: uniform sampling without stratification
+# Expected: May exhibit early-stopping bias on easy streaks
+
+name: "stratified_gpt4mini_naive"
+
+sampler:
+  type: "openai"
+  model_id: "gpt-4o-mini"
+  api_key: ${OPENAI_API_KEY}
+
+validator:
+  type: "json_schema"
+
+prompts:
+  type: "stratified_json"
+  prompts_per_stratum: 25  # 25 per stratum × 4 strata = 100 total
+  sampling_mode: "naive"  # Uniform sampling (baseline)
+  seed: 42
+
+decoding:
+  temperature: 0.0
+  max_tokens: 500
+  top_p: 1.0
+
+stopping:
+  precision_target: 0.20  # Stop when width ≤ 0.20 (realistic for time-uniform bounds)
+  certification_threshold: 0.15  # Stop when upper bound ≤ 0.15 (one-sided)
+  min_samples: 50  # Minimum samples before allowing stop
+  max_samples: 100  # Budget cap (will hit this for full coverage)
+
+statistics:
+  alpha: 0.05
+
+seed: 42

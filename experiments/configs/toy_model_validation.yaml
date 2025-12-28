@@ -1,0 +1,35 @@
+# Toy model experiment for statistical validation
+# Tests that confidence sequences achieve nominal coverage
+
+name: "toy_model_p0.05_validation"
+
+sampler:
+  type: "toy"
+  model_id: "toy_p0.05"
+  failure_probability: 0.05
+
+validator:
+  type: "json_schema"  # Will use ToyValidator for toy sampler
+
+prompts:
+  type: "json_schema"
+  n_prompts: 100
+  seed: 42
+  complexity: "simple"
+
+decoding:
+  temperature: 0.7
+  top_p: 1.0
+  max_tokens: 512
+
+stopping:
+  precision_target: 0.02  # Stop when CI width <= 0.02
+  certification_threshold: null  # Not certifying for validation
+  min_samples: 30
+  max_samples: 1000
+
+statistics:
+  alpha: 0.05  # 95% confidence
+  method: "betting"
+
+seed: 42

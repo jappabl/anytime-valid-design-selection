@@ -1,0 +1,36 @@
+# Gemini 1.5 Flash - JSON Schema Evaluation
+# Free tier: 15 RPM, 1M tokens/day
+
+name: "gemini_1.5_flash_json_medium"
+
+sampler:
+  type: "gemini"
+  model_id: "gemini-1.5-flash-latest"
+  api_key: null  # Uses GOOGLE_API_KEY env var
+
+validator:
+  type: "json_schema"
+  require_exact_keys: true
+
+prompts:
+  type: "json_schema"
+  n_prompts: 200
+  complexity: "medium"
+  seed: 42
+
+decoding:
+  temperature: 0.7
+  top_p: 0.95
+  max_tokens: 512
+
+stopping:
+  precision_target: 0.02  # Stop when CI width <= 0.02
+  certification_threshold: null
+  min_samples: 50
+  max_samples: 500  # Lower due to free tier rate limits
+
+statistics:
+  alpha: 0.05
+  method: "betting"
+
+seed: 42

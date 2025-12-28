@@ -1,0 +1,33 @@
+# SQL Syntax Validation Task - GPT-4.1-nano
+# Tests LLM ability to generate syntactically correct SQL queries
+
+name: "sql_syntax_gpt41nano"
+
+sampler:
+  type: "openai"
+  model_id: "gpt-4o-mini"  # GPT-4.1-nano
+  api_key: null  # Will be set via env var or CLI
+
+validator:
+  type: "sql"
+
+prompts:
+  type: "sql"
+  n_prompts: 100
+  seed: 42
+
+decoding:
+  temperature: 0.0
+  max_tokens: 500
+  top_p: 1.0
+
+stopping:
+  precision_target: 0.05  # Stop when CI width ≤ 0.05
+  certification_threshold: 0.10  # Certify if upper bound < 0.10
+  min_samples: 50
+  max_samples: 500
+
+statistics:
+  alpha: 0.05  # 95% confidence
+
+seed: 42
