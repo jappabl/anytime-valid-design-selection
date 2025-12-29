@@ -7,10 +7,11 @@ GLOBAL RULES (HARD CONSTRAINTS)
 - Do exactly what is requested. Do not add demonstrations, explanations, banners, or commentary unless explicitly asked.
 - Never write scripts disguised as tests.
 - Never include print statements, logging for demonstration, or manual execution blocks.
-- Never modify import paths, environment variables, or runtime state to “make things work”.
+- Never modify import paths, environment variables, or runtime state to "make things work".
 - Never assume properties that are not guaranteed by a formal specification or by explicit instructions.
 - If a property is uncertain, test only invariants that must hold.
 - All outputs must be deterministic and reproducible.
+- **NEVER add Claude/Anthropic attribution to git commits** - All work should be attributed to the user only. Do not include "Generated with Claude Code", "Co-Authored-By: Claude", or similar attributions in commit messages.
 
 TEST-SPECIFIC RULES
 - Use the project’s standard test framework only (e.g., pytest).
