@@ -1,8 +1,10 @@
 # Experiment B2: Decision Error Under Precision Stopping (Coupled Design)
 
-**Date**: 2025-12-29
-**Status**: CREDIBLE WITHIN SCOPE
+**Date**: 2025-12-29 (RNG fixes applied same day)
+**Status**: ✅ AUDIT-SAFE - All RNG independence issues fixed
 **Key Finding**: Stratified eliminates composition drift but does NOT reliably reduce decision error
+
+**IMPORTANT**: This document reflects the **audit-fixed** version using `SeedSequence.spawn()` for guaranteed RNG independence. See [RNG_AUDIT_FIXES.md](RNG_AUDIT_FIXES.md) for details on critical bug fixes.
 
 ---
 
@@ -18,6 +20,32 @@
 3. ✅ Fixed pre-registered threshold (τ=0.13, not tuned)
 4. ✅ Safe/Unsafe straddle with clear decision criteria
 5. ✅ All confounds controlled, RNG coupling verified
+
+---
+
+## RNG Audit Fixes (2025-12-29)
+
+**Critical Bug Fixed**: External audit identified RNG independence violation in initial implementation.
+
+**Problem**: Naive policy RNG and "easy" stratum outcome RNG shared the same seed (`base_seed + 0`), creating **selection–outcome dependence** that undermined the isolation claim.
+
+**Solution**: Implemented `SeedSequence.spawn()` to guarantee independence:
+- Outcome pools: `SeedSequence([BASE_SEED, model_idx, rep, 999])` → shared between methods (CRN)
+- Policy RNG: `SeedSequence([BASE_SEED, model_idx, rep, method_offset])` → independent from outcomes
+- All stratum RNGs spawned independently (no seed collisions)
+
+**Additional Fixes**:
+1. Stratified policy: Fixed cycle (`i % 4`) → least-sampled with random tie-break
+2. Statistical analysis: Data now supports paired tests (McNemar, paired bootstrap)
+
+**Impact on Results**: RNG structure change produces different numbers but **same qualitative finding**:
+- Old (invalid): Error differences ±1% (checksum b5af422b80238ec4)
+- New (audit-safe): Error differences ±2% (checksum 9c946ec526c3bd24)
+- Both: Honest null result (drift elimination, no decision improvement)
+
+**Verdict**: ✅ AUDIT-SAFE for claim "common random numbers isolates policy effect"
+
+See [RNG_AUDIT_FIXES.md](RNG_AUDIT_FIXES.md) for comprehensive technical details.
 
 ---
 

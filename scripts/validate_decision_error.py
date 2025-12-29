@@ -12,16 +12,39 @@ Key improvements over B1 (stress test):
 4. Fixed threshold τ=0.13 - no tuning
 5. Decision error as headline metric - not just disagreement
 
-Design: 2×2 factorial
+Design: 2×2×2 factorial
 - Safety margin: Safe (p=0.11) vs Unsafe (p=0.15), τ=0.13
 - Heterogeneity: High vs Low (strata spread, same mean)
-- Method: Naive (uniform) vs Stratified (round-robin)
+- Method: Naive (uniform) vs Stratified (least-sampled with random tie-break)
 
 Metrics:
 - False accept rate (Unsafe accepted - Type I error in safety)
 - False reject rate (Safe rejected - Type II error / opportunity cost)
 - Total decision error
 - Composition drift at stopping (both methods)
+
+=== AUDIT FIXES (2025-12-29) ===
+
+Critical RNG independence bug fixed using SeedSequence.spawn():
+
+BEFORE (INVALID):
+- Naive policy seed = base
+- Easy stratum seed = base + 1000000*0 = base
+→ SAME SEED = coupled randomness between policy and outcomes
+
+AFTER (VALID):
+- Outcome pools: seed = [BASE_SEED, model_idx, rep, 999]
+  → Shared between naive/stratified (CRN)
+- Policy RNG: seed = [BASE_SEED, model_idx, rep, method_offset]
+  → Independent between naive/stratified
+- All stratum RNGs spawned independently via SeedSequence
+
+Additional fixes:
+1. Stratified policy: Fixed cycle → least-sampled with random tie-break
+2. Seed collisions: Eliminated via SeedSequence structure
+3. Statistical analysis: Supports paired tests (data is now truly paired)
+
+Status: AUDIT-SAFE for claim "common random numbers isolates policy effect"
 """
 
 import numpy as np
@@ -93,43 +116,62 @@ for model_name, strata in MODELS.items():
 
 
 # =============================================================================
-# Common Random Numbers Implementation
+# Common Random Numbers Implementation (AUDIT-SAFE)
 # =============================================================================
 
-def generate_stratum_outcomes(base_seed: int, strata: Dict[str, float], n_max: int) -> Dict[str, np.ndarray]:
-    """Pre-generate outcomes for each stratum with deterministic seeding.
+def generate_stratum_outcomes_v2(
+    seed_sequence: np.random.SeedSequence,
+    strata: Dict[str, float],
+    n_max: int
+) -> Dict[str, np.ndarray]:
+    """Pre-generate outcomes for each stratum using independent RNG streams.
 
+    Uses SeedSequence.spawn() to guarantee independence between strata.
     Both methods will draw from these same pools, differing only in sampling order.
+
+    Args:
+        seed_sequence: Master seed sequence for this replication
+        strata: Stratum definitions {name: p}
+        n_max: Max samples to pre-generate
+
+    Returns:
+        Dict mapping stratum name to boolean outcome array
     """
+    # Spawn independent child streams: one per stratum
+    stratum_names = sorted(strata.keys())  # Deterministic order
+    children = seed_sequence.spawn(len(stratum_names))
+
     outcomes = {}
-    for stratum_name, p in strata.items():
-        stratum_id = STRATUM_IDS[stratum_name]
-        seed = base_seed + 1000000 * stratum_id
-        rng = np.random.default_rng(seed)
-        outcomes[stratum_name] = rng.random(n_max) < p  # Pre-generate n_max outcomes
+    for i, stratum_name in enumerate(stratum_names):
+        rng = np.random.default_rng(children[i])
+        p = strata[stratum_name]
+        outcomes[stratum_name] = rng.random(n_max) < p
     return outcomes
 
 
-def sample_with_policy(
+def sample_with_policy_v2(
     stratum_outcomes: Dict[str, np.ndarray],
     strata: Dict[str, float],
     method: str,
     n: int,
-    rng: np.random.Generator
+    policy_rng: np.random.Generator
 ) -> Tuple[List[bool], List[str]]:
     """Sample n outcomes using specified policy, drawing from shared outcome pools.
+
+    AUDIT FIX: Stratified policy now uses "least-sampled with random tie-break"
+    instead of fixed round-robin to avoid ordering artifacts.
 
     Args:
         stratum_outcomes: Pre-generated outcomes per stratum
         strata: Stratum definitions
         method: 'naive' or 'stratified'
         n: Number of samples
-        rng: RNG for policy randomness (stratum selection for naive)
+        policy_rng: Independent RNG for policy decisions (spawned separately)
 
     Returns:
         (outcomes, stratum_sequence) - outcomes drawn and which stratum each came from
     """
-    stratum_names = list(strata.keys())
+    stratum_names = sorted(strata.keys())  # Deterministic order
     n_strata = len(stratum_names)
     stratum_counters = {s: 0 for s in stratum_names}  # Track consumption per stratum
 
@@ -139,9 +181,12 @@ def sample_with_policy(
     for i in range(n):
         # Policy determines which stratum to sample
         if method == 'stratified':
-            stratum = stratum_names[i % n_strata]  # Round-robin
+            # Least-sampled with random tie-break (balanced at all n)
+            min_count = min(stratum_counters.values())
+            candidates = [s for s in stratum_names if stratum_counters[s] == min_count]
+            stratum = policy_rng.choice(candidates)  # Random tie-break
         else:  # naive
-            stratum_idx = rng.integers(0, n_strata)  # Uniform random
+            stratum_idx = policy_rng.integers(0, n_strata)  # Uniform random
             stratum = stratum_names[stratum_idx]
 
         # Draw from shared pool for this stratum
@@ -204,19 +249,36 @@ def run_single_replication(
     strata: Dict[str, float],
     method: str,
     replication: int,
-    base_seed: int
+    model_idx: int,
+    method_offset: int
 ) -> RunResult:
-    """Run one replication with common random numbers coupling."""
+    """Run one replication with common random numbers coupling.
 
-    # Generate shared outcome pools
-    stratum_outcomes = generate_stratum_outcomes(base_seed, strata, N_MAX)
+    AUDIT FIX: Uses SeedSequence.spawn() to guarantee independence and CRN coupling:
+    - Outcome pools: Depend ONLY on (model, rep) → shared between naive/stratified
+    - Policy RNG: Depends on (model, rep, method) → independent between naive/stratified
 
-    # Policy RNG (for naive's stratum selection)
-    policy_seed = base_seed + (0 if method == 'naive' else 1)
-    policy_rng = np.random.default_rng(policy_seed)
+    This ensures both methods see identical outcome pools, differing only in sampling order.
 
-    # Sample using policy
-    outcomes, stratum_sequence = sample_with_policy(
+    Args:
+        model_name: Model identifier
+        strata: Stratum definitions
+        method: 'naive' or 'stratified'
+        replication: Replication index
+        model_idx: Model index for seeding
+        method_offset: 0 for naive, 1 for stratified (for policy RNG pairing)
+    """
+
+    # Outcome pools: Shared across methods (depends only on model, rep)
+    outcome_ss = np.random.SeedSequence([BASE_SEED, model_idx, replication, 999])  # 999 = outcome pool marker
+    stratum_outcomes = generate_stratum_outcomes_v2(outcome_ss, strata, N_MAX)
+
+    # Policy RNG: Independent between methods (depends on model, rep, method)
+    policy_ss = np.random.SeedSequence([BASE_SEED, model_idx, replication, method_offset])
+    policy_rng = np.random.default_rng(policy_ss)
+
+    # Sample using policy (draws from shared pools in method-specific order)
+    outcomes, stratum_sequence = sample_with_policy_v2(
         stratum_outcomes, strata, method, N_MAX, policy_rng
     )
 
@@ -279,7 +341,9 @@ def run_experiment() -> List[RunResult]:
     print(f"Total runs: 4 models × 2 methods × {N_REPLICATIONS} = {4 * 2 * N_REPLICATIONS}")
     print()
 
-    for model_name, strata in MODELS.items():
+    model_names = list(MODELS.keys())
+
+    for model_idx, (model_name, strata) in enumerate(MODELS.items()):
         mean_p = np.mean(list(strata.values()))
         print(f"\nModel: {model_name}")
         print(f"  Mean p: {mean_p:.4f}, True decision: {'ACCEPT' if mean_p < TAU else 'REJECT'}")
@@ -289,10 +353,14 @@ def run_experiment() -> List[RunResult]:
             print(f"    Running {method}...", end=" ", flush=True)
 
             for rep in range(N_REPLICATIONS):
-                # Base seed for this replication (shared outcome pool)
-                base = BASE_SEED + rep * 10000 + list(MODELS.keys()).index(model_name) * 1000000
+                # Method offset for CRN pairing: naive=0, stratified=1
+                # Same (model_idx, rep) → shared outcome pools
+                # Different method_offset → independent policy RNGs
+                method_offset = 0 if method == 'naive' else 1
 
-                result = run_single_replication(model_name, strata, method, rep, base)
+                result = run_single_replication(
+                    model_name, strata, method, rep, model_idx, method_offset
+                )
                 results.append(result)
 
             print("✓")

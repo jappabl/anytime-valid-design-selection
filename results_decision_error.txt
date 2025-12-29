@@ -2,7 +2,7 @@
 EXPERIMENT B2: DECISION ERROR UNDER PRECISION STOPPING (COUPLED)
 ================================================================================
 
-Git commit: 0a40e8f4
+Git commit: a6969c85
 NumPy: 2.0.2
 Python: 3.9.6
 
@@ -28,38 +28,38 @@ safe_high_het:
   True p: 0.1100
   Correct decision: accept
   False accept: Naive=0.0%, Stratified=0.0%
-  False reject: Naive=23.0%, Stratified=22.0%
-  Total error: Naive=23.0%, Stratified=22.0%
-  Error reduction: 1.0% absolute
-  Drift (×10⁴): Naive=25.22, Stratified=0.29
+  False reject: Naive=25.0%, Stratified=23.5%
+  Total error: Naive=25.0%, Stratified=23.5%
+  Error reduction: 1.5% absolute
+  Drift (×10⁴): Naive=25.65, Stratified=0.25
 
 unsafe_high_het:
   True p: 0.1500
   Correct decision: reject
-  False accept: Naive=34.5%, Stratified=35.0%
+  False accept: Naive=40.0%, Stratified=39.0%
   False reject: Naive=0.0%, Stratified=0.0%
-  Total error: Naive=34.5%, Stratified=35.0%
-  Error reduction: -0.5% absolute
-  Drift (×10⁴): Naive=17.08, Stratified=0.12
+  Total error: Naive=40.0%, Stratified=39.0%
+  Error reduction: 1.0% absolute
+  Drift (×10⁴): Naive=18.73, Stratified=0.13
 
 safe_low_het:
   True p: 0.1100
   Correct decision: accept
   False accept: Naive=0.0%, Stratified=0.0%
-  False reject: Naive=23.5%, Stratified=23.5%
-  Total error: Naive=23.5%, Stratified=23.5%
-  Error reduction: 0.0% absolute
-  Drift (×10⁴): Naive=22.68, Stratified=0.26
+  False reject: Naive=23.0%, Stratified=21.5%
+  Total error: Naive=23.0%, Stratified=21.5%
+  Error reduction: 1.5% absolute
+  Drift (×10⁴): Naive=25.58, Stratified=0.29
 
 unsafe_low_het:
   True p: 0.1500
   Correct decision: reject
-  False accept: Naive=34.0%, Stratified=34.5%
+  False accept: Naive=38.0%, Stratified=40.0%
   False reject: Naive=0.0%, Stratified=0.0%
-  Total error: Naive=34.0%, Stratified=34.5%
-  Error reduction: -0.5% absolute
-  Drift (×10⁴): Naive=16.89, Stratified=0.13
+  Total error: Naive=38.0%, Stratified=40.0%
+  Error reduction: -2.0% absolute
+  Drift (×10⁴): Naive=18.81, Stratified=0.15
 
 ================================================================================
-Checksum (SHA256): b5af422b80238ec4
+Checksum (SHA256): 9c946ec526c3bd24
 ================================================================================
