@@ -1,0 +1,65 @@
+================================================================================
+EXPERIMENT B2: DECISION ERROR UNDER PRECISION STOPPING (COUPLED)
+================================================================================
+
+Git commit: 0a40e8f4
+NumPy: 2.0.2
+Python: 3.9.6
+
+Configuration:
+  BASE_SEED = 42
+  N_REPLICATIONS = 200
+  TAU (fixed) = 0.13
+  TARGET_WIDTH = 0.4
+  N_MAX = 200
+  ALPHA = 0.05
+
+Design:
+  - Common random numbers coupling (shared outcome pools)
+  - Safe/Unsafe straddle (p=0.11 vs p=0.15, τ=0.13)
+  - High/Low heterogeneity (strata spread)
+  - Metrics: False accept/reject rates, total error, drift
+
+================================================================================
+RESULTS
+================================================================================
+
+safe_high_het:
+  True p: 0.1100
+  Correct decision: accept
+  False accept: Naive=0.0%, Stratified=0.0%
+  False reject: Naive=23.0%, Stratified=22.0%
+  Total error: Naive=23.0%, Stratified=22.0%
+  Error reduction: 1.0% absolute
+  Drift (×10⁴): Naive=25.22, Stratified=0.29
+
+unsafe_high_het:
+  True p: 0.1500
+  Correct decision: reject
+  False accept: Naive=34.5%, Stratified=35.0%
+  False reject: Naive=0.0%, Stratified=0.0%
+  Total error: Naive=34.5%, Stratified=35.0%
+  Error reduction: -0.5% absolute
+  Drift (×10⁴): Naive=17.08, Stratified=0.12
+
+safe_low_het:
+  True p: 0.1100
+  Correct decision: accept
+  False accept: Naive=0.0%, Stratified=0.0%
+  False reject: Naive=23.5%, Stratified=23.5%
+  Total error: Naive=23.5%, Stratified=23.5%
+  Error reduction: 0.0% absolute
+  Drift (×10⁴): Naive=22.68, Stratified=0.26
+
+unsafe_low_het:
+  True p: 0.1500
+  Correct decision: reject
+  False accept: Naive=34.0%, Stratified=34.5%
+  False reject: Naive=0.0%, Stratified=0.0%
+  Total error: Naive=34.0%, Stratified=34.5%
+  Error reduction: -0.5% absolute
+  Drift (×10⁴): Naive=16.89, Stratified=0.13
+
+================================================================================
+Checksum (SHA256): b5af422b80238ec4
+================================================================================

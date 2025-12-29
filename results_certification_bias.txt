@@ -1,0 +1,84 @@
+==========================================================================================
+EXPERIMENT A: CERTIFICATION BIAS VALIDATION
+==========================================================================================
+
+ESTIMAND (Target of Inference):
+--------------------------------
+We estimate the failure rate of a uniform mixture over strata:
+
+    p = (1/4) Σ_{k=1}^4 p_k
+
+where:
+- K = 4 strata
+- p_k = per-stratum failure rate
+- Uniform weights w_k = 1/K (equal-sized evaluation slices)
+
+For this experiment:
+- Strata: ['easy', 'medium', 'hard', 'nightmare']
+- Per-stratum p: {'easy': 0.0, 'medium': 0.02, 'hard': 0.1, 'nightmare': 0.32}
+- True mixture p: 0.1100
+
+CRITICAL: Both naive and stratified sampling estimate the SAME p under
+uniform target mixture. The difference is:
+- Naive: Composition varies randomly → biased at early stopping times
+- Stratified: Composition fixed at all n → unbiased at all stopping times
+
+CERTIFICATION DECISION:
+- Threshold τ = 0.1
+- Rule: Certify "p ≤ τ" if upper_bound(p̂, n, α) ≤ τ
+- True state: p = 0.1100 > τ = 0.1 → should NOT certify
+- Harm: False certification (Type I error in safety context)
+
+
+==========================================================================================
+PRIMARY RESULTS - False Certification Rate
+==========================================================================================
+
+Certification Threshold: τ = 0.1
+True Failure Rate: p = 0.1100 > τ (should NOT certify)
+Nominal False-Cert Bound: ≤ α = 0.05
+
+Method          | False Certs  | Rate     | 95% Wilson CI        | Status    
+------------------------------------------------------------------------------------------
+Naive           |    0/200    |    0.0% | [0.000, 0.019] | PASS
+Stratified      |    0/200    |    0.0% | [0.000, 0.019] | PASS
+
+Difference (Naive - Stratified): +0.0% ± 0.0%
+Z-statistic: 0.00
+P-value (one-sided): 0.5000
+Significant at α=0.05: NO
+
+==========================================================================================
+SECONDARY RESULTS - Stopping Time Distribution
+==========================================================================================
+
+Method          | Median   | IQR                  | Mean    
+------------------------------------------------------------------------------------------
+Naive           |     200 | [200, 200] |   200.0
+Stratified      |     200 | [200, 200] |   200.0
+
+Interpretation: Earlier stopping indicates premature decisions.
+
+==========================================================================================
+MECHANISM - Composition Drift at Stopping Time
+==========================================================================================
+
+Naive: No false certifications observed.
+
+Stratified replications (all n=200):
+Average composition variance: σ² = 0.0
+Target (perfect balance): σ² = 0.0
+
+==========================================================================================
+CONCLUSION
+==========================================================================================
+
+⚠ HYPOTHESIS NOT SUPPORTED:
+  - Both methods maintain false-cert rate ≤ α
+  - Early stopping did not trigger frequently enough
+  - Recommendation: Increase heterogeneity or adjust stopping threshold
+
+==========================================================================================
+Experiment completed: 200 replications per method
+Reproducibility: BASE_SEED = 42
+==========================================================================================

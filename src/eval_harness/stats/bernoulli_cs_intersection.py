@@ -193,12 +193,14 @@ class BernoulliCSIntersection:
         # Stitching allocation
         delta_n = alpha / (n * (n + 1))
 
-        # Empirical Bernstein radius (CORRECT formula)
+        # Empirical Bernstein radius (per Maurer & Pontil 2009)
         log_term = math.log(2.0 / delta_n)
-        epsilon = (
-            math.sqrt(2 * var_hat * log_term / n) +
-            log_term / (3 * n)
-        )
+
+        # Two terms: variance term + range term
+        # Range term uses (7/3) constant and (n-1) denominator
+        var_term = math.sqrt(2 * var_hat * log_term / n)
+        range_term = (7/3) * log_term / (n - 1) if n > 1 else log_term
+        epsilon = var_term + range_term
 
         lower = max(0.0, p_hat - epsilon)
         upper = min(1.0, p_hat + epsilon)
@@ -221,12 +223,14 @@ class BernoulliCSIntersection:
         # Stitching allocation
         delta_n = alpha / (n * (n + 1))
 
-        # One-sided Bernstein
+        # One-sided Bernstein (per Maurer & Pontil 2009)
         log_term = math.log(1.0 / delta_n)  # Note: 1/δ not 2/δ
-        epsilon = (
-            math.sqrt(2 * var_hat * log_term / n) +
-            log_term / (3 * n)
-        )
+
+        # Two terms: variance term + range term
+        # Range term uses (7/3) constant and (n-1) denominator
+        var_term = math.sqrt(2 * var_hat * log_term / n)
+        range_term = (7/3) * log_term / (n - 1) if n > 1 else log_term
+        epsilon = var_term + range_term
 
         upper = min(1.0, p_hat + epsilon)
 

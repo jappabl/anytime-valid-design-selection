@@ -18,6 +18,15 @@ from eval_harness.core.types import Prompt
 from eval_harness.prompts.json_schema_prompts import JSONSchemaPromptDataset
 
 
+# Deterministic offsets for stratum-specific seeds (avoids hash() nondeterminism)
+STRATUM_SEED_OFFSETS = {
+    "simple": 0,
+    "medium": 1000,
+    "complex": 2000,
+    "extreme": 3000,
+}
+
+
 class StratifiedJSONSchemaDataset:
     """JSON schema prompts stratified by difficulty.
 
@@ -56,11 +65,12 @@ class StratifiedJSONSchemaDataset:
     def _generate_stratified_prompts(self):
         """Generate prompts for each difficulty stratum."""
         for stratum in self.strata:
-            # Generate prompts for this stratum
+            # Generate prompts for this stratum with deterministic seed offset
+            stratum_seed = self.seed + STRATUM_SEED_OFFSETS[stratum]
             dataset = JSONSchemaPromptDataset(
                 n_prompts=self.prompts_per_stratum,
                 complexity=stratum,
-                seed=self.seed + hash(stratum) % 1000,  # Unique seed per stratum
+                seed=stratum_seed,
             )
             self.stratum_prompts[stratum] = dataset.prompts
 

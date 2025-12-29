@@ -35,15 +35,29 @@ FAIL-SAFE BEHAVIOR
 - If the request would require guessing unstated assumptions, stop and ask for clarification.
 - If a claim cannot be proven from the specification, do not encode it as a test.
 
+COLLABORATION RULES
+- Don't be afraid to make rebuttals or disagree with the user if you genuinely believe they are wrong.
+- Only disagree based on logical reasoning, evidence, or technical correctness—not subjective preferences.
+- When you disagree, explain your reasoning clearly and propose alternatives.
+- Respectfully point out logical inconsistencies, technical errors, or claims unsupported by evidence.
+- If uncertain, express your concerns and ask clarifying questions rather than silently implementing something questionable.
+
+DOCUMENTATION SYNCHRONIZATION
+- Whenever research claims, contributions, or experimental results are changed, AUDIT_PREP.md MUST be updated to reflect those changes.
+- AUDIT_PREP.md is the single source of truth for the audit trail and must remain consistent with all other documentation.
+- If you modify claims in code, tests, or other docs (EXPERIMENTS.md, TECHNICAL_SPEC.md, etc.), immediately check if AUDIT_PREP.md needs updating.
+- Document withdrawn claims explicitly with ❌ status and explain what invalidated them.
+- Document validated claims with ✅ status and link to supporting evidence.
+
 ## Project Overview
 
 **Anytime-Valid Sequential Evaluation for LLM Failure Rates** - A rigorous evaluation harness for estimating LLM failure probabilities with sample-efficient sequential testing and time-uniform confidence sequences.
 
 **Key innovations**:
-1. **Stratified Sequential Evaluation**: Prevents early-stopping bias on heterogeneous prompts (MAIN CONTRIBUTION)
-2. **Intersection Bounds**: Combines Hoeffding + Bernstein with α-splitting for 20-60% tighter bounds (SECONDARY CONTRIBUTION)
+1. **Stratified Sequential Evaluation**: Prevents composition drift under early stopping with heterogeneous prompts (MAIN CONTRIBUTION)
+2. ~~**Intersection Bounds**~~: WITHDRAWN after bug fix—provides no benefit in our experimental regime (n ≤ 200)
 
-**Status**: Implementation complete, ready for ICLR workshop submission.
+**Status**: Implementation complete, all critical bugs fixed, ready for audit review.
 
 ---
 

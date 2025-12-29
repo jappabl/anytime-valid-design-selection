@@ -14,7 +14,7 @@ validator:
 
 prompts:
   type: "stratified_json"
-  prompts_per_stratum: 25  # 25 per stratum × 4 strata = 100 total
+  prompts_per_stratum: 250  # 250 per stratum × 4 strata = 1000 total
   sampling_mode: "stratified"  # Balanced across strata
   seed: 42
 
@@ -24,10 +24,10 @@ decoding:
   top_p: 1.0
 
 stopping:
-  precision_target: 0.20  # Stop when width ≤ 0.20 (realistic for time-uniform bounds)
-  certification_threshold: 0.15  # Stop when upper bound ≤ 0.15 (one-sided)
-  min_samples: 50  # Minimum samples before allowing stop
-  max_samples: 100  # Budget cap (will hit this for full coverage)
+  precision_target: 0.10  # Stop when width ≤ 0.10
+  certification_threshold: null  # Disable certification (let it run to see failures)
+  min_samples: 200  # Minimum samples before allowing stop
+  max_samples: 1000  # Budget cap (will hit this for full coverage)
 
 statistics:
   alpha: 0.05

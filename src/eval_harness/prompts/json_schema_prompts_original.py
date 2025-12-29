@@ -1,10 +1,10 @@
-"""Extremely difficult JSON schema prompts - all levels shifted way up.
+"""JSON schema prompt generation with difficulty knobs.
 
-Difficulty progression (old -> new):
-- Simple: old medium level complexity
-- Medium: old complex level complexity
-- Complex: old extreme level complexity
-- Extreme: beyond old extreme (nightmare mode)
+Generates prompts asking the model to produce JSON conforming to various schemas.
+Difficulty can be controlled via:
+- Schema complexity (nested depth, number of fields)
+- Required vs optional fields
+- Type constraints (enums, ranges, patterns)
 """
 
 import json
@@ -16,7 +16,10 @@ from eval_harness.core.types import Prompt
 
 
 class JSONSchemaPromptDataset:
-    """Dataset of JSON schema generation prompts with brutally hard validation."""
+    """Dataset of JSON schema generation prompts.
+
+    Generates diverse prompts with controllable complexity.
+    """
 
     def __init__(
         self,
@@ -24,9 +27,18 @@ class JSONSchemaPromptDataset:
         complexity: Literal["simple", "medium", "complex", "extreme"] = "medium",
         seed: int = 42,
     ):
+        """Initialize JSON schema prompt dataset.
+
+        Args:
+            n_prompts: Number of prompts to generate
+            complexity: Difficulty level
+            seed: Random seed for reproducibility
+        """
         self.n_prompts = n_prompts
         self.complexity = complexity
         self.seed = seed
+
+        # Generate prompts
         self.prompts = self._generate_prompts()
 
     def _generate_prompts(self) -> list[Prompt]:
@@ -53,7 +65,11 @@ class JSONSchemaPromptDataset:
         return prompts
 
     def _generate_schema(self, idx: int, rng: np.random.Generator) -> tuple[dict, str]:
-        """Generate schema based on complexity."""
+        """Generate a JSON schema with controlled complexity.
+
+        Returns:
+            Tuple of (schema_dict, human_description)
+        """
         if self.complexity == "simple":
             return self._generate_simple_schema(idx, rng)
         elif self.complexity == "medium":
@@ -66,10 +82,67 @@ class JSONSchemaPromptDataset:
     def _generate_simple_schema(
         self, idx: int, rng: np.random.Generator
     ) -> tuple[dict, str]:
-        """Simple = old MEDIUM difficulty."""
-        # Copy of old medium schema
+        """Generate 'simple' schema - now much harder with strict validation.
+
+        New floor: 6-8 fields, regex patterns, enums, constraints, 1-2 level nesting.
+        """
         properties = {
-            "order_id": {"type": "string", "pattern": "^ORD-[0-9]{8}-[A-Z]{4}$"},
+            "user_id": {"type": "integer", "minimum": 100000, "maximum": 999999},
+            "email": {
+                "type": "string",
+                "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
+            },
+            "username": {
+                "type": "string",
+                "minLength": 3,
+                "maxLength": 20,
+                "pattern": "^[a-zA-Z0-9_]+$"
+            },
+            "age": {"type": "integer", "minimum": 13, "maximum": 120},
+            "country": {
+                "type": "string",
+                "enum": ["US", "UK", "CA", "AU", "DE", "FR", "JP", "CN"]
+            },
+            "is_active": {"type": "boolean"},
+            "tags": {
+                "type": "array",
+                "items": {"type": "string"},
+                "minItems": 1,
+                "maxItems": 5
+            },
+            "settings": {
+                "type": "object",
+                "properties": {
+                    "theme": {"type": "string", "enum": ["light", "dark", "auto"]},
+                    "language": {"type": "string", "pattern": "^[a-z]{2}$"}
+                },
+                "required": ["theme"],
+                "additionalProperties": False
+            }
+        }
+
+        schema = {
+            "type": "object",
+            "properties": properties,
+            "required": ["user_id", "email", "username", "age", "country", "is_active", "tags", "settings"],
+            "additionalProperties": False,
+        }
+
+        description = (
+            "user profile with validated email/username, age range 13-120, country enum, "
+            "tags array (1-5 items), nested settings with theme and 2-letter language code"
+        )
+        return schema, description
+
+    def _generate_medium_schema(
+        self, idx: int, rng: np.random.Generator
+    ) -> tuple[dict, str]:
+        """Generate medium schema - significantly harder, 10-15 fields, 2-3 levels deep."""
+        properties = {
+            "order_id": {
+                "type": "string",
+                "pattern": "^ORD-[0-9]{8}-[A-Z]{4}$"
+            },
             "created_at": {
                 "type": "string",
                 "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{3})?Z$"
@@ -129,6 +202,11 @@ class JSONSchemaPromptDataset:
                 },
                 "required": ["method", "confirmed"],
                 "additionalProperties": False
+            },
+            "notes": {
+                "type": "array",
+                "items": {"type": "string"},
+                "maxItems": 10
             }
         }
 
@@ -140,25 +218,37 @@ class JSONSchemaPromptDataset:
         }
 
         description = (
-            "e-commerce order: pattern-validated order_id/timestamp, nested customer with phone/address, "
-            "items array with SKU patterns, payment object"
+            "e-commerce order with pattern-validated order_id, ISO timestamp, status enum, "
+            "precise amount, nested customer with phone/address (3 levels), items array "
+            "with product_id/quantity/price, payment object, optional notes"
         )
         return schema, description
 
-    def _generate_medium_schema(
+    def _generate_complex_schema(
         self, idx: int, rng: np.random.Generator
     ) -> tuple[dict, str]:
-        """Medium = old COMPLEX difficulty."""
-        # Copy of old complex schema
+        """Generate complex schema - 15-20 fields, 3-4 levels, oneOf conditionals."""
         properties = {
-            "api_key": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
-            "request_id": {"type": "string", "pattern": "^req_[0-9a-zA-Z]{24}$"},
+            "api_key": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+            },
+            "request_id": {
+                "type": "string",
+                "pattern": "^req_[0-9a-zA-Z]{24}$"
+            },
             "timestamp": {
                 "type": "string",
                 "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$"
             },
-            "endpoint": {"type": "string", "pattern": "^/api/v[1-9]/[a-z_/]+$"},
-            "method": {"type": "string", "enum": ["GET", "POST", "PUT", "DELETE", "PATCH"]},
+            "endpoint": {
+                "type": "string",
+                "pattern": "^/api/v[1-9]/[a-z_/]+$"
+            },
+            "method": {
+                "type": "string",
+                "enum": ["GET", "POST", "PUT", "DELETE", "PATCH"]
+            },
             "user": {
                 "type": "object",
                 "properties": {
@@ -239,7 +329,10 @@ class JSONSchemaPromptDataset:
                         "type": "object",
                         "properties": {
                             "type": {"type": "string", "const": "mutation"},
-                            "action": {"type": "string", "enum": ["create", "update", "delete"]},
+                            "action": {
+                                "type": "string",
+                                "enum": ["create", "update", "delete"]
+                            },
                             "entity": {"type": "string", "pattern": "^[A-Z][a-zA-Z0-9]*$"},
                             "data": {"type": "object"}
                         },
@@ -251,8 +344,16 @@ class JSONSchemaPromptDataset:
             "response_metadata": {
                 "type": "object",
                 "properties": {
-                    "status_code": {"type": "integer", "minimum": 100, "maximum": 599},
-                    "duration_ms": {"type": "number", "minimum": 0, "maximum": 300000},
+                    "status_code": {
+                        "type": "integer",
+                        "minimum": 100,
+                        "maximum": 599
+                    },
+                    "duration_ms": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 300000
+                    },
                     "cache_hit": {"type": "boolean"}
                 },
                 "required": ["status_code", "duration_ms", "cache_hit"],
@@ -261,9 +362,16 @@ class JSONSchemaPromptDataset:
             "billing": {
                 "type": "object",
                 "properties": {
-                    "cost_usd": {"type": "number", "minimum": 0, "multipleOf": 0.0001},
+                    "cost_usd": {
+                        "type": "number",
+                        "minimum": 0,
+                        "multipleOf": 0.0001
+                    },
                     "tokens_used": {"type": "integer", "minimum": 0},
-                    "tier": {"type": "string", "enum": ["free", "basic", "pro", "enterprise"]}
+                    "tier": {
+                        "type": "string",
+                        "enum": ["free", "basic", "pro", "enterprise"]
+                    }
                 },
                 "required": ["cost_usd", "tokens_used", "tier"],
                 "additionalProperties": False
@@ -281,16 +389,26 @@ class JSONSchemaPromptDataset:
         }
 
         description = (
-            "API request log: 64-char hex api_key, nested user (4 levels) with roles/permissions/metadata/IP, "
-            "oneOf request_data (query OR mutation), response metadata, billing"
+            "COMPLEX: API request log with 64-char hex api_key, validated request_id/timestamp/endpoint, "
+            "nested user (4 levels deep) with roles array/permissions/metadata/IP, "
+            "oneOf request_data (query OR mutation with different schemas), "
+            "response metadata with status/duration, billing with precise cost"
         )
         return schema, description
 
-    def _generate_complex_schema(
+    def _generate_extreme_schema(
         self, idx: int, rng: np.random.Generator
     ) -> tuple[dict, str]:
-        """Complex = old EXTREME difficulty."""
-        # This is the current _generate_extreme_schema from the original file
+        """Generate extremely difficult schema to stress-test LLMs.
+
+        Features:
+        - 5-level deep nesting
+        - Strict regex patterns (phone, URL, ISO date, UUID)
+        - Multiple enums with specific values
+        - Array length constraints
+        - Numeric precision (multipleOf)
+        - Many required fields at each level
+        """
         properties = {
             "transaction_id": {
                 "type": "string",
@@ -430,265 +548,23 @@ class JSONSchemaPromptDataset:
         }
 
         description = (
-            "e-commerce transaction: UUID, ISO timestamp, precise amount, "
+            "EXTREME: e-commerce transaction with UUID, ISO timestamp, precise amount, "
             "nested customer with phone/email/address/coordinates/verification (5 levels deep), "
-            "array of items with SKU pattern, payment method with card details"
-        )
-        return schema, description
-
-    def _generate_extreme_schema(
-        self, idx: int, rng: np.random.Generator
-    ) -> tuple[dict, str]:
-        """Extreme = NIGHTMARE MODE (beyond old extreme).
-
-        Features:
-        - 6-7 level nesting
-        - Multiple oneOf/anyOf conditions
-        - Interdependent field validations
-        - Complex regex (IPv6, base64, JWT tokens)
-        - Recursive schemas
-        - Conditional required fields (if/then/else)
-        """
-        properties = {
-            "event_id": {
-                "type": "string",
-                "pattern": "^evt_[0-9a-f]{8}_[0-9a-f]{4}_[0-9a-f]{4}_[0-9a-f]{4}_[0-9a-f]{12}$"
-            },
-            "version": {"type": "string", "pattern": "^v[0-9]+\\.[0-9]+\\.[0-9]+$"},
-            "timestamp_utc": {
-                "type": "string",
-                "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{6}Z$"
-            },
-            "source": {
-                "type": "object",
-                "properties": {
-                    "service_name": {"type": "string", "pattern": "^[a-z][a-z0-9-]{2,63}$"},
-                    "instance_id": {"type": "string", "pattern": "^i-[0-9a-f]{17}$"},
-                    "region": {
-                        "type": "string",
-                        "pattern": "^(us|eu|ap|sa|ca|me|af)-(north|south|east|west|central)-[1-9]$"
-                    },
-                    "ipv6_address": {
-                        "type": "string",
-                        "pattern": "^([0-9a-f]{1,4}:){7}[0-9a-f]{1,4}$"
-                    },
-                    "metadata": {
-                        "type": "object",
-                        "properties": {
-                            "git_commit_sha": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
-                            "build_number": {"type": "integer", "minimum": 1},
-                            "deployment_timestamp": {
-                                "type": "string",
-                                "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
-                            }
-                        },
-                        "required": ["git_commit_sha", "build_number"],
-                        "additionalProperties": False
-                    }
-                },
-                "required": ["service_name", "instance_id", "region", "ipv6_address", "metadata"],
-                "additionalProperties": False
-            },
-            "actor": {
-                "type": "object",
-                "properties": {
-                    "actor_id": {"type": "string", "pattern": "^(user|service|system)_[0-9a-zA-Z]{32}$"},
-                    "authentication": {
-                        "oneOf": [
-                            {
-                                "type": "object",
-                                "properties": {
-                                    "type": {"type": "string", "const": "jwt"},
-                                    "token": {
-                                        "type": "string",
-                                        "pattern": "^eyJ[A-Za-z0-9-_]+\\.[A-Za-z0-9-_]+\\.[A-Za-z0-9-_]+$"
-                                    },
-                                    "claims": {
-                                        "type": "object",
-                                        "properties": {
-                                            "iss": {"type": "string"},
-                                            "sub": {"type": "string"},
-                                            "aud": {"type": "array", "items": {"type": "string"}},
-                                            "exp": {"type": "integer"},
-                                            "iat": {"type": "integer"},
-                                            "scopes": {
-                                                "type": "array",
-                                                "items": {"type": "string", "pattern": "^[a-z]+:[a-z]+$"},
-                                                "minItems": 1,
-                                                "uniqueItems": True
-                                            }
-                                        },
-                                        "required": ["iss", "sub", "aud", "exp", "iat", "scopes"],
-                                        "additionalProperties": False
-                                    }
-                                },
-                                "required": ["type", "token", "claims"],
-                                "additionalProperties": False
-                            },
-                            {
-                                "type": "object",
-                                "properties": {
-                                    "type": {"type": "string", "const": "api_key"},
-                                    "key_id": {"type": "string", "pattern": "^ak_[0-9a-zA-Z]{43}$"},
-                                    "key_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
-                                    "permissions": {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "object",
-                                            "properties": {
-                                                "resource": {"type": "string", "pattern": "^[a-z]+:[a-z]+:[*a-zA-Z0-9/-]+$"},
-                                                "actions": {
-                                                    "type": "array",
-                                                    "items": {"type": "string", "enum": ["read", "write", "delete", "admin"]},
-                                                    "minItems": 1,
-                                                    "uniqueItems": True
-                                                },
-                                                "conditions": {
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "ip_ranges": {
-                                                            "type": "array",
-                                                            "items": {"type": "string", "pattern": "^\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}/\\d{1,2}$"}
-                                                        },
-                                                        "time_window": {
-                                                            "type": "object",
-                                                            "properties": {
-                                                                "start": {"type": "string", "pattern": "^\\d{2}:\\d{2}$"},
-                                                                "end": {"type": "string", "pattern": "^\\d{2}:\\d{2}$"}
-                                                            },
-                                                            "required": ["start", "end"],
-                                                            "additionalProperties": False
-                                                        }
-                                                    },
-                                                    "additionalProperties": False
-                                                }
-                                            },
-                                            "required": ["resource", "actions"],
-                                            "additionalProperties": False
-                                        },
-                                        "minItems": 1
-                                    }
-                                },
-                                "required": ["type", "key_id", "key_hash", "permissions"],
-                                "additionalProperties": False
-                            }
-                        ]
-                    },
-                    "session": {
-                        "type": "object",
-                        "properties": {
-                            "session_id": {"type": "string", "pattern": "^sess_[0-9a-zA-Z]{48}$"},
-                            "created_at": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$"},
-                            "expires_at": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$"},
-                            "mfa_verified": {"type": "boolean"},
-                            "device_fingerprint": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
-                        },
-                        "required": ["session_id", "created_at", "expires_at", "mfa_verified"],
-                        "additionalProperties": False
-                    }
-                },
-                "required": ["actor_id", "authentication", "session"],
-                "additionalProperties": False
-            },
-            "payload": {
-                "type": "object",
-                "properties": {
-                    "operation_type": {
-                        "type": "string",
-                        "enum": ["create", "read", "update", "delete", "execute", "approve", "reject"]
-                    },
-                    "resource_type": {"type": "string", "pattern": "^[a-z]+:[a-z]+:[a-z]+$"},
-                    "resource_id": {"type": "string", "pattern": "^[a-zA-Z0-9_-]{1,128}$"},
-                    "changes": {
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "field_path": {"type": "string", "pattern": "^[a-z_][a-z0-9_]*(\\.[a-z_][a-z0-9_]*)*$"},
-                                "old_value": {},
-                                "new_value": {},
-                                "change_type": {"type": "string", "enum": ["added", "modified", "removed"]},
-                                "checksum": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"}
-                            },
-                            "required": ["field_path", "change_type", "checksum"],
-                            "additionalProperties": False
-                        },
-                        "minItems": 0,
-                        "maxItems": 100
-                    },
-                    "audit_trail": {
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "step_id": {"type": "integer", "minimum": 1},
-                                "timestamp": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{6}Z$"},
-                                "action": {"type": "string"},
-                                "result": {"type": "string", "enum": ["success", "failure", "pending", "skipped"]},
-                                "error_code": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]{2,31}$"},
-                                "duration_ms": {"type": "number", "minimum": 0}
-                            },
-                            "required": ["step_id", "timestamp", "action", "result"],
-                            "additionalProperties": False
-                        }
-                    }
-                },
-                "required": ["operation_type", "resource_type", "resource_id", "changes", "audit_trail"],
-                "additionalProperties": False
-            },
-            "compliance": {
-                "type": "object",
-                "properties": {
-                    "data_classification": {
-                        "type": "string",
-                        "enum": ["public", "internal", "confidential", "restricted", "top_secret"]
-                    },
-                    "retention_policy": {
-                        "type": "object",
-                        "properties": {
-                            "retention_days": {"type": "integer", "minimum": 1, "maximum": 3650},
-                            "archive_after_days": {"type": "integer", "minimum": 1},
-                            "legal_hold": {"type": "boolean"},
-                            "jurisdiction": {"type": "string", "pattern": "^[A-Z]{2}(-[A-Z]{2})?$"}
-                        },
-                        "required": ["retention_days", "legal_hold", "jurisdiction"],
-                        "additionalProperties": False
-                    },
-                    "encryption": {
-                        "type": "object",
-                        "properties": {
-                            "algorithm": {"type": "string", "enum": ["AES-256-GCM", "ChaCha20-Poly1305", "RSA-4096"]},
-                            "key_id": {"type": "string", "pattern": "^key_[0-9a-f]{32}$"},
-                            "iv": {"type": "string", "pattern": "^[A-Za-z0-9+/]{22}==$"},
-                            "integrity_hash": {"type": "string", "pattern": "^[a-f0-9]{128}$"}
-                        },
-                        "required": ["algorithm", "key_id", "iv", "integrity_hash"],
-                        "additionalProperties": False
-                    }
-                },
-                "required": ["data_classification", "retention_policy", "encryption"],
-                "additionalProperties": False
-            }
-        }
-
-        schema = {
-            "type": "object",
-            "properties": properties,
-            "required": ["event_id", "version", "timestamp_utc", "source", "actor", "payload", "compliance"],
-            "additionalProperties": False,
-        }
-
-        description = (
-            "NIGHTMARE: Security audit event with versioned event_id, 6-7 level nesting, "
-            "IPv6 addresses, JWT tokens with claims, oneOf authentication (JWT OR API key with permissions/conditions), "
-            "nested session with MFA, payload with change tracking and audit trail, "
-            "compliance with encryption (AES-256-GCM/ChaCha20/RSA-4096), retention policies, "
-            "checksums (sha256), base64 IVs, multiple regex patterns (IPv6, JWT, git SHA, etc.)"
+            "array of items with SKU pattern, payment method with card details - "
+            "multiple strict regex patterns, enums, and numeric constraints throughout"
         )
         return schema, description
 
     def _create_prompt_text(self, schema: dict, description: str) -> str:
-        """Create prompt text from schema."""
+        """Create prompt text from schema.
+
+        Args:
+            schema: JSON schema dict
+            description: Human-readable description
+
+        Returns:
+            Prompt text
+        """
         schema_json = json.dumps(schema, indent=2)
 
         prompt = f"""Generate a valid JSON object that conforms to the following schema.

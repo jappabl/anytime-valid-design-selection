@@ -1,0 +1,19 @@
+# Requirements for validate_decision_impact.py
+# Pin exact versions for reproducibility
+
+numpy==2.4.0
+
+# Note: scipy is optional (only used for version logging, not computation)
+# Tested with numpy 2.4.0, Python 3.14 (2025-12-29)
+#
+# Reference run (git: 0a40e8f4, seed=42):
+#   numpy==2.4.0, scipy=not installed
+#   Checksum: 1bb74fc56a17e49f
+#   Overall disagreement: 49.2% (197/400)
+#
+# Note: Different numpy versions may produce slightly different random number
+# sequences due to changes in RNG algorithms. Use the exact pinned version
+# for deterministic reproduction.
+
+# To install:
+#   pip install -r requirements-decision-impact.txt

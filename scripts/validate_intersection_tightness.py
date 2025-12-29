@@ -1,6 +1,26 @@
 #!/usr/bin/env python3
-"""Validate intersection bounds tightness.
+"""DEPRECATED - DO NOT USE
 
+This script validated Claim 2 which has been WITHDRAWN.
+
+ISSUE: Used buggy Bernstein implementation with incorrect constants:
+  - Bug: range_term = log_term / (3 * n)
+  - Correct: range_term = (7/3) * log_term / (n - 1)
+
+The reported "47.9% improvement" was an artifact of this ~7x error.
+
+REPLACEMENT: Use scripts/comprehensive_bounds_comparison.py instead,
+which uses the corrected formula and deterministic comparison.
+
+CORRECTED FINDINGS (n ≤ 200):
+  - Intersection is +2.3% WIDER (not tighter)
+  - α-splitting overhead dominates variance savings at small n
+
+See AUDIT_PREP.md and TECHNICAL_SPEC.md for details.
+
+---
+
+ORIGINAL DESCRIPTION (INVALID):
 Validates Claim 2 from AUDIT_PREP.md:
 "Intersection provides tighter bounds for low p"
 
@@ -11,6 +31,17 @@ Compares width of:
 
 Across different values of p and sample sizes.
 """
+
+import sys
+import warnings
+
+warnings.warn(
+    "validate_intersection_tightness.py is DEPRECATED. "
+    "Claim 2 has been WITHDRAWN due to Bernstein constant bug. "
+    "Use scripts/comprehensive_bounds_comparison.py instead.",
+    DeprecationWarning,
+    stacklevel=2
+)
 
 import sys
 from pathlib import Path

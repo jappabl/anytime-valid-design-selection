@@ -1,0 +1,45 @@
+================================================================================
+EXPERIMENT B: DECISION-LEVEL IMPACT
+================================================================================
+
+Git commit: 0a40e8f4
+Python: 3.14.2
+NumPy: 2.4.0
+SciPy: not installed
+
+Configuration:
+  BASE_SEED = 42
+  N_REPLICATIONS = 200
+  N_MAX = 200
+  ALPHA = 0.05
+  TARGET_WIDTH = 0.4
+  ADAPTIVE_THRESHOLD = 0.1236
+
+Models:
+  high_het: {'easy': 0.0, 'medium': 0.05, 'hard': 0.1, 'nightmare': 0.4} (mean=0.1375)
+  low_het: {'easy': 0.12, 'medium': 0.13, 'hard': 0.14, 'nightmare': 0.16} (mean=0.1375)
+
+================================================================================
+RESULTS
+================================================================================
+
+Model: high_het
+  True p: 0.1375
+  Naive: n_stop=92.4, p̂_τ=0.1208
+  Stratified: n_stop=94.5, p̂_τ=0.1252
+  Decision disagreement: 105/200 (52.5%)
+  Accept rate: Naive=45.0%, Stratified=40.5%
+
+Model: low_het
+  True p: 0.1375
+  Naive: n_stop=95.5, p̂_τ=0.1256
+  Stratified: n_stop=94.3, p̂_τ=0.1233
+  Decision disagreement: 92/200 (46.0%)
+  Accept rate: Naive=40.5%, Stratified=46.5%
+
+SUMMARY:
+  Overall disagreement: 197/400 (49.2%)
+
+================================================================================
+Checksum (SHA256): 1bb74fc56a17e49f
+================================================================================

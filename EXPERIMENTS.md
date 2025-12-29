@@ -59,39 +59,35 @@ Intersection |     0.50 |      1.000 |      0.950 |   ✓ PASS
 
 ---
 
-## Experiment 2: Intersection Tightness
+## Experiment 2: Intersection Bounds Comparison ❌ DEPRECATED
 
-**File**: `scripts/validate_intersection_tightness.py`
+**Original File**: `scripts/validate_intersection_tightness.py` (DEPRECATED - used buggy implementation)
 
-**Validates**: Claim 2 from [AUDIT_PREP.md](AUDIT_PREP.md#claim-2-intersection-provides-tighter-bounds-for-low-p)
+**Status**: ❌ **CLAIM WITHDRAWN** - Results were artifacts of Bernstein constant bug
 
-**Method**: Deterministic comparison
-- 7 different true p values: {0.01, 0.02, 0.05, 0.10, 0.20, 0.30, 0.50}
-- 100 samples (fixed)
-- Compare width of Hoeffding vs Intersection
+**What Happened**:
+- Original results showed "47.9% improvement" for low p
+- This was based on **buggy implementation** using `range_term = log_term / (3*n)`
+- Correct formula per Maurer & Pontil (2009): `range_term = (7/3) * log_term / (n-1)`
+- Bug was ~7x too small, causing falsely tight bounds that violated coverage guarantee
 
-**Evidence Provided**:
-- ✓ Intersection is tighter for low p (≤ 0.05)
-- ✓ Average improvement: 47.9% for p ≤ 0.05
-- ✓ Improvement decreases as p increases
-- ✓ Hoeffding competitive at p ≥ 0.30
+**Corrected Results** (from [scripts/comprehensive_bounds_comparison.py](scripts/comprehensive_bounds_comparison.py)):
 
-**Results** (from validation run):
-```
-  True p |       p̂ |    Width_H |    Width_I |   Improv % |   Tighter?
---------------------------------------------------------------------------------
-    0.01 |   0.0100 |     0.2641 |     0.1072 |      59.4% |      ✓ Yes
-    0.02 |   0.0300 |     0.2841 |     0.1643 |      42.2% |      ✓ Yes
-    0.05 |   0.0300 |     0.2841 |     0.1643 |      42.2% |      ✓ Yes
-    0.10 |   0.0800 |     0.3341 |     0.2668 |      20.1% |      ✓ Yes
-    0.20 |   0.2000 |     0.4541 |     0.4540 |       0.0% |      ✓ Yes
-    0.30 |   0.2500 |     0.5041 |     0.5108 |      -1.3% |       ✗ No
-    0.50 |   0.5200 |     0.5081 |     0.5216 |      -2.6% |       ✗ No
+With correct Bernstein formula:
+- **At n ≤ 200** (our experimental regime): Intersection is **+2.3% WIDER** on average
+- **At n ≥ 500, p ≤ 0.05**: Intersection is **-13.7% narrower** on average
+- α-splitting overhead (~2.8%) dominates variance savings at small n
+
+**New Artifact**: [results_bounds_comparison.txt](results_bounds_comparison.txt)
+
+**To Run Corrected Comparison**:
+```bash
+python3 scripts/comprehensive_bounds_comparison.py
 ```
 
-**Conclusion**: ✓ Claim 2 validated for p ≤ 0.05 (47.9% improvement)
+**Conclusion**: ❌ Claim 2 INVALIDATED - Intersection provides NO benefit in our experimental regime (n ≤ 200)
 
-**Caveat**: Improvement is data-dependent. At p ≥ 0.30, Hoeffding may be tighter.
+**Technical Details**: See [AUDIT_PREP.md - Claim 2](AUDIT_PREP.md#claim-2-intersection-provides-tighter-bounds) and [TECHNICAL_SPEC.md Section 9](TECHNICAL_SPEC.md#9-performance-comparison)
 
 ---
 
@@ -104,10 +100,11 @@ Intersection |     0.50 |      1.000 |      0.950 |   ✓ PASS
 **Validates**: Claim 3 from [AUDIT_PREP.md](AUDIT_PREP.md#claim-3-stratified-sampling-prevents-early-stopping-bias)
 
 **Method**: Paired experiment with real LLM
-- Naive: Uniform sampling across prompts
+- Naive: Uniform random sampling across prompts
 - Stratified: Round-robin across 4 difficulty strata
 - Both use GPT-4o-mini with temperature=0
-- 100 samples max, stop early if precision ≤ 0.20 or certification
+- 1000 samples max, stop early if precision ≤ 0.10 or certification
+- Min samples: 200 (prevents premature stopping)
 
 **Configs**:
 - [configs/stratified_gpt4mini_naive.yaml](configs/stratified_gpt4mini_naive.yaml)
@@ -121,7 +118,7 @@ Intersection |     0.50 |      1.000 |      0.950 |   ✓ PASS
 
 **Requirements**:
 - OpenAI API key in `.env` file
-- Cost: ~$0.10-0.50 (200 samples × gpt-4o-mini)
+- Cost: ~$1.00-2.00 (2000 samples × gpt-4o-mini)
 
 **To Run**:
 ```bash
@@ -130,16 +127,76 @@ python3 run_stratified_experiments.py
 python3 analyze_stratified_results.py
 ```
 
-**Expected Output**:
-- Per-stratum failure rates (heterogeneity validation)
-- Sampling distribution (balance check)
-- Overall failure rate estimates
-- Early-stopping bias assessment
+**Results** (completed 2025-12-28):
 
-**Conclusion**: Will validate Claim 3 if:
-1. Per-stratum p values differ significantly (heterogeneity)
-2. Stratified variance ≈ 0 (perfect balance)
-3. Naive variance > 0 (natural imbalance)
+### Overall Results
+
+| Method | n | Failures | p̂ | 95% CI | Width | Status |
+|--------|---|----------|-----|---------|-------|--------|
+| Naive | 1000 | 249 | 0.2490 | [0.1604, 0.3376] | 0.1771 | COMPLETE |
+| Stratified | 1000 | 250 | 0.2500 | [0.1613, 0.3387] | 0.1774 | COMPLETE |
+
+Both experiments ran to max_samples=1000 (width did not reach 0.10 target).
+
+### Heterogeneity Validation
+
+Per-stratum failure rates demonstrate **extreme heterogeneity**:
+
+**Naive Experiment**:
+| Stratum | Samples | Failures | Failure Rate |
+|---------|---------|----------|--------------|
+| Simple  | 244 | 0 | 0.00% |
+| Medium  | 251 | 0 | 0.00% |
+| Complex | 256 | 0 | 0.00% |
+| **Extreme** | **249** | **249** | **100.00%** |
+
+**Stratified Experiment**:
+| Stratum | Samples | Failures | Failure Rate |
+|---------|---------|----------|--------------|
+| Simple  | 250 | 0 | 0.00% |
+| Medium  | 250 | 0 | 0.00% |
+| Complex | 250 | 0 | 0.00% |
+| **Extreme** | **250** | **250** | **100.00%** |
+
+**Finding**: ALL failures came from the "extreme" stratum (NIGHTMARE mode schemas). Simple, medium, and complex strata had 0% failure rate. This is the strongest possible demonstration of heterogeneity.
+
+### Stratum Balance Validation
+
+Sampling distribution comparison:
+
+**Naive (Uniform Random)**:
+- Simple: 244 (24.4%)
+- Medium: 251 (25.1%)
+- Complex: 256 (25.6%)
+- Extreme: 249 (24.9%)
+- **Variance: σ² ≈ 18.5** (natural sampling variation)
+
+**Stratified (Round-Robin)**:
+- Simple: 250 (25.0%)
+- Medium: 250 (25.0%)
+- Complex: 250 (25.0%)
+- Extreme: 250 (25.0%)
+- **Variance: σ² = 0** (perfect balance)
+
+**Finding**: Stratified sampling achieves **perfect balance** across all strata (zero variance), while naive exhibits natural sampling variation.
+
+### Early-Stopping Bias Potential
+
+With p̂ = (# extreme samples) / (total samples):
+- **Naive**: p̂ = 249/1000 = 0.249
+- **Stratified**: p̂ = 250/1000 = 0.250
+
+At n=1000, both converged to similar estimates. However:
+- **Naive risk**: If by chance more extreme prompts sampled early → inflated p̂ → tighter CI → stop early with biased estimate
+- **Stratified guarantee**: Always exactly n/4 samples per stratum at any n → E[p̂ | stopped at n] = p (unbiased)
+
+**Finding**: With extreme heterogeneity (p_extreme = 1.0, p_others = 0.0), stratum imbalance directly translates to biased p̂. Stratified sampling eliminates this risk.
+
+**Conclusion**: ✓ Claim 3 validated
+1. ✓ Extreme heterogeneity demonstrated (p values range 0.0 to 1.0)
+2. ✓ Stratified achieves perfect balance (σ² = 0)
+3. ✓ Naive exhibits natural imbalance (σ² = 18.5)
+4. ✓ Both maintain time-uniform validity (CIs contain true p)
 
 ---
 
@@ -180,10 +237,10 @@ Results are deterministic (modulo LLM API non-determinism for Experiment 3).
 | Claim | Evidence | Status |
 |-------|----------|--------|
 | Intersection maintains coverage ≥ 1-α | Experiment 1 | ✓ Validated |
-| Intersection tighter for low p | Experiment 2 | ✓ Validated (p ≤ 0.05) |
-| Stratified prevents bias | Experiment 3 | ⏳ Ready to run |
+| Intersection tighter for low p | ~~Experiment 2~~ | ❌ WITHDRAWN (bug invalidated) |
+| Stratified prevents composition drift | Experiment 3 | ✓ Validated (mechanism) |
 | Time-uniform validity | All experiments | ✓ Implicit in coverage |
-| Implementation correctness | pytest tests | ✓ Pass |
+| Implementation correctness | pytest tests + new tests | ✓ Pass (13 tests added) |
 
 ### What We Cannot Prove
 
@@ -204,7 +261,7 @@ Results are deterministic (modulo LLM API non-determinism for Experiment 3).
 ```bash
 # Quick validation (no API key needed)
 python3 scripts/validate_coverage.py
-python3 scripts/validate_intersection_tightness.py
+python3 scripts/comprehensive_bounds_comparison.py  # Corrected comparison
 
 # Full validation (requires API key)
 ./scripts/run_all_validations.sh
@@ -212,19 +269,19 @@ python3 scripts/validate_intersection_tightness.py
 
 **Total Time**:
 - Experiments 1+2: ~40 seconds
-- Experiment 3: ~5-10 minutes
-- **Total: ~10 minutes**
+- Experiment 3: ~2 hours (1000 samples × 2 experiments)
+- **Total: ~2 hours**
 
 **Total Cost**:
 - Experiments 1+2: Free (local simulation)
-- Experiment 3: ~$0.10-0.50 (OpenAI API)
+- Experiment 3: ~$1.50-2.00 (2000 samples × gpt-4o-mini)
 
 ---
 
 ## Next Steps
 
-1. ✅ Run Experiments 1+2 (completed above)
-2. ⏳ Run Experiment 3 with OpenAI API
+1. ✅ Run Experiments 1+2 (completed)
+2. ✅ Run Experiment 3 with OpenAI API (completed)
 3. ⏳ Review results with auditor
 4. ⏳ Address any questions from [AUDIT_PREP.md](AUDIT_PREP.md)
 
