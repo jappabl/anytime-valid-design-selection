@@ -1,0 +1,316 @@
+================================================================================
+EXPERIMENT B3c: CI-BASED CERTIFICATION (SHARP BOUNDS)
+================================================================================
+
+Git commit: 05709f0f
+NumPy: 2.0.2
+Python: 3.9.6
+
+Configuration:
+  BASE_SEED = 42
+  N_REPLICATIONS = 200
+  N_MAX = 1000
+  N_MIN = 50
+  ALPHA = 0.05
+  TAU (fixed) = 0.2
+
+Stopping rule: Decision-driven (certification stopping)
+  - Stop and certify safe if UCB ≤ τ (after n ≥ N_MIN)
+  - Stop and certify unsafe if LCB > τ (after n ≥ N_MIN)
+  - Otherwise continue to n_max, then abstain
+
+================================================================================
+RESULTS
+================================================================================
+
+safe_medium_high_het:
+  True p: 0.0700
+  Ground truth: SAFE
+  Naive:
+    Certified safe: 100.0%
+    Certified unsafe: 0.0%
+    Not certified: 0.0%
+    False reject: 0/200 (0.0%)
+    False accept: 0/200 (0.0%)
+    Mean n_stop (all): 470.8
+    Time-to-cert (median): 457
+    Time-to-cert (mean): 470.8
+    Drift (×10⁴): 4.11
+  Stratified:
+    Certified safe: 100.0%
+    Certified unsafe: 0.0%
+    Not certified: 0.0%
+    False reject: 0/200 (0.0%)
+    False accept: 0/200 (0.0%)
+    Mean n_stop (all): 468.1
+    Time-to-cert (median): 465
+    Time-to-cert (mean): 468.1
+    Drift (×10⁴): 0.01
+
+safe_medium_low_het:
+  True p: 0.0700
+  Ground truth: SAFE
+  Naive:
+    Certified safe: 100.0%
+    Certified unsafe: 0.0%
+    Not certified: 0.0%
+    False reject: 0/200 (0.0%)
+    False accept: 0/200 (0.0%)
+    Mean n_stop (all): 472.9
+    Time-to-cert (median): 465
+    Time-to-cert (mean): 472.9
+    Drift (×10⁴): 4.50
+  Stratified:
+    Certified safe: 100.0%
+    Certified unsafe: 0.0%
+    Not certified: 0.0%
+    False reject: 0/200 (0.0%)
+    False accept: 0/200 (0.0%)
+    Mean n_stop (all): 474.4
+    Time-to-cert (median): 465
+    Time-to-cert (mean): 474.4
+    Drift (×10⁴): 0.01
+
+safe_tight_high_het:
+  True p: 0.0900
+  Ground truth: SAFE
+  Naive:
+    Certified safe: 96.0%
+    Certified unsafe: 0.0%
+    Not certified: 4.0%
+    False reject: 8/200 (4.0%)
+    False accept: 0/200 (0.0%)
+    Mean n_stop (all): 683.9
+    Time-to-cert (median): 669
+    Time-to-cert (mean): 670.8
+    Drift (×10⁴): 2.78
+  Stratified:
+    Certified safe: 95.5%
+    Certified unsafe: 0.0%
+    Not certified: 4.5%
+    False reject: 9/200 (4.5%)
+    False accept: 0/200 (0.0%)
+    Mean n_stop (all): 684.9
+    Time-to-cert (median): 676
+    Time-to-cert (mean): 670.1
+    Drift (×10⁴): 0.00
+
+safe_tight_low_het:
+  True p: 0.0900
+  Ground truth: SAFE
+  Naive:
+    Certified safe: 97.5%
+    Certified unsafe: 0.0%
+    Not certified: 2.5%
+    False reject: 5/200 (2.5%)
+    False accept: 0/200 (0.0%)
+    Mean n_stop (all): 692.2
+    Time-to-cert (median): 691
+    Time-to-cert (mean): 684.3
+    Drift (×10⁴): 2.75
+  Stratified:
+    Certified safe: 97.5%
+    Certified unsafe: 0.0%
+    Not certified: 2.5%
+    False reject: 5/200 (2.5%)
+    False accept: 0/200 (0.0%)
+    Mean n_stop (all): 692.4
+    Time-to-cert (median): 676
+    Time-to-cert (mean): 684.5
+    Drift (×10⁴): 0.00
+
+safe_wide_high_het:
+  True p: 0.0500
+  Ground truth: SAFE
+  Naive:
+    Certified safe: 100.0%
+    Certified unsafe: 0.0%
+    Not certified: 0.0%
+    False reject: 0/200 (0.0%)
+    False accept: 0/200 (0.0%)
+    Mean n_stop (all): 345.1
+    Time-to-cert (median): 341
+    Time-to-cert (mean): 345.1
+    Drift (×10⁴): 5.13
+  Stratified:
+    Certified safe: 100.0%
+    Certified unsafe: 0.0%
+    Not certified: 0.0%
+    False reject: 0/200 (0.0%)
+    False accept: 0/200 (0.0%)
+    Mean n_stop (all): 343.7
+    Time-to-cert (median): 341
+    Time-to-cert (mean): 343.7
+    Drift (×10⁴): 0.01
+
+safe_wide_low_het:
+  True p: 0.0500
+  Ground truth: SAFE
+  Naive:
+    Certified safe: 100.0%
+    Certified unsafe: 0.0%
+    Not certified: 0.0%
+    False reject: 0/200 (0.0%)
+    False accept: 0/200 (0.0%)
+    Mean n_stop (all): 341.0
+    Time-to-cert (median): 341
+    Time-to-cert (mean): 341.0
+    Drift (×10⁴): 4.89
+  Stratified:
+    Certified safe: 100.0%
+    Certified unsafe: 0.0%
+    Not certified: 0.0%
+    False reject: 0/200 (0.0%)
+    False accept: 0/200 (0.0%)
+    Mean n_stop (all): 340.6
+    Time-to-cert (median): 332
+    Time-to-cert (mean): 340.6
+    Drift (×10⁴): 0.01
+
+unsafe_medium_high_het:
+  True p: 0.3300
+  Ground truth: UNSAFE
+  Naive:
+    Certified safe: 0.0%
+    Certified unsafe: 100.0%
+    Not certified: 0.0%
+    False reject: 0/200 (0.0%)
+    False accept: 0/200 (0.0%)
+    Mean n_stop (all): 433.7
+    Time-to-cert (median): 420
+    Time-to-cert (mean): 433.7
+    Drift (×10⁴): 6.26
+  Stratified:
+    Certified safe: 0.0%
+    Certified unsafe: 100.0%
+    Not certified: 0.0%
+    False reject: 0/200 (0.0%)
+    False accept: 0/200 (0.0%)
+    Mean n_stop (all): 431.2
+    Time-to-cert (median): 414
+    Time-to-cert (mean): 431.2
+    Drift (×10⁴): 0.03
+
+unsafe_medium_low_het:
+  True p: 0.3300
+  Ground truth: UNSAFE
+  Naive:
+    Certified safe: 0.0%
+    Certified unsafe: 99.5%
+    Not certified: 0.5%
+    False reject: 0/200 (0.0%)
+    False accept: 0/200 (0.0%)
+    Mean n_stop (all): 450.2
+    Time-to-cert (median): 423
+    Time-to-cert (mean): 447.4
+    Drift (×10⁴): 5.53
+  Stratified:
+    Certified safe: 0.0%
+    Certified unsafe: 99.5%
+    Not certified: 0.5%
+    False reject: 0/200 (0.0%)
+    False accept: 0/200 (0.0%)
+    Mean n_stop (all): 450.2
+    Time-to-cert (median): 435
+    Time-to-cert (mean): 447.4
+    Drift (×10⁴): 0.02
+
+unsafe_tight_high_het:
+  True p: 0.3100
+  Ground truth: UNSAFE
+  Naive:
+    Certified safe: 0.0%
+    Certified unsafe: 89.0%
+    Not certified: 11.0%
+    False reject: 0/200 (0.0%)
+    False accept: 0/200 (0.0%)
+    Mean n_stop (all): 669.1
+    Time-to-cert (median): 627
+    Time-to-cert (mean): 628.2
+    Drift (×10⁴): 3.52
+  Stratified:
+    Certified safe: 0.0%
+    Certified unsafe: 88.0%
+    Not certified: 12.0%
+    False reject: 0/200 (0.0%)
+    False accept: 0/200 (0.0%)
+    Mean n_stop (all): 666.4
+    Time-to-cert (median): 614
+    Time-to-cert (mean): 621.0
+    Drift (×10⁴): 0.01
+
+unsafe_tight_low_het:
+  True p: 0.3100
+  Ground truth: UNSAFE
+  Naive:
+    Certified safe: 0.0%
+    Certified unsafe: 89.5%
+    Not certified: 10.5%
+    False reject: 0/200 (0.0%)
+    False accept: 0/200 (0.0%)
+    Mean n_stop (all): 675.0
+    Time-to-cert (median): 650
+    Time-to-cert (mean): 636.8
+    Drift (×10⁴): 3.76
+  Stratified:
+    Certified safe: 0.0%
+    Certified unsafe: 89.0%
+    Not certified: 11.0%
+    False reject: 0/200 (0.0%)
+    False accept: 0/200 (0.0%)
+    Mean n_stop (all): 674.3
+    Time-to-cert (median): 650
+    Time-to-cert (mean): 634.1
+    Drift (×10⁴): 0.01
+
+unsafe_wide_high_het:
+  True p: 0.3500
+  Ground truth: UNSAFE
+  Naive:
+    Certified safe: 0.0%
+    Certified unsafe: 100.0%
+    Not certified: 0.0%
+    False reject: 0/200 (0.0%)
+    False accept: 0/200 (0.0%)
+    Mean n_stop (all): 330.7
+    Time-to-cert (median): 318
+    Time-to-cert (mean): 330.7
+    Drift (×10⁴): 6.51
+  Stratified:
+    Certified safe: 0.0%
+    Certified unsafe: 100.0%
+    Not certified: 0.0%
+    False reject: 0/200 (0.0%)
+    False accept: 0/200 (0.0%)
+    Mean n_stop (all): 326.1
+    Time-to-cert (median): 320
+    Time-to-cert (mean): 326.1
+    Drift (×10⁴): 0.04
+
+unsafe_wide_low_het:
+  True p: 0.3500
+  Ground truth: UNSAFE
+  Naive:
+    Certified safe: 0.0%
+    Certified unsafe: 100.0%
+    Not certified: 0.0%
+    False reject: 0/200 (0.0%)
+    False accept: 0/200 (0.0%)
+    Mean n_stop (all): 320.9
+    Time-to-cert (median): 308
+    Time-to-cert (mean): 320.9
+    Drift (×10⁴): 7.36
+  Stratified:
+    Certified safe: 0.0%
+    Certified unsafe: 100.0%
+    Not certified: 0.0%
+    False reject: 0/200 (0.0%)
+    False accept: 0/200 (0.0%)
+    Mean n_stop (all): 321.0
+    Time-to-cert (median): 314
+    Time-to-cert (mean): 321.0
+    Drift (×10⁴): 0.03
+
+================================================================================
+Checksum (SHA256): ecd67702805d185f
+================================================================================
