@@ -9,7 +9,7 @@ Design:
 - Model: GPT-4o-mini (temperature=0 for reproducibility)
 - Strata: 4 complexity levels (simple/medium/complex/extreme)
 - Methods: Naive (uniform) vs Stratified (balanced)
-- Stopping: Precision (CI width ≤ 0.20)
+- Stopping: Precision (CI width ≤ 0.35)
 - Budget: n_max=100 per run
 - Replications: 30 runs per method
 
@@ -53,7 +53,7 @@ from eval_harness.core.types import DecodingConfig
 BASE_SEED = 42
 N_REPLICATIONS = 30  # Per method (modest for cost control)
 N_MAX = 100  # Budget per run
-TARGET_WIDTH = 0.20  # Precision target
+TARGET_WIDTH = 0.35  # Precision target (relaxed for time-uniform bounds)
 ALPHA = 0.05
 
 # Model config
