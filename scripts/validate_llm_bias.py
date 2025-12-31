@@ -7,7 +7,7 @@ Replicates Experiment A's estimation bias findings on actual LLM evaluation.
 Design:
 - Task: JSON schema generation (complexity-stratified prompts)
 - Model: GPT-4o-mini (temperature=0 for reproducibility)
-- Strata: 4 complexity levels (simple/moderate/complex/extreme)
+- Strata: 4 complexity levels (simple/medium/complex/extreme)
 - Methods: Naive (uniform) vs Stratified (balanced)
 - Stopping: Precision (CI width ≤ 0.20)
 - Budget: n_max=100 per run
@@ -36,8 +36,8 @@ import hashlib
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
 from eval_harness.stats.bernoulli_cs_intersection import BernoulliCSIntersection
+from eval_harness.prompts.easy_json_prompts import StratifiedEasyJSONDataset
 from eval_harness.prompts.stratified_json_prompts import (
-    StratifiedJSONSchemaDataset,
     StratifiedSampler,
     NaiveSampler
 )
@@ -108,16 +108,19 @@ def run_single_replication(
 
     # Create stratified prompt dataset
     seed = BASE_SEED + replication
-    dataset = StratifiedJSONSchemaDataset(
+    dataset = StratifiedEasyJSONDataset(
         prompts_per_stratum=prompts_per_stratum,
         seed=seed
     )
 
+    # Create RNG for sampler
+    rng = np.random.default_rng(seed)
+
     # Create sampler based on method
     if method == 'stratified':
-        sampler = StratifiedSampler(dataset, seed=seed)
+        sampler = StratifiedSampler(dataset, rng)
     else:  # naive
-        sampler = NaiveSampler(dataset, seed=seed)
+        sampler = NaiveSampler(dataset, rng)
 
     # Create LLM sampler and validator
     llm_sampler = OpenAISampler(
@@ -136,8 +139,8 @@ def run_single_replication(
     # Sequential evaluation with precision stopping
     cs = BernoulliCSIntersection(alpha=ALPHA, n_max=N_MAX)
 
-    stratum_counts = {'simple': 0, 'moderate': 0, 'complex': 0, 'extreme': 0}
-    stratum_failures = {'simple': 0, 'moderate': 0, 'complex': 0, 'extreme': 0}
+    stratum_counts = {'simple': 0, 'medium': 0, 'complex': 0, 'extreme': 0}
+    stratum_failures = {'simple': 0, 'medium': 0, 'complex': 0, 'extreme': 0}
 
     n_stop = N_MAX
 
@@ -147,7 +150,8 @@ def run_single_replication(
         stratum_counts[stratum] += 1
 
         # Query LLM
-        generation = llm_sampler.sample(prompt, decoding)
+        generations = llm_sampler.generate(prompt.text, decoding, n_samples=1)
+        generation = generations[0]
 
         # Validate
         result = validator.validate(
@@ -254,7 +258,7 @@ def analyze_results(results: List[ReplicationResult]):
     # Heterogeneity: per-stratum failure rates
     print(f"\n2. HETEROGENEITY (Per-Stratum Failure Rates)")
 
-    all_stratum_rates = {'simple': [], 'moderate': [], 'complex': [], 'extreme': []}
+    all_stratum_rates = {'simple': [], 'medium': [], 'complex': [], 'extreme': []}
 
     for result in results:
         for stratum in all_stratum_rates.keys():
@@ -265,7 +269,7 @@ def analyze_results(results: List[ReplicationResult]):
 
     print("\n   Stratum | Mean Rate | Std | Min | Max")
     print("   " + "-" * 50)
-    for stratum in ['simple', 'moderate', 'complex', 'extreme']:
+    for stratum in ['simple', 'medium', 'complex', 'extreme']:
         rates = all_stratum_rates[stratum]
         if rates:
             mean_rate = np.mean(rates)
@@ -393,6 +397,12 @@ def write_results_file(results: List[ReplicationResult], output_path: Path):
 # =============================================================================
 
 if __name__ == "__main__":
+    import argparse
+
+    parser = argparse.ArgumentParser(description='Run real-LLM validation experiment')
+    parser.add_argument('--yes', action='store_true', help='Skip confirmation prompt')
+    args = parser.parse_args()
+
     print("\n" + "=" * 80)
     print("REAL-LLM VALIDATION: EXPERIMENT A REPLICATION")
     print("=" * 80)
@@ -400,10 +410,11 @@ if __name__ == "__main__":
     print(f"Estimated cost: ~$3-5 for {N_REPLICATIONS * 2} replications")
     print()
 
-    response = input("Proceed? (yes/no): ")
-    if response.lower() != 'yes':
-        print("Aborted.")
-        sys.exit(0)
+    if not args.yes:
+        response = input("Proceed? (yes/no): ")
+        if response.lower() != 'yes':
+            print("Aborted.")
+            sys.exit(0)
 
     # Run experiment
     results = run_experiment()
