@@ -69,47 +69,51 @@ class EasyJSONSchemaDataset:
     def _generate_simple_schema(
         self, idx: int, rng: np.random.Generator
     ) -> tuple[dict, str]:
-        """Simple: 2-3 fields, primitive types, no constraints."""
+        """Simple: 3-4 fields with basic regex patterns."""
 
         schemas = [
-            # User profile
+            # User profile with email
             {
                 "type": "object",
                 "properties": {
-                    "name": {"type": "string"},
-                    "age": {"type": "number"},
-                    "active": {"type": "boolean"}
+                    "name": {"type": "string", "minLength": 2, "maxLength": 50},
+                    "email": {"type": "string", "pattern": "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$"},
+                    "age": {"type": "integer", "minimum": 1, "maximum": 120},
+                    "verified": {"type": "boolean"}
                 },
-                "required": ["name", "age"],
+                "required": ["name", "email", "age"],
                 "additionalProperties": False
             },
-            # Product
+            # Product with SKU
             {
                 "type": "object",
                 "properties": {
-                    "title": {"type": "string"},
-                    "price": {"type": "number"},
+                    "sku": {"type": "string", "pattern": "^[A-Z]{3}-[0-9]{5}$"},
+                    "title": {"type": "string", "minLength": 3, "maxLength": 100},
+                    "price": {"type": "number", "minimum": 0.01, "maximum": 10000},
+                    "quantity": {"type": "integer", "minimum": 0}
                 },
-                "required": ["title", "price"],
+                "required": ["sku", "title", "price"],
                 "additionalProperties": False
             },
-            # Event
+            # Event with date format
             {
                 "type": "object",
                 "properties": {
-                    "event_name": {"type": "string"},
-                    "date": {"type": "string"},
-                    "attendees": {"type": "number"}
+                    "event_id": {"type": "string", "pattern": "^EVT[0-9]{6}$"},
+                    "name": {"type": "string", "minLength": 3},
+                    "date": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"},
+                    "capacity": {"type": "integer", "minimum": 10, "maximum": 10000}
                 },
-                "required": ["event_name", "date"],
+                "required": ["event_id", "name", "date"],
                 "additionalProperties": False
             },
         ]
 
         descriptions = [
-            "a user profile with name, age, and active status",
-            "a product with title and price",
-            "an event with name, date, and attendee count",
+            "a user profile with name, valid email address, age, and verified status",
+            "a product with SKU code (format: ABC-12345), title, price, and quantity",
+            "an event with ID (format: EVT123456), name, date (YYYY-MM-DD), and capacity",
         ]
 
         choice = rng.integers(0, len(schemas))
@@ -118,53 +122,57 @@ class EasyJSONSchemaDataset:
     def _generate_medium_schema(
         self, idx: int, rng: np.random.Generator
     ) -> tuple[dict, str]:
-        """Medium: 4-5 fields, simple constraints (min/max, enum)."""
+        """Medium: 5-6 fields with phone numbers, tighter regex."""
 
         schemas = [
-            # Product with constraints
+            # Product with UPC
             {
                 "type": "object",
                 "properties": {
-                    "product_id": {"type": "string"},
-                    "name": {"type": "string", "minLength": 1, "maxLength": 100},
-                    "price": {"type": "number", "minimum": 0},
-                    "category": {"type": "string", "enum": ["electronics", "clothing", "food", "books"]},
+                    "product_id": {"type": "string", "pattern": "^PROD-[0-9]{8}$"},
+                    "upc": {"type": "string", "pattern": "^[0-9]{12}$"},
+                    "name": {"type": "string", "minLength": 3, "maxLength": 100},
+                    "price": {"type": "number", "minimum": 0.01, "multipleOf": 0.01},
+                    "category": {"type": "string", "enum": ["electronics", "clothing", "food", "books", "home"]},
                     "in_stock": {"type": "boolean"}
                 },
-                "required": ["product_id", "name", "price", "category"],
+                "required": ["product_id", "upc", "name", "price", "category"],
                 "additionalProperties": False
             },
-            # User registration
+            # User with phone
             {
                 "type": "object",
                 "properties": {
-                    "username": {"type": "string", "minLength": 3, "maxLength": 20},
-                    "email": {"type": "string"},
-                    "age": {"type": "number", "minimum": 13, "maximum": 120},
-                    "country": {"type": "string", "enum": ["US", "UK", "CA", "AU"]},
+                    "user_id": {"type": "string", "pattern": "^USR[0-9]{7}$"},
+                    "username": {"type": "string", "pattern": "^[a-z][a-z0-9_]{2,19}$"},
+                    "email": {"type": "string", "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"},
+                    "phone": {"type": "string", "pattern": "^\\+1-[0-9]{3}-[0-9]{3}-[0-9]{4}$"},
+                    "age": {"type": "integer", "minimum": 18, "maximum": 100},
+                    "verified": {"type": "boolean"}
                 },
-                "required": ["username", "email", "age"],
+                "required": ["user_id", "username", "email", "phone"],
                 "additionalProperties": False
             },
-            # Order
+            # Order with timestamp
             {
                 "type": "object",
                 "properties": {
-                    "order_id": {"type": "string"},
-                    "total": {"type": "number", "minimum": 0},
-                    "status": {"type": "string", "enum": ["pending", "shipped", "delivered"]},
-                    "item_count": {"type": "number", "minimum": 1},
+                    "order_id": {"type": "string", "pattern": "^ORD-[0-9]{10}$"},
+                    "created_at": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"},
+                    "total": {"type": "number", "minimum": 1.00, "multipleOf": 0.01},
+                    "status": {"type": "string", "enum": ["pending", "processing", "shipped", "delivered", "cancelled"]},
+                    "item_count": {"type": "integer", "minimum": 1, "maximum": 100},
                     "priority": {"type": "boolean"}
                 },
-                "required": ["order_id", "total", "status"],
+                "required": ["order_id", "created_at", "total", "status", "item_count"],
                 "additionalProperties": False
             },
         ]
 
         descriptions = [
-            "a product with ID, name, price, category, and stock status",
-            "a user registration with username, email, age, and country",
-            "an order with ID, total, status, item count, and priority flag",
+            "a product with ID (PROD-12345678), 12-digit UPC, name, price, category, and stock status",
+            "a user with ID (USR1234567), username (lowercase starting with letter), email, US phone (+1-555-123-4567), age, and verified status",
+            "an order with ID (ORD-1234567890), ISO timestamp, total, status, item count, and priority",
         ]
 
         choice = rng.integers(0, len(schemas))
@@ -173,58 +181,64 @@ class EasyJSONSchemaDataset:
     def _generate_complex_schema(
         self, idx: int, rng: np.random.Generator
     ) -> tuple[dict, str]:
-        """Complex: 6-8 fields, basic nesting, simple patterns."""
+        """Complex: 7-8 fields, nested objects with strict patterns."""
 
         schemas = [
-            # Customer order with address
+            # Customer order with strict address
             {
                 "type": "object",
                 "properties": {
-                    "order_id": {"type": "string", "pattern": "^ORD-[0-9]{6}$"},
-                    "customer_name": {"type": "string", "minLength": 2},
-                    "total_amount": {"type": "number", "minimum": 0.01},
-                    "status": {"type": "string", "enum": ["pending", "processing", "shipped", "delivered"]},
-                    "address": {
+                    "order_id": {"type": "string", "pattern": "^ORD-[0-9]{8}-[A-Z]{2}$"},
+                    "customer_email": {"type": "string", "pattern": "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$"},
+                    "total_amount": {"type": "number", "minimum": 5.00, "maximum": 50000, "multipleOf": 0.01},
+                    "tax_amount": {"type": "number", "minimum": 0, "multipleOf": 0.01},
+                    "status": {"type": "string", "enum": ["pending", "processing", "shipped", "delivered", "cancelled"]},
+                    "shipping_address": {
                         "type": "object",
                         "properties": {
-                            "street": {"type": "string"},
-                            "city": {"type": "string"},
-                            "zip": {"type": "string"}
+                            "street": {"type": "string", "minLength": 5, "maxLength": 100},
+                            "city": {"type": "string", "minLength": 2, "maxLength": 50},
+                            "state": {"type": "string", "pattern": "^[A-Z]{2}$"},
+                            "zip": {"type": "string", "pattern": "^[0-9]{5}(-[0-9]{4})?$"}
                         },
-                        "required": ["street", "city", "zip"]
+                        "required": ["street", "city", "state", "zip"],
+                        "additionalProperties": False
                     },
-                    "created_date": {"type": "string"},
+                    "created_at": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"},
                 },
-                "required": ["order_id", "customer_name", "total_amount", "status", "address"],
+                "required": ["order_id", "customer_email", "total_amount", "tax_amount", "status", "shipping_address", "created_at"],
                 "additionalProperties": False
             },
-            # Employee record
+            # Employee with nested contact
             {
                 "type": "object",
                 "properties": {
-                    "employee_id": {"type": "string", "pattern": "^EMP[0-9]{4}$"},
-                    "first_name": {"type": "string", "minLength": 1},
-                    "last_name": {"type": "string", "minLength": 1},
-                    "department": {"type": "string", "enum": ["engineering", "sales", "hr", "marketing"]},
-                    "salary": {"type": "number", "minimum": 30000, "maximum": 500000},
-                    "contact": {
+                    "employee_id": {"type": "string", "pattern": "^EMP-[0-9]{6}$"},
+                    "ssn_last_four": {"type": "string", "pattern": "^[0-9]{4}$"},
+                    "first_name": {"type": "string", "minLength": 2, "maxLength": 50},
+                    "last_name": {"type": "string", "minLength": 2, "maxLength": 50},
+                    "department": {"type": "string", "enum": ["engineering", "sales", "hr", "marketing", "finance", "operations"]},
+                    "annual_salary": {"type": "number", "minimum": 30000, "maximum": 500000, "multipleOf": 1000},
+                    "contact_info": {
                         "type": "object",
                         "properties": {
-                            "email": {"type": "string"},
-                            "phone": {"type": "string"}
+                            "work_email": {"type": "string", "pattern": "^[a-z.]+@company\\.com$"},
+                            "work_phone": {"type": "string", "pattern": "^\\+1-[0-9]{3}-[0-9]{3}-[0-9]{4}$"},
+                            "extension": {"type": "string", "pattern": "^x[0-9]{4}$"}
                         },
-                        "required": ["email"]
+                        "required": ["work_email", "work_phone"],
+                        "additionalProperties": False
                     },
-                    "hire_date": {"type": "string"}
+                    "hire_date": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"}
                 },
-                "required": ["employee_id", "first_name", "last_name", "department", "contact"],
+                "required": ["employee_id", "ssn_last_four", "first_name", "last_name", "department", "annual_salary", "contact_info", "hire_date"],
                 "additionalProperties": False
             },
         ]
 
         descriptions = [
-            "a customer order with ID, name, amount, status, and shipping address",
-            "an employee record with ID, name, department, salary, and contact info",
+            "a customer order with ID (ORD-12345678-US), email, total amount, tax amount, status, shipping address (with 5 or 9-digit ZIP), and ISO timestamp",
+            "an employee record with ID (EMP-123456), last 4 of SSN, name, department, salary (multiple of 1000), contact info (work email @company.com, phone, extension like x1234), and hire date",
         ]
 
         choice = rng.integers(0, len(schemas))
@@ -233,52 +247,66 @@ class EasyJSONSchemaDataset:
     def _generate_extreme_schema(
         self, idx: int, rng: np.random.Generator
     ) -> tuple[dict, str]:
-        """Extreme: 10+ fields, moderate nesting, regex patterns."""
+        """Extreme: 12+ fields, deep nesting, very strict patterns."""
 
         schema = {
             "type": "object",
             "properties": {
                 "transaction_id": {"type": "string", "pattern": "^TXN-[0-9]{10}-[A-Z]{3}$"},
-                "timestamp": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"},
-                "amount": {"type": "number", "minimum": 0.01, "maximum": 100000},
-                "currency": {"type": "string", "enum": ["USD", "EUR", "GBP", "JPY", "CNY"]},
-                "status": {"type": "string", "enum": ["pending", "approved", "declined", "refunded"]},
+                "batch_id": {"type": "string", "pattern": "^BATCH[0-9]{8}$"},
+                "timestamp": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\\.[0-9]{3}Z$"},
+                "amount": {"type": "number", "minimum": 0.01, "maximum": 100000, "multipleOf": 0.01},
+                "currency": {"type": "string", "enum": ["USD", "EUR", "GBP", "JPY", "CNY", "AUD", "CAD"]},
+                "exchange_rate": {"type": "number", "minimum": 0.0001, "exclusiveMaximum": 1000},
+                "status": {"type": "string", "enum": ["pending", "approved", "declined", "refunded", "chargeback"]},
                 "merchant": {
                     "type": "object",
                     "properties": {
-                        "merchant_id": {"type": "string", "pattern": "^MER[0-9]{6}$"},
-                        "name": {"type": "string", "minLength": 2, "maxLength": 100},
-                        "category": {"type": "string", "enum": ["retail", "restaurant", "online", "service"]}
+                        "merchant_id": {"type": "string", "pattern": "^MER-[0-9]{8}$"},
+                        "tax_id": {"type": "string", "pattern": "^[0-9]{2}-[0-9]{7}$"},
+                        "name": {"type": "string", "minLength": 3, "maxLength": 100},
+                        "category": {"type": "string", "enum": ["retail", "restaurant", "online", "service", "healthcare"]},
+                        "mcc_code": {"type": "string", "pattern": "^[0-9]{4}$"}
                     },
-                    "required": ["merchant_id", "name", "category"]
+                    "required": ["merchant_id", "tax_id", "name", "category", "mcc_code"],
+                    "additionalProperties": False
                 },
                 "customer": {
                     "type": "object",
                     "properties": {
-                        "customer_id": {"type": "string", "pattern": "^CUST[0-9]{8}$"},
-                        "email": {"type": "string"},
-                        "phone": {"type": "string", "pattern": "^\\+1[0-9]{10}$"},
+                        "customer_id": {"type": "string", "pattern": "^CUST-[0-9]{10}$"},
+                        "email": {"type": "string", "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"},
+                        "phone": {"type": "string", "pattern": "^\\+1-[0-9]{3}-[0-9]{3}-[0-9]{4}$"},
+                        "loyalty_number": {"type": "string", "pattern": "^LOY[0-9]{12}$"},
                         "billing_address": {
                             "type": "object",
                             "properties": {
-                                "street": {"type": "string", "minLength": 5},
-                                "city": {"type": "string", "minLength": 2},
+                                "street_number": {"type": "string", "pattern": "^[0-9]+[A-Za-z]?$"},
+                                "street_name": {"type": "string", "minLength": 3, "maxLength": 100},
+                                "unit": {"type": "string", "pattern": "^(Apt|Suite|Unit|#)\\s*[A-Za-z0-9]+$"},
+                                "city": {"type": "string", "minLength": 2, "maxLength": 50},
                                 "state": {"type": "string", "pattern": "^[A-Z]{2}$"},
-                                "zip": {"type": "string", "pattern": "^[0-9]{5}$"}
+                                "zip": {"type": "string", "pattern": "^[0-9]{5}-[0-9]{4}$"},
+                                "country": {"type": "string", "enum": ["USA"]}
                             },
-                            "required": ["street", "city", "state", "zip"]
+                            "required": ["street_number", "street_name", "city", "state", "zip", "country"],
+                            "additionalProperties": False
                         }
                     },
-                    "required": ["customer_id", "email", "billing_address"]
+                    "required": ["customer_id", "email", "phone", "loyalty_number", "billing_address"],
+                    "additionalProperties": False
                 },
-                "payment_method": {"type": "string", "enum": ["credit_card", "debit_card", "bank_transfer", "digital_wallet"]},
-                "risk_score": {"type": "number", "minimum": 0, "maximum": 100}
+                "payment_method": {"type": "string", "enum": ["credit_card", "debit_card", "bank_transfer", "digital_wallet", "cryptocurrency"]},
+                "card_last_four": {"type": "string", "pattern": "^[0-9]{4}$"},
+                "authorization_code": {"type": "string", "pattern": "^AUTH[0-9]{10}$"},
+                "risk_score": {"type": "integer", "minimum": 0, "maximum": 100},
+                "fraud_flags": {"type": "array", "items": {"type": "string", "enum": ["high_value", "foreign_ip", "new_device", "velocity_check", "none"]}, "minItems": 1, "maxItems": 5}
             },
-            "required": ["transaction_id", "timestamp", "amount", "currency", "status", "merchant", "customer", "payment_method"],
+            "required": ["transaction_id", "batch_id", "timestamp", "amount", "currency", "exchange_rate", "status", "merchant", "customer", "payment_method", "card_last_four", "authorization_code", "risk_score", "fraud_flags"],
             "additionalProperties": False
         }
 
-        description = "a payment transaction with ID, timestamp, amount, merchant details, customer info with billing address, payment method, and risk score"
+        description = "a payment transaction with ID (TXN-1234567890-USD), batch ID, ISO timestamp with milliseconds, amount, currency, exchange rate, status, merchant (with tax ID, MCC code), customer (with loyalty number and detailed billing address including unit, 9-digit ZIP), payment method, last 4 digits of card, authorization code, integer risk score, and array of fraud flags"
 
         return schema, description
 
