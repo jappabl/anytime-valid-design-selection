@@ -1,13 +1,12 @@
 """Easy JSON schema prompts for real-LLM validation.
 
-Designed to achieve ~5-10% failure rates on GPT-4o-mini, enabling early stopping
-for Experiment A replication.
+Tuned to achieve ~12-15% failure rates on GPT-4o-mini.
 
-Difficulty progression (targeting overall p≈0.08):
-- Simple: 3 fields, basic types → p≈0.02
-- Medium: 4-5 fields, simple email, enums → p≈0.05  
-- Complex: 5-6 fields, nested object → p≈0.10
-- Extreme: 7-8 fields, deeper nesting, simple regex → p≈0.15
+Difficulty progression (targeting overall p≈0.13):
+- Simple: Basic fields with additionalProperties:false → p≈0.05
+- Medium: Email + phone patterns → p≈0.10  
+- Complex: Nested + stricter patterns → p≈0.18
+- Extreme: Deep nesting + multiple patterns → p≈0.25
 """
 
 import json
@@ -19,7 +18,7 @@ from eval_harness.core.types import Prompt
 
 
 class EasyJSONSchemaDataset:
-    """Easy JSON schema prompts with realistic difficulty heterogeneity."""
+    """Moderate-difficulty JSON schemas."""
 
     def __init__(
         self,
@@ -33,7 +32,6 @@ class EasyJSONSchemaDataset:
         self.prompts = self._generate_prompts()
 
     def _generate_prompts(self) -> list[Prompt]:
-        """Generate all prompts deterministically."""
         rng = np.random.default_rng(self.seed)
         prompts = []
 
@@ -56,180 +54,166 @@ class EasyJSONSchemaDataset:
         return prompts
 
     def _generate_schema(self, idx: int, rng: np.random.Generator) -> tuple[dict, str]:
-        """Generate schema based on complexity."""
         if self.complexity == "simple":
             return self._generate_simple_schema(idx, rng)
         elif self.complexity == "medium":
             return self._generate_medium_schema(idx, rng)
         elif self.complexity == "complex":
             return self._generate_complex_schema(idx, rng)
-        else:  # extreme
+        else:
             return self._generate_extreme_schema(idx, rng)
 
-    def _generate_simple_schema(
-        self, idx: int, rng: np.random.Generator
-    ) -> tuple[dict, str]:
-        """Simple: 3 fields, basic types only."""
-
+    def _generate_simple_schema(self, idx: int, rng: np.random.Generator) -> tuple[dict, str]:
+        """Simple: 3-4 fields, strict on additionalProperties."""
+        
         schemas = [
             {
                 "type": "object",
                 "properties": {
-                    "name": {"type": "string"},
-                    "age": {"type": "integer", "minimum": 0, "maximum": 150},
-                    "active": {"type": "boolean"}
+                    "user_id": {"type": "string", "pattern": "^[A-Z]{2}[0-9]{4}$"},
+                    "name": {"type": "string", "minLength": 2},
+                    "age": {"type": "integer", "minimum": 1, "maximum": 120}
                 },
-                "required": ["name", "age"],
+                "required": ["user_id", "name", "age"],
                 "additionalProperties": False
             },
             {
                 "type": "object",
                 "properties": {
-                    "title": {"type": "string"},
-                    "price": {"type": "number", "minimum": 0},
-                    "in_stock": {"type": "boolean"}
+                    "product_code": {"type": "string", "pattern": "^P[0-9]{5}$"},
+                    "price": {"type": "number", "minimum": 0.01},
+                    "available": {"type": "boolean"}
                 },
-                "required": ["title", "price"],
+                "required": ["product_code", "price"],
                 "additionalProperties": False
             },
         ]
 
         descriptions = [
-            "a user profile with name (string), age (integer 0-150), and active status (boolean)",
-            "a product with title (string), price (positive number), and in_stock status (boolean)",
+            "a user with user_id (format: AB1234), name (min 2 chars), and age (1-120)",
+            "a product with product_code (format: P12345), price (positive), and available flag",
         ]
 
         choice = rng.integers(0, len(schemas))
         return schemas[choice], descriptions[choice]
 
-    def _generate_medium_schema(
-        self, idx: int, rng: np.random.Generator
-    ) -> tuple[dict, str]:
-        """Medium: 4-5 fields with simple email pattern and enums."""
-
+    def _generate_medium_schema(self, idx: int, rng: np.random.Generator) -> tuple[dict, str]:
+        """Medium: 4-5 fields with email/phone patterns."""
+        
         schemas = [
             {
                 "type": "object",
                 "properties": {
-                    "product_id": {"type": "string"},
-                    "name": {"type": "string", "minLength": 1},
-                    "price": {"type": "number", "minimum": 0},
-                    "category": {"type": "string", "enum": ["electronics", "clothing", "food", "books"]},
-                    "in_stock": {"type": "boolean"}
+                    "contact_id": {"type": "string"},
+                    "email": {"type": "string", "pattern": "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$"},
+                    "phone": {"type": "string", "pattern": "^[0-9]{3}-[0-9]{3}-[0-9]{4}$"},
+                    "verified": {"type": "boolean"}
                 },
-                "required": ["product_id", "name", "price", "category"],
+                "required": ["contact_id", "email", "phone"],
                 "additionalProperties": False
             },
             {
                 "type": "object",
                 "properties": {
-                    "user_id": {"type": "string"},
-                    "username": {"type": "string", "minLength": 3},
-                    "email": {"type": "string", "pattern": "^[^@]+@[^@]+\\.[^@]+$"},
-                    "age": {"type": "integer", "minimum": 13},
-                },
-                "required": ["user_id", "username", "email"],
-                "additionalProperties": False
-            },
-        ]
-
-        descriptions = [
-            "a product with product_id (string), name (non-empty), price (non-negative), category (one of: electronics, clothing, food, books), and in_stock (boolean)",
-            "a user with user_id (string), username (min 3 chars), email (simple format: text@text.text), and age (13+)",
-        ]
-
-        choice = rng.integers(0, len(schemas))
-        return schemas[choice], descriptions[choice]
-
-    def _generate_complex_schema(
-        self, idx: int, rng: np.random.Generator
-    ) -> tuple[dict, str]:
-        """Complex: 5-6 fields with one nested object."""
-
-        schemas = [
-            {
-                "type": "object",
-                "properties": {
-                    "order_id": {"type": "string"},
-                    "customer_email": {"type": "string", "pattern": "^[^@]+@[^@]+\\.[^@]+$"},
+                    "order_number": {"type": "string", "pattern": "^ORD-[0-9]{6}$"},
+                    "date": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"},
                     "total": {"type": "number", "minimum": 0},
-                    "status": {"type": "string", "enum": ["pending", "shipped", "delivered"]},
-                    "address": {
-                        "type": "object",
-                        "properties": {
-                            "street": {"type": "string"},
-                            "city": {"type": "string"},
-                            "zip": {"type": "string"}
-                        },
-                        "required": ["street", "city", "zip"],
-                        "additionalProperties": False
-                    },
+                    "status": {"type": "string", "enum": ["pending", "shipped", "delivered"]}
                 },
-                "required": ["order_id", "customer_email", "total", "status", "address"],
+                "required": ["order_number", "date", "total", "status"],
                 "additionalProperties": False
             },
         ]
 
         descriptions = [
-            "a customer order with order_id (string), customer_email (email format), total (non-negative), status (pending/shipped/delivered), and nested address object with street, city, zip",
+            "a contact with contact_id, email (lowercase letters/numbers with @ and .), phone (format: 555-123-4567), and verified status",
+            "an order with order_number (format: ORD-123456), date (YYYY-MM-DD), total amount, and status (pending/shipped/delivered)",
         ]
 
         choice = rng.integers(0, len(schemas))
         return schemas[choice], descriptions[choice]
 
-    def _generate_extreme_schema(
-        self, idx: int, rng: np.random.Generator
-    ) -> tuple[dict, str]:
-        """Extreme: 7-8 fields with deeper nesting and simple patterns."""
-
+    def _generate_complex_schema(self, idx: int, rng: np.random.Generator) -> tuple[dict, str]:
+        """Complex: 6 fields with nested object and patterns."""
+        
         schema = {
             "type": "object",
             "properties": {
-                "transaction_id": {"type": "string", "pattern": "^TXN-[0-9]{6}$"},
-                "amount": {"type": "number", "minimum": 0.01},
-                "currency": {"type": "string", "enum": ["USD", "EUR", "GBP"]},
-                "status": {"type": "string", "enum": ["pending", "approved", "declined"]},
-                "merchant": {
+                "employee_id": {"type": "string", "pattern": "^EMP[0-9]{5}$"},
+                "email": {"type": "string", "pattern": "^[a-z.]+@company\\.com$"},
+                "department": {"type": "string", "enum": ["eng", "sales", "hr", "ops"]},
+                "hire_date": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"},
+                "address": {
                     "type": "object",
                     "properties": {
-                        "merchant_id": {"type": "string"},
-                        "name": {"type": "string"},
+                        "city": {"type": "string", "minLength": 2},
+                        "state": {"type": "string", "pattern": "^[A-Z]{2}$"},
+                        "zip": {"type": "string", "pattern": "^[0-9]{5}$"}
                     },
-                    "required": ["merchant_id", "name"],
+                    "required": ["city", "state", "zip"],
                     "additionalProperties": False
-                },
-                "customer": {
-                    "type": "object",
-                    "properties": {
-                        "customer_id": {"type": "string"},
-                        "email": {"type": "string", "pattern": "^[^@]+@[^@]+\\.[^@]+$"},
-                        "address": {
-                            "type": "object",
-                            "properties": {
-                                "city": {"type": "string"},
-                                "zip": {"type": "string"}
-                            },
-                            "required": ["city", "zip"],
-                            "additionalProperties": False
-                        }
-                    },
-                    "required": ["customer_id", "email", "address"],
-                    "additionalProperties": False
-                },
+                }
             },
-            "required": ["transaction_id", "amount", "currency", "status", "merchant", "customer"],
+            "required": ["employee_id", "email", "department", "hire_date", "address"],
             "additionalProperties": False
         }
 
-        description = "a payment transaction with transaction_id (format: TXN-123456), amount, currency (USD/EUR/GBP), status, nested merchant object, and nested customer object with email and address"
+        description = "an employee with employee_id (EMP12345), email (@company.com domain, lowercase), department (eng/sales/hr/ops), hire_date (YYYY-MM-DD), and nested address with city, state (2 uppercase letters), and 5-digit zip"
+
+        return schema, description
+
+    def _generate_extreme_schema(self, idx: int, rng: np.random.Generator) -> tuple[dict, str]:
+        """Extreme: Deep nesting with multiple strict patterns."""
+        
+        schema = {
+            "type": "object",
+            "properties": {
+                "invoice_id": {"type": "string", "pattern": "^INV-[0-9]{8}-[A-Z]{2}$"},
+                "timestamp": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"},
+                "amount": {"type": "number", "minimum": 0.01, "maximum": 999999.99},
+                "vendor": {
+                    "type": "object",
+                    "properties": {
+                        "vendor_id": {"type": "string", "pattern": "^VND[0-9]{6}$"},
+                        "tax_id": {"type": "string", "pattern": "^[0-9]{2}-[0-9]{7}$"},
+                        "contact": {
+                            "type": "object",
+                            "properties": {
+                                "email": {"type": "string", "pattern": "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$"},
+                                "phone": {"type": "string", "pattern": "^\\+1-[0-9]{3}-[0-9]{3}-[0-9]{4}$"}
+                            },
+                            "required": ["email", "phone"],
+                            "additionalProperties": False
+                        }
+                    },
+                    "required": ["vendor_id", "tax_id", "contact"],
+                    "additionalProperties": False
+                },
+                "line_items": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "sku": {"type": "string", "pattern": "^[A-Z]{3}-[0-9]{4}$"},
+                            "quantity": {"type": "integer", "minimum": 1}
+                        },
+                        "required": ["sku", "quantity"]
+                    },
+                    "minItems": 1,
+                    "maxItems": 10
+                }
+            },
+            "required": ["invoice_id", "timestamp", "amount", "vendor", "line_items"],
+            "additionalProperties": False
+        }
+
+        description = "an invoice with invoice_id (INV-12345678-US), ISO timestamp, amount, nested vendor object with vendor_id (VND123456), tax_id (12-1234567), and contact info (email and phone +1-555-123-4567), plus array of line_items with sku (ABC-1234) and quantity"
 
         return schema, description
 
     def _create_prompt_text(self, schema: dict, description: str) -> str:
-        """Create prompt text from schema."""
         schema_json = json.dumps(schema, indent=2)
-
-        prompt = f"""Generate a valid JSON object representing {description}.
+        return f"""Generate a valid JSON object representing {description}.
 
 The JSON must conform to this schema:
 
@@ -237,15 +221,11 @@ The JSON must conform to this schema:
 
 Generate only the JSON object, with no additional text or explanation."""
 
-        return prompt
-
     def sample_uniform(self, rng: np.random.Generator) -> Prompt:
-        """Sample uniformly from all prompts."""
         idx = rng.integers(0, len(self.prompts))
         return self.prompts[idx]
 
     def get_all_prompts(self) -> list[Prompt]:
-        """Return all prompts."""
         return self.prompts.copy()
 
     def __len__(self) -> int:
@@ -256,7 +236,7 @@ Generate only the JSON object, with no additional text or explanation."""
 
 
 class StratifiedEasyJSONDataset:
-    """Easy JSON prompts stratified by difficulty."""
+    """Stratified by difficulty."""
 
     def __init__(
         self,
@@ -267,21 +247,14 @@ class StratifiedEasyJSONDataset:
         self.prompts_per_stratum = prompts_per_stratum
         self.seed = seed
         self.strata = strata or ["simple", "medium", "complex", "extreme"]
-
-        # Generate prompts for each stratum
         self.stratum_prompts: dict[str, list[Prompt]] = {}
         self._generate_stratified_prompts()
-
-        # Flatten for compatibility
         self.all_prompts = []
         for stratum in self.strata:
             self.all_prompts.extend(self.stratum_prompts[stratum])
 
     def _generate_stratified_prompts(self):
-        """Generate prompts for each difficulty stratum."""
-        # Use deterministic seed offsets
         SEED_OFFSETS = {"simple": 0, "medium": 1000, "complex": 2000, "extreme": 3000}
-
         for stratum in self.strata:
             stratum_seed = self.seed + SEED_OFFSETS[stratum]
             dataset = EasyJSONSchemaDataset(
@@ -292,20 +265,16 @@ class StratifiedEasyJSONDataset:
             self.stratum_prompts[stratum] = dataset.prompts
 
     def get_stratum_prompts(self, stratum: str) -> list[Prompt]:
-        """Get all prompts for a specific stratum."""
         return self.stratum_prompts[stratum]
 
     def get_prompt_stratum(self, prompt: Prompt) -> str:
-        """Determine which stratum a prompt belongs to."""
         return prompt.metadata["complexity"]
 
     def sample_uniform(self, rng: np.random.Generator) -> Prompt:
-        """Sample uniformly from all prompts."""
         idx = rng.integers(0, len(self.all_prompts))
         return self.all_prompts[idx]
 
     def get_all_prompts(self) -> list[Prompt]:
-        """Return all prompts."""
         return self.all_prompts.copy()
 
     def __len__(self) -> int:
