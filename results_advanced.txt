@@ -1,0 +1,83 @@
+============================================================================
+ADVANCED EXPERIMENTS ON REAL GPT-4o-mini OUTCOME POOLS
+============================================================================
+Pools: 250/stratum, p* = 0.2020, alpha = 0.05, BASE_SEED = 42
+
+E1: PEEKING MISCOVERAGE (real GPT-4o-mini outcomes, naive sampling)
+----------------------------------------------------------------------------
+Metric: P(true p* outside the interval at ANY n in 1..200)
+All intervals at nominal 95%. 2000 replications.
+
+  Wald (fixed-n)        : miscoverage 2000/2000 = 1.000 (INVALID under peeking)
+  Wilson (fixed-n)      : miscoverage  955/2000 = 0.477 (INVALID under peeking)
+  Betting CS (anytime)  : miscoverage   73/2000 = 0.036 (valid)
+
+E2: PER-SAMPLE MIXTURE CS UNDER STRATIFIED (NON-IID) STREAMS
+----------------------------------------------------------------------------
+Round-robin draws are independent but NOT identically distributed, so
+the iid-Bernoulli(p*) betting CS has NO general guarantee on the raw
+stream. Uniform coverage is computed EXACTLY by dynamic programming
+(no Monte Carlo error) for two peeking disciplines:
+  every-n     : bounds checked at every sample (NOT what the pipeline does)
+  block-gated : bounds checked only at complete blocks (n %% K == 0),
+                matching the pipeline's stopping rules.
+Adversarial configurations (failure mass split across a SUBSET of early
+strata) BREAK every-n peeking; block gating repairs every case found.
+A provably-valid route that needs no such caveat is the WSR CS on block
+means (results_block_reduction.txt).
+
+  config                                       p*   every-n  block-gated
+  iid (control)                             0.202    0.9691       0.9832
+  real pools                                0.202    0.9999       1.0000
+  all mass in one stratum (0,0,0,0.808)     0.202    1.0000       1.0000
+  ADVERSARIAL (0.258,0.2577,0,0)            0.129    0.9286       0.9962  <- FAILS
+  ADVERSARIAL K=8 (0.2,0,...,0)             0.025    0.7999       0.9999  <- FAILS
+
+  Reading: the per-sample mixture CS on a raw stratified stream is NOT
+  generally valid -- mid-block peeking can push uniform coverage as low
+  as 0.75 in adversarial configurations. Complete-block gating (which
+  the pipeline uses) restored >= 0.995 coverage in every configuration
+  tested, and mid-block peeking is also the mechanism behind the
+  partial-block bias artifact: the unified rule is NEVER PEEK MID-BLOCK.
+  For a guarantee rather than an empirical observation, use the WSR CS
+  on block means, which is exactly valid because blocks are iid.
+
+E3: ALLOCATION STRATEGIES (per-stratum betting CSs, weighted Bonferroni)
+----------------------------------------------------------------------------
+CI(p*) = [sum w_k L_k, sum w_k U_k], each stratum CS at alpha/4.
+Valid for ANY data-dependent allocation. 500 reps, n_max=2000.
+
+Time to reach precision (CI width <= target), median [IQR]:
+  width <= 0.3:
+    single-stream (round-robin) : 72 [68, 76]
+    stratified-CS uniform       : 144 [132, 152]
+    stratified-CS greedy        : 184 [172, 196]
+
+  width <= 0.2:
+    single-stream (round-robin) : 180 [168, 184]
+    stratified-CS uniform       : 296 [276, 316]
+    stratified-CS greedy        : 424 [396, 448]
+
+  width <= 0.15:
+    single-stream (round-robin) : 336 [328, 348]
+    stratified-CS uniform       : 504 [472, 532]
+    stratified-CS greedy        : 768 [728, 796]
+
+Time to certify UNSAFE at tau=0.15 (true p*=0.202), median [IQR]:
+    single-stream (round-robin) : 576 [400, 808]
+    stratified-CS uniform       : 438 [288, 660]
+    stratified-CS greedy        : 228 [156, 316]
+
+E4: VARIANCE THEORY CHECK (fixed n, no stopping)
+----------------------------------------------------------------------------
+  Per-stratum p_k: ['0.004', '0.000', '0.068', '0.736']
+  Naive per-sample variance p*(1-p*):        0.1612
+  Stratified per-sample variance mean p_kq_k: 0.0654
+  Predicted MAE ratio (stratified/naive):     0.637
+  Observed MAE ratio at n=100 (4000 reps):     0.628
+  Agreement: GOOD
+
+
+============================================================================
+Checksum (SHA256): 502ca8aaa00e82f0
+============================================================================

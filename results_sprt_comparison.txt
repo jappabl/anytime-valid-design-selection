@@ -1,0 +1,44 @@
+============================================================================
+WALD SPRT BASELINE vs BETTING-CS CERTIFICATION
+============================================================================
+tau = 0.15, alpha = beta = 0.05, n_max = 2000, 1000 reps, BASE_SEED = 42
+
+PART 1 - Real gpt-4o-mini pools (p* = 0.2020, truth UNSAFE)
+----------------------------------------------------------------------------
+  SPRT well-specified (p0=0.10, p1=0.25): correct 927/1000, wrong 73, abstain 0, median n 56
+  SPRT tight brackets  (p0=0.14, p1=0.16): correct 1000/1000, wrong 0, abstain 0, median n 348
+  Betting CS (composite, vs tau itself): correct 1000/1000, wrong 0, abstain 0, median n 588
+
+  Reading: with a generous, correctly-placed bracket the SPRT is faster --
+  it is the optimal simple-vs-simple test and pays for neither
+  composite validity nor an interval estimate.
+
+PART 2 - Misspecification sweep (SYNTHETIC Bernoulli streams)
+----------------------------------------------------------------------------
+SPRT uses p0=0.10, p1=0.25; certification question is p vs tau=0.15.
+True p varies BETWEEN the hypotheses. 'False unsafe' = declaring
+H1/UNSAFE when truth is p <= tau; 'false safe' symmetric.
+
+   true p   truth |  SPRT false  decided  med n |  CS false  decided  med n
+    0.110    SAFE |       6.5%     100%     35 |     0.0%      98%    780
+    0.130    SAFE |      16.2%     100%     41 |     0.3%      22%   1232
+    0.145    SAFE |      26.8%     100%     47 |     0.4%       2%    132
+    0.155  UNSAFE |      64.3%     100%     47 |     0.5%       2%     92
+    0.170  UNSAFE |      49.4%     100%     47 |     0.0%      20%   1084
+    0.200  UNSAFE |      22.4%     100%     37 |     0.0%      99%    570
+
+  Reading: near tau the CS mostly abstains within budget (low decided%),
+  which is the honest behavior for a boundary case -- while between its
+  hypotheses the SPRT always terminates but its
+  declarations carry NO error control relative to tau -- near tau it is
+  close to a coin flip, and even clearly-safe rates (p=0.13) are declared
+  unsafe at rates far above alpha. The betting CS certifies against tau
+  itself: it may abstain near the boundary (honesty), but its
+  false-certification rate stays below alpha at EVERY true p, and it
+  returns an anytime-valid interval throughout. For regulatory-style
+  claims ("the failure rate is below tau"), composite anytime validity is
+  the requirement and SPRT does not provide it.
+
+============================================================================
+Checksum (SHA256): 94717e9c1ed2bbac
+============================================================================

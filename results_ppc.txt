@@ -1,0 +1,45 @@
+============================================================================
+PREDICTION-POWERED CERTIFICATION (predictor-refined stratification)
+============================================================================
+Predictor: cached gpt-4o-mini outcomes (free side information).
+alpha=0.05, 300 reps, sample budget 4000, BASE_SEED=42
+
+gpt-4.1-nano (p* = 0.0800):
+  refined cells (from gpt-4o-mini outcomes only):
+    simple           weight 0.250  B-rate 0.004 (n=250)
+    medium           weight 0.250  B-rate 0.004 (n=250)
+    complex          weight 0.250  B-rate 0.008 (n=250)
+    extreme|A-fail   weight 0.184  B-rate 0.332 (n=184)
+    extreme|A-pass   weight 0.066  B-rate 0.227 (n=66)
+  PREDICTION (pool quantities, computed before any run): per-sample variance 0.0569 -> 0.0463 (REFINEMENT HELPS)
+  design                  width@400  width@800
+  WSR original 4-strata     0.0850    0.0540
+  WSR predictor-refined     0.0940    0.0550
+  certification tau=0.15 (truth SAFE, margin 0.070):
+    WSR original 4-strata : correct 300/300, wrong 0, abstain 0, median samples 268
+    WSR predictor-refined : correct 300/300, wrong 0, abstain 0, median samples 325
+  certification tau=0.11 (truth SAFE, margin 0.030):
+    WSR original 4-strata : correct 300/300, wrong 0, abstain 0, median samples 710
+    WSR predictor-refined : correct 300/300, wrong 0, abstain 0, median samples 835
+
+gpt-4.1-mini (p* = 0.0360):
+  refined cells (from gpt-4o-mini outcomes only):
+    simple           weight 0.250  B-rate 0.000 (n=250)
+    medium           weight 0.250  B-rate 0.000 (n=250)
+    complex          weight 0.250  B-rate 0.004 (n=250)
+    extreme|A-fail   weight 0.184  B-rate 0.163 (n=184)
+    extreme|A-pass   weight 0.066  B-rate 0.076 (n=66)
+  PREDICTION (pool quantities, computed before any run): per-sample variance 0.0311 -> 0.0259 (REFINEMENT HELPS)
+  design                  width@400  width@800
+  WSR original 4-strata     0.0770    0.0450
+  WSR predictor-refined     0.0890    0.0500
+  certification tau=0.15 (truth SAFE, margin 0.114):
+    WSR original 4-strata : correct 300/300, wrong 0, abstain 0, median samples 160
+    WSR predictor-refined : correct 300/300, wrong 0, abstain 0, median samples 195
+  certification tau=0.06 (truth SAFE, margin 0.024):
+    WSR original 4-strata : correct 300/300, wrong 0, abstain 0, median samples 852
+    WSR predictor-refined : correct 300/300, wrong 0, abstain 0, median samples 995
+
+============================================================================
+Checksum (SHA256): ea06cf65255eef7f
+============================================================================

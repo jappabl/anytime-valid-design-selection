@@ -1,0 +1,29 @@
+============================================================================
+GRADED-SCORE CERTIFICATION (bounded scores, WSR block CS)
+============================================================================
+Score = fraction of held tests matched (0 if unrunnable);
+gpt-4o-mini code generations, 80/stratum.
+
+Per-stratum mean score (real, measured):
+  simple  : mean 1.0000  (min 1.00, frac perfect 1.000)
+  medium  : mean 1.0000  (min 1.00, frac perfect 1.000)
+  complex : mean 0.9812  (min 0.17, frac perfect 0.938)
+  extreme : mean 0.8875  (min 0.00, frac perfect 0.863)
+
+Exact mixture mean score: mu* = 0.9672
+alpha = 0.05, 500 reps, budget 2000 samples, BASE_SEED = 42
+
+Certify 'mean score >= tau_s' (LCB > tau_s) or its negation (UCB <= tau_s):
+  tau_s = 0.9 (truth: mean ABOVE): correct 500/500, wrong 0, abstain 0, median samples 276
+  tau_s = 0.95 (truth: mean ABOVE): correct 460/500, wrong 0, abstain 40, median samples 1168
+  tau_s = 0.98 (truth: mean BELOW): correct 409/500, wrong 0, abstain 91, median samples 1076
+
+Reading: the same stratify->block->bet machinery certifies GRADED quality
+statements with no changes -- the WSR CS only needs boundedness. This is
+the bridge from pass/fail validators to rubric scores, judge ratings, and
+partial-credit evaluations. (mu* = 0.9672, so 'mean score >= 0.95'
+is a 0.017-margin claim.)
+
+============================================================================
+Checksum (SHA256): 36e5bcddc9f932f7
+============================================================================

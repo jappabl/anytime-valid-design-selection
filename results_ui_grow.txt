@@ -1,0 +1,56 @@
+============================================================================
+UNION-INTERSECTION E-PROCESS + GROW ALLOCATION
+============================================================================
+BASE_SEED=42, alpha=0.05
+
+CERTIFICATION at tau = 0.15 (300 reps, n_max=2000, alpha=0.05)
+----------------------------------------------------------------------------
+
+  gpt-4o-mini (p*=0.2020, truth UNSAFE):
+    [game value at true rates: 0.0498 -> theoretical ~60 samples; lam* = [0.0, 0.0, 0.16, 0.84]]
+    single-stream  : correct 300/300, wrong 0, abstain 0, median 596 [416, 792]
+    bonf+directed  : correct 300/300, wrong 0, abstain 0, median 190 [124, 265]
+    UI+round-robin : correct 298/300, wrong 0, abstain 2, median 944 [693, 1192]
+    UI+GROW (ours) : correct 278/300, wrong 0, abstain 22, median 896 [680, 1260]
+    UI+GROW-oracle : correct 300/300, wrong 0, abstain 0, median 510 [344, 746]
+    TaSC (ours v2) : correct 300/300, wrong 0, abstain 0, median 324 [239, 442]
+    TaSC-oracle    : correct 300/300, wrong 0, abstain 0, median 280 [207, 404]
+
+  gpt-4.1-nano (p*=0.0800, truth SAFE):
+    [game value at true rates: 0.0368 -> theoretical ~81 samples; lam* = [0.22, 0.24, 0.21, 0.33]]
+    single-stream  : correct 300/300, wrong 0, abstain 0, median 260 [164, 348]
+    bonf+directed  : correct 300/300, wrong 0, abstain 0, median 792 [704, 928]
+    UI+round-robin : correct 300/300, wrong 0, abstain 0, median 520 [395, 660]
+    UI+GROW (ours) : correct 300/300, wrong 0, abstain 0, median 606 [468, 769]
+    UI+GROW-oracle : correct 298/300, wrong 0, abstain 2, median 580 [453, 754]
+    TaSC (ours v2) : correct 300/300, wrong 0, abstain 0, median 448 [368, 540]
+    TaSC-oracle    : correct 300/300, wrong 0, abstain 0, median 468 [383, 576]
+
+  gpt-4.1-mini (p*=0.0360, truth SAFE):
+    [game value at true rates: 0.0885 -> theoretical ~34 samples; lam* = [0.26, 0.22, 0.24, 0.27]]
+    single-stream  : correct 300/300, wrong 0, abstain 0, median 72 [60, 108]
+    bonf+directed  : correct 300/300, wrong 0, abstain 0, median 356 [316, 376]
+    UI+round-robin : correct 300/300, wrong 0, abstain 0, median 176 [156, 212]
+    UI+GROW (ours) : correct 300/300, wrong 0, abstain 0, median 176 [144, 228]
+    UI+GROW-oracle : correct 300/300, wrong 0, abstain 0, median 172 [152, 196]
+    TaSC (ours v2) : correct 300/300, wrong 0, abstain 0, median 172 [152, 196]
+    TaSC-oracle    : correct 300/300, wrong 0, abstain 0, median 172 [148, 212]
+
+FIXED-n MEDIAN CI WIDTH for p* (gpt-4o-mini pools, 200 reps)
+----------------------------------------------------------------------------
+       n    single  Bonferroni       UI  WSR-blocks
+     200   0.1896     0.2474  0.2106     0.1390
+     400   0.1383     0.1692  0.1543     0.0870
+     800   0.1008     0.1171  0.1135     0.0590
+  (single-stream: empirical validity only; the other three are
+   provably anytime-valid under stratified sampling)
+
+VALIDITY OF THE UI CS UNDER GROW ALLOCATION
+----------------------------------------------------------------------------
+  real-pool rates                        (p*=0.202): uniform coverage 1.000 [PASS]
+  adversarial (0.258,0.2577,0,0)         (p*=0.129): uniform coverage 1.000 [PASS]
+  near-threshold (0.13,0.14,0.16,0.17)   (p*=0.150): uniform coverage 0.997 [PASS]
+
+============================================================================
+Checksum (SHA256): cb4b5546e93f42f5
+============================================================================

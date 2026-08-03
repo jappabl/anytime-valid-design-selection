@@ -1,0 +1,39 @@
+============================================================================
+THE PRICE OF PROVABLE VALIDITY (block-iid reductions)
+============================================================================
+Real gpt-4o-mini pools, p* = 0.2020, alpha = 0.05, 500 reps, budget 2000 samples, BASE_SEED = 42
+
+Methods:
+  per-sample : betting CS on the raw stratified stream
+               (validity empirical -- E2; tightest)
+  binarized  : betting CS on Y_b ~ Bernoulli(block mean)
+               (EXACTLY valid; randomized reduction)
+  eb-blocks  : stitched empirical-Bernstein CS on iid block means
+               (EXACTLY valid; deterministic reduction)
+
+WSR block CS uniform coverage on real-pool block streams (200 reps, 120 blocks): 0.985
+
+Median samples to reach CI width target:
+  width      per-sample   wsr-blocks    binarized    eb-blocks
+  <=0.30             72           72          272         1288
+  <=0.20            180          124          700        0/500
+  <=0.15            336          184         1324        0/500
+
+Certification at tau=0.15 (truth: p*=0.202 > tau, correct = UNSAFE):
+  per-sample : correct 500/500, WRONG 0, abstain 0, median 606
+  wsr-blocks : correct 500/500, WRONG 0, abstain 0, median 254
+  binarized  : correct 255/500, WRONG 0, abstain 245, median 1060
+  eb-blocks  : correct 0/500, WRONG 0, abstain 500, --
+
+Reading: the WSR betting CS on block means is provably valid (blocks are
+iid) AND TIGHTER than the per-sample mixture CS -- stratification shrinks
+the between-block variance (Var(M) = mean p_k q_k / K ~ 0.017 here, vs
+p*q* = 0.165 for the mixture) and the WSR bet adapts to it, while the
+Beta-Bernoulli per-sample CS must price iid-Bernoulli variance it never
+sees. Stratify -> block -> bet dominates both plain routes. The stitched
+EB reduction is sunk by its range term on n/4 observations; binarization
+pays the theoretical ~4x for discarding within-block information.
+
+============================================================================
+Checksum (SHA256): 0c84eb8637e45181
+============================================================================

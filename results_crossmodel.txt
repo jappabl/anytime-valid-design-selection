@@ -1,0 +1,49 @@
+============================================================================
+CROSS-MODEL EXPERIMENTS (same 1000 diverse JSON prompts, temp=0)
+============================================================================
+alpha=0.05, tau=0.15, n_max=2000, reps=500, BASE_SEED=42
+
+M1: HETEROGENEITY TRANSFER
+----------------------------------------------------------------------------
+  stratum      gpt-4o-mini  gpt-4.1-nano  gpt-4.1-mini
+  simple             0.004         0.004         0.000
+  medium             0.000         0.004         0.000
+  complex            0.068         0.008         0.004
+  extreme            0.736         0.304         0.140
+  p* (exact)        0.2020        0.0800        0.0360
+
+  Difficulty ORDERING (simple<=medium<=complex<=extreme) holds for
+  all models; magnitudes differ by up to 2.3x on `extreme`.
+
+M2: CERTIFICATION AT tau = 0.15 (one-sided decisions)
+----------------------------------------------------------------------------
+  gpt-4o-mini (p*=0.2020, ground truth UNSAFE):
+    round-robin   : correct 500/500, wrong 0, abstain 0, median time 588 [432, 792]
+    greedy alloc  : correct 500/500, wrong 0, abstain 0, median time 224 [156, 317]
+    directed alloc: correct 500/500, wrong 0, abstain 0, median time 176 [120, 256]
+
+  gpt-4.1-nano (p*=0.0800, ground truth SAFE):
+    round-robin   : correct 500/500, wrong 0, abstain 0, median time 240 [164, 350]
+    greedy alloc  : correct 57/500, wrong 0, abstain 443, median time 1936 [1852, 1972]
+    directed alloc: correct 500/500, wrong 0, abstain 0, median time 800 [696, 912]
+
+  gpt-4.1-mini (p*=0.0360, ground truth SAFE):
+    round-robin   : correct 500/500, wrong 0, abstain 0, median time 72 [60, 108]
+    greedy alloc  : correct 500/500, wrong 0, abstain 0, median time 616 [564, 676]
+    directed alloc: correct 500/500, wrong 0, abstain 0, median time 364 [324, 392]
+
+M3: SAMPLES TO REACH PRECISION (betting CS, round-robin block)
+----------------------------------------------------------------------------
+  width      gpt-4o-mini  gpt-4.1-nano  gpt-4.1-mini
+  <=0.30              72            32            24
+  <=0.25             108            52            32
+  <=0.20             180            80            52
+  <=0.15             336           160            84
+
+  Note: lower p* -> narrower betting CS at the same n, so stronger
+  models are cheaper to evaluate at equal precision.
+
+
+============================================================================
+Checksum (SHA256): 61d35ff7ee5e74cf
+============================================================================

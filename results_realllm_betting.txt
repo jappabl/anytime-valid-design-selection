@@ -1,0 +1,91 @@
+================================================================================
+REAL-LLM SEQUENTIAL EVALUATION ON CACHED GPT-4o-mini OUTCOMES
+================================================================================
+
+Model: gpt-4o-mini, temperature=0, one call per distinct prompt
+Pools: simple=250, medium=250, complex=250, extreme=250
+Per-stratum failure rates (real, measured):
+  simple  : 0.0040
+  medium  : 0.0000
+  complex : 0.0680
+  extreme : 0.7360
+
+Exact uniform-mixture estimand: p* = 0.2020
+BASE_SEED = 42, alpha = 0.05
+
+================================================================================
+R1: BETTING CS
+================================================================================
+--- Precision stopping with betting CS (1000 reps/condition, n_max=200, min n=20) ---
+
+width<=0.25:
+  naive           : bias -0.0080 (SE 0.0015), MAE 0.0373, median n_stop 106, stopped 100%, drift 21.45e-4, coverage 0.999
+  stratified      : bias -0.0058 (SE 0.0009), MAE 0.0216, median n_stop 103, stopped 100%, drift 0.18e-4, coverage 1.000
+  stratified_block: bias -0.0017 (SE 0.0008), MAE 0.0204, median n_stop 108, stopped 100%, drift 0.00e-4, coverage 1.000
+  bias difference (naive vs stratified_block) z = -3.63
+
+width<=0.30:
+  naive           : bias -0.0142 (SE 0.0018), MAE 0.0447, median n_stop 68, stopped 100%, drift 32.56e-4, coverage 0.999
+  stratified      : bias -0.0098 (SE 0.0011), MAE 0.0277, median n_stop 70, stopped 100%, drift 0.40e-4, coverage 1.000
+  stratified_block: bias -0.0046 (SE 0.0011), MAE 0.0270, median n_stop 72, stopped 100%, drift 0.00e-4, coverage 1.000
+  bias difference (naive vs stratified_block) z = -4.49
+
+width<=0.35:
+  naive           : bias -0.0188 (SE 0.0022), MAE 0.0571, median n_stop 47, stopped 100%, drift 51.66e-4, coverage 0.999
+  stratified      : bias -0.0155 (SE 0.0013), MAE 0.0330, median n_stop 47, stopped 100%, drift 0.95e-4, coverage 1.000
+  stratified_block: bias -0.0068 (SE 0.0013), MAE 0.0326, median n_stop 52, stopped 100%, drift 0.00e-4, coverage 1.000
+  bias difference (naive vs stratified_block) z = -4.64
+
+width<=0.40:
+  naive           : bias -0.0156 (SE 0.0023), MAE 0.0610, median n_stop 35, stopped 100%, drift 62.23e-4, coverage 1.000
+  stratified      : bias -0.0201 (SE 0.0014), MAE 0.0375, median n_stop 33, stopped 100%, drift 1.73e-4, coverage 1.000
+  stratified_block: bias -0.0057 (SE 0.0014), MAE 0.0341, median n_stop 36, stopped 100%, drift 0.00e-4, coverage 1.000
+  bias difference (naive vs stratified_block) z = -3.70
+
+================================================================================
+R2: INTERSECTION CS (the bounds used in the failed live experiment)
+================================================================================
+--- Precision stopping with intersection CS (1000 reps/condition, n_max=200, min n=20) ---
+
+width<=0.25:
+  naive           : bias +0.0005 (SE 0.0009), MAE 0.0235, median n_stop 200, stopped 0%, drift 9.53e-4, coverage 1.000
+  stratified      : bias +0.0004 (SE 0.0006), MAE 0.0143, median n_stop 200, stopped 0%, drift 0.00e-4, coverage 1.000
+  stratified_block: bias +0.0004 (SE 0.0006), MAE 0.0143, median n_stop 200, stopped 0%, drift 0.00e-4, coverage 1.000
+  bias difference (naive vs stratified_block) z = +0.11
+
+width<=0.30:
+  naive           : bias +0.0005 (SE 0.0009), MAE 0.0225, median n_stop 200, stopped 0%, drift 9.20e-4, coverage 1.000
+  stratified      : bias +0.0000 (SE 0.0006), MAE 0.0148, median n_stop 200, stopped 0%, drift 0.00e-4, coverage 1.000
+  stratified_block: bias +0.0000 (SE 0.0006), MAE 0.0148, median n_stop 200, stopped 0%, drift 0.00e-4, coverage 1.000
+  bias difference (naive vs stratified_block) z = +0.42
+
+width<=0.35:
+  naive           : bias +0.0001 (SE 0.0009), MAE 0.0223, median n_stop 200, stopped 6%, drift 9.44e-4, coverage 1.000
+  stratified      : bias +0.0003 (SE 0.0006), MAE 0.0145, median n_stop 200, stopped 1%, drift 0.00e-4, coverage 1.000
+  stratified_block: bias +0.0004 (SE 0.0006), MAE 0.0144, median n_stop 200, stopped 1%, drift 0.00e-4, coverage 1.000
+  bias difference (naive vs stratified_block) z = -0.26
+
+width<=0.40:
+  naive           : bias -0.0066 (SE 0.0012), MAE 0.0299, median n_stop 182, stopped 100%, drift 13.38e-4, coverage 1.000
+  stratified      : bias -0.0044 (SE 0.0007), MAE 0.0181, median n_stop 182, stopped 100%, drift 0.07e-4, coverage 1.000
+  stratified_block: bias -0.0021 (SE 0.0007), MAE 0.0177, median n_stop 188, stopped 100%, drift 0.00e-4, coverage 1.000
+  bias difference (naive vs stratified_block) z = -3.19
+
+================================================================================
+R3: CERTIFICATION
+================================================================================
+--- Certification stopping (one-sided vs tau) ---
+True mixture p* = 0.2020; certify SAFE if UCB<=tau, UNSAFE if LCB>tau; n_max=1000
+
+tau = 0.25 (ground truth: SAFE)
+  betting     : certified 226/400, wrong 0, median time-to-certify 757
+  intersection: certified 0/400, wrong 0, median time-to-certify None
+
+tau = 0.15 (ground truth: UNSAFE)
+  betting     : certified 369/400, wrong 0, median time-to-certify 600
+  intersection: certified 0/400, wrong 0, median time-to-certify None
+
+
+================================================================================
+Checksum (SHA256): 7213ea74c402d94b
+================================================================================

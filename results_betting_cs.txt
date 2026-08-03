@@ -1,0 +1,39 @@
+================================================================================
+BETTING CS VALIDATION (post binary-search inversion fix)
+================================================================================
+
+1. CLOSED FORM vs REPO IMPLEMENTATION
+   max |repo - closed_form| over 80 cases: 2.84e-14
+   MATCH: repo loop == Beta-Bernoulli marginal likelihood ratio
+
+2. TIME-UNIFORM COVERAGE (400 reps, n_max=200, alpha=0.05)
+   miss = true p outside [LCB, UCB] at ANY n in 1..n_max
+   p=0.0200: coverage 386/400 = 0.965  [PASS]
+   p=0.0500: coverage 390/400 = 0.975  [PASS]
+   p=0.1375: coverage 392/400 = 0.980  [PASS]
+   p=0.2500: coverage 381/400 = 0.953  [PASS]
+   p=0.5000: coverage 390/400 = 0.975  [PASS]
+
+3. WIDTH: betting vs intersection (deterministic failures = round(p*n))
+        p     n  intersect   betting  ratio
+   0.0500    50     0.3897    0.2012   0.52
+   0.0500   100     0.3108    0.1537   0.49
+   0.0500   200     0.2435    0.1105   0.45
+   0.1375    50     0.4897    0.3055   0.62
+   0.1375   100     0.4008    0.2258   0.56
+   0.1375   200     0.3335    0.1657   0.50
+   0.2500    50     0.5897    0.3632   0.62
+   0.2500   100     0.5108    0.2738   0.54
+   0.2500   200     0.3871    0.2019   0.52
+
+4. REAL-LLM RESCUE: p=0.25, precision target width<=0.35, min n=20
+   intersection: first n with width<=0.35 is 253
+        betting: first n with width<=0.35 is 57
+
+5. CERTIFICATION RESCUE: true p=0.05, certify UCB <= 0.15
+   intersection: first n with UCB<=0.15 is 767
+        betting: first n with UCB<=0.15 is 108
+
+================================================================================
+Checksum (SHA256): db05507e69ac14d6
+================================================================================

@@ -1,0 +1,28 @@
+============================================================================
+SECOND TASK FAMILY: CODE GENERATION (gpt-4o-mini, temp=0)
+============================================================================
+Task: write a Python function matching a parametrized spec;
+pass iff outputs equal the reference on all held tests.
+Pools: 80/stratum. BASE_SEED=42, alpha=0.05
+
+Per-stratum failure rates (real, measured):
+  simple  : 0.0000
+  medium  : 0.0000
+  complex : 0.0625
+  extreme : 0.1375
+
+Exact uniform-mixture estimand: p* = 0.0500
+
+Samples to reach precision (round-robin block stopping, median of 500 reps):
+  width       betting   intersection
+  <=0.20          52           360
+  <=0.15          96           768
+  <=0.10         236  151/500 runs
+
+SAFE certification at tau=0.10 (true p*=0.0500, ground truth SAFE):
+  betting     : correct 500/500, wrong 0, abstain 0, median time 356 [256, 496]
+  intersection: correct 166/500, wrong 0, abstain 334, median time 1820 [1688, 1920]
+
+============================================================================
+Checksum (SHA256): 12cc9b16644e551f
+============================================================================

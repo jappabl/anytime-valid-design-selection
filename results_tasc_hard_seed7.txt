@@ -1,0 +1,29 @@
+============================================================================
+TaSC ON HARD-MARGIN INSTANCES (predictions pre-registered in script header)
+============================================================================
+alpha=0.05, BASE_SEED=7
+
+  gpt-4o-mini, tau=0.17 (p*=0.2020, margin 0.032, truth UNSAFE; game value 0.0171, lam*=[0.02, 0.0, 0.24, 0.74]):
+    single-stream  : correct 147/150, wrong 0, abstain 3, median 1752 [1284, 2256]
+    bonf+directed  : correct 150/150, wrong 0, abstain 0, median 730 [500, 962]
+    UI+round-robin : correct 137/150, wrong 0, abstain 13, median 2492 [2032, 3060]
+    TaSC (ours)    : correct 150/150, wrong 0, abstain 0, median 1022 [808, 1272]
+    TaSC-oracle    : correct 150/150, wrong 0, abstain 0, median 890 [642, 1120]
+
+  gpt-4o-mini, tau=0.18 (p*=0.2020, margin 0.022, truth UNSAFE; game value 0.0078, lam*=[0.01, 0.0, 0.26, 0.73]):
+    single-stream  : correct 77/150, wrong 0, abstain 73, median 2980 [2404, 3588]
+    bonf+directed  : correct 137/150, wrong 0, abstain 13, median 2000 [1484, 2596]
+    UI+round-robin : correct 23/150, wrong 0, abstain 127, median 3424 [2920, 3718]
+    TaSC (ours)    : correct 138/150, wrong 0, abstain 12, median 2418 [1913, 3187]
+    TaSC-oracle    : correct 145/150, wrong 0, abstain 5, median 2056 [1580, 2796]
+
+  gpt-4.1-nano, tau=0.11 (p*=0.0800, margin 0.030, truth SAFE; game value 0.0100, lam*=[0.16, 0.17, 0.19, 0.48]):
+    single-stream  : correct 100/100, wrong 0, abstain 0, median 1220 [705, 1661]
+    bonf+directed  : correct 91/100, wrong 0, abstain 9, median 2924 [2618, 3358]
+    UI+round-robin : correct 89/100, wrong 0, abstain 11, median 2792 [2316, 3284]
+    TaSC (ours)    : correct 100/100, wrong 0, abstain 0, median 1916 [1546, 2234]
+    TaSC-oracle    : correct 100/100, wrong 0, abstain 0, median 1998 [1635, 2384]
+
+============================================================================
+Checksum (SHA256): 6307cb723273e44d
+============================================================================
