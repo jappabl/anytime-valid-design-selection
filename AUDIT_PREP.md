@@ -1,6 +1,7 @@
 # Audit Preparation Document - REVISED
 
-**Date**: 2025-12-29 (Decision-level impact added)
+**Date**: 2026-08-02 (Betting CS bug fix + validation added)
+**Previous Update**: 2025-12-29 (Decision-level impact added)
 **Previous Update**: 2025-12-28 (Post-audit fixes complete)
 **Purpose**: Third-party audit of implementation validity
 **Status**: All critical bugs fixed, claims updated to match evidence, practical impact demonstrated
@@ -9,7 +10,15 @@
 
 ## Executive Summary
 
-**Main Contribution**: Stratified sequential evaluation reduces conditional bias by ~50% under precision stopping with heterogeneous prompts; associated with elimination of composition drift (causal pathway not isolated)
+**UPDATE 2026-08-02 (adversarial audit + full correction pass)**: Four independent adversarial audits (statistics, experimental design, code correctness, prior art) were run against the project. They found: a float `multipleOf` validator bug corrupting 59 labels; a selection-biased failure-only re-query (temp-0 decoding is only ~98–99% reproducible — measured); exact-DP counterexamples refuting the per-sample mixture-CS validity claim on non-iid streams (coverage down to 0.80; block-gating repairs all cases); an instrumentation-blind arm behind a falsified "zero wrong certifications" claim; mislabeled pre-registration on the live τ=0.10 arm plus a dataset-seeding bug giving it a different prompt population; a WSR grid-edge bug; three assert-free test files; and substantial prior art requiring repositioning (Waudby-Smith & Ramdas 2023; Turner & Grünwald 2023; Spertus, Sridhar & Stark 2024; PACE/CELEUS/Hsu & Shekhar 2026). ALL corrections applied: validator fixed + regression-tested, full symmetric re-collection of all 3,000 JSON outcomes (flip matrices published; originals archived in `data/archive_pre_multipleof_fix/`), every offline experiment regenerated on corrected pools, claims rescoped and ranges restored, [FINDINGS.md](FINDINGS.md) rewritten (rev 2, includes the complete audit trail), [paper/DRAFT.md](paper/DRAFT.md) rewritten (v2, repositioned as an empirical design-selection study). Attacks that FAILED: betting-CS martingale exactness, WSR predictability/positivity, weighted-Bonferroni validity under adversarial allocation, all 320 code reference solutions (0 mismatches), post-pilot dataset provenance (0/1000 hash mismatches), seed robustness of headline comparisons. Corrected key numbers: gpt-4o-mini JSON p\*=0.2020, gpt-4.1-nano 0.0800, gpt-4.1-mini 0.0360 (was 0.083 — mostly the validator bug), code 0.0500.
+
+**UPDATE 2026-08-02 (late evening)**: Three further contributions: (1) anytime-valid paired model comparison — sequential McNemar via betting CS on discordant outcomes; certifies the better model in a median of 77 prompts, abstains 96.2% on a near-tie ([results_model_comparison.txt](results_model_comparison.txt)); (2) **stratify → block → bet**: a WSR hedged betting CS on iid block means ([src/eval_harness/stats/wsr_block_cs.py](src/eval_harness/stats/wsr_block_cs.py), tested) is PROVABLY anytime-valid under stratified sampling and empirically ~1.9× tighter than the per-sample mixture CS ([results_block_reduction.txt](results_block_reduction.txt)) — this resolves the E2 validity caveat constructively; (3) a pre-registered LIVE sequential certification run at temperature 0.7 ([results_live_certification.txt](results_live_certification.txt)). Full paper draft: [paper/DRAFT.md](paper/DRAFT.md).
+
+**UPDATE 2026-08-02 (evening)**: The full research synthesis now lives in [FINDINGS.md](FINDINGS.md) — it is the current source of truth for claims. New since the morning update: cross-model results (gpt-4.1-nano, gpt-4.1-mini on the same 1000 prompts — [results_crossmodel.txt](results_crossmodel.txt)), a second task family (parametrized code generation with execution-based validation — [results_codetask.txt](results_codetask.txt)), the peeking-miscoverage demonstration, a validity stress test of the CS under non-iid stratified streams, decision-directed allocation (3.3× faster UNSAFE certification), and the variance-theory agreement check (all in [results_advanced.txt](results_advanced.txt)). Figures in [paper/figures/](paper/figures/). Total API spend: $0.45.
+
+**UPDATE 2026-08-02**: The contribution set has been substantially revised after real-LLM validation. See [Real-LLM Experiments on Cached GPT-4o-mini Outcomes](#real-llm-experiments-on-cached-gpt-4o-mini-outcomes-new-2026-08-02) for the current headline results: (1) betting CS makes real-LLM sequential evaluation feasible where stitched bounds cannot stop or certify; (2) block-stratified sampling reduces conditional bias 2–3× and MAE ~40% vs naive on real GPT-4o-mini outcomes; (3) a newly-discovered partial-block bias in plain round-robin stratification, with fix. The previous real-LLM dataset (6 templates) is invalidated.
+
+**Main Contribution (synthetic, pre-2026)**: Stratified sequential evaluation reduces conditional bias by ~50% under precision stopping with heterogeneous prompts; associated with elimination of composition drift (causal pathway not isolated)
 
 **Practical Impact - Main Evidence (Experiment B2, 2025-12-29)**: Stratified eliminates 99% of composition drift (0.1-0.3 ×10⁻⁴ vs 17-25 ×10⁻⁴ for naive) but does not reliably reduce decision error under precision stopping with plug-in decision rules. Under common random numbers coupling with fixed threshold, error rates differ by ±1% (within sampling noise). This honest null result demonstrates that drift matters for estimation (Experiment A) but not for accept/reject decisions in this regime.
 
@@ -641,6 +650,118 @@ This is NOT a failure—it's **scientifically valuable negative evidence**. Comp
 
 **What We Can Claim**:
 > "Stratified sampling eliminates 99% of composition drift but does not reliably reduce decision error under precision stopping with plug-in decision rules (error differences ±1%, within sampling noise). This null result, obtained with common random numbers coupling and fixed threshold, suggests that composition drift matters for statistical estimation (Experiment A) but not for accept/reject decisions in this regime. Scope: synthetic 4-stratum heterogeneity, wide precision targets (w=0.40), small budgets (n≤200), conservative time-uniform bounds, plug-in heuristics."
+
+---
+
+## Betting CS: Critical Bug Fix and Validation (NEW: 2026-08-02)
+
+**Context**: The real-LLM validation run ([results_llm_validation.txt](results_llm_validation.txt)) failed to demonstrate the early-stopping phenomenon: all 60 replications hit the n_max=100 budget because the Hoeffding/Bernstein intersection bounds cannot reach width ≤ 0.35 by n=100 (width ≈ 0.51 at n=100, p̂=0.25). Bias reduction measured: 0.0000. **Status: ❌ Experiment A NOT replicated on real LLM** — not because the phenomenon is absent, but because early stopping never triggered.
+
+**Bug found**: The new betting-based CS ([src/eval_harness/stats/bernoulli_cs_betting.py](src/eval_harness/stats/bernoulli_cs_betting.py)) had inverted binary searches in `_find_ucb`/`_find_lcb` (on rejection, the search moved the wrong endpoint). Result: bounds were vacuous — at f=25, n=100 it returned (0.0, 1.0).
+
+**Fix**: Corrected both bisection loops. At f=25, n=100 the bounds are now (0.130, 0.404).
+
+**Validation** ([scripts/validate_betting_cs.py](scripts/validate_betting_cs.py), [results_betting_cs.txt](results_betting_cs.txt), checksum db05507e69ac14d6):
+1. **Correctness**: The sequential Beta-predictive e-value equals the closed form log[Beta(a+f, b+s)/Beta(a,b)] − log f_{p₀}(data) to 3×10⁻¹⁴ (the product telescopes to the marginal likelihood ratio).
+2. **Time-uniform coverage**: Miss = true p outside CS at ANY n ≤ 200. Coverage 0.953–0.980 across p ∈ {0.02, 0.05, 0.1375, 0.25, 0.5} (400 reps each) — all ≥ 95% nominal.
+3. **Width**: Betting CS is ~2× tighter than the intersection at every tested (p, n) (ratio 0.45–0.62).
+4. **Real-LLM rescue**: At p=0.25, width ≤ 0.35 is first reached at n=57 (betting) vs n=253 (intersection — outside the n_max=100 budget). The failed real-LLM experiment becomes feasible without raising the budget.
+5. **Certification**: At true p=0.05, certifying UCB ≤ 0.15 takes n=108 (betting) vs n=767 (intersection) — a ~7× sample saving.
+
+**Unit tests**: [tests/test_betting_cs.py](tests/test_betting_cs.py) — 9 tests including a non-vacuous-bounds regression test for the inversion bug and a time-uniform coverage smoke test. All pass.
+
+**Implication**: Betting CS supersedes the intersection bounds as the recommended CS for both precision and certification stopping in this regime. The real-LLM Experiment A replication should be rerun with betting CS before any claims about real-model early-stopping bias are made.
+
+---
+
+## Real-LLM Experiments on Cached GPT-4o-mini Outcomes (NEW: 2026-08-02)
+
+### Fatal flaw discovered in the previous real-LLM dataset
+
+The "easy JSON" dataset used in the failed live run contains only **6 distinct
+prompt templates** (2 simple, 2 medium, 1 complex, 1 extreme). At
+temperature=0 each template yields an essentially fixed outcome, so the
+experiment measured a mixture over ~6 deterministic coin flips — not a prompt
+distribution. This also explains the repeated "Goldilocks" schema hand-tuning
+in the commit history. **All previous real-LLM results should be considered
+invalid as evidence about prompt-distribution failure rates.**
+
+### New dataset: diverse, structurally-graded difficulty
+
+[src/eval_harness/prompts/diverse_json_prompts.py](src/eval_harness/prompts/diverse_json_prompts.py):
+250 distinct randomly-composed schemas per stratum (1000 total, verified
+unique, all valid Draft7). Difficulty is controlled structurally (number of
+regex-pattern fields, nesting depth, arrays, exact-length strings,
+multipleOf) — no per-template tuning. Design was fixed before data collection;
+one 160-prompt pilot verified rates were non-degenerate, no knobs were changed
+after the pilot. Tests: [tests/test_diverse_json_prompts.py](tests/test_diverse_json_prompts.py).
+
+### Data collection
+
+[scripts/collect_llm_outcomes.py](scripts/collect_llm_outcomes.py) — one
+temperature-0 call per distinct prompt (GPT-4o-mini, seed=42), full outcome
+cache in [data/llm_outcomes_diverse_json.jsonl](data/llm_outcomes_diverse_json.jsonl).
+Total spend ≈ $0.10. Because decoding is deterministic at temperature=0,
+sampling with replacement from the cached pools is an iid draw from the
+empirical distribution of the model's behavior, so the uniform-mixture
+estimand is known EXACTLY: no "estimated true p".
+
+**Measured per-stratum failure rates (real heterogeneity, n=250 each)**:
+
+| Stratum | Failure rate | Dominant failure mode |
+|---------|-------------|----------------------|
+| simple  | 0.004 | — |
+| medium  | 0.000 | — |
+| complex | 0.080 | long digit-run patterns |
+| extreme | 0.748 | exact-length strings (character counting), multi-group regexes |
+
+**Exact estimand**: p* = 0.2080. All failures are schema-validation errors
+(zero parse/truncation artifacts).
+
+### Results ([scripts/run_realllm_offline.py](scripts/run_realllm_offline.py), [results_realllm_betting.txt](results_realllm_betting.txt), checksum dd46a7eea9f8c2da)
+
+1000 replications per condition, n_max=200, min n=20, α=0.05, BASE_SEED=42.
+
+**R2 — why the live experiment failed**: With the intersection CS, precision
+targets w ≤ 0.35 stop in 0–4% of replications within n=200. With the betting
+CS, 100% stop (median n=35–110). The betting CS reaches w=0.40 at median n=35
+vs 186 for intersection (~5× fewer samples).
+
+**R1 — naive vs stratified at the stopping time (betting CS, real outcomes)**:
+
+- **Partial-block bias discovered**: plain round-robin stratification visits
+  strata in fixed order, so at stopping times not divisible by K the last
+  strata in the rotation (here `extreme`, the hardest) are systematically
+  undersampled → the bias comparison vs naive flips sign across widths
+  (z ∈ {+1.12, −1.25, −1.53, +2.51}).
+- **Fix — block stopping**: evaluate the stopping rule only at n divisible by
+  K (`stratified_block`). Composition is then exactly balanced at every
+  possible stopping time.
+- **With the fix**, on real model outcomes: conditional bias is 2–3× smaller
+  than naive at every width (e.g. w=0.35: −0.0058 vs −0.0189; z = −5.25),
+  drift is exactly 0, and MAE is ~40% lower than naive at every width.
+  Direction is consistent at all 4 widths; 3 of 4 differences exceed |z|>2.
+- Coverage ≥ 0.999 everywhere (conservative time-uniform bounds).
+
+**R3 — certification on real outcomes** (one-sided, τ decisions, n_max=1000):
+Certifying UNSAFE at τ=0.15 (truth: unsafe, p*=0.208): betting certifies
+390/400 with 0 errors, median n=460; intersection certifies **0/400**.
+Certifying SAFE at τ=0.25 (margin 0.042): betting 109/400 with 0 errors;
+intersection 0/400. The intersection CS cannot make either certification
+within 1000 samples in this regime.
+
+### Revised claims (2026-08-02)
+
+- ✅ **Real heterogeneity demonstrated** on a real model with a diverse
+  (1000 distinct prompts) task distribution — no template tuning.
+- ✅ **Betting CS enables sequential evaluation of real LLMs** in budgets
+  where stitched Hoeffding/Bernstein bounds cannot stop or certify at all.
+- ✅ **Block-stratified sequential evaluation** reduces conditional bias 2–3×
+  and MAE ~40% vs naive at the stopping time on real-model outcomes.
+- ⚠️ **New caveat**: plain (non-block) round-robin stratification has a
+  systematic partial-block composition bias at stopping; use block stopping.
+- Scope: single model (GPT-4o-mini), single task family (JSON schema
+  generation), temperature 0, empirical-pool resampling design.
 
 ---
 
