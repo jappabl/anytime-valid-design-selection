@@ -3,11 +3,37 @@
 import json
 import re
 from datetime import datetime
+from decimal import Decimal, InvalidOperation
 from typing import Optional
 
 import jsonschema
 
 from eval_harness.core.types import ValidationResult
+
+
+def _decimal_multiple_of(validator, db, instance, schema):
+    """Decimal-aware multipleOf check.
+
+    jsonschema's default check uses binary floating point, which wrongly
+    rejects values like 199.95 for multipleOf 0.05 (a decimal multiple
+    that is not a binary one). Exact decimal arithmetic on the JSON
+    literals avoids the artifact.
+    """
+    if not isinstance(instance, (int, float)) or isinstance(instance, bool):
+        return
+    try:
+        remainder = Decimal(str(instance)) % Decimal(str(db))
+    except InvalidOperation:
+        remainder = None
+    if remainder is None or remainder != 0:
+        yield jsonschema.ValidationError(
+            f"{instance} is not a multiple of {db}"
+        )
+
+
+_Draft7Decimal = jsonschema.validators.extend(
+    jsonschema.Draft7Validator, {"multipleOf": _decimal_multiple_of}
+)
 
 
 class JSONSchemaValidator:
@@ -104,7 +130,7 @@ class JSONSchemaValidator:
         # Step 2: Validate against schema if provided
         if active_schema is not None:
             try:
-                jsonschema.validate(instance=parsed, schema=active_schema)
+                _Draft7Decimal(active_schema).validate(parsed)
             except jsonschema.ValidationError as e:
                 return ValidationResult(
                     sample_id=sample_id,
