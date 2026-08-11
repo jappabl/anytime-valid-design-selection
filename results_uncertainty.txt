@@ -1,0 +1,25 @@
+============================================================================
+SCOREBOARD UNCERTAINTY: CRN + PAIRED BOOTSTRAP ON MEDIAN DIFFERENCES
+============================================================================
+300 reps/arm, 10000 bootstrap resamples, abstentions censored at n_max, BASE_SEED=42
+
+  gpt-4o-mini tau=0.15 (UNSAFE): directed vs WSR
+    medians 178 vs 244  |  median diff +66, 95% CI [+42, +94]  ->  SIGNIFICANT
+  gpt-4.1-nano tau=0.15 (SAFE): single vs WSR
+    medians 240 vs 260  |  median diff +20, 95% CI [+8, +32]  ->  SIGNIFICANT
+  gpt-4.1-mini tau=0.15 (SAFE): single vs WSR
+    medians 72 vs 160  |  median diff +88, 95% CI [+72, +88]  ->  SIGNIFICANT
+  gpt-4o-mini tau=0.17 (UNSAFE): WSR vs directed
+    medians 656 vs 800  |  median diff +144, 95% CI [+96, +230]  ->  SIGNIFICANT
+  gpt-4o-mini tau=0.18 (UNSAFE): WSR vs directed
+    medians 1502 vs 1992  |  median diff +490, 95% CI [+268, +720]  ->  SIGNIFICANT
+  gpt-4.1-nano tau=0.11 (SAFE): WSR vs single
+    medians 706 vs 1228  |  median diff +522, 95% CI [+464, +614]  ->  SIGNIFICANT
+
+Convention: positive difference = scoreboard winner faster. TIE means
+the 95% CI on the median difference includes 0 and the scoreboard box
+should be read as a statistical tie, not a win.
+
+============================================================================
+Checksum (SHA256): 365480d1a736749d
+============================================================================

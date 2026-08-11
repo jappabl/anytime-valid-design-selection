@@ -1,0 +1,17 @@
+========================================================================
+CRN CENSORED-MEDIAN: Spertus+greedy vs incumbent box-holders
+========================================================================
+300 reps, 10000 bootstrap resamples, abstain censored at n_max
+
+  gpt-4o-mini tau=0.15 (UNSAFE) vs directed:
+    censored medians: spertus 156 vs directed 178; diff +22, 95% CI [-2,+42] -> TIE
+  gpt-4.1-nano tau=0.15 (SAFE) vs single:
+    censored medians: spertus 184 vs single 240; diff +56, 95% CI [+40,+80] -> SPERTUS TAKES THE BOX
+  gpt-4.1-nano tau=0.11 (SAFE) vs wsr:
+    censored medians: spertus 812 vs wsr 706; diff -106, 95% CI [-258,+82] -> TIE
+  gpt-4o-mini tau=0.17 (UNSAFE) vs wsr:
+    censored medians: spertus 736 vs wsr 656; diff -80, 95% CI [-340,+92] -> TIE
+
+========================================================================
+Checksum (SHA256): 7847c711e1bbd8f2
+========================================================================
