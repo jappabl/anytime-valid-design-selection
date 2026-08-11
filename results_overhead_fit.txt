@@ -1,0 +1,32 @@
+============================================================================
+OVERHEAD LAW FIT:  n*V = log(1/alpha) + (d_eff/2) log n + c
+============================================================================
+12 grid rows parsed; points with certified fraction < 0.9 excluded.
+
+Pre-stated interpretation targets: d_eff ~ 1 (single, WSR), ~3 or 4 (UI).
+
+single-stream:
+  gpt-4o-mini   : d_eff =  0.79, c =  +0.55, R^2 = 0.893  (5 pts, 1 dropped, max|resid| = 0.11 nats)
+  gpt-4.1-nano  : d_eff =  1.01, c =  -0.26, R^2 = 0.923  (5 pts, 1 dropped, max|resid| = 0.17 nats)
+  POOLED        : d_eff =  0.94, c =  -0.00, R^2 = 0.907  (10 pts)
+
+UI+RR:
+  gpt-4o-mini   : d_eff =  3.37, c =  +4.33, R^2 = 0.924  (4 pts, 2 dropped, max|resid| = 0.34 nats)
+  gpt-4.1-nano  : d_eff =  4.04, c =  +1.70, R^2 = 0.981  (4 pts, 2 dropped, max|resid| = 0.27 nats)
+  POOLED        : d_eff =  3.83, c =  +2.57, R^2 = 0.950  (8 pts)
+
+WSR blocks:
+  gpt-4o-mini   : d_eff =  0.00, c =  +2.31, R^2 = 0.000  (6 pts, 0 dropped, max|resid| = 0.39 nats)
+  gpt-4.1-nano  : d_eff = -0.44, c =  +2.83, R^2 = 0.555  (6 pts, 0 dropped, max|resid| = 0.23 nats)
+  POOLED        : d_eff = -0.44, c =  +3.27, R^2 = 0.093  (12 pts)
+
+Reading guide: d_eff is the fitted 'learning dimension'. The law is
+supported if (a) R^2 is high with small residuals, (b) d_eff is stable
+across models for the same method, (c) the ordering d(UI) > d(single)
+~ d(WSR) holds. Integer proximity to the pre-stated targets is the
+interpretable bonus, not a requirement. The crossover margin between
+two methods follows by equating their fitted laws.
+
+============================================================================
+Checksum (SHA256): 688821bbd44e18c0
+============================================================================
