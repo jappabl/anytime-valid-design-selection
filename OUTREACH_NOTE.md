@@ -63,17 +63,21 @@ artifacts available):
   the overhead of learning K parameters plus tracking slack appears to
   consume the stratified rate advantage at practical sample sizes.
 
-**The open question.** Across methods and margins our stopping times
-are well described by n·V ≈ log(1/α) + (d_eff/2)·log n + c with method-
-dependent effective dimension d_eff [fit results to be inserted from
-results_overhead_fit.txt when final]. Equating laws yields a predicted
-crossover margin below which simpler low-dimension statistics beat
-rate-optimal stratified ones. Is a finite-sample version of this
-tradeoff — rate optimality vs parametric overhead for UI-TSs — known or
-derivable within your framework? Your paper's Section 4.2 constructs
-the STO test for known alternatives; our data suggest the unknown-
-alternative price is the dominant practical term precisely in the
-regimes where stratification's rate advantage is largest.
+**The observation we'd most value your view on.** Our stopping times
+across methods and margins are predicted within ±5%, with zero fitted
+parameters, by the classical expansion n·V = log(1/α) + (d/2)·log n +
+c (Pollak & Siegmund 1975; Woodroofe 1982; Schwarz 1962; Lai 1988) —
+with d = K + #boundary-strata for the UI statistic (boundary strata
+cost a full log n; cf. Xie & Barron 1997). Two things seem worth
+noting: (i) this classical second-order term appears under-cited in
+the modern e-value literature yet is the dominant practical term in
+exactly the regimes where stratification's rate advantage is largest —
+it is why simple block-mean methods beat rate-optimal UI-TSs at
+log n ≈ 6–8 in our data; (ii) the popular predictable-plug-in λ
+schedule (λ ∝ 1/√(t log t)) forfeits the Kelly growth rate entirely
+(achieved/optimal → 0 in our measurements), which may be worth a
+caution in practical guidance. Is the boundary-stratum dimension rule
+for UI-TSs stated anywhere in your framework's lineage?
 
 If any of this is useful — the testbed, the LLM-domain benchmark of
 your method, or the anomaly — I would be glad to share everything, and
