@@ -1,6 +1,6 @@
 # Audit Preparation Document - REVISED
 
-**Date**: 2026-08-02 (Betting CS bug fix + validation added)
+**Date**: 2026-08-10 (Bolstering round: error bars, SOTA baseline, live WSR)
 **Previous Update**: 2025-12-29 (Decision-level impact added)
 **Previous Update**: 2025-12-28 (Post-audit fixes complete)
 **Purpose**: Third-party audit of implementation validity
@@ -9,6 +9,8 @@
 ---
 
 ## Executive Summary
+
+**UPDATE 2026-08-10 (bolstering round)**: CRN + paired-bootstrap error bars confirm all six scoreboard wins ([results_uncertainty.txt](results_uncertainty.txt)). The Spertus–Sridhar–Stark UI-TS baseline was implemented from the paper (arXiv:2409.06680) — TWO invalid drafts were caught by an information-bound guard now built into the artifact (draft 1: vertex minimization with η-aware bets; draft 2: flat strata pinned high on the null boundary); the valid version shows a speed/reliability trade vs WSR-on-blocks ([results_spertus_baseline.txt](results_spertus_baseline.txt), CRN box-check in [results_spertus_crn.txt](results_spertus_crn.txt)). Live pre-registered WSR validation CONFIRMED (7/8 UNSAFE, median 224 in predicted [150,450] — [results_live_wsr.txt](results_live_wsr.txt)). Code-task grid completed for nano/mini (model ranking monotone across both task families). reproduce.sh added (byte-identical smoke test); DEFENSE.md added. Spend this round ≈ $0.45.
 
 **UPDATE 2026-08-02 (adversarial audit + full correction pass)**: Four independent adversarial audits (statistics, experimental design, code correctness, prior art) were run against the project. They found: a float `multipleOf` validator bug corrupting 59 labels; a selection-biased failure-only re-query (temp-0 decoding is only ~98–99% reproducible — measured); exact-DP counterexamples refuting the per-sample mixture-CS validity claim on non-iid streams (coverage down to 0.80; block-gating repairs all cases); an instrumentation-blind arm behind a falsified "zero wrong certifications" claim; mislabeled pre-registration on the live τ=0.10 arm plus a dataset-seeding bug giving it a different prompt population; a WSR grid-edge bug; three assert-free test files; and substantial prior art requiring repositioning (Waudby-Smith & Ramdas 2023; Turner & Grünwald 2023; Spertus, Sridhar & Stark 2024; PACE/CELEUS/Hsu & Shekhar 2026). ALL corrections applied: validator fixed + regression-tested, full symmetric re-collection of all 3,000 JSON outcomes (flip matrices published; originals archived in `data/archive_pre_multipleof_fix/`), every offline experiment regenerated on corrected pools, claims rescoped and ranges restored, [FINDINGS.md](FINDINGS.md) rewritten (rev 2, includes the complete audit trail), [paper/DRAFT.md](paper/DRAFT.md) rewritten (v2, repositioned as an empirical design-selection study). Attacks that FAILED: betting-CS martingale exactness, WSR predictability/positivity, weighted-Bonferroni validity under adversarial allocation, all 320 code reference solutions (0 mismatches), post-pilot dataset provenance (0/1000 hash mismatches), seed robustness of headline comparisons. Corrected key numbers: gpt-4o-mini JSON p\*=0.2020, gpt-4.1-nano 0.0800, gpt-4.1-mini 0.0360 (was 0.083 — mostly the validator bug), code 0.0500.
 

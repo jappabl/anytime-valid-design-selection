@@ -266,23 +266,29 @@ def fig6_scoreboard():
                   "mini SAFE\nτ=.15 (easy)", "4o-mini UNSAFE\nτ=.17 (hard)",
                   "4o-mini UNSAFE\nτ=.18 (hard)", "nano SAFE\nτ=.11 (hard)"]
     methods = ["WSR blocks\n(provable)", "bonf+directed\n(provable)",
-               "single-stream\n(empirical†)", "TaSC\n(ours, provable)"]
+               "single-stream\n(empirical†)", "TaSC\n(ours, provable)",
+               "Spertus UI-TS\n(SOTA, provable)"]
+    # Spertus column: CRN censored medians where run (results_spertus_crn
+    # / results_spertus_baseline); nan = not run on that condition.
     data = np.array([
-        [254, 190, 596, 324],
-        [268, 792, 260, 448],
-        [160, 356, 72, 172],
-        [662, 808, 1696, 1014],
-        [1308, 1802, 3186, 2388],
-        [748, 3108, 1288, 1874],
+        [254, 190, 596, 324, 156],
+        [268, 792, 260, 448, 184],
+        [160, 356, 72, 172, np.nan],
+        [662, 808, 1696, 1014, 736],
+        [1308, 1802, 3186, 2388, 4000],
+        [748, 3108, 1288, 1874, 812],
     ], dtype=float)
 
     fig, ax = plt.subplots(figsize=(8.6, 4.4))
-    norm = data / data.min(axis=1, keepdims=True)
+    norm = data / np.nanmin(data, axis=1, keepdims=True)
     im = ax.imshow(np.log(norm), cmap="Blues", vmin=0, vmax=2.2,
                    aspect="auto")
     for i in range(len(conditions)):
-        winner = int(np.argmin(data[i]))
+        winner = int(np.nanargmin(data[i]))
         for j in range(len(methods)):
+            if np.isnan(data[i, j]):
+                ax.text(j, i, "—", ha="center", va="center", color=INK2)
+                continue
             bold = j == winner
             ax.text(j, i, f"{int(data[i, j])}", ha="center", va="center",
                     fontsize=10 if bold else 9,
@@ -296,7 +302,7 @@ def fig6_scoreboard():
     ax.set_yticks(range(len(conditions)), conditions, fontsize=8.5)
     ax.set_title("Median samples to certify (α=0.05) — winner boxed; "
                  "shading = ratio to row winner\n"
-                 "WSR blocks wins all 3 hard margins (4/6 among provable methods); "
+                 "three methods share the frontier; ties per results_spertus_crn; "
                  "†single-stream: empirical validity only", fontsize=9.5)
     fig.tight_layout()
     fig.savefig(FIGDIR / "fig6_scoreboard.png", dpi=200,

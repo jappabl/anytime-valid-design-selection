@@ -1,6 +1,6 @@
 # Which Sequential Design Should You Use? Anytime-Valid Evaluation of LLM Failure Rates on a Replay Testbed
 
-**Research synthesis — 2026-08-02, revision 2 (post-adversarial-audit).**
+**Research synthesis — 2026-08-10, revision 3 (post-audit, post-bolstering).**
 All numbers below were regenerated from the corrected outcome pools after
 a four-way adversarial audit (statistics, experimental design, code,
 prior art); see [Audit trail](#audit-trail-what-the-adversarial-review-changed).
@@ -137,9 +137,9 @@ both stop at the minimum block count — itself informative). Mechanism:
 Var(block mean) = mean p_k q_k / K ≈ 0.017 vs p\*q\* = 0.161, and the
 bet adapts to it. The ingredients are classical (interpenetrating
 subsampling; WSR); we did not find this composition benchmarked in the
-stratified anytime-valid literature, but **the state-of-the-art
-comparison (Spertus–Sridhar–Stark 2024 union-intersection with
-optimized allocation) has not been run and is the top open item.**
+stratified anytime-valid literature. The state-of-the-art comparison
+(Spertus–Sridhar–Stark 2024) has now been run — see F10: a genuine
+speed/reliability trade, not a clean win for either side.
 
 ### F5. The sampling design should follow the decision
 
@@ -283,6 +283,66 @@ The meta-finding, and the honest headline of the whole exercise:
 well-chosen simple reduction beats game-theoretic allocation, adaptive
 priors, and prediction-powered refinement — and four pre-stated
 predictions failing in a row is what made that conclusion trustworthy.**
+
+### F10. The bolstering round: error bars, the SOTA baseline, and live validation of the champion
+
+Six hardening moves, run after the invention round
+([results_uncertainty.txt](results_uncertainty.txt),
+[results_spertus_baseline.txt](results_spertus_baseline.txt),
+[results_live_wsr.txt](results_live_wsr.txt), `reproduce.sh`,
+[DEFENSE.md](DEFENSE.md)):
+
+1. **All six scoreboard wins are statistically significant** under
+   common-random-numbers seeding + paired bootstrap on median differences
+   (10,000 resamples; abstentions censored at n_max). Tightest win:
+   single-stream over WSR on easy-nano, +20 samples, 95% CI [+8, +32].
+   No fig6 box downgrades to a tie.
+
+2. **The audit-mandated SOTA baseline (Spertus–Sridhar–Stark 2024) is
+   implemented and the verdict is a genuine trade, not a clean win for
+   either side.** Our adaptation (inverse bets with frozen predictable
+   coefficients, exact boundary minimization; validity verified in both
+   directions at 0.007–0.030 ≤ α): the Spertus+greedy UI-TS is FASTER
+   when it certifies on 4 of 5 conditions (e.g. 144 vs 244 at easy
+   UNSAFE; 176–180 vs 260 at easy SAFE) but abstains 3–63% within the
+   same budgets where WSR abstains ~0–10%; at the hardest margin
+   (τ=0.18) WSR dominates outright (90% vs 37% certification). The CRN
+   censored-median tie-breaker
+   ([results_spertus_crn.txt](results_spertus_crn.txt)): **Spertus+greedy
+   TAKES the easy-nano-SAFE box** (184 vs single-stream 240, 95% CI
+   [+40,+80]); easy-4o-mini-UNSAFE becomes a Spertus/directed
+   statistical tie (156 vs 178, CI [−2,+42]); both contested hard
+   margins (τ=0.17, nano τ=0.11) are Spertus/WSR statistical ties, with
+   WSR nominally ahead; τ=0.18 stays WSR's outright. Final map: THREE
+   methods share the frontier — the strongest form of the
+   design-follows-decision thesis. Fidelity caveat,
+   both directions: this is our variant of their construction (their
+   banded AGRAPA version may reduce the abstentions).
+
+3. **It took three attempts to implement the baseline validly**, and
+   both invalid drafts were caught by an information-bound smell test
+   (medians faster than log(1/α)/game-value are physically impossible):
+   draft one used vertex minimization, which requires η-oblivious bets;
+   draft two mis-assigned flat (zero-failure) strata to the top of the
+   null boundary, starving failure strata. The guard is now built into
+   the artifact and flags any arm violating the bound — a small
+   methodological export in its own right.
+
+4. **The champion is validated live.** Pre-registered WSR-on-blocks run
+   at temperature 0.7 (prediction fixed before launch: UNSAFE ≥ 7/8,
+   median in [150, 450], zero SAFE): observed **7/8, median 224, zero
+   SAFE** — CONFIRMED, $0.25.
+
+5. **The model × task grid is complete and doubly monotone**: JSON p\*
+   (.202/.080/.036) and code p\* (.050/.016/.009) rank the three models
+   identically — difficulty ordering transfers across tasks, model
+   ordering transfers across families.
+
+6. **Push-button reproduction**: `./reproduce.sh [quick|all|script]`
+   re-runs offline experiments from the committed pools and diffs
+   checksums (smoke test: byte-identical). [DEFENSE.md](DEFENSE.md)
+   carries the judge-defense material. Cross-vendor replication remains
+   blocked on a non-OpenAI API key.
 
 ## Audit trail: what the adversarial review changed
 
