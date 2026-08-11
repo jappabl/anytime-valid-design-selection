@@ -211,3 +211,37 @@ mathematics is the matching lower bound for this frontier (classical
 ingredients: Rissanen 1984; Pollak 1978; multiparameter Lai–Zhang 1994 —
 plausibly assemblable by someone with the right training; flagged for
 expert collaboration in OUTREACH_NOTE.md).
+
+
+## Solving the bottleneck in its loophole: warm-start certification
+
+The conservation result says the learning tax is unavoidable for
+COLD-START uniformly-powerful procedures. Real evaluations recur, and a
+prior epoch converts the tax to a constant with validity untouched
+([results_warmstart.txt](results_warmstart.txt),
+[results_warmstart_joint.txt](results_warmstart_joint.txt); predictions
+pre-registered per arm, three misses honestly logged):
+
+- **Benign transfer prior** (the archived stale/mislabeled epoch — a
+  realistic warm start): overhead **0.58–1.37 nats** (cold: 15.5–18.4),
+  medians 186/~300/548 — 4.7–5.2× faster than the cold mixture and
+  **faster than every incumbent including WSR at all margins tested**.
+  (Pre-registered overhead window [1.5, 6] missed LOW — favorably wrong
+  is still logged as wrong.)
+- **Worst case** (adversarially inverted prior): per-stratum
+  ε-contamination pays K·log(1/ε) ≈ 9.2 nats (measured +9.9 — my "3–4
+  nats" pre-statement forgot the K factor; the property-test that
+  "caught a bug" was itself wrong, the implementation was exact).
+  **Joint contamination** (one global 90/10 mixture) caps the premium at
+  log(1/ε) ≈ 2.3 nats total — measured **+2.3/+2.8** vs cold, on the
+  bound to the decimal. Zero wrong certifications anywhere.
+- **Partial drift**: intermediate, with a characterized tradeoff —
+  joint owns the worst case, per-stratum degrades more gracefully under
+  partial drift (each stratum falls back independently). Hierarchical
+  contamination is the natural refinement (future work).
+
+Deployment statement: **the adaptivity tax binds only at first contact
+with a model; every recurring evaluation can convert it to ~1 nat with
+a provably-capped insurance premium.** Informative priors in test
+martingales are classical; the contribution here is the measured
+deployment story and the per-stratum-vs-joint contamination tradeoff.

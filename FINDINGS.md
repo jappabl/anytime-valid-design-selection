@@ -380,6 +380,21 @@ somewhere better than where it aimed:
    a fresh threshold — window [800, 1450], theory-central 1045
    ([results_live_prediction.txt](results_live_prediction.txt)).
 
+### F12. Warm-start certification: the bottleneck solved where it matters
+
+The learning tax (F11) binds only cold-start. Using a prior epoch (the
+archived stale/mislabeled pools — realistic, not oracle) with
+ε-contaminated transfer priors: overhead drops 15.5–18.4 → **0.6–1.4
+nats**, medians beat every incumbent including WSR at all tested
+margins, worst-case adversarial-prior degradation is provably and
+measurably capped at log(1/ε) ≈ 2.3 nats (joint contamination), and
+zero wrong certifications occurred in any arm
+([results_warmstart.txt](results_warmstart.txt),
+[results_warmstart_joint.txt](results_warmstart_joint.txt)). Three
+pre-registered prediction misses en route are logged in THEORY.md.
+Practical statement: first-contact evaluation pays the tax; every
+recurring evaluation lives in the loophole.
+
 ## Audit trail: what the adversarial review changed
 
 Four independent adversarial audits (statistics, experimental design,

@@ -1,0 +1,31 @@
+============================================================================
+WARM-START CERTIFICATION (predictions pre-registered in header)
+============================================================================
+current pools p_k = [0.004, 0.0, 0.068, 0.736] (p* = 0.2020)
+PRIOR epoch p_k  = [0.004, 0.0, 0.08, 0.748] (stale + mislabeled epoch; kappa=200, eps=0.1)
+alpha=0.05, 200 reps, n_max=6000, BASE_SEED=42
+
+  tau=0.15 (V_rr=0.0192):
+    cold UI mixture : certified 200/200, wrong 0, abstain   0, median 960, overhead  +15.47 nats
+    WARM-START UI   : certified 200/200, wrong 0, abstain   0, median 204, overhead   +0.93 nats
+    WSR (ref)       : certified 200/200, median 248
+
+  tau=0.16 (V_rr=0.0127):
+    cold UI mixture : certified 200/200, wrong 0, abstain   0, median 1498, overhead  +16.00 nats
+    WARM-START UI   : certified 200/200, wrong 0, abstain   0, median 316, overhead   +1.01 nats
+    WSR (ref)       : certified 200/200, median 374
+
+  tau=0.17 (V_rr=0.0075):
+    cold UI mixture : certified 200/200, wrong 0, abstain   0, median 2872, overhead  +18.42 nats
+    WARM-START UI   : certified 200/200, wrong 0, abstain   0, median 586, overhead   +1.37 nats
+    WSR (ref)       : certified 200/200, median 640
+
+Scoring: warm-start overhead in [1.5, 6] nats and >= 2.5x faster than
+the cold mixture everywhere; within +-30% of WSR at tau=0.17. Validity
+note: the prior epoch predates and is independent of the current pools'
+sampling stream, so anytime validity is exact; misspecification risk is
+capped by the eps-contamination at log(1/eps) ~ 2.3 nats.
+
+============================================================================
+Checksum (SHA256): c6684a068de30647
+============================================================================

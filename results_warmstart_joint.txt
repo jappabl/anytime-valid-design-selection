@@ -1,0 +1,40 @@
+============================================================================
+WARM-START CERTIFICATION (predictions pre-registered in header)
+============================================================================
+current pools p_k = [0.004, 0.0, 0.068, 0.736] (p* = 0.2020)
+PRIOR epoch p_k  = [0.004, 0.0, 0.08, 0.748] (stale + mislabeled epoch; kappa=200, eps=0.1)
+alpha=0.05, 200 reps, n_max=6000, BASE_SEED=42
+
+  tau=0.15 (V_rr=0.0192):
+    cold UI mixture : certified 200/200, wrong 0, abstain   0, median 960, overhead  +15.47 nats
+    joint (benign)  : certified 200/200, wrong 0, abstain   0, median 186, overhead   +0.58 nats
+    joint (drifted) : certified 200/200, wrong 0, abstain   0, median 914, overhead  +14.59 nats
+    joint (inverted): certified 200/200, wrong 0, abstain   0, median 1078, overhead  +17.74 nats
+    perstrat (inverted): certified 200/200, wrong 0, abstain   0, median 1476, overhead  +25.40 nats
+    WSR (ref)       : certified 200/200, median 248
+
+  tau=0.16 (V_rr=0.0127):
+    cold UI mixture : certified 200/200, wrong 0, abstain   0, median 1498, overhead  +16.00 nats
+    joint (benign)  : certified 200/200, wrong 0, abstain   0, median 302, overhead   +0.83 nats
+    joint (drifted) : certified 200/200, wrong 0, abstain   0, median 1722, overhead  +18.84 nats
+    joint (inverted): certified 200/200, wrong 0, abstain   0, median 1748, overhead  +19.17 nats
+    perstrat (inverted): certified 200/200, wrong 0, abstain   0, median 2362, overhead  +26.95 nats
+    WSR (ref)       : certified 200/200, median 374
+
+  tau=0.17 (V_rr=0.0075):
+    cold UI mixture : certified 200/200, wrong 0, abstain   0, median 2872, overhead  +18.42 nats
+    joint (benign)  : certified 200/200, wrong 0, abstain   0, median 548, overhead   +1.09 nats
+    joint (drifted) : certified 199/200, wrong 0, abstain   1, median 3136, overhead  +20.39 nats
+    joint (inverted): certified 200/200, wrong 0, abstain   0, median 3244, overhead  +21.19 nats
+    perstrat (inverted): certified 188/200, wrong 0, abstain  12, median 4160, overhead  +28.02 nats
+    WSR (ref)       : certified 200/200, median 640
+
+Scoring: warm-start overhead in [1.5, 6] nats and >= 2.5x faster than
+the cold mixture everywhere; within +-30% of WSR at tau=0.17. Validity
+note: the prior epoch predates and is independent of the current pools'
+sampling stream, so anytime validity is exact; misspecification risk is
+capped by the eps-contamination at log(1/eps) ~ 2.3 nats.
+
+============================================================================
+Checksum (SHA256): 3f1e93b6a2ea4f8e
+============================================================================
