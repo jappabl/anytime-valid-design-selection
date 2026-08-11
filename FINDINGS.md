@@ -344,6 +344,42 @@ Six hardening moves, run after the invention round
    carries the judge-defense material. Cross-vendor replication remains
    blocked on a non-OpenAI API key.
 
+### F11. The theory thread: from "law" to calibrated classical expansion
+
+The frontier push (full history in [THEORY.md](THEORY.md)) ended
+somewhere better than where it aimed:
+
+1. We conjectured an overhead law n·V = log(1/α) + (d/2)·log n + c,
+   froze rates and predictions, and confirmed the FORM out-of-sample
+   (R² 0.89–0.98, residuals ≤ 0.39 nats on 30 fresh grid points) —
+   while our pre-registered dimension window for the UI statistic
+   MISSED (d ≈ 4, not ≈ 2).
+2. An adversarial referee then established: the d = 1 case is a
+   fifty-year-old theorem (Pollak–Siegmund 1975; Woodroofe 1982;
+   Schwarz 1962; Lai 1988; mixture regret per Clarke–Barron), with the
+   constant in closed form; our WSR "flat overhead" was a
+   finite-window artifact (its λ schedule forfeits the Kelly rate —
+   achieved/optimal → 0 — an anti-result worth publishing as a caution
+   about the popular predictable-plug-in schedule); and the correct
+   dimension rule is **d = K + #boundary-strata** (zero-rate strata
+   cost a full log n; cf. Xie–Barron 1997 / Watanabe's RLCT).
+3. A live adjudication settled it: with both predictions frozen before
+   the code-pool grid ran, the referee's rule hit **3-for-3**
+   (d = 6.50/5.56/6.76 vs predicted 6/6/7) while our window failed on
+   every model ([results_overhead_law_code.txt](results_overhead_law_code.txt)).
+4. The salvage is better than the conjecture: **zero-free-parameter
+   closed-form predictions reproduce measured medians within ±5%**
+   across methods, models, and margins — and the invention-round
+   scoreboard now has a citable mechanism: the simple block reduction
+   wins at practical n because it sacrifices a bounded rate factor
+   while mixture-based methods pay (K + #boundary)/2 · log n. The
+   modern e-value literature under-cites this classical second-order
+   term; that citation gap is the honest positioning.
+5. Capstone (pre-registered, running at write time): the closed form
+   with NO fitted parameters predicts a live temperature-0.7 median at
+   a fresh threshold — window [800, 1450], theory-central 1045
+   ([results_live_prediction.txt](results_live_prediction.txt)).
+
 ## Audit trail: what the adversarial review changed
 
 Four independent adversarial audits (statistics, experimental design,

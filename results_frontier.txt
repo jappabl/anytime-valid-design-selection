@@ -1,0 +1,35 @@
+============================================================================
+RATE-vs-OVERHEAD FRONTIER (conservation hypothesis pre-registered in header)
+============================================================================
+gpt-4o-mini pools, UNSAFE direction, alpha=0.05, 200 reps, n_max=6000, BASE_SEED=42
+Overhead defined as median(n)*V_rr - log(1/alpha), using the shared allocation-constrained rate V_rr for the three stratified-rate arms (WSR reported for reference at its own Kelly rate).
+
+  tau=0.15 (margin 0.052, V_rr=0.0192, V_pool=0.0097):
+    UI mixture      : certified 200/200, abstain   0, median 960, overhead  +15.47 nats
+    epoch-split     : certified 200/200, abstain   0, median 1502, overhead  +25.90 nats
+    one-shot split  : certified  47/200, abstain 153, median 5264, overhead  +98.27 nats
+    single-stream   : certified 200/200, abstain   0, median 576, overhead   +2.62 nats
+    WSR (ref)       : certified 200/200, abstain   0, median 248, overhead       --
+
+  tau=0.16 (margin 0.042, V_rr=0.0127, V_pool=0.0062):
+    UI mixture      : certified 200/200, abstain   0, median 1498, overhead  +16.00 nats
+    epoch-split     : certified 200/200, abstain   0, median 2402, overhead  +27.46 nats
+    one-shot split  : certified   0/200, abstain 200, median None, overhead       --
+    single-stream   : certified 200/200, abstain   0, median 972, overhead   +2.98 nats
+    WSR (ref)       : certified 200/200, abstain   0, median 374, overhead       --
+
+  tau=0.17 (margin 0.032, V_rr=0.0075, V_pool=0.0035):
+    UI mixture      : certified 200/200, abstain   0, median 2872, overhead  +18.42 nats
+    epoch-split     : certified 184/200, abstain  16, median 4068, overhead  +27.33 nats
+    one-shot split  : certified   0/200, abstain 200, median None, overhead       --
+    single-stream   : certified 200/200, abstain   0, median 1868, overhead   +3.47 nats
+    WSR (ref)       : certified 200/200, abstain   0, median 640, overhead       --
+
+Reading: the conservation hypothesis predicts epoch-split overhead in
+[0.7, 1.5]x of the UI mixture's at each tau; below 0.5x falsifies it.
+One-shot split is predicted to show the variance-risk corner (fast
+medians, elevated abstention).
+
+============================================================================
+Checksum (SHA256): 4520abeb30d9bca6
+============================================================================

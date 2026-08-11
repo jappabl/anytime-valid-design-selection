@@ -184,3 +184,30 @@ stands with a corrected mechanism: **the simple block reduction wins at
 practical sample sizes because it sacrifices a bounded factor of rate
 while every mixture-based alternative pays an additive
 (K + #boundary)/2 · log n that dominates when log n ≈ 6–8.**
+
+
+## The frontier experiment (conservation hypothesis: SUPPORTED)
+
+Testing whether any construction escapes the learning tax
+([results_frontier.txt](results_frontier.txt); hypothesis pre-registered
+in [scripts/run_frontier.py](scripts/run_frontier.py)): a sequentialized
+universal-inference statistic (doubling-epoch frozen plug-in numerator —
+no mixture integral) landed at 1.48–1.72× the mixture's overhead
+(prediction window [0.7, 1.5]; falsification line 0.5× — not
+approached), and the one-shot freeze variant collapsed into the
+predicted variance-risk corner (0–24% certification). The UI mixture's
+measured overhead matched (d/2)·log n with d = K + #boundary within
+~1 nat at all three margins.
+
+**Answer to the reframed open problem, as the evidence now stands:** the
+stratified information rate cannot be obtained without paying
+~(K + #boundary)/2 · log n of adaptivity overhead (Rissanen-type
+redundancy); rate-sacrifice (the WSR corner) is the only demonstrated
+escape; split/epoch constructions sit above the mixture frontier, not
+below; and therefore the allocation-rule question Spertus et al. leave
+open is second-order at practical sample sizes — the binding constraint
+is the learning tax, which no allocation removes. The remaining open
+mathematics is the matching lower bound for this frontier (classical
+ingredients: Rissanen 1984; Pollak 1978; multiparameter Lai–Zhang 1994 —
+plausibly assemblable by someone with the right training; flagged for
+expert collaboration in OUTREACH_NOTE.md).
