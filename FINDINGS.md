@@ -392,6 +392,17 @@ somewhere better than where it aimed:
    strata). Rule: shade transfer priors down when uncertain
    ([results_warmstart_drift.txt](results_warmstart_drift.txt)).
 
+7. Multi-epoch chaining: warm-start survives its own deployment loop —
+   beats cold at every epoch, zero wrong certifications through the
+   SAFE/UNSAFE flip (poisoned-prior epoch runs at 0.96x cold, never
+   catastrophic), and chained estimates track the oracle prior within
+   10% after five epochs. The informative refutation: WSR dominates the
+   near-boundary epochs (certifying where all UI variants abstain), so
+   the production design is a PRIOR-ROUTED PORTFOLIO — margin-based
+   routing decided from prior-epoch data only, valid with no
+   alpha-splitting
+   ([results_warmstart_chain.txt](results_warmstart_chain.txt)).
+
 ### F12. Warm-start certification: the bottleneck solved where it matters
 
 The learning tax (F11) binds only cold-start. Using a prior epoch (the

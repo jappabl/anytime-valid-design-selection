@@ -788,3 +788,11 @@ within 1000 samples in this regime.
   coverage/contamination math; overhead-law accounting; capstone
   pre-registration integrity + crash-resume replay. Reports will land in
   audit/AUDIT_WARMSTART.md and audit/AUDIT_LAW_CAPSTONE.md.
+- 2026-08-12: results_warmstart_chain.txt (scripts/run_warmstart_chain.py,
+  offline, synthetic 6-epoch trajectory anchored to real epoch-2 rates) —
+  chaining verdict. Pre-registered scoring: P2/P3/P4 CONFIRMED, P1 half
+  (zero wrong everywhere, but WSR refuted the all-methods-abstain clause
+  at flip epochs — documented as the informative miss). New design
+  consequence: prior-routed portfolio (validity-preserving, no
+  alpha-split). Local-model pool collection (Ollama; llama3.2-3b,
+  qwen2.5-7b) in progress via scripts/collect_local_outcomes.py.

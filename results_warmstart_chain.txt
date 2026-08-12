@@ -1,0 +1,54 @@
+============================================================================
+MULTI-EPOCH WARM-START CHAIN (predictions pre-registered in header)
+============================================================================
+tau=0.16, alpha=0.05, 200 reps, n_max=6000, pools 2000/stratum, BASE_SEED=42
+  epoch 1: pooled 0.2319 (truth UNSAFE), p_k = [0.004, 0.0, 0.109, 0.815]
+  epoch 2: pooled 0.2053 (truth UNSAFE), p_k = [0.006, 0.0, 0.07, 0.745]
+  epoch 3: pooled 0.1770 (truth UNSAFE), p_k = [0.003, 0.0, 0.055, 0.65]
+  epoch 4: pooled 0.1454 (truth SAFE), p_k = [0.003, 0.0, 0.031, 0.548]
+  epoch 5: pooled 0.1156 (truth SAFE), p_k = [0.003, 0.0, 0.022, 0.437]
+  epoch 6: pooled 0.0902 (truth SAFE), p_k = [0.002, 0.0, 0.009, 0.351]
+
+  epoch 1 (truth UNSAFE, pooled 0.2319):
+    chain-warm  : correct 200/200, wrong 0, abstain   0, median 428
+    always-cold : correct 200/200, wrong 0, abstain   0, median 428
+    WSR         : correct 200/200, wrong 0, abstain   0, median 114
+    oracle-prior: correct 200/200, wrong 0, abstain   0, median 428
+
+  epoch 2 (truth UNSAFE, pooled 0.2053):
+    chain-warm  : correct 200/200, wrong 0, abstain   0, median 322
+    always-cold : correct 200/200, wrong 0, abstain   0, median 1266
+    WSR         : correct 200/200, wrong 0, abstain   0, median 348
+    oracle-prior: correct 200/200, wrong 0, abstain   0, median 230
+
+  epoch 3 (truth UNSAFE, pooled 0.1770):
+    chain-warm  : correct  57/200, wrong 0, abstain 143, median 3620
+    always-cold : correct   7/200, wrong 0, abstain 193, median 4460
+    WSR         : correct 165/200, wrong 0, abstain  35, median 2052
+    oracle-prior: correct 116/200, wrong 0, abstain  84, median 2420
+
+  epoch 4 (truth SAFE, pooled 0.1454):
+    chain-warm  : correct  24/200, wrong 0, abstain 176, median 5164
+    always-cold : correct   1/200, wrong 0, abstain 199, median 5368
+    WSR         : correct 173/200, wrong 0, abstain  27, median 2344
+    oracle-prior: correct  19/200, wrong 0, abstain 181, median 5436
+
+  epoch 5 (truth SAFE, pooled 0.1156):
+    chain-warm  : correct 200/200, wrong 0, abstain   0, median 512
+    always-cold : correct 200/200, wrong 0, abstain   0, median 1464
+    WSR         : correct 200/200, wrong 0, abstain   0, median 414
+    oracle-prior: correct 200/200, wrong 0, abstain   0, median 512
+
+  epoch 6 (truth SAFE, pooled 0.0902):
+    chain-warm  : correct 200/200, wrong 0, abstain   0, median 136
+    always-cold : correct 200/200, wrong 0, abstain   0, median 468
+    WSR         : correct 200/200, wrong 0, abstain   0, median 260
+    oracle-prior: correct 200/200, wrong 0, abstain   0, median 124
+
+  wrong certifications, all arms x epochs: 0
+  chain-warm medians by epoch: [428, 322, 3620, 5164, 512, 136]
+  always-cold medians by epoch: [428, 1266, 4460, 5368, 1464, 468]
+
+============================================================================
+Checksum (SHA256): 09f0d05b6dec0879
+============================================================================

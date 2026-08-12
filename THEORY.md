@@ -289,3 +289,37 @@ Deployment rule: the staleness budget is ~0.03-0.06 downward drift but
 only ~0.01 upward; when uncertain, shade the transfer prior DOWN — a
 "model may have regressed" prior costs almost nothing, an alarmist
 prior costs the full learning tax back.
+
+
+## Multi-epoch chaining (the deployment loop, pre-registered)
+
+Six-release improving-model trajectory crossing tau mid-chain, each
+epoch warm-starting from the previous epoch's own stopped-run estimates
+(results_warmstart_chain.txt). Scores:
+
+1. HALF: zero wrong certifications in all 4800 runs (validity through
+   the flip) and the UI arms abstained heavily at the razor-margin flip
+   epochs as predicted — but WSR REFUTED the "every method abstains
+   >=30%" clause, certifying 165-173/200 with medians ~2000-2350 where
+   every UI variant (cold, chain-warm, oracle-prior) mostly hit n_max.
+   Near-boundary epochs are structurally WSR territory; a warm prior
+   does not change that.
+2. CONFIRMED: chain-warm beats always-cold at every epoch >= 2
+   (322 vs 1266, 3620 vs 4460, 5164 vs 5368, 512 vs 1464, 136 vs 468);
+   the epoch-6 prediction window [250, 700] missed in the favorable
+   direction (136).
+3. CONFIRMED (poison test): at the flip epoch the wrong-direction
+   stale prior caused ZERO wrong certifications and ran at 0.96x of
+   cold — the eps floor bounded the damage exactly as designed.
+4. CONFIRMED (no compounding): epoch-6 chain-warm within +-25% of the
+   oracle-prior arm (136 vs 124, +9.7%; exact tie at epoch 5) — chained
+   estimation noise does not accumulate.
+
+Design consequence — PRIOR-ROUTED PORTFOLIO: route each epoch to
+warm-UI vs WSR by the PRIOR epoch's estimated margin |p_prior - tau|.
+The routing decision uses only prior-epoch data, hence is
+data-independent of the new stream: anytime validity holds with NO
+alpha-splitting. Epoch-level readout from the chain table (threshold
+0.05): the router picks the per-epoch winner at 4 of 5 routed epochs
+and lands within ~2% of the hindsight-best portfolio. Full per-rep
+router experiment queued.
