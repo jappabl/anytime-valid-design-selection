@@ -245,3 +245,19 @@ with a model; every recurring evaluation can convert it to ~1 nat with
 a provably-capped insurance premium.** Informative priors in test
 martingales are classical; the contribution here is the measured
 deployment story and the per-stratum-vs-joint contamination tradeoff.
+
+
+## Live capstone: CONFIRMED
+
+The zero-fitted-parameter prediction (Pollak–Siegmund/Woodroofe closed
+form + pool rates; window [800, 1450], theory-central 1045, ≥14/16
+UNSAFE, zero SAFE — frozen before launch) against a live
+temperature-0.7 stream at the fresh threshold τ = 0.16:
+**16/16 UNSAFE, zero SAFE, median 1200 — CONFIRMED**
+([results_live_prediction.txt](results_live_prediction.txt)). The run
+survived a process crash (lossless log-replay resume) and an API
+requests-per-day crawl; the original unhandled-error bug and the resume
+protocol are documented in scripts/resume_live_prediction.py. Live p̂
+ran ~0.5pp below the pool rate, placing the median 15% above
+theory-central — within the propagated prior-rate uncertainty stated at
+pre-registration.

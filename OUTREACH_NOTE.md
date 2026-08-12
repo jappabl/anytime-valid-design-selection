@@ -64,8 +64,9 @@ artifacts available):
   consume the stratified rate advantage at practical sample sizes.
 
 **The observation we'd most value your view on.** Our stopping times
-across methods and margins are predicted within ±5%, with zero fitted
-parameters, by the classical expansion n·V = log(1/α) + (d/2)·log n +
+across methods and margins are predicted within ±5% offline — and, in a pre-registered live test, a
+fresh-threshold median predicted within 15% (window confirmed) — with
+zero fitted parameters, by the classical expansion n·V = log(1/α) + (d/2)·log n +
 c (Pollak & Siegmund 1975; Woodroofe 1982; Schwarz 1962; Lai 1988) —
 with d = K + #boundary-strata for the UI statistic (boundary strata
 cost a full log n; cf. Xie & Barron 1997). Two things seem worth

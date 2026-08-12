@@ -375,9 +375,10 @@ somewhere better than where it aimed:
    while mixture-based methods pay (K + #boundary)/2 · log n. The
    modern e-value literature under-cites this classical second-order
    term; that citation gap is the honest positioning.
-5. Capstone (pre-registered, running at write time): the closed form
-   with NO fitted parameters predicts a live temperature-0.7 median at
-   a fresh threshold — window [800, 1450], theory-central 1045
+5. Capstone **CONFIRMED**: the closed form with NO fitted parameters
+   predicted the live temperature-0.7 median at a fresh threshold —
+   pre-registered window [800, 1450], observed **median 1200, 16/16
+   UNSAFE, zero SAFE**
    ([results_live_prediction.txt](results_live_prediction.txt)).
 
 ### F12. Warm-start certification: the bottleneck solved where it matters

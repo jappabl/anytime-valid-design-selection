@@ -1,0 +1,28 @@
+============================================================================
+ZERO-FIT LIVE PREDICTION TEST (pre-registered; resumed after crash — see scripts/resume_live_prediction.py)
+============================================================================
+tau=0.16, 16 reps, est. total spend $2.68
+PREDICTION (unchanged): median in [800, 1450] (theory-central 1045); >= 14/16 UNSAFE; zero SAFE.
+
+  rep  0: UNSAFE  n=1976 p_hat=0.191
+  rep  1: UNSAFE  n=1444 p_hat=0.197
+  rep  2: UNSAFE  n=1180 p_hat=0.200
+  rep  3: UNSAFE  n=1520 p_hat=0.195
+  rep  4: UNSAFE  n=1308 p_hat=0.198
+  rep  5: UNSAFE  n=1264 p_hat=0.199
+  rep  6: UNSAFE  n= 552 p_hat=0.217
+  rep  7: UNSAFE  n=1208 p_hat=0.200
+  rep  8: UNSAFE  n= 336 p_hat=0.232
+  rep  9: UNSAFE  n= 428 p_hat=0.224
+  rep 10: UNSAFE  n=1392 p_hat=0.197
+  rep 11: UNSAFE  n=1016 p_hat=0.203
+  rep 12: UNSAFE  n= 884 p_hat=0.207
+  rep 13: UNSAFE  n=1192 p_hat=0.200
+  rep 14: UNSAFE  n=1688 p_hat=0.194
+  rep 15: UNSAFE  n= 228 p_hat=0.250
+
+UNSAFE 16/16, SAFE 0, median 1200
+PREDICTION: CONFIRMED
+============================================================================
+Checksum (SHA256): 57bb72a19de08bb1
+============================================================================
