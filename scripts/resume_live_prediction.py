@@ -45,9 +45,18 @@ def main():
     log_fh = open(LOG, "a")
 
     logged = defaultdict(list)
+    logged_n = defaultdict(list)
     for line in open(LOG):
         r = json.loads(line)
         logged[r["rep"]].append(r["passed"])
+        logged_n[r["rep"]].append(r["n"])
+    # Replay invariant (audit round 2, fix #12): a permuted or gapped
+    # log would silently change crossing(); fail loudly instead.
+    for rep, ns in logged_n.items():
+        if ns != list(range(1, len(ns) + 1)):
+            raise RuntimeError(
+                f"replay log for rep {rep} is not the contiguous "
+                f"sequence 1..{len(ns)}; refusing to replay")
 
     def crossing(outcomes):
         cs = StratifiedUICS(k=1, weights=[1.0], alpha=0.05)
@@ -114,7 +123,10 @@ def main():
                 if cs.rejects_ge(TAU):
                     return {"rep": rep, "decision": "SAFE", "n": n,
                             "p_hat": fails / n}
-        return {"rep": rep, "decision": "ABSTAIN", "n": n,
+        # Label WHY we abstained (audit round 2, fix #13): the spend cap
+        # is a stopping rule and must not be silent.
+        why = "budget" if spend["usd"] > MAX_SPEND else "n_max"
+        return {"rep": rep, "decision": f"ABSTAIN({why})", "n": n,
                 "p_hat": fails / max(n, 1)}
 
     results = []

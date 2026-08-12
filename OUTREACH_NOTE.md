@@ -63,14 +63,18 @@ artifacts available):
   the overhead of learning K parameters plus tracking slack appears to
   consume the stratified rate advantage at practical sample sizes.
 
-**The observation we'd most value your view on.** Our stopping times
-across methods and margins are predicted within ±5% offline — and, in a pre-registered live test, a
-fresh-threshold median predicted within 15% (window confirmed) — with
-zero fitted parameters, by the classical expansion n·V = log(1/α) + (d/2)·log n +
-c (Pollak & Siegmund 1975; Woodroofe 1982; Schwarz 1962; Lai 1988) —
-with d = K + #boundary-strata for the UI statistic (boundary strata
-cost a full log n; cf. Xie & Barron 1997). Two things seem worth
-noting: (i) this classical second-order term appears under-cited in
+**The observation we'd most value your view on.** Our single-stream
+stopping-time medians across margins and models are predicted within
+−3%…+7% with zero fitted parameters by the classical expansion
+n·V = log(1/α) + (d/2)·log n + c (Pollak & Siegmund 1975; Woodroofe
+1982; Schwarz 1962; Lai 1988), and a pre-registered live run at a
+fresh threshold landed inside its frozen window (a consistency check —
+our own adversarial audit rates its severity as limited, P(pass) ≈
+0.94). For the UI statistic the same form fits with d ≈ K +
+#boundary-strata and one fitted constant per model — our audit
+demonstrates the data discriminates only "d ≈ 6, not ≈ 4" (boundary
+strata costing a full log n; cf. Xie & Barron 1997). Two things seem
+worth noting: (i) this classical second-order term appears under-cited in
 the modern e-value literature yet is the dominant practical term in
 exactly the regimes where stratification's rate advantage is largest —
 it is why simple block-mean methods beat rate-optimal UI-TSs at

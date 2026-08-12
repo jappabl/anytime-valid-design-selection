@@ -1,0 +1,81 @@
+================================================================================================
+ADVERSARIAL NULL-COVERAGE MC FOR WARM-START UI E-PROCESSES  (audit/sim_warmstart_null.py)
+================================================================================================
+alpha = 0.05, reps = 2000, n_max = 4000, pool = 250/stratum, seed = 20260811
+p* sits EXACTLY at tau: both one-sided nulls are true, so a rejection either way is a type-I error.
+T1 = P(sup_n E(p_true) >= 1/alpha)  [numerator only];  T2 = P(shipped rejects_* fires)  [+ boundary min].
+'!!' marks a one-sided exact-binomial p < 0.05 against H0: rate <= alpha.
+
+--- A real-shape / prior says UNSAFE
+    tau=0.16  p_true=[0.004, 0.0, 0.068, 0.568]  prior=[0.3, 0.4, 0.6, 0.95]
+      cold UI mixture   T1 sup-E   13/2000=0.0065 OK | T2 false-UNSAFE    0/2000=0.0000 OK | T2 false-SAFE    0/2000=0.0000 OK
+                         MC mean of E_n(p_true) at n=100:0.001, 400:0.000, 1600:0.000, 4000:0.000   (true value 1.000; heavy-tailed, so <1 is undersampling, >>1 would be the bug)
+      per-stratum warm  T1 sup-E   25/2000=0.0125 OK | T2 false-UNSAFE    0/2000=0.0000 OK | T2 false-SAFE    0/2000=0.0000 OK
+                         MC mean of E_n(p_true) at n=100:0.000, 400:0.000, 1600:0.000, 4000:0.000   (true value 1.000; heavy-tailed, so <1 is undersampling, >>1 would be the bug)
+      joint warm        T1 sup-E   15/2000=0.0075 OK | T2 false-UNSAFE    0/2000=0.0000 OK | T2 false-SAFE    0/2000=0.0000 OK
+                         MC mean of E_n(p_true) at n=100:0.000, 400:0.000, 1600:0.000, 4000:0.000   (true value 1.000; heavy-tailed, so <1 is undersampling, >>1 would be the bug)
+
+--- B real-shape / prior right on 3, extreme inflated
+    tau=0.16  p_true=[0.004, 0.0, 0.068, 0.568]  prior=[0.004, 0.0, 0.068, 0.98]
+      cold UI mixture   T1 sup-E    9/2000=0.0045 OK | T2 false-UNSAFE    0/2000=0.0000 OK | T2 false-SAFE    0/2000=0.0000 OK
+                         MC mean of E_n(p_true) at n=100:0.001, 400:0.000, 1600:0.000, 4000:0.000   (true value 1.000; heavy-tailed, so <1 is undersampling, >>1 would be the bug)
+      per-stratum warm  T1 sup-E   60/2000=0.0300 OK | T2 false-UNSAFE   18/2000=0.0090 OK | T2 false-SAFE    0/2000=0.0000 OK
+                         MC mean of E_n(p_true) at n=100:0.065, 400:0.025, 1600:0.003, 4000:0.002   (true value 1.000; heavy-tailed, so <1 is undersampling, >>1 would be the bug)
+      joint warm        T1 sup-E   73/2000=0.0365 OK | T2 false-UNSAFE   29/2000=0.0145 OK | T2 false-SAFE    0/2000=0.0000 OK
+                         MC mean of E_n(p_true) at n=100:0.005, 400:0.000, 1600:0.000, 4000:0.000   (true value 1.000; heavy-tailed, so <1 is undersampling, >>1 would be the bug)
+
+--- C real-shape / prior right on 3, extreme maximal
+    tau=0.16  p_true=[0.004, 0.0, 0.068, 0.568]  prior=[0.004, 0.0, 0.068, 0.999]
+      cold UI mixture   T1 sup-E   10/2000=0.0050 OK | T2 false-UNSAFE    0/2000=0.0000 OK | T2 false-SAFE    0/2000=0.0000 OK
+                         MC mean of E_n(p_true) at n=100:0.001, 400:0.000, 1600:0.000, 4000:0.000   (true value 1.000; heavy-tailed, so <1 is undersampling, >>1 would be the bug)
+      per-stratum warm  T1 sup-E   60/2000=0.0300 OK | T2 false-UNSAFE   20/2000=0.0100 OK | T2 false-SAFE    0/2000=0.0000 OK
+                         MC mean of E_n(p_true) at n=100:0.056, 400:0.031, 1600:0.004, 4000:0.001   (true value 1.000; heavy-tailed, so <1 is undersampling, >>1 would be the bug)
+      joint warm        T1 sup-E   53/2000=0.0265 OK | T2 false-UNSAFE   19/2000=0.0095 OK | T2 false-SAFE    0/2000=0.0000 OK
+                         MC mean of E_n(p_true) at n=100:0.000, 400:0.000, 1600:0.000, 4000:0.000   (true value 1.000; heavy-tailed, so <1 is undersampling, >>1 would be the bug)
+
+--- D homogeneous / prior says UNSAFE
+    tau=0.16  p_true=[0.16, 0.16, 0.16, 0.16]  prior=[0.7, 0.7, 0.7, 0.7]
+      cold UI mixture   T1 sup-E   55/2000=0.0275 OK | T2 false-UNSAFE    2/2000=0.0010 OK | T2 false-SAFE    0/2000=0.0000 OK
+                         MC mean of E_n(p_true) at n=100:0.049, 400:0.007, 1600:0.000, 4000:0.000   (true value 1.000; heavy-tailed, so <1 is undersampling, >>1 would be the bug)
+      per-stratum warm  T1 sup-E   45/2000=0.0225 OK | T2 false-UNSAFE    1/2000=0.0005 OK | T2 false-SAFE    0/2000=0.0000 OK
+                         MC mean of E_n(p_true) at n=100:0.000, 400:0.000, 1600:0.000, 4000:0.000   (true value 1.000; heavy-tailed, so <1 is undersampling, >>1 would be the bug)
+      joint warm        T1 sup-E   55/2000=0.0275 OK | T2 false-UNSAFE    1/2000=0.0005 OK | T2 false-SAFE    0/2000=0.0000 OK
+                         MC mean of E_n(p_true) at n=100:0.005, 400:0.000, 1600:0.000, 4000:0.000   (true value 1.000; heavy-tailed, so <1 is undersampling, >>1 would be the bug)
+
+--- E skewed / prior says UNSAFE
+    tau=0.16  p_true=[0.012, 0.024, 0.152, 0.452]  prior=[0.9, 0.9, 0.9, 0.9]
+      cold UI mixture   T1 sup-E   47/2000=0.0235 OK | T2 false-UNSAFE    0/2000=0.0000 OK | T2 false-SAFE    0/2000=0.0000 OK
+                         MC mean of E_n(p_true) at n=100:0.004, 400:0.001, 1600:0.000, 4000:0.000   (true value 1.000; heavy-tailed, so <1 is undersampling, >>1 would be the bug)
+      per-stratum warm  T1 sup-E   29/2000=0.0145 OK | T2 false-UNSAFE    0/2000=0.0000 OK | T2 false-SAFE    0/2000=0.0000 OK
+                         MC mean of E_n(p_true) at n=100:0.000, 400:0.000, 1600:0.000, 4000:0.000   (true value 1.000; heavy-tailed, so <1 is undersampling, >>1 would be the bug)
+      joint warm        T1 sup-E   34/2000=0.0170 OK | T2 false-UNSAFE    0/2000=0.0000 OK | T2 false-SAFE    0/2000=0.0000 OK
+                         MC mean of E_n(p_true) at n=100:0.004, 400:0.000, 1600:0.000, 4000:0.000   (true value 1.000; heavy-tailed, so <1 is undersampling, >>1 would be the bug)
+
+--- F real-shape / prior says SAFE
+    tau=0.16  p_true=[0.004, 0.0, 0.068, 0.568]  prior=[0.001, 0.001, 0.001, 0.001]
+      cold UI mixture   T1 sup-E   12/2000=0.0060 OK | T2 false-UNSAFE    0/2000=0.0000 OK | T2 false-SAFE    0/2000=0.0000 OK
+                         MC mean of E_n(p_true) at n=100:0.001, 400:0.000, 1600:0.000, 4000:0.000   (true value 1.000; heavy-tailed, so <1 is undersampling, >>1 would be the bug)
+      per-stratum warm  T1 sup-E   57/2000=0.0285 OK | T2 false-UNSAFE    0/2000=0.0000 OK | T2 false-SAFE   19/2000=0.0095 OK
+                         MC mean of E_n(p_true) at n=100:0.040, 400:0.005, 1600:0.000, 4000:0.000   (true value 1.000; heavy-tailed, so <1 is undersampling, >>1 would be the bug)
+      joint warm        T1 sup-E   56/2000=0.0280 OK | T2 false-UNSAFE    0/2000=0.0000 OK | T2 false-SAFE   18/2000=0.0090 OK
+                         MC mean of E_n(p_true) at n=100:0.000, 400:0.000, 1600:0.000, 4000:0.000   (true value 1.000; heavy-tailed, so <1 is undersampling, >>1 would be the bug)
+
+--- G homogeneous / prior says SAFE
+    tau=0.16  p_true=[0.16, 0.16, 0.16, 0.16]  prior=[0.002, 0.002, 0.002, 0.002]
+      cold UI mixture   T1 sup-E   57/2000=0.0285 OK | T2 false-UNSAFE    5/2000=0.0025 OK | T2 false-SAFE    0/2000=0.0000 OK
+                         MC mean of E_n(p_true) at n=100:0.520, 400:0.004, 1600:0.000, 4000:0.000   (true value 1.000; heavy-tailed, so <1 is undersampling, >>1 would be the bug)
+      per-stratum warm  T1 sup-E   85/2000=0.0425 OK | T2 false-UNSAFE    0/2000=0.0000 OK | T2 false-SAFE   62/2000=0.0310 OK
+                         MC mean of E_n(p_true) at n=100:0.010, 400:0.000, 1600:0.000, 4000:0.000   (true value 1.000; heavy-tailed, so <1 is undersampling, >>1 would be the bug)
+      joint warm        T1 sup-E   94/2000=0.0470 OK | T2 false-UNSAFE    0/2000=0.0000 OK | T2 false-SAFE   73/2000=0.0365 OK
+                         MC mean of E_n(p_true) at n=100:0.063, 400:0.001, 1600:0.000, 4000:0.000   (true value 1.000; heavy-tailed, so <1 is undersampling, >>1 would be the bug)
+
+--- H real-shape tau=0.20 / prior says UNSAFE
+    tau=0.2  p_true=[0.004, 0.0, 0.068, 0.728]  prior=[0.4, 0.5, 0.7, 0.98]
+      cold UI mixture   T1 sup-E   19/2000=0.0095 OK | T2 false-UNSAFE    0/2000=0.0000 OK | T2 false-SAFE    0/2000=0.0000 OK
+                         MC mean of E_n(p_true) at n=100:0.000, 400:0.000, 1600:0.000, 4000:0.000   (true value 1.000; heavy-tailed, so <1 is undersampling, >>1 would be the bug)
+      per-stratum warm  T1 sup-E   12/2000=0.0060 OK | T2 false-UNSAFE    0/2000=0.0000 OK | T2 false-SAFE    0/2000=0.0000 OK
+                         MC mean of E_n(p_true) at n=100:0.000, 400:0.000, 1600:0.000, 4000:0.000   (true value 1.000; heavy-tailed, so <1 is undersampling, >>1 would be the bug)
+      joint warm        T1 sup-E   14/2000=0.0070 OK | T2 false-UNSAFE    0/2000=0.0000 OK | T2 false-SAFE    0/2000=0.0000 OK
+                         MC mean of E_n(p_true) at n=100:0.000, 400:0.000, 1600:0.000, 4000:0.000   (true value 1.000; heavy-tailed, so <1 is undersampling, >>1 would be the bug)
+
+WORST over all configs/arms:  T1 = 0.0470,  T2 false-UNSAFE = 0.0145,  T2 false-SAFE = 0.0365   (alpha = 0.05)

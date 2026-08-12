@@ -1,0 +1,149 @@
+
+==============================================================================
+CODE-POOL ADJUDICATION (the 3-for-3 claim)
+==============================================================================
+
+gpt-4o-mini: rates [0.0, 0.0, 0.0625, 0.1375]  boundary=2  K+boundary=6  (claimed elsewhere: 6.50 vs 6)
+  usable points 4 (dropped 2), free parameters 2  ->  residual dof = 2
+  FREE FIT: d = 6.50, c = -5.59, R^2 = 0.9925, max|resid| = 0.30 nats
+  profile over fixed d (c refit):
+        d        c  max|resid|       RSS  pass<=0.75?
+        0    17.75        2.97     17.09  no
+        1    14.16        2.53     12.28  no
+        2    10.57        2.08      8.26  no
+        3     6.98        1.63      5.05  no
+        4     3.39        1.19      2.64  no
+        5    -0.20        0.74      1.03  YES
+        6    -3.79        0.36      0.23  YES
+        7    -7.38        0.39      0.23  YES
+        8   -10.97        0.81      1.03  no
+        9   -14.56        1.22      2.63  no
+       10   -18.15        1.64      5.04  no
+       11   -21.74        2.05      8.25  no
+       12   -25.33        2.47     12.26  no
+    integers passing the declared <=0.75 nat criterion: [5, 6, 7]
+  bootstrap over grid points: d 95% CI [4.81, 7.96]
+  alternative basis    sqrt(log n): R^2 = 0.9942, max|resid| = 0.26 nats
+  alternative basis      log log n: R^2 = 0.9952, max|resid| = 0.23 nats
+  alternative basis  n^0 (no term): R^2 = 0.0000, max|resid| = 2.97 nats
+
+gpt-4.1-nano: rates [0.0, 0.0125, 0.0, 0.05]  boundary=2  K+boundary=6  (claimed elsewhere: 5.56 vs 6)
+  usable points 4 (dropped 1), free parameters 2  ->  residual dof = 2
+  FREE FIT: d = 5.56, c = -1.15, R^2 = 0.9107, max|resid| = 0.75 nats
+  profile over fixed d (c refit):
+        d        c  max|resid|       RSS  pass<=0.75?
+        0    19.38        2.64     10.59  no
+        1    15.69        2.26      7.43  no
+        2    12.00        1.88      4.90  no
+        3     8.30        1.49      2.99  no
+        4     4.61        1.11      1.70  no
+        5     0.91        0.73      1.04  YES
+        6    -2.78        0.81      1.01  no
+        7    -6.48        0.94      1.59  no
+        8   -10.17        1.18      2.80  no
+        9   -13.87        1.54      4.64  no
+       10   -17.56        1.89      7.10  no
+       11   -21.26        2.25     10.18  no
+       12   -24.95        2.60     13.88  no
+    integers passing the declared <=0.75 nat criterion: [5]
+  bootstrap over grid points: d 95% CI [3.19, 10.57]
+  alternative basis    sqrt(log n): R^2 = 0.9178, max|resid| = 0.73 nats
+  alternative basis      log log n: R^2 = 0.9247, max|resid| = 0.71 nats
+  alternative basis  n^0 (no term): R^2 = -0.0000, max|resid| = 2.64 nats
+
+gpt-4.1-mini: rates [0.0, 0.0, 0.0375, 0.0]  boundary=3  K+boundary=7  (claimed elsewhere: 6.76 vs 7)
+  usable points 4 (dropped 1), free parameters 2  ->  residual dof = 2
+  FREE FIT: d = 6.76, c = -4.15, R^2 = 0.9680, max|resid| = 0.42 nats
+  profile over fixed d (c refit):
+        d        c  max|resid|       RSS  pass<=0.75?
+        0    20.96        3.22     19.00  no
+        1    17.24        2.80     13.96  no
+        2    13.53        2.38      9.73  no
+        3     9.82        1.95      6.30  no
+        4     6.11        1.53      3.68  no
+        5     2.39        1.11      1.86  no
+        6    -1.32        0.69      0.84  YES
+        7    -5.03        0.51      0.63  YES
+        8    -8.74        0.92      1.22  no
+        9   -12.45        1.32      2.62  no
+       10   -16.17        1.73      4.82  no
+       11   -19.88        2.13      7.82  no
+       12   -23.59        2.54     11.63  no
+    integers passing the declared <=0.75 nat criterion: [6, 7]
+  bootstrap over grid points: d 95% CI [3.09, 9.55]
+  alternative basis    sqrt(log n): R^2 = 0.9731, max|resid| = 0.39 nats
+  alternative basis      log log n: R^2 = 0.9777, max|resid| = 0.36 nats
+  alternative basis  n^0 (no term): R^2 = 0.0000, max|resid| = 3.22 nats
+
+==============================================================================
+JSON GRID (for reference; fit_overhead_law.py's own target)
+==============================================================================
+
+gpt-4o-mini: rates [0.004, 0.0, 0.068, 0.736]  boundary=1  K+boundary=5  (claimed elsewhere: ?)
+  usable points 4 (dropped 2), free parameters 2  ->  residual dof = 2
+  FREE FIT: d = 3.37, c = +4.33, R^2 = 0.9235, max|resid| = 0.34 nats
+  profile over fixed d (c refit):
+        d        c  max|resid|       RSS  pass<=0.75?
+        0    16.49        1.20      2.78  no
+        1    12.88        0.93      1.48  no
+        2     9.27        0.66      0.64  YES
+        3     5.67        0.39      0.24  YES
+        4     2.06        0.44      0.30  YES
+        5    -1.55        0.66      0.81  YES
+        6    -5.16        1.02      1.77  no
+        7    -8.77        1.37      3.18  no
+        8   -12.37        1.72      5.04  no
+        9   -15.98        2.08      7.36  no
+       10   -19.59        2.43     10.12  no
+       11   -23.20        2.78     13.34  no
+       12   -26.81        3.14     17.00  no
+    integers passing the declared <=0.75 nat criterion: [2, 3, 4, 5]
+  bootstrap over grid points: d 95% CI [1.99, 8.79]
+  alternative basis    sqrt(log n): R^2 = 0.9275, max|resid| = 0.34 nats
+  alternative basis      log log n: R^2 = 0.9313, max|resid| = 0.33 nats
+  alternative basis  n^0 (no term): R^2 = 0.0000, max|resid| = 1.20 nats
+
+gpt-4.1-nano: rates [0.004, 0.004, 0.008, 0.304]  boundary=0  K+boundary=4  (claimed elsewhere: ?)
+  usable points 4 (dropped 2), free parameters 2  ->  residual dof = 2
+  FREE FIT: d = 4.04, c = +1.70, R^2 = 0.9810, max|resid| = 0.27 nats
+  profile over fixed d (c refit):
+        d        c  max|resid|       RSS  pass<=0.75?
+        0    16.14        1.95      6.87  no
+        1    12.57        1.49      3.95  no
+        2     9.00        1.04      1.85  no
+        3     5.43        0.59      0.58  YES
+        4     1.86        0.28      0.13  YES
+        5    -1.71        0.61      0.51  YES
+        6    -5.29        1.03      1.71  no
+        7    -8.86        1.45      3.74  no
+        8   -12.43        1.87      6.59  no
+        9   -16.00        2.30     10.27  no
+       10   -19.57        2.72     14.77  no
+       11   -23.14        3.14     20.09  no
+       12   -26.71        3.57     26.24  no
+    integers passing the declared <=0.75 nat criterion: [3, 4, 5]
+  bootstrap over grid points: d 95% CI [2.41, 4.99]
+  alternative basis    sqrt(log n): R^2 = 0.9851, max|resid| = 0.25 nats
+  alternative basis      log log n: R^2 = 0.9884, max|resid| = 0.23 nats
+  alternative basis  n^0 (no term): R^2 = 0.0000, max|resid| = 1.95 nats
+
+==============================================================================
+SWAP TEST: can the fit tell the right prediction vector from a permuted one?
+==============================================================================
+  fitted d: gpt-4o-mini=6.50, gpt-4.1-nano=5.56, gpt-4.1-mini=6.76
+
+                            hypothesis   sum |d_fit - d_pred|  max |err|
+                  K+boundary (claimed)                   1.18       0.50
+                  swap the 6 and the 7                   1.70       0.76
+                                 all 6                   1.71       0.76
+                                 all 7                   2.17       1.44
+                                 all 5                   3.83       1.76
+                        K only (all 4)                   6.83       2.76
+    author's frozen window mid (all 4)                   6.83       2.76
+
+  Reading: 'K + #boundary' and 'all 6' are nearly indistinguishable;
+  the entire discriminating content is 'd is around 6, not around 4'.
+
+============================================================================
+Checksum (SHA256): 33cee595aad63f30
+============================================================================

@@ -363,22 +363,33 @@ somewhere better than where it aimed:
    about the popular predictable-plug-in schedule); and the correct
    dimension rule is **d = K + #boundary-strata** (zero-rate strata
    cost a full log n; cf. Xie–Barron 1997 / Watanabe's RLCT).
-3. A live adjudication settled it: with both predictions frozen before
-   the code-pool grid ran, the referee's rule hit **3-for-3**
-   (d = 6.50/5.56/6.76 vs predicted 6/6/7) while our window failed on
-   every model ([results_overhead_law_code.txt](results_overhead_law_code.txt)).
-4. The salvage is better than the conjecture: **zero-free-parameter
-   closed-form predictions reproduce measured medians within ±5%**
-   across methods, models, and margins — and the invention-round
-   scoreboard now has a citable mechanism: the simple block reduction
+3. A live adjudication favored the referee's rule over our window
+   (d = 6.50/5.56/6.76 vs predicted 6/6/7; our [3,5] failed on every
+   model). AUDIT ROUND 2 DOWNGRADE: under our own ≤0.75-nat criterion
+   the score is **2-for-3** (nano-code d=6 gives 0.81; d=5 passes),
+   bootstrap CIs are wide enough to contain the rejected window for
+   two of three models, and the rule is nearly indistinguishable from
+   a constant d ≡ 6 — the test's whole discriminating content is
+   "d ≈ 6, not ≈ 4"
+   ([results_adjudication.txt](results_adjudication.txt), new artifact).
+4. The salvage, as corrected by audit round 2: **the single-stream
+   closed form reproduces measured medians within −3%…+7% with ZERO
+   fitted parameters** (independently re-verified) — the strongest
+   quantitative result in the arc. The UI arm needs one fitted
+   constant per model (±12% without it). The invention-round
+   scoreboard has a citable mechanism: the simple block reduction
    wins at practical n because it sacrifices a bounded rate factor
-   while mixture-based methods pay (K + #boundary)/2 · log n. The
-   modern e-value literature under-cites this classical second-order
-   term; that citation gap is the honest positioning.
-5. Capstone **CONFIRMED**: the closed form with NO fitted parameters
-   predicted the live temperature-0.7 median at a fresh threshold —
-   pre-registered window [800, 1450], observed **median 1200, 16/16
-   UNSAFE, zero SAFE**
+   while mixture-based methods pay a ~(d/2)·log n learning overhead.
+   The modern e-value literature under-cites this classical
+   second-order term; that citation gap is the honest positioning.
+5. Capstone: pre-registered pass, severity quantified by audit round
+   2. The freeze and the crash-resume replay are verified beyond doubt
+   and all three criteria passed (**median 1200 ∈ [800, 1450], 16/16
+   UNSAFE, zero SAFE**) — but two criteria were near-unfalsifiable
+   (P ≈ 1.000 under the prior), P(median-in-window) was ≈ 0.94, and
+   the live run reused the calibration prompt population at a new
+   threshold. A consistency check passed, not a severe test; THEORY.md
+   has the full disclosure
    ([results_live_prediction.txt](results_live_prediction.txt)).
 
 6. Drift phase diagram: warm-start's staleness budget is ASYMMETRIC —

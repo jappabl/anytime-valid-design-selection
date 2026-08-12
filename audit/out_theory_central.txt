@@ -1,0 +1,46 @@
+==============================================================================
+AUDIT: capstone closed-form recomputation
+==============================================================================
+
+A. theory-central at the pool rate
+   p=0.2020  KL(p,0.16)=0.006153  n(c=0)=1052.4   n(c=-0.3)=999.4  n(c=+0.3)=1105.1
+   p=0.2020  KL(p,0.16)=0.006153  n(c=0)=1052.4   n(c=-0.3)=999.4  n(c=+0.3)=1105.1
+   p=0.2019  KL(p,0.16)=0.006125  n(c=0)=1057.7   n(c=-0.3)=1004.5  n(c=+0.3)=1110.6
+   claimed: 1045
+
+B. does p in [0.195, 0.209] map to the stated window?
+   p=0.195 -> n= 1544.9   (c=-0.3:  1469.6, c=+0.3:  1619.9)
+   p=0.202 -> n= 1052.4   (c=-0.3:   999.4, c=+0.3:  1105.1)
+   p=0.209 -> n=  761.1   (c=-0.3:   721.8, c=+0.3:   800.3)
+   claimed window: [800, 1450]
+   the window [800,1450] actually corresponds to p in [0.1961, 0.2079] (c=0) -- i.e. it is WIDER on the upper-p side than the stated [0.195, 0.209]
+
+C. live failure rate, free of optional-stopping selection
+     prefix  samples   fail    p_hat               95% CI
+         20      320     70   0.2188   [0.1735, 0.2640]
+         50      800    166   0.2075   [0.1794, 0.2356]
+        100     1600    332   0.2075   [0.1876, 0.2274]
+        200     3200    664   0.2075   [0.1934, 0.2216]
+        228     3648    756   0.2072   [0.1941, 0.2204]
+   pooled over ALL stopped samples: 3527/17616 = 0.2002  (length-biased: long reps are the low-rate ones and dominate the pool)
+   mean of per-rep p_hat at stopping:  0.2065  (biased UP by the stopping rule)
+   offline pool rate used for the prediction: 0.2020
+
+D. closed form at the (de-biased) live rate
+   p_live = 0.2072 +/- 0.0067   KL(p_live, 0.16) = 0.007727
+   predicted median n = 822   (range over +/-1.96 SE: 491 .. 1634)
+   OBSERVED median = 1200  -> +46.0% vs the prefix-rate prediction, +14.8% vs 1045
+   THEORY.md says the live rate ran ~0.5pp BELOW the pool rate.
+   See audit/sim_live_rate_estimator.py: the pooled Sum f/Sum n
+   (0.2002) and this prefix estimator (0.2072) are BOTH nearly
+   unbiased under the exact stopping rule, yet they disagree by
+   0.7pp -- so the sign of the stated explanation is estimator-
+   dependent, and its magnitude (0.5pp) matches neither: the
+   MLE gap is 0.18pp, the prefix gap is +0.47pp the other way.
+
+E. what does the window exclude?
+   observed median 1200; bootstrap 95% CI [866, 1392]
+   P(bootstrap median in [800,1450]) = 0.973
+   offline replay median at the SAME tau/method/pool, measured 45 min BEFORE launch (results_overhead_law.txt): 1024
+   the window is [0.78x, 1.42x] of that already-measured number; a theory-free prediction 'live ~= offline replay' passes identically.
+   d-sensitivity: the same closed form with d=0 gives n=487, d=2 gives n=1695, d=4 gives n=3100  -- all but d=4 land inside [800,1450], so the window does not identify d either.

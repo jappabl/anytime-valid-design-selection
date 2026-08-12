@@ -1,0 +1,90 @@
+========================================================================================
+1. PRIOR FORENSICS -- is the transfer prior 'genuinely stale'?
+========================================================================================
+records: current 1000, archive 1000, ids present in both 1000, ids unique to one 0
+label flips between the two files: 16/1000 = 1.600%   per stratum {'simple': 0, 'medium': 0, 'complex': 3, 'extreme': 13}
+
+stratum       n  p_current   p_prior   |gap|  gap/prior_sd  KL(cur||prior)
+simple      250     0.0040    0.0040  0.0000         -0.74        0.000000
+medium      250     0.0000    0.0000  0.0000         -1.00        0.000000
+complex     250     0.0680    0.0800  0.0120         -0.83        0.001027
+extreme     250     0.7360    0.7480  0.0120         -0.31        0.000378
+
+p*_current = 0.2020   p*_prior = 0.2080   gap = 0.0060
+total residual KL the prior pays (sum_k KL(p_k || prior_k)) = 0.001405 nats
+Reference points: log(1/eps) = 2.303 nats; the reported warm-start overhead is ~1 nat;
+  a mixture prior's own irreducible cost log(1/(1-eps)) = 0.105 nats.
+
+========================================================================================
+2. CRN -- do the arms actually share a random-number stream?
+========================================================================================
+scripts/run_warmstart.py: `rng = default_rng(BASE_SEED+7919)` is reset per ARM, then
+  `[run_arm(pools, tau, rng, mk) for _ in range(N_REPS)]` shares ONE Generator across reps.
+  cold  first 5 stopping times [1228, 1732, 2320, 896, 1024]  -> cumulative draws consumed [1228, 2960, 5280, 6176, 7200]
+  warm  first 5 stopping times [664, 160, 244, 84, 396]  -> cumulative draws consumed [664, 824, 1068, 1152, 1548]
+  PRNG state identical at the START of reps 1..5? [True, False, False, False, False]
+  => only replication 1 is a common-random-number pair; from replication 2 on the
+     arms read disjoint segments of the stream. Any PAIRED statistic across arms
+     (paired bootstrap, paired difference) is unjustified as published; unpaired
+     Monte-Carlo comparison remains valid.
+
+========================================================================================
+3. ERROR BARS on 'warm-start beats WSR at all margins tested'
+========================================================================================
+200 replications per arm; per-replication independent seeds (correct pairing),
+plus the as-published shared-Generator reproduction for cross-checking the medians.
+
+  tau=0.15
+    as-published medians   warm   204   joint   186   WSR   248
+    re-seeded medians      warm   208   joint   194   WSR   256
+    median(WSR) - median(warm):  unpaired   +36.0 [-22.0, +94.0]   paired   +46.0 [+14.0, +66.0]  -> SIGNIFICANT
+    median(WSR) - median(joint):  unpaired   +52.0 [-4.0, +112.0]   paired   +60.0 [+30.0, +88.0]  -> SIGNIFICANT
+
+  tau=0.16
+    as-published medians   warm   316   joint   302   WSR   374
+    re-seeded medians      warm   326   joint   308   WSR   388
+    median(WSR) - median(warm):  unpaired   +60.0 [+4.0, +116.0]   paired   +60.0 [+16.0, +108.0]  -> SIGNIFICANT
+    median(WSR) - median(joint):  unpaired   +72.0 [+18.0, +124.0]   paired   +84.0 [+36.0, +132.0]  -> SIGNIFICANT
+
+  tau=0.17
+    as-published medians   warm   586   joint   548   WSR   640
+    re-seeded medians      warm   524   joint   476   WSR   622
+    median(WSR) - median(warm):  unpaired   +40.0 [-108.0, +154.0]   paired   +98.0 [+28.0, +172.0]  -> SIGNIFICANT
+    median(WSR) - median(joint):  unpaired   +78.0 [-64.0, +192.0]   paired  +140.0 [+72.0, +208.0]  -> SIGNIFICANT
+
+========================================================================================
+4. PREMIUM UNITS -- nats bound vs the sample-count claim
+========================================================================================
+Pathwise guarantee (verified exactly in audit/check_mixture_recursion.py):
+   log E_warm(n) >= log E_cold(n) - c   with c = log(1/eps) (joint) or K log(1/eps) (per-stratum),
+   uniformly in n AND after the min over the null boundary.
+The artifacts additionally assert sample-count consequences ('<= ~150 samples slower',
+'measured +9.9 vs bound +9.2 - consistent', 'worst median <= cold + log(1/eps)/V_rr').
+Those are NOT implied: a nats cap on log E does not cap the median of a first-crossing time.
+
+  tau=0.15 V_rr=0.0192  joint-inv     median  1056 vs cold   928  -> extra  +128.0 samples =  +2.46 nats in the artifacts' overhead metric;  nats cap = 2.30 (EXCEEDS)
+  tau=0.15 V_rr=0.0192  perstrat-inv  median  1498 vs cold   928  -> extra  +570.0 samples = +10.97 nats in the artifacts' overhead metric;  nats cap = 9.21 (EXCEEDS)
+  tau=0.16 V_rr=0.0127  joint-inv     median  1796 vs cold  1540  -> extra  +256.0 samples =  +3.25 nats in the artifacts' overhead metric;  nats cap = 2.30 (EXCEEDS)
+  tau=0.16 V_rr=0.0127  perstrat-inv  median  2420 vs cold  1540  -> extra  +880.0 samples = +11.16 nats in the artifacts' overhead metric;  nats cap = 9.21 (EXCEEDS)
+  tau=0.17 V_rr=0.0075  joint-inv     median  3070 vs cold  2782  -> extra  +288.0 samples =  +2.15 nats in the artifacts' overhead metric;  nats cap = 2.30 (WITHIN)
+  tau=0.17 V_rr=0.0075  perstrat-inv  median  4064 vs cold  2782  -> extra +1282.0 samples =  +9.56 nats in the artifacts' overhead metric;  nats cap = 9.21 (EXCEEDS)
+
+  A median-sample gap exceeding the nats cap is NOT a validity failure -- the cap
+  bounds log E, not the median crossing time -- but the artifacts present the two as
+  the same quantity.
+
+========================================================================================
+5. IS THE ARCHIVE PRIOR A REAL 'PRIOR EPOCH'? (joint contamination, tau=0.16)
+========================================================================================
+    truth p_k                 = [0.004, 0.0, 0.068, 0.736]
+    archive prior p_k         = [0.004, 0.0, 0.08, 0.748]   max|gap| = 0.0120
+    40 genuine 250/stratum epochs: max|gap| median 0.0260, p10 0.0080, p90 0.0640
+    archive prior is at percentile 22 of epoch accuracy (0 = most accurate possible)
+
+    median samples, exact-truth ORACLE prior : 310
+    median samples, ARCHIVE prior            : 316   (+1.9% vs oracle)
+    median samples, genuine epochs           : median 332, p10 302, p90 368, max 502
+    archive prior is at percentile 78 of epoch PERFORMANCE (100 = best)
+
+    If the archive prior sits far better than a typical genuine epoch, the reported
+    warm-start medians are a best-case realisation, not the expected deployment value.

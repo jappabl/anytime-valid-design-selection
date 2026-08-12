@@ -1,0 +1,27 @@
+============================================================================
+AUDIT: V_rr verification (frozen rate for UI + round-robin)
+============================================================================
+gpt-4o-mini JSON pool rates: [0.004, 0.0, 0.068, 0.736]
+p* = 0.202000
+
+   tau   _inner_min        SLSQP      grid/CD     V_game   printed
+  0.15     0.019237     0.019237     0.019237   0.049805    0.0192
+       m*(_inner_min) = [0.002323, 0.0, 0.040133, 0.557544]  (sum w m = 0.15000000)
+       m*(SLSQP)      = [0.002323, 0.0, 0.040133, 0.557544]
+  0.16     0.012678     0.012678     0.012678   0.031106    0.0127
+       m*(_inner_min) = [0.00252, 0.0, 0.043499, 0.593981]  (sum w m = 0.16000000)
+       m*(SLSQP)      = [0.00252, 0.0, 0.043499, 0.593981]
+  0.17     0.007456     0.007456     0.007456   0.017138    0.0075
+       m*(_inner_min) = [0.002751, 0.0, 0.047426, 0.629823]  (sum w m = 0.17000000)
+       m*(SLSQP)      = [0.002751, 0.0, 0.047426, 0.629823]
+
+Direct MC check that V_rr (not V_game) is the round-robin rate.
+  NOTE: E[min_null log E_n]/n at finite n is n*V - (d/2)log n - c,
+  so the ratio to V_rr is well below 1 at small n BY THE LAW ITSELF.
+  The rate claim must be read off the LOCAL SLOPE at large n; that
+  measurement lives in audit/sim_growth_path.py (ratios 0.96-0.99
+  on [8000, 16000]). Reported here only for orientation.
+   tau      n   measured/n       V_rr    ratio     V_game    ratio
+  0.15   2000     0.010719   0.019237    0.557   0.049805    0.215
+  0.16   2000     0.004132   0.012678    0.326   0.031106    0.133
+  0.17   2000    -0.001119   0.007456   -0.150   0.017138   -0.065

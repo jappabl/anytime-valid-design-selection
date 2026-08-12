@@ -796,3 +796,27 @@ within 1000 samples in this regime.
   consequence: prior-routed portfolio (validity-preserving, no
   alpha-split). Local-model pool collection (Ollama; llama3.2-3b,
   qwen2.5-7b) in progress via scripts/collect_local_outcomes.py.
+- 2026-08-12: AUDIT ROUND 2 (law/capstone agent) landed:
+  audit/AUDIT_LAW_CAPSTONE.md. Corrections applied:
+  (1) "3-for-3" d-rule adjudication DOWNGRADED to 2-for-3 under our own
+  criterion; new artifact results_adjudication.txt (promoted from the
+  audit's reproduction script) with bootstrap CIs and the honest reading
+  ("d is around 6, not around 4"); "path-measured 4.99" and
+  "E[LLR]/(nV) -> 1.002" WITHDRAWN (no scripts; did not reproduce).
+  (2) Capstone "CONFIRMED" reframed to "pre-registered pass, severity
+  quantified": freeze + replay verified beyond doubt; two criteria
+  near-unfalsifiable (P ~ 1.000), P(median window) ~ 0.94; window frozen
+  but informed by an offline median (1024) on the identical prompt
+  population; theory-central corrects 1045 -> 1052.
+  (3) Zero-fit claim scoped to the single-stream arm (correct with
+  nothing fitted, -2.6%..+6.8% re-verified); UI arm needs one fitted
+  constant per model.
+  (4) Conservation-hypothesis rewrite pending the frontier rerun with
+  the faithful discard-burn-in split-LRT arm (the audit shows 0.377x of
+  the mixture overhead at tau=0.16 — inside the pre-registered
+  falsification region; the original one-shot arm charged burn-in to
+  the martingale and was a strawman; original artifact preserved at
+  audit/results_frontier.ORIGINAL.txt).
+  (5) Code hardening: replay-order assertion + labeled abstain reasons
+  in resume_live_prediction.py; per-(tau,method) seeds in the new local
+  law grid; functional-form (log n vs log log n) honesty line added.

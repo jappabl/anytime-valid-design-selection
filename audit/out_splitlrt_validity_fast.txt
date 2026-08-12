@@ -1,0 +1,10 @@
+==============================================================================
+AUDIT: anytime-validity gate for the split-LRT arm
+H0 boundary p* = tau = 0.16; alpha = 0.05; 600 reps; n_max = 1200
+==============================================================================
+least-favourable rates [0.00317, 0.0, 0.05386, 0.58297] (p* = 0.1600)
+
+                         arm  false UNSAFE     rate  95% upper
+          split-LRT burn=100        0/600   0.0000     0.0001
+
+  A valid anytime procedure must keep these at or below alpha = 0.05.

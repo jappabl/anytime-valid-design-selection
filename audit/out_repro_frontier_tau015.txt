@@ -1,0 +1,13 @@
+==============================================================================
+AUDIT: scoped reproduction of results_frontier.txt, tau = 0.15
+==============================================================================
+V_rr = 0.0192 (committed 0.0192), V_pool = 0.0097 (committed 0.0097)
+
+  arm                   cert  median  overhead   committed
+  UI mixture        200/200     960    +15.47     960 +15.47  MATCH
+  epoch-split       200/200    1502    +25.90    1502 +25.90  MATCH
+  single-stream     200/200     576     +2.62     576 +2.62  MATCH
+  WSR (ref)         200/200     248        --     248         MATCH
+
+  tau=0.15 block reproduces exactly: True
+  conservation ratio at tau=0.15: 1.674  (pre-registered window [0.7, 1.5])

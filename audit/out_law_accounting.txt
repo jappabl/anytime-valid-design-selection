@@ -1,0 +1,54 @@
+==============================================================================
+AUDIT: law accounting and frontier scoring
+==============================================================================
+
+C1  zero-free-parameter closed form vs the definitive grid
+    single-stream: d = 1 (referee: EXACT), c = -0.5*log(2*pi*p*q*) - rho/2  [THEORY.md referee note,
+    dropping its extra +0.5*log n term, which would double-count the (d/2)log n already in the law]
+
+    gpt-4o-mini: p*=0.2020 rho=0.4058 c_single=-0.2093  d_UI(rule)=5
+         tau  frac  grid med  pred(single)    err% |  grid UI  pred(UI,c=0)    err%
+       0.145  1.00       508           495    -2.6 |      794           864     8.9
+       0.150  1.00       616           619     0.4 |     1004          1061     5.7
+       0.160  1.00      1024          1007    -1.7 |     1558          1703     9.3
+       0.170  1.00      1896          1873    -1.2 |     2762          3097    12.1
+       0.175  0.99      2740          2816     2.8 |     3968          4492     nan
+       0.180  0.83      4050          4360     nan |     4664          7027     nan
+
+    gpt-4.1-nano: p*=0.0800 rho=0.7727 c_single=-0.0007  d_UI(rule)=4
+         tau  frac  grid med  pred(single)    err% |  grid UI  pred(UI,c=0)    err%
+       0.150  1.00       254           256     0.9 |      512           454   -11.4
+       0.130  1.00       452           483     6.8 |     1026           909   -11.4
+       0.120  1.00       696           741     6.5 |     1654          1456   -12.0
+       0.110  1.00      1284          1317     2.6 |     2948          2682    -9.0
+       0.100  0.98      2844          2910     2.3 |     4814          6363     nan
+       0.095  0.62      4200          5195     nan |     4820         11760     nan
+
+    single-stream prediction error range: [-2.6%, +6.8%]   (claimed -3%..+7%)
+    UI prediction error range (c=0, d=K+boundary): [-12.0%, +12.1%]   (claimed -5%..+4%)
+    NOTE: the UI arm has no theory value for c anywhere in the repo; with c=0 the rule is far off, so the published UI numbers must have used a c estimated from data.
+
+C2  'UI overhead matched (d/2) log n with d=K+#boundary within ~1 nat'
+    d = 4 + 1 = 5
+       tau  median  measured oh  (d/2)log n     gap
+      0.15     960        15.47       17.17   -1.70
+      0.16    1498        16.00       18.28   -2.28
+      0.17    2872        18.42       19.91   -1.49
+    gaps: [np.float64(-1.7), np.float64(-2.28), np.float64(-1.49)]  -> max |gap| = 2.28 nats (NOT within ~1 nat as literally claimed)
+    with a free constant c = -1.82, residuals [np.float64(0.12), np.float64(-0.46), np.float64(0.33)] -- fine, but then c is a fitted parameter.
+
+C3  conservation window scoring (never computed in the artifact itself)
+       tau   UI oh  epoch oh   ratio  in [0.7,1.5]?
+      0.15   15.47     25.90   1.674          False
+      0.16   16.00     27.46   1.716          False
+      0.17   18.42     27.33   1.484           True
+    pre-registered window hit at 1/3 margins.  THEORY.md heading: 'conservation hypothesis: SUPPORTED'.
+    results_frontier.txt states the window in its Reading note but never computes the ratio or scores PASS/MISS.
+
+C4  one-shot freeze arm vs its pre-registration ('fast medians, elevated abstention')
+    tau=0.15: one-shot median 5264, certified 47/200 | UI median 960
+    tau=0.16: one-shot median None, certified 0/200 | UI median 1498
+    tau=0.17: one-shot median None, certified 0/200 | UI median 2872
+    elevated abstention: YES.  fast medians: NO -- the only measurable median (5264) is 5.5x SLOWER than the UI mixture,
+    and it is a median over the 47 fastest of 200 paths (76% censored), so the true median is larger still.
+    THEORY.md reports this as 'collapsed into the PREDICTED variance-risk corner', which drops the failed half.

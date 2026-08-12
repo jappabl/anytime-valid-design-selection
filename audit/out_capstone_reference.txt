@@ -1,0 +1,33 @@
+==============================================================================
+AUDIT: reference medians for the exact capstone procedure
+20000 synthetic replications per rate vector, tau=0.16, checks at n>=20, n%4==0, n_max=2500
+==============================================================================
+
+(i) offline pool rates -- sanity check vs results_overhead_law.txt single-stream median 1024
+  pool 0.0040/0.0000/0.0680/0.7360           p*=0.2020  median   988.0  UNSAFE 19960/20000 SAFE 0 ABSTAIN 40
+                                             median-of-16: [760, 980, 1230]  P(in [800,1450])=0.941  P(>=14/16 UNSAFE)=1.000
+
+(ii) de-biased live rates measured from the capstone log
+  live 0.0099/0.0000/0.0779/0.7412           p*=0.2072  median   760.0  UNSAFE 19998/20000 SAFE 0 ABSTAIN 2
+                                             median-of-16: [584, 766, 970]  P(in [800,1450])=0.370  P(>=14/16 UNSAFE)=1.000
+
+(iii) sensitivity: uniform shift of the live rates
+  live -0.010                                p*=0.1998  median  1096.0  UNSAFE 5969/6000 SAFE 0 ABSTAIN 31
+                                             median-of-16: [844, 1098, 1372]  P(in [800,1450])=0.985  P(>=14/16 UNSAFE)=1.000
+  live -0.005                                p*=0.2035  median   912.0  UNSAFE 5998/6000 SAFE 0 ABSTAIN 2
+                                             median-of-16: [696, 912, 1150]  P(in [800,1450])=0.840  P(>=14/16 UNSAFE)=1.000
+  live -0.002                                p*=0.2057  median   820.0  UNSAFE 6000/6000 SAFE 0 ABSTAIN 0
+                                             median-of-16: [624, 816, 1032]  P(in [800,1450])=0.560  P(>=14/16 UNSAFE)=1.000
+  live +0.002                                p*=0.2092  median   696.0  UNSAFE 6000/6000 SAFE 0 ABSTAIN 0
+                                             median-of-16: [536, 696, 888]  P(in [800,1450])=0.136  P(>=14/16 UNSAFE)=1.000
+  live +0.005                                p*=0.2122  median   616.0  UNSAFE 6000/6000 SAFE 0 ABSTAIN 0
+                                             median-of-16: [470, 618, 788]  P(in [800,1450])=0.018  P(>=14/16 UNSAFE)=1.000
+
+(iv) iid Bernoulli (no stratification) at the same p*
+  iid Bernoulli p=0.202                      p*=0.2020  median   820.0  UNSAFE 5862/6000 SAFE 0 ABSTAIN 138
+                                             median-of-16: [476, 822, 1214]  P(in [800,1450])=0.550  P(>=14/16 UNSAFE)=0.994
+  iid Bernoulli p=0.2072                     p*=0.2072  median   650.0  UNSAFE 5972/6000 SAFE 0 ABSTAIN 28
+                                             median-of-16: [382, 648, 976]  P(in [800,1450])=0.175  P(>=14/16 UNSAFE)=1.000
+
+(v) what live rate would make the procedure's median 1200?
+  the exact procedure gives median ~1200 at p* ~ 0.1980; the log's de-biased live p* is 0.2072 (95% CI 0.194-0.220)

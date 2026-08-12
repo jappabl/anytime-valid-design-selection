@@ -151,8 +151,11 @@ attackable formalization target.
 ## Referee verdicts (adversarial audit, 2026-08-11; independent
 ## replication of our grid at 10,000 reps agreed cell-by-cell)
 
-- UI rate V_rr (allocation-constrained boundary value): **SOUND**
-  (envelope argument; measured E[LLR]/(nV) → 1.002).
+- UI rate V_rr (allocation-constrained boundary value): **SOUND** —
+  re-verified in audit round 2 by three independent minimizers agreeing
+  to 6 decimal places (audit/sim_vrr_check.py). The round-1 "measured
+  E[LLR]/(nV) → 1.002" line had no surviving script and is WITHDRAWN as
+  evidence; the conclusion stands on the round-2 verification.
 - WSR rate V_kelly: **REFUTED as a rate** — it is a ceiling the WSR
   schedule never approaches (achieved/Kelly = 0.73 → 0.29 and falling;
   overhead grows ~linearly; the wide-sweep data is U-shaped with max
@@ -165,8 +168,18 @@ attackable formalization target.
   Even c is derivable in closed form: ½log n − ½log(2π p*q*) − ρ/2 with
   ρ the stratification variance ratio.
 - d_eff interpretation: **CORRECTED** to d = K + #boundary-strata
-  (eight synthetic configs, measured within ±0.21 of prediction;
-  4o-mini JSON pools predict 5, path-measured 4.99).
+  (eight synthetic configs, measured within ±0.21 of prediction).
+  AUDIT ROUND 2 DOWNGRADE (2026-08-12): the rule is a coarse empirical
+  regularity, not a law. An independent path measurement on the 4o-mini
+  JSON pools gives 4.06–4.38 — the earlier "path-measured 4.99" did not
+  reproduce and had no script; it is WITHDRAWN. The rule misses on 2 of
+  5 pools in opposite directions, and fitted d drifts with τ inside a
+  single pool (6.23 → 5.04 on nano JSON), which no statistic-level
+  dimension can do. What the code-pool adjudication actually
+  discriminates is "d ≈ 6, not ≈ 4" — see results_adjudication.txt
+  (bootstrap CIs [4.81, 7.96], [3.19, 10.57], [3.09, 9.55]; the rule
+  and a constant d ≡ 6 are nearly indistinguishable, and under our own
+  ≤0.75-nat criterion the score is 2-for-3, not 3-for-3).
 - Fit methodology: **d = 0 vs d = 1 not identifiable** at 200 reps × 6
   points (bootstrap CIs span both; corr(d̂, ĉ) = −0.994); the residual
   criterion was vacuous (P(pass) = 1.00); functional form untested
@@ -177,10 +190,18 @@ attackable formalization target.
 ## What survives, verified constructively by the referee
 
 Zero-free-parameter predictions (d and c from theory/sample paths only,
-never fitted to crossing times) reproduce the definitive grid medians:
-single-stream within −3%…+7%, UI within −5%…+4%, across both models
-and all margins with ≥90% certification. The invention-round headline
-stands with a corrected mechanism: **the simple block reduction wins at
+never fitted to crossing times) reproduce the definitive grid medians
+for the SINGLE-STREAM arm within −3%…+7% with nothing fitted — audit
+round 2 independently re-verified this at −2.6%…+6.8%, making it the
+strongest quantitative result in the arc. AUDIT ROUND 2 CORRECTION: the
+UI arm's "−5%…+4%" requires ONE fitted constant c per model (−1.56 /
++1.91); with c = 0 its errors are ±12%. The honest phrasing for UI is
+"d from the rule, c fitted once per model." Also disclosed: the τ-grid
+points share one RNG stream (common random numbers), so grid R² values
+overstate independent information, and the grids cannot by themselves
+distinguish (d/2)·log n from a log log n form — the functional form is
+adopted from theory (Rissanen/Clarke–Barron), not established by fit.
+The invention-round headline stands with a corrected mechanism: **the simple block reduction wins at
 practical sample sizes because it sacrifices a bounded factor of rate
 while every mixture-based alternative pays an additive
 (K + #boundary)/2 · log n that dominates when log n ≈ 6–8.**
@@ -247,20 +268,42 @@ martingales are classical; the contribution here is the measured
 deployment story and the per-stratum-vs-joint contamination tradeoff.
 
 
-## Live capstone: CONFIRMED
+## Live capstone: pre-registered pass, severity quantified
 
-The zero-fitted-parameter prediction (Pollak–Siegmund/Woodroofe closed
-form + pool rates; window [800, 1450], theory-central 1045, ≥14/16
-UNSAFE, zero SAFE — frozen before launch) against a live
-temperature-0.7 stream at the fresh threshold τ = 0.16:
-**16/16 UNSAFE, zero SAFE, median 1200 — CONFIRMED**
-([results_live_prediction.txt](results_live_prediction.txt)). The run
-survived a process crash (lossless log-replay resume) and an API
-requests-per-day crawl; the original unhandled-error bug and the resume
-protocol are documented in scripts/resume_live_prediction.py. Live p̂
-ran ~0.5pp below the pool rate, placing the median 15% above
-theory-central — within the propagated prior-rate uncertainty stated at
-pre-registration.
+The frozen prediction (window [800, 1450] around theory-central 1045;
+≥14/16 UNSAFE; zero SAFE) passed against a live temperature-0.7 stream
+at the fresh threshold τ = 0.16: **16/16 UNSAFE, zero SAFE, median
+1200** ([results_live_prediction.txt](results_live_prediction.txt)).
+The run survived a process crash (lossless log-replay resume) and an
+API requests-per-day crawl. The freeze itself is beyond doubt — audit
+round 2 verified the commit contains the byte-identical script stating
+the window 11 seconds after the log's first line, the crash-resume
+replay is bit-exact at all 1017 possible crash points, and all 16
+reported reps reproduce from the raw log.
+
+AUDIT ROUND 2 SEVERITY DISCLOSURE (what the pass is worth):
+- Two of the three criteria were near-unfalsifiable: simulating the
+  exact procedure 20,000 times gives P(≥14/16 UNSAFE) ≈ 1.000,
+  P(zero SAFE) ≈ 1.000, and P(median ∈ window) ≈ 0.94. The pass
+  discriminates only ±1 in d (d = 0 and d = 2 fall outside the
+  window), not the full theory.
+- The window was frozen but NOT blind: results_overhead_law.txt,
+  written 44 minutes before launch, already contained the offline
+  replay median 1024 at the same τ, same method, and the IDENTICAL
+  1000-prompt population (seed 42). Fresh threshold and fresh sampling
+  randomness — not a fresh population.
+- theory-central recomputes to 1052, not 1045; and [800, 1450] was a
+  hand-tightened band, not the output of the stated p ∈ [0.195, 0.209]
+  propagation (which gives [761, 1545]).
+- The +15% median gap needs no causal story: the live rate is not
+  resolvable to better than ±40% in median terms from this data (MLE
+  0.2002 vs prefix estimator 0.2072 disagree by 0.67pp; both unbiased).
+
+Honest summary: the capstone shows the frozen pipeline, the theory
+constants, and a live stream are mutually consistent under new
+randomness at a new threshold — a consistency check passed, not a
+severe test. The severe zero-fit result in this arc is the
+single-stream grid prediction above, which needed no fitting at all.
 
 
 ## Warm-start drift phase diagram (staleness budget)

@@ -23,6 +23,23 @@ corner instead (fast medians, elevated abstention). If epoch-split's
 overhead lands BELOW 0.5x of the mixture's, the conservation hypothesis
 is FALSIFIED and that is the headline.
 
+REVISION 2 (post-audit, 2026-08-12). The second adversarial audit
+(audit/AUDIT_LAW_CAPSTONE.md) found (a) the original artifact never
+printed the pre-registered ratios — epoch-split landed at 1.67/1.72/1.48
+of the mixture, i.e. the support window [0.7, 1.5] was MISSED at 2 of 3
+margins, and the original reading of "supported" was wrong; and (b) the
+original "one-shot split" arm was a strawman: it bet at p=0.5 during
+burn-in and charged ~111 nats of estimation loss to the martingale,
+which the split-LRT lineage it cited (Wasserman-Ramdas-Balakrishnan)
+does not do. This revision adds the faithful discard-burn-in SplitLRT
+(estimation half contributes nothing to log E; frozen plug-in after;
+validity gated at the null boundary in audit/sim_splitlrt_validity.py),
+keeps the original arm under an honest name, and prints the
+pre-registered ratio verdicts. Burn-in values {25, 50, 100} are all
+reported (50 was flagged by the audit's independent sweep; no
+cherry-pick). Medians are comparable only at matched certification
+fractions — arms with depressed cert% are marked.
+
 Offline, deterministic. Writes results_frontier.txt.
 """
 
@@ -81,6 +98,36 @@ class EpochSplitUICS(StratifiedUICS):
     # min_log_e / rejects_* inherited: they use self.log_pred and f/s.
 
 
+class SplitLRT(StratifiedUICS):
+    """Faithful discard-burn-in split e-process (WRB split-LRT,
+    sequentialized): the first `burn` samples per stratum are used ONLY
+    to estimate a Jeffreys-smoothed plug-in rate and contribute nothing
+    to log E; afterwards the frozen plug-in bets. Ported from
+    audit/sim_frontier_splitlrt.py."""
+
+    def __init__(self, burn=50, k=4, alpha=ALPHA):
+        super().__init__(k=k, alpha=alpha)
+        self.burn = burn
+        self._bf = np.zeros(k, dtype=int)
+        self._bn = np.zeros(k, dtype=int)
+        self._p = np.full(k, np.nan)
+
+    def update(self, stratum, is_failure):
+        i = stratum
+        if self._bn[i] < self.burn:                # estimation half
+            self._bn[i] += 1
+            self._bf[i] += bool(is_failure)
+            if self._bn[i] == self.burn:
+                self._p[i] = (self._bf[i] + 0.5) / (self.burn + 1.0)
+            return
+        p = self._p[i]
+        self.log_pred += float(np.log(p if is_failure else 1.0 - p))
+        if is_failure:
+            self.f[i] += 1
+        else:
+            self.s[i] += 1
+
+
 def run_arm(pools, tau, rng, make_cs):
     cs = make_cs()
     for n in range(1, N_MAX + 1):
@@ -129,13 +176,17 @@ def main():
     arms = [
         ("UI mixture", lambda: StratifiedUICS(k=4, alpha=ALPHA)),
         ("epoch-split", lambda: EpochSplitUICS(k=4, alpha=ALPHA)),
-        ("one-shot split", lambda: EpochSplitUICS(k=4, alpha=ALPHA,
-                                                  first_epoch=40,
-                                                  one_shot=True)),
+        ("0.5-burnin-charged", lambda: EpochSplitUICS(k=4, alpha=ALPHA,
+                                                      first_epoch=40,
+                                                      one_shot=True)),
+        ("split-LRT b=25", lambda: SplitLRT(burn=25)),
+        ("split-LRT b=50", lambda: SplitLRT(burn=50)),
+        ("split-LRT b=100", lambda: SplitLRT(burn=100)),
         ("single-stream", lambda: StratifiedUICS(k=1, weights=[1.0],
                                                  alpha=ALPHA)),
     ]
     log1a = np.log(1 / ALPHA)
+    verdicts = []
     for tau in [0.15, 0.16, 0.17]:
         lam = np.full(4, 0.25)
         w = np.full(4, 0.25)
@@ -160,16 +211,48 @@ def main():
         ok = [n for d, n in outs if d == "UNSAFE"]
         med = int(np.median(ok)) if ok else None
         rows.append(("WSR (ref)", len(ok), N_REPS - len(ok), med, None))
+        ui_oh = rows[0][4]
         for name, nok, ab, med, oh in rows:
             oh_s = f"{oh:+7.2f} nats" if oh is not None else "      --"
-            print(f"    {name:16s}: certified {nok:3d}/{N_REPS}, "
-                  f"abstain {ab:3d}, median {med}, overhead {oh_s}")
+            ratio = (f" ratio {oh/ui_oh:5.3f}x"
+                     if oh is not None and name != "UI mixture" else "")
+            cens = " [CENSORED: cert<95%]" if nok < 0.95 * N_REPS else ""
+            print(f"    {name:18s}: certified {nok:3d}/{N_REPS}, "
+                  f"abstain {ab:3d}, median {med}, overhead {oh_s}"
+                  f"{ratio}{cens}")
+        for name, nok, ab, med, oh in rows:
+            if oh is None or nok < 0.95 * N_REPS:
+                continue
+            r = oh / ui_oh
+            if name == "epoch-split":
+                verdicts.append(
+                    (tau, name, r,
+                     "IN WINDOW" if 0.7 <= r <= 1.5 else "WINDOW MISSED"))
+            elif name.startswith("split-LRT"):
+                verdicts.append(
+                    (tau, name, r,
+                     "FALSIFIES (<0.5x)" if r < 0.5 else "above 0.5x"))
         print()
 
-    print("""Reading: the conservation hypothesis predicts epoch-split overhead in
-[0.7, 1.5]x of the UI mixture's at each tau; below 0.5x falsifies it.
-One-shot split is predicted to show the variance-risk corner (fast
-medians, elevated abstention).""")
+    print("Pre-registered scoring (support window [0.7, 1.5]x of the UI "
+          "mixture;\nbelow 0.5x at full certification falsifies the "
+          "conservation hypothesis):")
+    for tau, name, r, verdict in verdicts:
+        print(f"  tau={tau} {name:18s} ratio {r:5.3f}x  -> {verdict}")
+    n_fals = sum(1 for *_, v in verdicts if v.startswith("FALSIFIES"))
+    n_miss = sum(1 for _, nm, _, v in verdicts
+                 if nm == "epoch-split" and v == "WINDOW MISSED")
+    print(f"""
+VERDICT: epoch-split missed the support window at {n_miss} of 3 margins,
+and the faithful split-LRT crosses the pre-registered falsification
+line at {n_fals} grid points. The conservation hypothesis AS PRE-REGISTERED
+is FALSIFIED at these sample sizes: sample splitting escapes the
+(d/2) log n learning tax at the n ~ 10^3 scales this project studies,
+at the price of a frozen (non-adaptive) bet whose tail risk does not
+bind at these margins. The asymptotic version (mixture-optimal
+redundancy) is untouched but was not what was pre-registered. Medians
+are comparable only at matched certification fractions; censored arms
+are flagged above.""")
 
 
 if __name__ == "__main__":
