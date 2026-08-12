@@ -15,8 +15,8 @@
 set -u
 cd "$(dirname "$0")"
 
-QUICK="run_sprt_comparison run_model_comparison run_codetask_experiments run_graded_scores run_wsr_hard run_ppc"
-FULL="$QUICK run_realllm_offline run_advanced_experiments run_crossmodel_experiments run_block_reduction run_uncertainty run_spertus_baseline run_ui_grow run_sharp run_tasc_hard"
+QUICK="run_sprt_comparison run_model_comparison run_codetask_experiments run_graded_scores run_wsr_hard run_ppc run_adjudication"
+FULL="$QUICK run_realllm_offline run_advanced_experiments run_crossmodel_experiments run_block_reduction run_uncertainty run_spertus_baseline run_ui_grow run_sharp run_tasc_hard run_frontier run_warmstart run_warmstart_joint run_warmstart_drift run_warmstart_chain run_router run_router2 run_local_law run_mbpp_law run_warmstart_null"
 
 artifact_for() {
   case "$1" in
@@ -35,6 +35,17 @@ artifact_for() {
     run_ui_grow)              echo results_ui_grow.txt ;;
     run_sharp)                echo results_sharp.txt ;;
     run_tasc_hard)            echo results_tasc_hard.txt ;;
+    run_frontier)             echo results_frontier.txt ;;
+    run_warmstart)            echo results_warmstart.txt ;;
+    run_warmstart_joint)      echo results_warmstart_joint.txt ;;
+    run_warmstart_drift)      echo results_warmstart_drift.txt ;;
+    run_warmstart_chain)      echo results_warmstart_chain.txt ;;
+    run_router)               echo results_router.txt ;;
+    run_router2)              echo results_router2.txt ;;
+    run_local_law)            echo results_local_law.txt ;;
+    run_mbpp_law)             echo results_mbpp_law.txt ;;
+    run_warmstart_null)       echo results_warmstart_null.txt ;;
+    run_adjudication)         echo results_adjudication.txt ;;
     *) echo "" ;;
   esac
 }
