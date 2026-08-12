@@ -462,3 +462,43 @@ on both models (its rate V_kelly ~ V_rr here while paying no log n),
 consistent with the calibrated design map's hard-margin prediction.
 REV 1 of this artifact omitted the certification filter (censored
 medians flattened every slope); the bug and both revisions are in git.
+
+
+## MBPP verdict: a fourth design-map regime (mild heterogeneity)
+
+The public-benchmark grid (results_mbpp_law.txt; predictions
+pre-registered in scripts/run_mbpp_law.py) scored 1 pass, 2 fails, and
+a half — and the fails carry the finding:
+
+- P2 PASS: single-stream d = 0.72 / 0.90 — five pools across three
+  vendors now bracket the theoretical d = 1.
+- P1 FAIL BY CENSORING (disclosed): UI+RR certifies 3-36% at the four
+  hardest margins, leaving 3-point fits (llama's d = -2.23 is a
+  censoring artifact, not a dimension). Mechanism, visible in the raw
+  V columns: MBPP heterogeneity is mild, so V_rr / V_pool ~ 1.05 (P4
+  first clause CONFIRMED, predicted <= 1.6) — stratification buys ~no
+  rate while still paying ~(K/2) log n, so the UI mixture drowns at
+  n_max = 6000.
+- P3 FAIL, INFORMATIVE: WSR's fitted d = 1.8-2.3 on MBPP — its
+  overhead GROWS with horizon. This is the law-referee's anti-result
+  (the predictable lambda schedule forfeits the Kelly rate;
+  achieved/Kelly falls with t) surfacing at MBPP's longer crossing
+  horizons. The "flat WSR tax" in earlier grids was a short-horizon
+  artifact; the law's WSR line is valid only where crossings happen
+  within a few hundred samples.
+- P4 second clause FAIL, and the headline: SINGLE-STREAM WINS nearly
+  every MBPP margin (equal-or-higher certification, lower medians than
+  WSR and UI). Under mild heterogeneity the d = 1 method beats
+  everything.
+
+Design map, extended (heterogeneity is the axis the JSON-only study
+could not see):
+- extreme heterogeneity (stratum ratio >> 10): WSR blocks at hard
+  margins; directed allocation for easy-UNSAFE; single-stream for
+  easy-SAFE;
+- mild heterogeneity (ratio ~ 2-4): plain single-stream mixture CS —
+  stratification and block reduction both buy nothing and cost
+  either log n (UI) or the Kelly shortfall (WSR);
+- recurring evaluations with smooth drift: warm-start UI (~1 nat);
+- cold-start moderate margins where a frozen bet is acceptable:
+  split-LRT (frontier rev 2).

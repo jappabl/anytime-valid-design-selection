@@ -843,3 +843,10 @@ within 1000 samples in this regime.
   0.92/0.81 vs 1; WSR sub-log. Partial misses disclosed (qwen WSR c;
   llama single cert fraction; vacuous zero-wrong clause noted).
   Cross-model generalization arc complete: three vendor lineages.
+- 2026-08-12: results_mbpp_law.txt (scripts/run_mbpp_law.py, frozen
+  protocol from run_local_law.py). Scored: P2 PASS (single d 0.72/0.90),
+  P1 FAIL-BY-CENSORING (UI 3-point fits disclosed as unidentifiable),
+  P3 FAIL informative (WSR d 1.8-2.3 — Kelly-shortfall anti-result at
+  long horizons), P4 half (V-ratio confirmed; WSR-dominance REFUTED —
+  single-stream wins mild heterogeneity). Design map extended with the
+  heterogeneity axis. MBPP pools committed at e38d04f.
