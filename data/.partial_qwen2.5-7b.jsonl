@@ -856,3 +856,35 @@
 {"id": "diverse_json_extreme_0105", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'ABCD1234567' is too short"}
 {"id": "diverse_json_extreme_0106", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'ABCD' is too short"}
 {"id": "diverse_json_extreme_0107", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'EX_1234567890_AB' does not match '^EX_[0-9]{10}_[a-z]{2}$'"}
+{"id": "diverse_json_extreme_0108", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'XYZ' is too short"}
+{"id": "diverse_json_extreme_0109", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'JOHNDOE1234' is too short"}
+{"id": "diverse_json_extreme_0110", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'UA1234567XYZ' does not match '^UA[0-9]{7}[a-z]{3}$'"}
+{"id": "diverse_json_extreme_0111", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'ABCD12345' is too short"}
+{"id": "diverse_json_extreme_0112", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'BBBBBBB' is too short"}
+{"id": "diverse_json_extreme_0113", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'JohnDoe' is too short"}
+{"id": "diverse_json_extreme_0114", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'TX' is too short"}
+{"id": "diverse_json_extreme_0115", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'YL_12345678901' does not match '^YL_[0-9]{10}$'"}
+{"id": "diverse_json_extreme_0116", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'LA-1234567890-AB' does not match '^LA-[0-9]{10}-[a-z]{2}$'"}
+{"id": "diverse_json_extreme_0117", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'us-east-1' is too short"}
+{"id": "diverse_json_extreme_0118", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'ENT1234567890A' is too long"}
+{"id": "diverse_json_extreme_0119", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'ABCDEFGHIJKL' is too short"}
+{"id": "diverse_json_extreme_0120", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'ABCDEFGH' is too short"}
+{"id": "diverse_json_extreme_0121", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'Johndoe' is too short"}
+{"id": "diverse_json_extreme_0122", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'BBBBBBBBBBCC' is too short"}
+{"id": "diverse_json_extreme_0123", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'Nathan' is too short"}
+{"id": "diverse_json_extreme_0124", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'USCA123' is too short"}
+{"id": "diverse_json_extreme_0125", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'USCA1234567890' is too long"}
+{"id": "diverse_json_extreme_0126", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'central_california' is too long"}
+{"id": "diverse_json_extreme_0127", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'ABCD' is too short"}
+{"id": "diverse_json_extreme_0128", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'JH' is too short"}
+{"id": "diverse_json_extreme_0129", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'YB-20231001abc' does not match '^YB-[0-9]{10}-[a-z]{3}$'"}
+{"id": "diverse_json_extreme_0130", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'EURO' is too short"}
+{"id": "diverse_json_extreme_0131", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'BAG-8901234-ZXY' does not match '^BAG-[0-9]{7}-[a-z]{3}$'"}
+{"id": "diverse_json_extreme_0132", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'ABCD12345' is too long"}
+{"id": "diverse_json_extreme_0133", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'ZA-20231005-CDE' does not match '^ZA-[0-9]{8}-[a-z]{3}$'"}
+{"id": "diverse_json_extreme_0134", "stratum": "extreme", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_extreme_0135", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'HESK-1234567-CDE' does not match '^HESK-[0-9]{7}-[a-z]{3}$'"}
+{"id": "diverse_json_extreme_0136", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'USCA0123456' is too short"}
+{"id": "diverse_json_extreme_0137", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'ENTERTAINMENTCENTER' is too long"}
+{"id": "diverse_json_extreme_0138", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'EM789456123ab' does not match '^EM[0-9]{11}[a-z]{3}$'"}
+{"id": "diverse_json_extreme_0139", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'us-east-12' is too short"}

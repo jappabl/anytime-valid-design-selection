@@ -28,6 +28,14 @@ PRE-REGISTERED PREDICTIONS (before running; from overhead accounting):
     margins the rate advantage should dominate);
   - zero wrong certifications; abstention <= 5%.
 
+REVISION 2 (post-audit 2026-08-12, audit/AUDIT_WARMSTART.md): per-rep
+CRN seeding (the original shared one generator across reps, breaking
+arm pairing after rep 1 — audit finding W9); predictions unchanged.
+Also corrected: the prior file is the SAME 1000-prompt pool with
+16/1000 labels flipped by the validator fix (aggregate 88/3000 across
+three models) — effectively an ORACLE-adjacent prior; realistic
+staleness is measured by the drift sweep, not this benign arm.
+
 Offline, deterministic. Writes results_warmstart.txt.
 """
 
@@ -158,6 +166,7 @@ def main():
           f"BASE_SEED={BASE_SEED}\n")
 
     log1a = np.log(1 / ALPHA)
+    records = {}
     for tau in [0.15, 0.16, 0.17]:
         lam = np.full(4, 0.25)
         w = np.full(4, 0.25)
@@ -170,30 +179,55 @@ def main():
             ("WARM-START UI", lambda: TransferPriorUICS(prior_rates)),
         ]
         for name, mk in arms:
-            rng = np.random.default_rng(BASE_SEED + 7919)
-            outs = [run_arm(pools, tau, rng, mk) for _ in range(N_REPS)]
+            outs = [run_arm(pools, tau,
+                            np.random.default_rng(
+                                BASE_SEED + 7919 + 1000 * rep), mk)
+                    for rep in range(N_REPS)]
             ok = [n for d, n in outs if d == "UNSAFE"]
             wrong = sum(1 for d, _ in outs if d == "SAFE")
             ab = sum(1 for d, _ in outs if d == "ABSTAIN")
             med = int(np.median(ok)) if ok else None
             oh = med * v_rr - log1a if med else None
             oh_s = f"{oh:+7.2f} nats" if oh is not None else "     --"
+            records[(tau, name)] = (med, oh)
             print(f"    {name:16s}: certified {len(ok):3d}/{N_REPS}, "
                   f"wrong {wrong}, abstain {ab:3d}, median {med}, "
                   f"overhead {oh_s}")
-        rng = np.random.default_rng(BASE_SEED + 7919)
-        outs = [run_wsr(pools, tau, rng) for _ in range(N_REPS)]
+        outs = [run_wsr(pools, tau,
+                        np.random.default_rng(
+                            BASE_SEED + 7919 + 1000 * rep))
+                for rep in range(N_REPS)]
         ok = [n for d, n in outs if d == "UNSAFE"]
         med = int(np.median(ok)) if ok else None
+        records[(tau, "WSR")] = (med, None)
         print(f"    {'WSR (ref)':16s}: certified {len(ok):3d}/{N_REPS}, "
               f"median {med}")
         print()
 
-    print("""Scoring: warm-start overhead in [1.5, 6] nats and >= 2.5x faster than
-the cold mixture everywhere; within +-30% of WSR at tau=0.17. Validity
-note: the prior epoch predates and is independent of the current pools'
-sampling stream, so anytime validity is exact; misspecification risk is
-capped by the eps-contamination at log(1/eps) ~ 2.3 nats.""")
+    print("PRE-REGISTERED SCORING (verdicts printed per audit round 2):")
+    for tau in [0.15, 0.16, 0.17]:
+        w_med, w_oh = records[(tau, "WARM-START UI")]
+        c_med, _ = records[(tau, "cold UI mixture")]
+        s_med, _ = records[(tau, "WSR")]
+        in_win = "PASS" if 1.5 <= w_oh <= 6 else (
+            "MISSED LOW (favorably wrong is still wrong)"
+            if w_oh < 1.5 else "MISSED HIGH")
+        speed = c_med / w_med
+        print(f"  tau={tau}: overhead {w_oh:+.2f} in [1.5,6]? {in_win}; "
+              f"vs cold {speed:.1f}x (>=2.5x? "
+              f"{'PASS' if speed >= 2.5 else 'FAIL'})"
+              + (f"; vs WSR {w_med/s_med:.2f}x (within +-30%? "
+                 f"{'PASS' if abs(w_med/s_med - 1) <= 0.3 else 'FAIL'})"
+                 if tau == 0.17 else ""))
+    print("""
+Validity note (corrected per audit round 2): the prior file is the SAME
+prompt pool relabeled by a validator fix (16/1000 labels differ), i.e.
+an ORACLE-adjacent prior, not a genuinely stale epoch — realistic
+staleness lives in results_warmstart_drift.txt. Validity holds because
+the prior is fixed w.r.t. the resampling stream (conditional on the
+pools), NOT because the prior "predates" anything. The eps-cap bounds
+the LOG E-VALUE premium pathwise (verified exact in the audit); it does
+not directly bound median crossing-time gaps.""")
 
 
 if __name__ == "__main__":

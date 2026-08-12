@@ -1,0 +1,53 @@
+============================================================================
+PRIOR-ROUTED PORTFOLIO (predictions pre-registered in header)
+============================================================================
+tau=0.16, alpha=0.05, THRESH=0.05, 200 reps, n_max=6000, pools 2000/stratum, BASE_SEED=42
+  epoch 1: pooled 0.2319 (truth UNSAFE)
+  epoch 2: pooled 0.2053 (truth UNSAFE)
+  epoch 3: pooled 0.1770 (truth UNSAFE)
+  epoch 4: pooled 0.1454 (truth SAFE)
+  epoch 5: pooled 0.1156 (truth SAFE)
+  epoch 6: pooled 0.0902 (truth SAFE)
+
+  epoch 1 (truth UNSAFE, pooled 0.2319; router chose warm 0/200):
+    router          : correct 200/200, wrong 0, abstain   0, median 114
+    pure chain-warm : correct 200/200, wrong 0, abstain   0, median 428
+    pure WSR        : correct 200/200, wrong 0, abstain   0, median 114
+
+  epoch 2 (truth UNSAFE, pooled 0.2053; router chose warm 196/200):
+    router          : correct 200/200, wrong 0, abstain   0, median 638
+    pure chain-warm : correct 200/200, wrong 0, abstain   0, median 322
+    pure WSR        : correct 200/200, wrong 0, abstain   0, median 348
+
+  epoch 3 (truth UNSAFE, pooled 0.1770; router chose warm 104/200):
+    router          : correct 109/200, wrong 0, abstain  91, median 2272
+    pure chain-warm : correct  57/200, wrong 0, abstain 143, median 3620
+    pure WSR        : correct 165/200, wrong 0, abstain  35, median 2052
+
+  epoch 4 (truth SAFE, pooled 0.1454; router chose warm 16/200):
+    router          : correct 159/200, wrong 0, abstain  41, median 2372
+    pure chain-warm : correct  24/200, wrong 0, abstain 176, median 5164
+    pure WSR        : correct 173/200, wrong 0, abstain  27, median 2344
+
+  epoch 5 (truth SAFE, pooled 0.1156; router chose warm 0/200):
+    router          : correct 200/200, wrong 0, abstain   0, median 452
+    pure chain-warm : correct 200/200, wrong 0, abstain   0, median 512
+    pure WSR        : correct 200/200, wrong 0, abstain   0, median 414
+
+  epoch 6 (truth SAFE, pooled 0.0902; router chose warm 56/200):
+    router          : correct 200/200, wrong 0, abstain   0, median 240
+    pure chain-warm : correct 200/200, wrong 0, abstain   0, median 136
+    pure WSR        : correct 200/200, wrong 0, abstain   0, median 260
+
+  chain totals (sum of per-epoch medians among correct):
+    router          : 6088
+    pure chain-warm : 10182
+    pure WSR        : 5532
+    hindsight-best  : 5382
+    router/WSR = 1.101, router/warm = 0.598, router/hindsight = 1.131
+  routing accuracy: picked per-epoch winner 4/6 epochs
+  wrong certifications, all arms x epochs: 0
+
+============================================================================
+Checksum (SHA256): 92d8e2e4971a5a76
+============================================================================

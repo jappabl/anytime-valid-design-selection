@@ -23,6 +23,7 @@ modified):
 | `audit/repro_warmstart_artifacts.py` | re-runs each experiment `main()` in memory and diffs the published checksum |
 | `audit/out_sim_warmstart_null.txt` | raw output of the 48 000-replication null-coverage run quoted below |
 | `audit/out_check_warmstart_claims.txt` | raw output of the forensics / CRN / bootstrap / epoch run quoted below |
+| `audit/out_repro_warmstart_artifacts.txt` | raw checksum-reproduction log |
 
 ---
 

@@ -30,6 +30,14 @@ PRE-REGISTERED PREDICTIONS (stated before running):
      overstatement (the prior mass sits on the null side of the
      boundary and actively supports the null).
 
+REVISION 2 (post-audit 2026-08-12, audit/AUDIT_WARMSTART.md): per-rep
+CRN seeding (the original shared one generator across reps, breaking
+arm pairing after rep 1 — audit finding W9); predictions unchanged.
+Also corrected: the prior file is the SAME 1000-prompt pool with
+16/1000 labels flipped by the validator fix (aggregate 88/3000 across
+three models) — effectively an ORACLE-adjacent prior; realistic
+staleness is measured by the drift sweep, not this benign arm.
+
 Offline, deterministic. Writes results_warmstart_drift.txt.
 """
 
@@ -87,10 +95,11 @@ def main():
     rows = []
     for delta in DELTAS:
         prior = np.clip(rates + delta, 0.001, 0.999)
-        rng = np.random.default_rng(BASE_SEED + 7919)
-        outs = [wj.run_arm(pools, TAU, rng,
+        outs = [wj.run_arm(pools, TAU,
+                           np.random.default_rng(
+                               BASE_SEED + 7919 + 1000 * rep),
                            lambda: wj.TransferPriorJointUICS(prior))
-                for _ in range(N_REPS)]
+                for rep in range(N_REPS)]
         ok = [n for d, n in outs if d == "UNSAFE"]
         wrong = sum(1 for d, _ in outs if d == "SAFE")
         ab = sum(1 for d, _ in outs if d == "ABSTAIN")
@@ -98,14 +107,17 @@ def main():
         oh = med * v_rr - log1a if med else None
         rows.append((delta, len(ok), wrong, ab, med, oh))
 
-    rng = np.random.default_rng(BASE_SEED + 7919)
-    outs = [wj.run_arm(pools, TAU, rng,
+    outs = [wj.run_arm(pools, TAU,
+                       np.random.default_rng(
+                           BASE_SEED + 7919 + 1000 * rep),
                        lambda: StratifiedUICS(k=4, alpha=ALPHA))
-            for _ in range(N_REPS)]
+            for rep in range(N_REPS)]
     ok = [n for d, n in outs if d == "UNSAFE"]
     cold_med = int(np.median(ok))
-    rng = np.random.default_rng(BASE_SEED + 7919)
-    outs = [wj.run_wsr(pools, TAU, rng) for _ in range(N_REPS)]
+    outs = [wj.run_wsr(pools, TAU,
+                       np.random.default_rng(
+                           BASE_SEED + 7919 + 1000 * rep))
+            for rep in range(N_REPS)]
     ok = [n for d, n in outs if d == "UNSAFE"]
     wsr_med = int(np.median(ok))
 
