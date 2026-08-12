@@ -1,0 +1,427 @@
+{"id": "mbpp_2", "generation": "```python\ndef similar_elements(list1, list2):\n    return set(list1) & set(list2)\n```"}
+{"id": "mbpp_3", "generation": "```python\ndef is_not_prime(n):\n    if n < 2:\n        return True\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return True\n    return False\n```"}
+{"id": "mbpp_4", "generation": "```python\nimport heapq\n\ndef heap_queue_largest(nums, n):\n    return heapq.nlargest(n, nums)\n```"}
+{"id": "mbpp_6", "generation": "```python\ndef differ_At_One_Bit_Pos(a, b):\n    return bin(a ^ bin(b)[2:])[2:].count('1') == 1\n```"}
+{"id": "mbpp_7", "generation": "def find_char_long(s):\n    return {word for word in s.split() if len(word) >= 4}"}
+{"id": "mbpp_8", "generation": "def square_nums(lst):\n    return [i**2 for i in lst]"}
+{"id": "mbpp_9", "generation": "```python\ndef find_Rotations(s):\n    return len(set(s[i:] + s[:i]) for i in range(len(s)))\n```"}
+{"id": "mbpp_11", "generation": "```python\ndef remove_Occ(s, c):\n    s = list(s)\n    first_occurrence = s.index(c)\n    last_occurrence = len(s) - 1 - s[::-1].index(c)\n    del s[first_occurrence:last_occurrence+1]\n    return ''.join(s)\n```"}
+{"id": "mbpp_12", "generation": "```python\ndef sort_matrix(matrix):\n    return sorted(matrix, key=sum)\n```"}
+{"id": "mbpp_14", "generation": "```python\ndef find_Volume(a, b, c):\n    return (a + b + c) / 2 * a * b\n```"}
+{"id": "mbpp_16", "generation": "def text_lowercase_underscore(s):\n    for i in range(len(s)):\n        if not s[i].islower() or (i > 0 and s[i-1] != '_'):\n            return False\n    return True"}
+{"id": "mbpp_17", "generation": "def square_perimeter(side_length):\n    return 4 * side_length"}
+{"id": "mbpp_18", "generation": "```python\ndef remove_dirty_chars(s1, s2):\n    return ''.join(c for c in s1 if c not in s2)\n```"}
+{"id": "mbpp_19", "generation": "```python\ndef test_duplicate(arr):\n    return len(arr) != len(set(arr))\n```"}
+{"id": "mbpp_20", "generation": "def is_woodall(n):\n    s = str(n)\n    for i in range(len(s)):\n        if int(s[i:]) != int(s[:len(s)-i]):\n            return False\n    return True"}
+{"id": "mbpp_56", "generation": "```python\ndef check(n):\n    s = str(n)\n    return int(s) == n - 2 * int(s[::-1])\n```"}
+{"id": "mbpp_57", "generation": "```python\ndef find_Max_Num(digits):\n    return int(''.join(sorted(map(str, digits), reverse=True)))\n```"}
+{"id": "mbpp_58", "generation": "```python\ndef opposite_Signs(a, b):\n    return (a < 0) != (b < 0)\n```"}
+{"id": "mbpp_59", "generation": "def is_octagonal(n):\n    i = 1\n    while True:\n        oct_num = (2*i**2 - 2*i + 1)\n        if oct_num > n:\n            return False\n        elif oct_num == n:\n            return True\n        i += 1"}
+{"id": "mbpp_61", "generation": "```python\ndef count_Substrings(s):\n    def is_valid(n):\n        return n > 0 and sum(int(digit) for digit in str(n)) == len(str(n))\n\n    count = 0\n    for i in range(len(s)):\n        for j in range(i + 1, len(s) + 1):\n            if is_valid(s[i:j]):\n                count += 1\n    return count\n```"}
+{"id": "mbpp_62", "generation": "```python\ndef smallest_num(lst):\n    return min(lst)\n```"}
+{"id": "mbpp_63", "generation": "```python\ndef max_difference(pairs):\n    return max(b - a for a, b in pairs) if pairs else 0\n```"}
+{"id": "mbpp_64", "generation": "def subject_marks(tuples_list):\n    return sorted(tuples_list, key=lambda x: x[1])"}
+{"id": "mbpp_65", "generation": "```python\ndef recursive_list_sum(lst):\n    total = 0\n    for element in lst:\n        if isinstance(element, list):\n            total += recursive_list_sum(element)\n        else:\n            total += element\n    return total\n```"}
+{"id": "mbpp_66", "generation": "```python\ndef pos_count(lst):\n    return sum(1 for num in lst if num > 0)\n```"}
+{"id": "mbpp_67", "generation": "```python\ndef bell_number(n):\n    B = [1]\n    for i in range(1, n+1):\n        sum = 0\n        for j in range(i):\n            sum += B[j] * math.comb(i-1, j)\n        B.append(sum)\n    return B[n]\n```"}
+{"id": "mbpp_68", "generation": "```python\ndef is_Monotonic(arr):\n    increasing = decreasing = True\n    for i in range(len(arr) - 1):\n        if arr[i] > arr[i + 1]:\n            increasing = False\n        if arr[i] < arr[i + 1]:\n            decreasing = False\n    return increasing or decreasing\n```"}
+{"id": "mbpp_69", "generation": "```python\ndef is_sublist(lst, sublst):\n    return ''.join(map(str, lst)) in ''.join(map(str, sublst))\n```"}
+{"id": "mbpp_70", "generation": "```python\ndef get_equal(tuples):\n    return len(set(len(t) for t in tuples)) == 1\n```"}
+{"id": "mbpp_71", "generation": "```python\ndef comb_sort(lst):\n    def get_next_gap(gap):\n        gap = (gap * 10) // 13\n        if gap < 1:\n            return 1\n        return gap\n\n    n = len(lst)\n    gap = n\n    swapped = True\n\n    while gap != 1 or swapped:\n        gap = get_next_gap(gap)\n        swapped = False\n\n        for i in range(0, n - gap):\n            if lst[i] > lst[i + gap]:\n                lst[i], lst[i + gap] = lst[i + gap], lst[i]\n                swapped = True\n\n    return lst\n```"}
+{"id": "mbpp_72", "generation": "```python\ndef dif_Square(n):\n    for i in range(int(n**0.5) + 1):\n        if (i**2 - n) % 1 == 0:\n            return True\n    return False\n```"}
+{"id": "mbpp_74", "generation": "```python\ndef is_samepatterns(patterns, sequence):\n    if len(patterns) != len(sequence):\n        return False\n    \n    mapping = {}\n    \n    for p, s in zip(patterns, sequence):\n        if p not in mapping and s not in mapping.values():\n            mapping[p] = s\n        elif mapping.get(p) != s:\n            return False\n            \n    return True\n```"}
+{"id": "mbpp_75", "generation": "```python\ndef find_tuples(tuples_list, k):\n    return [t for t in tuples_list if all(i % k == 0 for i in t)]\n```"}
+{"id": "mbpp_77", "generation": "```python\ndef is_Diff(n):\n    return str(n) == str(n)[::-1] and n % 11 == 0 or n % 11 != 0\n```"}
+{"id": "mbpp_79", "generation": "```python\ndef word_len(word):\n    return len(word) % 2 != 0\n```"}
+{"id": "mbpp_80", "generation": "def tetrahedral_number(n):\n    return n*(n+1)*(2*n+1)//6"}
+{"id": "mbpp_82", "generation": "import math\n\ndef volume_sphere(radius):\n    return (4/3) * math.pi * radius ** 3"}
+{"id": "mbpp_83", "generation": "```python\ndef get_Char(s):\n    result = 0\n    for char in s:\n        result += ord(char)\n    return chr((result - 97) % 26 + 97)\n```"}
+{"id": "mbpp_84", "generation": "```python\ndef sequence(n):\n    if n <= 0:\n        return \"Input should be a positive integer\"\n    elif n == 1:\n        return 1\n    else:\n        a, b = 1, 1\n        for _ in range(2, n + 1):\n            a, b = b, a + b\n        return b\n```"}
+{"id": "mbpp_85", "generation": "import math\n\ndef surfacearea_sphere(radius):\n    return 4 * math.pi * radius ** 2"}
+{"id": "mbpp_86", "generation": "```python\ndef centered_hexagonal_number(n):\n    return (3*n**2 - n + 1)//2\n```"}
+{"id": "mbpp_87", "generation": "```python\ndef merge_dictionaries_three(dict1, dict2, dict3):\n    return {**dict1, **dict2, **dict3}\n```"}
+{"id": "mbpp_88", "generation": "```python\ndef freq_count(lst):\n    return {i: lst.count(i) for i in set(lst)}\n```"}
+{"id": "mbpp_89", "generation": "def closest_num(n):\n    return n - (n % 1)"}
+{"id": "mbpp_90", "generation": "```python\ndef len_log(words):\n    return max(len(word) for word in words)\n```"}
+{"id": "mbpp_91", "generation": "```python\ndef find_substring(string_list, substring):\n    for string in string_list:\n        if substring in string:\n            return True\n    return False\n```"}
+{"id": "mbpp_92", "generation": "def is_undulating(n):\n    n = str(n)\n    for i in range(len(n)-1):\n        if (n[i] != n[i+1]) or ((n[i] == n[i+1]) and (i%2==0)):\n            return False\n    return True"}
+{"id": "mbpp_93", "generation": "```python\ndef power(a, b):\n    return a ** b\n```"}
+{"id": "mbpp_94", "generation": "```python\ndef index_minimum(tuples_list):\n    return min(tuples_list, key=lambda x: x[1])[0]\n```"}
+{"id": "mbpp_95", "generation": "```python\ndef Find_Min_Length(lists):\n    return min(len(lst) for lst in lists)\n```"}
+{"id": "mbpp_96", "generation": "```python\ndef divisor(n):\n    count = 0\n    for i in range(1, n + 1):\n        if n % i == 0:\n            count += 1\n    return count\n```"}
+{"id": "mbpp_97", "generation": "```python\ndef frequency_lists(lists):\n    flat_list = [item for sublist in lists for item in sublist]\n    return {i: flat_list.count(i) for i in set(flat_list)}\n```"}
+{"id": "mbpp_98", "generation": "```python\nimport math\n\ndef multiply_num(lst):\n    product = 1\n    for num in lst:\n        product *= num\n    return product / len(lst)\n```"}
+{"id": "mbpp_99", "generation": "def decimal_to_binary(n):\n    return bin(n)[2:]"}
+{"id": "mbpp_100", "generation": "```python\ndef next_smallest_palindrome(n):\n    def is_palindrome(x):\n        return str(x) == str(x)[::-1]\n\n    n += 1\n    while not is_palindrome(n):\n        n += 1\n    return n\n```"}
+{"id": "mbpp_101", "generation": "```python\ndef kth_element(arr, k):\n    return sorted(arr)[k-1]\n```"}
+{"id": "mbpp_102", "generation": "```python\ndef snake_to_camel(s):\n    words = s.split('_')\n    return ''.join(word.capitalize() for word in words)\n```"}
+{"id": "mbpp_103", "generation": "```python\ndef eulerian_num(n, m):\n    if n < m:\n        return 0\n    a = [0] * (n + 1)\n    a[0] = 1\n    for i in range(1, n + 1):\n        for j in range(i, min(i + m, n + 1)):\n            a[j] += j\n    return a[n]\n```"}
+{"id": "mbpp_104", "generation": "```python\ndef sort_sublists(lst):\n    return [sorted(sublist) for sublist in lst]\n```"}
+{"id": "mbpp_105", "generation": "```python\ndef count(lst):\n    return sum(1 for x in lst if x)\n```"}
+{"id": "mbpp_106", "generation": "```python\ndef add_lists(lst, tup):\n    return tup + tuple(lst)\n```"}
+{"id": "mbpp_108", "generation": "```python\ndef merge_sorted_list(list1, list2, list3):\n    merged_list = list1 + list2 + list3\n    return sorted(merged_list)\n```"}
+{"id": "mbpp_109", "generation": "```python\ndef odd_Equivalent(s, n):\n    return (n % len(s)) if s[0] == '1' else ((len(s) - n) % len(s))\n```"}
+{"id": "mbpp_111", "generation": "```python\ndef common_in_nested_lists(nested_lists):\n    common_elements = set()\n    for lst in nested_lists:\n        common_elements &= set(lst)\n    return common_elements\n```"}
+{"id": "mbpp_113", "generation": "def check_integer(s):\n    try:\n        int(s)\n        return True\n    except ValueError:\n        return False"}
+{"id": "mbpp_115", "generation": "```python\ndef empty_dit(dicts):\n    return all(not d for d in dicts)\n```"}
+{"id": "mbpp_116", "generation": "```python\ndef tuple_to_int(t):\n    return int(''.join(map(str, t)))\n```"}
+{"id": "mbpp_117", "generation": "```python\ndef list_to_float(lst):\n    return [tuple(float(i) for i in sublst) for sublst in lst]\n```"}
+{"id": "mbpp_118", "generation": "def string_to_list(s):\n    return s.split()"}
+{"id": "mbpp_119", "generation": "```python\ndef search(nums):\n    left, right = 0, len(nums) - 1\n    while left < right:\n        mid = (left + right) // 2\n        if nums[mid] > nums[right]:\n            left = mid + 1\n        elif nums[mid] < nums[right]:\n            right = mid\n        else:\n            right -= 1\n    return nums[left]\n```"}
+{"id": "mbpp_120", "generation": "```python\ndef max_product_tuple(tuples):\n    return max(abs(a*b) for a, b in tuples)\n```"}
+{"id": "mbpp_123", "generation": "```python\ndef sum_of_amicable_numbers(n):\n    def sum_divisors(num):\n        return sum(i for i in range(1, num) if num % i == 0)\n\n    def is_amicable(num):\n        return sum_divisors(num) != num and sum_divisors(sum_divisors(num)) == num\n\n    return sum(num for num in range(1, n+1) if is_amicable(num))\n```"}
+{"id": "mbpp_124", "generation": "```python\nimport cmath\nimport math\n\ndef angle_complex(real, imag):\n    return math.atan2(imag, real)\n```"}
+{"id": "mbpp_125", "generation": "```python\ndef find_length(s):\n    max_diff = 0\n    zeros = 0\n    ones = 0\n    \n    for char in s:\n        if char == '0':\n            zeros += 1\n            ones = 0\n        else:\n            ones += 1\n            zeros = 0\n        \n        max_diff = max(max_diff, abs(zeros - ones))\n    \n    return max_diff\n```"}
+{"id": "mbpp_126", "generation": "```python\ndef sum_of_common_divisors(a, b):\n    def gcd(x, y):\n        while(y):\n            x, y = y, x % y\n        return x\n    \n    common_divisors = set()\n    for i in range(1, min(a, b) + 1):\n        if a % i == 0 and b % i == 0:\n            common_divisors.add(i)\n    \n    return sum(common_divisors)\n```"}
+{"id": "mbpp_127", "generation": "```python\ndef multiply_int(a, b):\n    return a * b\n```"}
+{"id": "mbpp_128", "generation": "```python\ndef long_words(n, words):\n    return [word for word in words.split() if len(word) > n]\n```"}
+{"id": "mbpp_129", "generation": "```python\ndef magic_square_test(matrix):\n    size = len(matrix)\n    \n    # Check if matrix is square\n    if any(len(row) != size for row in matrix):\n        return False\n    \n    # Check rows and columns\n    for i in range(size):\n        row_sum = sum(matrix[i])\n        col_sum = sum(matrix[j][i] for j in range(size))\n        if row_sum != col_sum:\n            return False\n    \n    # Check diagonals\n    diagonal1_sum = sum(matrix[i][i] for i in range(size))\n    diagonal2_sum = sum(matrix[i][size - i - 1] for i in range(size))\n    if diagonal1_sum != diagonal2_sum:\n        return False\n    \n    return True\n```"}
+{"id": "mbpp_130", "generation": "```python\ndef max_occurrences(lst):\n    freq = {}\n    for item in lst:\n        if item in freq:\n            freq[item] += 1\n        else:\n            freq[item] = 1\n    return max(freq, key=freq.get)\n```"}
+{"id": "mbpp_131", "generation": "```python\ndef reverse_vowels(s):\n    vowels = 'aeiouAEIOU'\n    s = list(s)\n    left, right = 0, len(s) - 1\n    \n    while left < right:\n        if s[left] not in vowels:\n            left += 1\n        elif s[right] not in vowels:\n            right -= 1\n        else:\n            s[left], s[right] = s[right], s[left]\n            left += 1\n            right -= 1\n            \n    return ''.join(s)\n```"}
+{"id": "mbpp_132", "generation": "```python\ndef tup_string(tup):\n    return ''.join(filter(str.isalpha, tup)).lower()\n```"}
+{"id": "mbpp_133", "generation": "```python\ndef sum_negativenum(lst):\n    return sum(num for num in lst if num < 0)\n```"}
+{"id": "mbpp_135", "generation": "```python\ndef hexagonal_num(n):\n    return n*(2*n-1)\n```"}
+{"id": "mbpp_137", "generation": "```python\nimport math\n\ndef zero_count(arr):\n    zeroes = sum(1 for x in arr if x == 0)\n    non_zeroes = len(arr) - zeroes\n    return math.isclose(zeroes / non_zeroes, 0.0, rel_tol=0.001) if non_zeroes != 0 else 0.0\n```"}
+{"id": "mbpp_138", "generation": "```python\ndef is_Sum_Of_Powers_Of_Two(n):\n    if n <= 0:\n        return False\n    i = 0\n    while (1 << i) <= n:\n        i += 1\n    for j in range(i - 1, -1, -1):\n        if (1 << j) <= n:\n            n -= (1 << j)\n    return not n\n```"}
+{"id": "mbpp_139", "generation": "import math\n\ndef circle_circumference(radius):\n    return 2 * math.pi * radius"}
+{"id": "mbpp_140", "generation": "```python\ndef extract_singly(lst):\n    return set(num for sublist in lst for num in sublist)\n```"}
+{"id": "mbpp_141", "generation": "def pancake_sort(lst):\n    n = len(lst)\n    for size in range(n, 0, -1):\n        min_idx = lst.index(min(lst[:size]))\n        if min_idx != size-1:\n            if min_idx != 0:\n                lst[:min_idx+1] = reversed(lst[:min_idx+1])\n            lst[:size] = reversed(lst[:size])\n    return lst"}
+{"id": "mbpp_142", "generation": "```python\ndef count_samepair(list1, list2, list3):\n    return sum(1 for a, b, c in zip(list1, list2, list3) if a == b == c)\n```"}
+{"id": "mbpp_143", "generation": "def find_lists(tup):\n    return len(tup)"}
+{"id": "mbpp_145", "generation": "```python\ndef max_Abs_Diff(arr):\n    return max(abs(b - a) for a in arr for b in arr if a != b)\n```"}
+{"id": "mbpp_160", "generation": "```python\ndef extended_gcd(a, b):\n    if a == 0:\n        return b, 0, 1\n    else:\n        gcd, x, y = extended_gcd(b % a, a)\n        return gcd, y - (b // a) * x, x\n\n\ndef find_solution(a, b, n):\n    gcd, x, y = extended_gcd(a, b)\n    if n % gcd != 0:\n        return None\n    else:\n        return x * (n // gcd), y * (n // gcd)\n\n\n# Test cases\nassert find_solution(2, 3, 7) == (2, 1)\nassert find_solution(4, 2, 7) is None\nassert find_solution(1, 13, 17) == (4, 1)\n```"}
+{"id": "mbpp_161", "generation": "```python\ndef remove_elements(lst, elements):\n    return [i for i in lst if i not in elements]\n```"}
+{"id": "mbpp_162", "generation": "```python\ndef sum_series(n):\n    return n * (n - 1) // 2\n```"}
+{"id": "mbpp_163", "generation": "```python\nimport math\n\ndef area_polygon(n, s):\n    return (n * s**2) / (4 * math.tan(math.pi/n))\n```"}
+{"id": "mbpp_164", "generation": "```python\ndef are_equivalent(a, b):\n    def sum_of_divisors(n):\n        return sum(i for i in range(1, n + 1) if n % i == 0)\n\n    return sum_of_divisors(a) == sum_of_divisors(b)\n```"}
+{"id": "mbpp_165", "generation": "```python\ndef count_char_position(s):\n    alphabet = set('abcdefghijklmnopqrstuvwxyz')\n    return sum(1 for char in s.lower() if char.isalpha() and char in alphabet)\n```"}
+{"id": "mbpp_166", "generation": "```python\ndef find_even_pair(nums):\n    count = 0\n    for i in range(len(nums)):\n        for j in range(i + 1, len(nums)):\n            if (nums[i] ^ nums[j]) % 2 == 0:\n                count += 1\n    return count\n```"}
+{"id": "mbpp_167", "generation": "```python\ndef next_power_of_2(n):\n    if n <= 0:\n        return 1\n    i = 0\n    while (1 << i) < n:\n        i += 1\n    return 1 << i\n```"}
+{"id": "mbpp_168", "generation": "```python\ndef frequency(lst, num):\n    return lst.count(num)\n```"}
+{"id": "mbpp_170", "generation": "```python\ndef sum_range_list(lst, start, end):\n    return sum(lst[start:end+1])\n```"}
+{"id": "mbpp_171", "generation": "def perimeter_pentagon(sides):\n    return sides * 5"}
+{"id": "mbpp_172", "generation": "```python\ndef count_occurance(s):\n    return s.count('std')\n```"}
+{"id": "mbpp_222", "generation": "```python\ndef check_type(tup):\n    return len(set(type(x) for x in tup)) == 1\n```"}
+{"id": "mbpp_223", "generation": "```python\ndef is_majority(nums, n, target):\n    left, right = 0, n - 1\n    while left < right:\n        mid = (left + right) // 2\n        if nums[mid] == target:\n            right = mid\n        else:\n            left = mid + 1\n    return left >= n / 2\n```"}
+{"id": "mbpp_224", "generation": "```python\ndef count_Set_Bits(n):\n    return bin(n).count('1')\n```"}
+{"id": "mbpp_226", "generation": "```python\ndef odd_values_string(s):\n    return ''.join([c for i, c in enumerate(s) if i % 2 == 0])\n```"}
+{"id": "mbpp_227", "generation": "```python\ndef min_of_three(a, b, c):\n    return min(a, b, c)\n```"}
+{"id": "mbpp_228", "generation": "```python\ndef all_Bits_Set_In_The_Given_Range(n, start, end):\n    for i in range(start, end+1):\n        if (i & (i + 1)) != 0:\n            return False\n    return True\n```"}
+{"id": "mbpp_229", "generation": "```python\ndef re_arrange_array(arr, n):\n    negative = sorted([x for x in arr[:n] if x < 0])\n    positive = sorted([x for x in arr[:n] if x >= 0])\n\n    result = []\n    while len(negative) > 0 and len(positive) > 0:\n        result.append(negative.pop(0))\n        result.append(positive.pop(0))\n\n    result.extend(negative)\n    result.extend(positive)\n\n    return result\n```"}
+{"id": "mbpp_230", "generation": "```python\ndef replace_blank(s, c):\n    return s.replace(' ', c)\n```"}
+{"id": "mbpp_232", "generation": "```python\ndef larg_nnum(lst, n):\n    return sorted(set(lst), reverse=True)[:n]\n```"}
+{"id": "mbpp_233", "generation": "import math\n\ndef lateralsurface_cylinder(r,h):\n    return 2 * math.pi * r * h"}
+{"id": "mbpp_234", "generation": "def volume_cube(side_length):\n    return side_length ** 3"}
+{"id": "mbpp_235", "generation": "```python\ndef even_bit_set_number(n):\n    return n | ((n & 0xAAAAAAAA) >> 1)\n```"}
+{"id": "mbpp_237", "generation": "```python\ndef check_occurences(lst):\n    return {t: lst.count(t) for t in set(tuple(sorted(x)) for x in lst)}\n```"}
+{"id": "mbpp_238", "generation": "```python\ndef number_of_substrings(s):\n    n = len(s)\n    return sum(i for i in range(n) for j in range(i+1, n+1)) - n\n```"}
+{"id": "mbpp_239", "generation": "```python\ndef get_total_number_of_sequences(m, n):\n    dp = [0] * (n + 1)\n    dp[1] = m\n    for i in range(2, n + 1):\n        for j in range(1, min(i, m) + 1):\n            dp[i] += dp[i - j]\n    return dp[n]\n```"}
+{"id": "mbpp_240", "generation": "```python\ndef replace_list(list1, list2):\n    if len(list1) > 0 and len(list2) > 0:\n        list1.append(list2[-1])\n    return list1 + list2[:-1]\n```"}
+{"id": "mbpp_242", "generation": "def count_charac(s):\n    return len(s)"}
+{"id": "mbpp_244", "generation": "```python\nimport math\n\ndef next_Perfect_Square(n):\n    root = math.ceil(math.sqrt(n))\n    return root * root\n```"}
+{"id": "mbpp_245", "generation": "```python\ndef max_sum(arr):\n    n = len(arr)\n    # Initialize arrays to store maximum sum of increasing and decreasing subsequences\n    inc = [0]*n\n    dec = [0]*n\n    \n    # Calculate maximum sum of increasing subsequence\n    for i in range(1, n):\n        if arr[i] > arr[i-1]:\n            inc[i] = inc[i-1] + arr[i]\n        else:\n            inc[i] = arr[i]\n            \n    # Calculate maximum sum of decreasing subsequence\n    for i in range(n-2, -1, -1):\n        if arr[i] > arr[i+1]:\n            dec[i] = dec[i+1] + arr[i]\n        else:\n            dec[i] = arr[i]\n    \n    # Return the maximum sum of bitonic subsequence\n    return max(inc[-1], dec[0])\n```"}
+{"id": "mbpp_246", "generation": "```python\nimport math\n\ndef babylonian_squareroot(n):\n    if n < 0:\n        raise ValueError(\"Input must be a non-negative number\")\n    elif n == 0 or n == 1:\n        return n\n    \n    x = n / 2\n    while True:\n        y = (x + n/x) / 2\n        if math.isclose(y, x, rel_tol=0.001):\n            return y\n        x = y\n```"}
+{"id": "mbpp_247", "generation": "def lps(s):\n    n = len(s)\n    dp = [[0] * n for _ in range(n)]\n    max_length = 0\n    for i in range(n - 1, -1, -1):\n        for j in range(i + 1, n):\n            if s[i] == s[j]:\n                dp[i][j] = 2 + dp[i + 1][j - 1]\n                max_length = max(max_length, dp[i][j])\n            else:\n                dp[i][j] = max(dp[i + 1][j], dp[i][j - 1])\n    return max_length"}
+{"id": "mbpp_248", "generation": "import math\n\ndef harmonic_sum(n):\n    return sum(1/i for i in range(1, n))"}
+{"id": "mbpp_249", "generation": "```python\ndef intersection_array(arr1, arr2):\n    return list(set(arr1) & set(arr2))\n```"}
+{"id": "mbpp_250", "generation": "```python\ndef count_X(tup, elem):\n    return tup.count(elem)\n```"}
+{"id": "mbpp_251", "generation": "```python\ndef insert_element(lst, elem):\n    return [elem] + lst + [elem]\n```"}
+{"id": "mbpp_252", "generation": "```python\nimport cmath\n\ndef convert(z):\n    r = abs(z)\n    phi = cmath.phase(z)\n    return (r, phi)\n```"}
+{"id": "mbpp_253", "generation": "```python\ndef count_integer(lst):\n    return sum(1 for x in lst if isinstance(x, int))\n```"}
+{"id": "mbpp_255", "generation": "```python\nimport itertools\n\ndef combinations_colors(lst, n):\n    return [tuple(combination) for combination in itertools.product(lst, repeat=n)]\n```"}
+{"id": "mbpp_256", "generation": "```python\ndef count_Primes_nums(n):\n    if n < 2:\n        return 0\n    primes = [True] * n\n    primes[0] = primes[1] = False\n    for i in range(2, int(n**0.5) + 1):\n        if primes[i]:\n            for j in range(i*i, n, i):\n                primes[j] = False\n    return sum(primes)\n```"}
+{"id": "mbpp_257", "generation": "```python\ndef swap_numbers(a, b):\n    return b, a\n```"}
+{"id": "mbpp_259", "generation": "```python\ndef maximize_elements(tuple1, tuple2):\n    return tuple(max((x, y) for x, y in zip(t1, t2)) for t1, t2 in zip(tuple1, tuple2))\n```"}
+{"id": "mbpp_260", "generation": "```python\ndef is_prime(n):\n    if n < 2:\n        return False\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n\ndef newman_shanks_williams(n):\n    primes = []\n    num = 2\n    while len(primes) < n:\n        if is_prime(num):\n            primes.append(num)\n        num += 1\n    return primes[-1]\n```"}
+{"id": "mbpp_261", "generation": "```python\ndef division_elements(tuple1, tuple2):\n    return tuple(x / y for x, y in zip(tuple1, tuple2))\n```"}
+{"id": "mbpp_262", "generation": "```python\ndef split_two_parts(lst, L):\n    return lst[:L], lst[L:]\n```"}
+{"id": "mbpp_264", "generation": "```python\ndef dog_age(human_year):\n    return human_year * 7\n```"}
+{"id": "mbpp_265", "generation": "```python\ndef list_split(lst, n):\n    return [lst[i:i+n] for i in range(0, len(lst), n)]\n```"}
+{"id": "mbpp_266", "generation": "def lateralsurface_cube(side):\n    return 6 * (side ** 2)"}
+{"id": "mbpp_267", "generation": "```python\ndef square_Sum(n):\n    return sum(i**2 for i in range(n*2-1, -1, -2))\n```"}
+{"id": "mbpp_268", "generation": "def find_star_num(n):\n    return n**2 + n"}
+{"id": "mbpp_269", "generation": "def ascii_value(char):\n    return ord(char)"}
+{"id": "mbpp_270", "generation": "```python\ndef sum_even_and_even_index(lst):\n    return sum(num for i, num in enumerate(lst) if i % 2 == 0 and num % 2 == 0)\n```"}
+{"id": "mbpp_271", "generation": "```python\ndef even_Power_Sum(n):\n    return sum(i**5 for i in range(2, n*2, 2))\n```"}
+{"id": "mbpp_272", "generation": "def rear_extract(tuples_list):\n    return [t[-1] for t in tuples_list]"}
+{"id": "mbpp_273", "generation": "```python\ndef substract_elements(tuple1, tuple2):\n    return tuple(a - b for a, b in zip(tuple1, tuple2))\n```"}
+{"id": "mbpp_274", "generation": "```python\ndef even_binomial_Coeff_Sum(n):\n    return sum((math.comb(n, i) for i in range(n+1) if i % 2 == 0))\n```\n\nNote: This function uses the math module to calculate binomial coefficients. If you don't have this module available, you can use the following alternative implementation:\n\n```python\nimport math\n\ndef even_binomial_Coeff_Sum(n):\n    return sum(math.comb(n, i) for i in range(n+1) if i % 2 == 0)\n```\n\nOr, without using the math module:\n\n```python\ndef even_binomial_Coeff_Sum(n):\n    result = 0\n    for i in range(n+1):\n        if i % 2 == 0:\n            result += math.factorial(n) // (math.factorial(i) * math.factorial(n-i))\n    return result\n```"}
+{"id": "mbpp_276", "generation": "import math\n\ndef volume_cylinder(radius, height):\n    return math.pi * (radius ** 2) * height"}
+{"id": "mbpp_277", "generation": "```python\ndef dict_filter(dictionary, n):\n    return {key: value for key, value in dictionary.items() if value >= n}\n```"}
+{"id": "mbpp_278", "generation": "```python\ndef count_first_elements(t):\n    return sum(1 for x in t if isinstance(x, tuple)) + 1\n```"}
+{"id": "mbpp_279", "generation": "def is_num_decagonal(n):\n    return (10*n*(n+1)//2 + n) * 11 // 6"}
+{"id": "mbpp_280", "generation": "```python\ndef sequential_search(array, element):\n    for i in range(len(array)):\n        if array[i] == element:\n            return (True, i)\n    return (False, -1)\n```"}
+{"id": "mbpp_281", "generation": "```python\ndef all_unique(lst):\n    return len(lst) == len(set(lst))\n```"}
+{"id": "mbpp_282", "generation": "```python\ndef sub_list(list1, list2):\n    return [a - b for a, b in zip(list1, list2)]\n```"}
+{"id": "mbpp_283", "generation": "```python\ndef validate(n):\n    freq = {}\n    for i in str(n):\n        if int(i) in freq:\n            freq[int(i)] += 1\n        else:\n            freq[int(i)] = 1\n    return all(f <= int(i) for i, f in freq.items())\n```"}
+{"id": "mbpp_284", "generation": "```python\ndef check_element(lst, elem):\n    return all(i == elem for i in lst)\n```"}
+{"id": "mbpp_285", "generation": "```python\ndef text_match_two_three(text):\n    return 'a' in text and (text.count('b') == 2 or text.count('b') == 3)\n```"}
+{"id": "mbpp_286", "generation": "def max_sub_array_sum_repeated(arr, k, n):\n    def max_subarray_sum(arr):\n        max_sum = float('-inf')\n        current_sum = 0\n        for num in arr:\n            current_sum += num\n            max_sum = max(max_sum, current_sum)\n            if current_sum < 0:\n                current_sum = 0\n        return max_sum\n\n    total_length = k * n\n    prefix_sum = [0] * (total_length + 1)\n    for i in range(n):\n        for j in range(i, total_length, n):\n            prefix_sum[j+1] += arr[i]\n\n    max_sum = float('-inf')\n    for i in range(total_length):\n        current_sum = prefix_sum[i] - prefix_sum[i-n]\n        max_sum = max(max_sum, current_sum)\n\n    return max_sum"}
+{"id": "mbpp_287", "generation": "```python\ndef square_Sum(n):\n    return sum(i**2 for i in range(2, n*2, 2))\n```"}
+{"id": "mbpp_290", "generation": "```python\ndef max_length(lst):\n    return max(len(sublist) for sublist in lst), max((sublist for sublist in lst if len(sublist) == max_len)), max_len\n\nmax_len = 0\nfor sublist in lst:\n    if len(sublist) > max_len:\n        max_len = len(sublist)\n\nreturn max_len, [sublist for sublist in lst if len(sublist) == max_len]\n```"}
+{"id": "mbpp_291", "generation": "```python\ndef count_no_of_ways(n, k):\n    if n <= 0:\n        return 0\n    elif n == 1:\n        return k\n    elif n == 2:\n        return k * k\n    \n    dp = [[0 for _ in range(k)] for _ in range(n)]\n    \n    for i in range(1, n+1):\n        if i == 1:\n            dp[i][0] = k\n            dp[i][1] = k\n        elif i == 2:\n            dp[i][0] = k * k\n            dp[i][1] = k * k\n        else:\n            for j in range(k):\n                for l in range(k):\n                    if (i-1) % 3 != j and (i-2) % 3 != j:\n                        dp[i][j] += dp[i-1][l]\n                    elif (i-1) % 3 != l and (i-2) % 3 != l:\n                        dp[i][j] += dp[i-1][j]\n                    if (i-1) % 3 != j and (i-2) % 3 != j:\n                        dp[i][l] += dp[i-1][j]\n                    elif (i-1) % 3 != l and (i-2) % 3 != l:\n                        dp[i][l] += dp[i-1][l]\n\n    return sum(dp[n-1])\n```"}
+{"id": "mbpp_292", "generation": "```python\ndef find(a, b):\n    return a // b\n```"}
+{"id": "mbpp_293", "generation": "```python\nimport math\n\ndef otherside_rightangle(a, b):\n    return math.sqrt(a**2 + b**2)\n```"}
+{"id": "mbpp_294", "generation": "```python\ndef max_val(lst):\n    return max(i for i in lst if isinstance(i, (int, float)))\n```"}
+{"id": "mbpp_295", "generation": "```python\ndef sum_div(n):\n    return sum(i for i in range(1, n) if n % i == 0)\n```"}
+{"id": "mbpp_296", "generation": "```python\ndef get_Inv_Count(arr):\n    n = len(arr)\n    count = 0\n    for i in range(n-1):\n        for j in range(i+1, n):\n            if arr[i] > arr[j]:\n                count += 1\n    return count\n```"}
+{"id": "mbpp_297", "generation": "```python\ndef flatten_list(nested_list):\n    flat_list = []\n    for element in nested_list:\n        if isinstance(element, list):\n            flat_list.extend(flatten_list(element))\n        else:\n            flat_list.append(element)\n    return flat_list\n```"}
+{"id": "mbpp_299", "generation": "```python\ndef max_aggregate(tuples_list):\n    max_name = max(name for name, _ in tuples_list)\n    return (max_name, sum(value for _, value in tuples_list if name == max_name))\n```"}
+{"id": "mbpp_300", "generation": "import math\ndef count_binary_seq(n):\n    return (math.comb(2*n-1, n))**2"}
+{"id": "mbpp_301", "generation": "```python\ndef dict_depth(d):\n    if not isinstance(d, dict):\n        return 0\n    elif len(d) == 0:\n        return 1\n    else:\n        return 1 + max(dict_depth(v) for v in d.values())\n```"}
+{"id": "mbpp_304", "generation": "```python\ndef find_Element(nums, rotations, index, num):\n    n = len(nums)\n    rotation_index = (rotations * n + index) % n\n    return nums[rotation_index]\n```"}
+{"id": "mbpp_305", "generation": "```python\ndef start_withp(lst):\n    return tuple(word for word in lst if word.startswith('p'))\n```"}
+{"id": "mbpp_306", "generation": "```python\ndef max_sum_increasing_subseq(arr, i, k, n):\n    dp = [[0]*n for _ in range(n)]\n    \n    def helper(i, j):\n        if i >= j:\n            return 0\n        if dp[i][j] != -1:\n            return dp[i][j]\n        \n        take = arr[j] + helper(i+1, j-1)\n        skip = helper(i+1, j)\n        \n        dp[i][j] = max(take, skip)\n        return dp[i][j]\n    \n    for i in range(n):\n        for j in range(i, n):\n            dp[i][j] = -1\n    \n    return helper(0, k-1)\n\n# Test cases\nprint(max_sum_increasing_subseq([1, 101, 2, 3, 100, 4, 5 ], 7, 4, 6)) \nprint(max_sum_increasing_subseq([1, 101, 2, 3, 100, 4, 5 ], 7, 2, 5))\nprint(max_sum_increasing_subseq([11, 15, 19, 21, 26, 28, 31], 7, 2, 4)) \n```"}
+{"id": "mbpp_307", "generation": "```python\ndef colon_tuplex(tuplex, val1, val2):\n    return tuplex[:1] + (val1,) + (tuplex[1:],) + (val2,)\n```"}
+{"id": "mbpp_308", "generation": "```python\ndef large_product(list1, list2, n):\n    products = []\n    for i in range(len(list1)):\n        for j in range(len(list2)):\n            product = list1[i] * list2[j]\n            if len(products) < n:\n                products.append(product)\n            elif product > min(products):\n                products.remove(min(products))\n                products.append(product)\n    return sorted(products, reverse=True)[:n]\n```"}
+{"id": "mbpp_309", "generation": "```python\ndef maximum(a, b):\n    return max(a, b)\n```"}
+{"id": "mbpp_310", "generation": "def string_to_tuple(s):\n    return tuple(s)"}
+{"id": "mbpp_311", "generation": "```python\ndef set_left_most_unset_bit(n):\n    return n | (n & -n)\n```"}
+{"id": "mbpp_312", "generation": "import math\n\ndef volume_cone(radius, height):\n    return (1/3) * math.pi * radius**2 * height"}
+{"id": "mbpp_388", "generation": "```python\ndef highest_Power_of_2(n):\n    power = 0\n    while (1 << power) <= n:\n        power += 1\n    return (1 << (power - 1))\n```"}
+{"id": "mbpp_389", "generation": "```python\ndef find_lucas(n):\n    if n <= 0:\n        return \"Input should be a positive integer\"\n    elif n == 1:\n        return 2\n    else:\n        a, b = 2, 1\n        for _ in range(2, n):\n            a, b = b, a + b\n        return b\n```"}
+{"id": "mbpp_390", "generation": "```python\ndef add_string(lst, format_str):\n    return [format_str.format(i) for i in lst]\n```"}
+{"id": "mbpp_391", "generation": "```python\ndef convert_list_dictionary(keys, values, numbers):\n    result = []\n    for key, value in zip(keys, values):\n        result.append({key: {value: numbers.pop(0)}})\n    return result\n```"}
+{"id": "mbpp_392", "generation": "```python\ndef get_max_sum(n):\n    memo = {1: 1}\n    \n    def f(x):\n        if x not in memo:\n            memo[x] = max(f(x//2) + f(x//3) + f(x//4) + f(x//5), x)\n        return memo[x]\n        \n    return f(n)\n```"}
+{"id": "mbpp_393", "generation": "```python\ndef max_length_list(lst):\n    return max((len(sublist), sublist) for sublist in lst)\n```"}
+{"id": "mbpp_394", "generation": "```python\ndef check_distinct(t):\n    return len(t) == len(set(t))\n```"}
+{"id": "mbpp_395", "generation": "```python\ndef first_non_repeating_character(s):\n    char_count = {}\n    for char in s:\n        if char in char_count:\n            char_count[char] += 1\n        else:\n            char_count[char] = 1\n    for char in s:\n        if char_count[char] == 1:\n            return char\n    return None\n```"}
+{"id": "mbpp_396", "generation": "```python\ndef check_char(s):\n    if len(s) < 2:\n        return \"Valid\"\n    elif s[0] == s[-1]:\n        return \"Valid\"\n    else:\n        return \"Invalid\"\n```"}
+{"id": "mbpp_397", "generation": "```python\ndef median_numbers(a, b, c):\n    return sorted([a, b, c])[1]\n```"}
+{"id": "mbpp_398", "generation": "```python\ndef sum_of_digits(lst):\n    def sum_digits(n):\n        return sum(int(digit) for digit in str(abs(n)))\n\n    return sum(sum_digits(i) for i in lst if isinstance(i, (int, float)))\n```"}
+{"id": "mbpp_399", "generation": "```python\ndef bitwise_xor(tuples):\n    return tuple(x ^ y for x, y in zip(*tuples))\n```"}
+{"id": "mbpp_400", "generation": "```python\ndef extract_freq(lst):\n    return len(set(tuple(sorted(x)) for x in lst))\n```"}
+{"id": "mbpp_401", "generation": "```python\ndef add_nested_tuples(tuple1, tuple2):\n    return tuple(a + b for a, b in zip(*map(lambda x: x[0] if isinstance(x, tuple) else (x,), [tuple1, tuple2])))\n\n# Test cases\nassert add_nested_tuples(((1, 3), (4, 5), (2, 9), (1, 10)), ((6, 7), (3, 9), (1, 1), (7, 3))) == ((7, 10), (7, 14), (3, 10), (8, 13))\nassert add_nested_tuples(((2, 4), (5, 6), (3, 10), (2, 11)), ((7, 8), (4, 10), (2, 2), (8, 4))) == ((9, 12), (9, 16), (5, 12), (10, 15))\nassert add_nested_tuples(((3, 5), (6, 7), (4, 11), (3, 12)), ((8, 9), (5, 11), (3, 3), (9, 5))) == ((11, 14), (11, 18), (7, 14), (12, 17))\n```"}
+{"id": "mbpp_404", "generation": "```python\ndef minimum(a, b):\n    return min(a, b)\n```"}
+{"id": "mbpp_405", "generation": "```python\ndef check_tuplex(tuplex, element):\n    return element in tuplex\n```"}
+{"id": "mbpp_406", "generation": "```python\ndef find_Parity(n):\n    return n % 2 == 0\n```"}
+{"id": "mbpp_407", "generation": "```python\ndef rearrange_bigger(n):\n    digits = sorted(str(n))\n    if len(set(digits)) == 1:\n        return False\n    else:\n        i = len(digits) - 2\n        while i >= 0 and digits[i] >= digits[i+1]:\n            i -= 1\n        digits[i], digits[i+1] = digits[i+1], digits[i]\n        j = len(digits) - 1\n        while i < j:\n            digits[i], digits[j] = digits[j], digits[i]\n            i += 1\n            j -= 1\n        return int(''.join(digits))\n```"}
+{"id": "mbpp_408", "generation": "```python\nimport heapq\n\ndef k_smallest_pairs(arr1, arr2, k):\n    heap = []\n    for num1 in arr1:\n        for num2 in arr2:\n            pair = (num1 + num2, num1, num2)\n            heapq.heappush(heap, pair)\n\n    return [[pair[1], pair[2]] for _ in range(k)]\n```"}
+{"id": "mbpp_409", "generation": "```python\ndef min_product_tuple(lst):\n    return min(t[0]*t[1] for t in lst)\n```"}
+{"id": "mbpp_410", "generation": "def min_val(lst):\n    return min(i for i in lst if isinstance(i, int))"}
+{"id": "mbpp_411", "generation": "```python\ndef snake_to_camel(s):\n    words = s.split('_')\n    return words[0] + ''.join(word.capitalize() for word in words[1:])\n```"}
+{"id": "mbpp_412", "generation": "```python\ndef remove_odd(lst):\n    return [num for num in lst if num % 2 == 0]\n```"}
+{"id": "mbpp_413", "generation": "```python\ndef extract_nth_element(lst, n):\n    return [t[n] for t in lst]\n```"}
+{"id": "mbpp_414", "generation": "```python\ndef overlapping(seq1, seq2):\n    return len(set(seq1) & set(seq2)) > 0\n```"}
+{"id": "mbpp_415", "generation": "```python\ndef max_Product(nums):\n    if not nums:\n        return ()\n    \n    min_val = max_val = nums[0]\n    min_idx = max_idx = 0\n    \n    for i in range(1, len(nums)):\n        if nums[i] < min_val:\n            min_val, min_idx = nums[i], i\n        elif nums[i] > max_val:\n            max_val, max_idx = nums[i], i\n            \n    return (min_val, max_val) if min_val * max_val >= 0 else (-max_val, -min_val)\n```"}
+{"id": "mbpp_417", "generation": "```python\ndef group_tuples(tuples):\n    groups = {}\n    for t in tuples:\n        if t[0] not in groups:\n            groups[t[0]] = [t]\n        else:\n            groups[t[0]].append(t)\n    return list(groups.values())\n```"}
+{"id": "mbpp_418", "generation": "```python\ndef Find_Max(lst):\n    return max(lst, key=len)\n```"}
+{"id": "mbpp_419", "generation": "```python\ndef round_and_sum(numbers):\n    total = sum(round(num) for num in numbers)\n    return total * len(numbers)\n```"}
+{"id": "mbpp_420", "generation": "```python\ndef cube_Sum(n):\n    return sum(i**3 for i in range(2, n*2, 2))\n```"}
+{"id": "mbpp_421", "generation": "```python\ndef concatenate_tuple(tup):\n    return '-'.join(map(str, tup))\n```"}
+{"id": "mbpp_422", "generation": "```python\ndef find_Average_Of_Cube(n):\n    return sum(i**3 for i in range(1, n+1)) / n\n```"}
+{"id": "mbpp_424", "generation": "```python\ndef extract_rear(tup):\n    return [s[-1] for s in tup]\n```"}
+{"id": "mbpp_425", "generation": "```python\ndef count_element_in_list(lst, elem):\n    return sum(1 for sublist in lst if elem in sublist)\n```"}
+{"id": "mbpp_426", "generation": "def filter_oddnumbers(numbers):\n    return [num for num in numbers if num % 2 != 0]"}
+{"id": "mbpp_427", "generation": "def change_date_format(date):\n    year, month, day = date.split('-')\n    return f'{day}-{month}-{year}'"}
+{"id": "mbpp_428", "generation": "```python\ndef shell_sort(arr):\n    n = len(arr)\n    gap = n//2\n    \n    while gap > 0:\n        for i in range(gap, n):\n            temp = arr[i]\n            j = i\n            while j >= gap and arr[j-gap] > temp:\n                arr[j] = arr[j-gap]\n                j -= gap\n            arr[j] = temp\n        gap //= 2\n    \n    return arr\n```"}
+{"id": "mbpp_429", "generation": "```python\ndef and_tuples(t1, t2):\n    return tuple(i if a > b else j for i, (a, b) in enumerate(zip(t1, t2)))\n```"}
+{"id": "mbpp_430", "generation": "```python\ndef parabola_directrix(a, h, k):\n    return (k - h) / (a/4)\n```"}
+{"id": "mbpp_431", "generation": "```python\ndef common_element(list1, list2):\n    for element in set(list1) & set(list2):\n        return True\n    return None\n```"}
+{"id": "mbpp_432", "generation": "def median_trapezium(a, b, c, d):\n    sides = [a, b, c, d]\n    sides.sort()\n    n = len(sides)\n    if n % 2 == 0:\n        return (sides[n//2 - 1] + sides[n//2]) / 2\n    else:\n        return sides[n//2]"}
+{"id": "mbpp_433", "generation": "```python\ndef check_greater(arr, num):\n    return all(num > x for x in arr)\n```"}
+{"id": "mbpp_434", "generation": "```python\ndef text_match_one(s):\n    return s.startswith('a') and 'b' in s[1:]\n```"}
+{"id": "mbpp_435", "generation": "```python\ndef last_Digit(n):\n    return n % 10\n```"}
+{"id": "mbpp_436", "generation": "```python\ndef neg_nos(lst):\n    return [i for i in lst if i < 0]\n```"}
+{"id": "mbpp_437", "generation": "def remove_odd(s):\n    return \"\".join([c for i, c in enumerate(s) if i % 2 == 0])"}
+{"id": "mbpp_438", "generation": "```python\ndef count_bidirectional(tuples):\n    return len(set(tuple(sorted(pair)) for pair in tuples))\n```"}
+{"id": "mbpp_439", "generation": "```python\ndef multiple_to_single(lst):\n    return int(''.join(map(str, lst)))\n```"}
+{"id": "mbpp_440", "generation": "```python\nimport re\n\ndef find_adverb_position(sentence):\n    adverbs = ['clearly', 'seriously', 'unfortunately']\n    for i, word in enumerate(sentence.split()):\n        if word.strip('!!') in adverbs:\n            return (i, i + len(word), word)\n    return None\n```"}
+{"id": "mbpp_441", "generation": "def surfacearea_cube(size):\n    return 6 * (size ** 2)"}
+{"id": "mbpp_442", "generation": "```python\ndef positive_count(arr):\n    return sum(1 for num in arr if num > 0) / len([num for num in arr if num > 0])\n```"}
+{"id": "mbpp_443", "generation": "```python\ndef largest_neg(lst):\n    return max((x for x in lst if x < 0), default=None)\n```"}
+{"id": "mbpp_444", "generation": "```python\ndef trim_tuple(tuple_list, k):\n    return str([tuple(t[-k:]) for t in tuple_list])\n```"}
+{"id": "mbpp_445", "generation": "```python\ndef index_multiplication(t1, t2):\n    return tuple((a * b for a, b in zip(t1, t2)),)\n```"}
+{"id": "mbpp_446", "generation": "```python\ndef count_Occurrence(tup, lst):\n    return sum(tup.count(i) for i in lst)\n```"}
+{"id": "mbpp_447", "generation": "```python\ndef cube_nums(nums):\n    return [n ** 3 for n in nums]\n```"}
+{"id": "mbpp_448", "generation": "```python\ndef cal_sum(n):\n    perrin = [1, 2, 3]\n    for i in range(3, n+1):\n        perrin.append(perrin[i-1] + (perrin[i-2] - perrin[i-3]))\n    return sum(perrin[:n])\n```"}
+{"id": "mbpp_450", "generation": "```python\ndef extract_string(string_list, size):\n    return [s for s in string_list if len(s) == size]\n```"}
+{"id": "mbpp_451", "generation": "def remove_whitespaces(s):\n    return s.replace(\" \", \"\")"}
+{"id": "mbpp_452", "generation": "```python\ndef loss_amount(amount, sale):\n    return max(0, amount - sale)\n```"}
+{"id": "mbpp_453", "generation": "```python\ndef sumofFactors(n):\n    factors = [i for i in range(1, n + 1) if n % i == 0]\n    even_factors = [factor for factor in factors if factor % 2 == 0]\n    return sum(even_factors)\n```"}
+{"id": "mbpp_454", "generation": "```python\ndef text_match_wordz(text):\n    return 'z' in text.lower()\n```"}
+{"id": "mbpp_455", "generation": "```python\ndef check_monthnumb_number(month):\n    month_days = {\n        1: 31,\n        3: 31,\n        5: 31,\n        7: 31,\n        8: 31,\n        10: 31,\n        12: 31\n    }\n    return month in month_days"}
+{"id": "mbpp_456", "generation": "```python\ndef reverse_string_list(string_list):\n    return [s[::-1] for s in string_list]\n```"}
+{"id": "mbpp_457", "generation": "```python\ndef Find_Min(lst):\n    return min(lst, key=len)\n```"}
+{"id": "mbpp_458", "generation": "```python\ndef rectangle_area(length, width):\n    return length * width\n```"}
+{"id": "mbpp_459", "generation": "def remove_uppercase(s):\n    result = ''\n    for char in s:\n        if char.islower():\n            result += char\n    return result"}
+{"id": "mbpp_460", "generation": "```python\ndef Extract(lst):\n    return [sublist[0] for sublist in lst]\n```"}
+{"id": "mbpp_461", "generation": "```python\ndef upper_ctr(s):\n    return sum(1 for c in s if c.isupper())\n```"}
+{"id": "mbpp_462", "generation": "def combinations_list(lst):\n    result = [[]]\n    for elem in lst:\n        result += [curr + [elem] for curr in result]\n    return result"}
+{"id": "mbpp_463", "generation": "```python\ndef max_subarray_product(nums):\n    if not nums:\n        return 0\n\n    max_so_far = min_so_far = result = nums[0]\n\n    for i in range(1, len(nums)):\n        if nums[i] < 0:\n            max_so_far, min_so_far = min_so_far, max_so_far\n\n        max_so_far = max(nums[i], max_so_far * nums[i])\n        min_so_far = min(nums[i], min_so_far * nums[i])\n\n        result = max(result, max_so_far)\n\n    return result\n```"}
+{"id": "mbpp_464", "generation": "```python\ndef check_value(d, value):\n    return len(d.values()) == 1 and list(d.values())[0] == value\n```"}
+{"id": "mbpp_465", "generation": "```python\ndef drop_empty(d):\n    return {k: v for k, v in d.items() if v is not None}\n```"}
+{"id": "mbpp_468", "generation": "```python\ndef max_product(nums):\n    if not nums:\n        return 0\n    \n    n = len(nums)\n    dp = [nums[0]]\n    \n    for i in range(1, n):\n        dp.append(max(dp[-1] * nums[i], nums[i]))\n        \n    return max(dp)\n```"}
+{"id": "mbpp_470", "generation": "```python\ndef add_pairwise(t):\n    return tuple(a + b for a, b in zip(t, t[1:]))\n```"}
+{"id": "mbpp_471", "generation": "```python\ndef find_remainder(arr, n):\n    product = 1\n    for num in arr:\n        product = (product * num) % n\n    return product\n```"}
+{"id": "mbpp_472", "generation": "```python\ndef check_Consecutive(lst):\n    return len(lst) == max(lst) - min(lst) + 1 and all(i+1 in lst for i in range(len(lst)-1))\n```"}
+{"id": "mbpp_473", "generation": "```python\ndef tuple_intersection(tuple_list1, tuple_list2):\n    set1 = set(map(str, [tuple(t) for t in tuple_list1]))\n    set2 = set(map(str, [tuple(t) for t in tuple_list2]))\n    return set((a, b) for a, b in set1 & set2)\n```"}
+{"id": "mbpp_474", "generation": "```python\ndef replace_char(s, old, new):\n    return s.replace(old, new)\n```"}
+{"id": "mbpp_475", "generation": "```python\ndef sort_counter(counter):\n    return sorted(counter.items(), key=lambda x: x[1], reverse=True)\n```"}
+{"id": "mbpp_476", "generation": "```python\ndef big_sum(arr):\n    return max(arr) + min(arr)\n```"}
+{"id": "mbpp_477", "generation": "def is_lower(s):\n    return s.lower()"}
+{"id": "mbpp_478", "generation": "def remove_lowercase(s):\n    result = \"\"\n    for i in range(len(s)):\n        if s[i].isupper():\n            result += s[i]\n        elif i > 0 and s[i-1].islower() and not s[i].islower():\n            result += s[i]\n    return result"}
+{"id": "mbpp_479", "generation": "```python\ndef first_Digit(n):\n    return int(str(abs(n))[0])\n```"}
+{"id": "mbpp_554", "generation": "```python\ndef Split(lst):\n    return [i for i in lst if i % 2 != 0]\n```"}
+{"id": "mbpp_555", "generation": "```python\ndef difference(n):\n    return sum(i**3 for i in range(1, n+1)) - sum(range(1, n+1))\n```"}
+{"id": "mbpp_556", "generation": "```python\ndef find_Odd_Pair(nums, target):\n    count = 0\n    xor_sum = 0\n    num_set = set()\n    \n    for num in nums:\n        xor_sum ^= num\n        if xor_sum & target == 0:\n            complement = xor_sum ^ target\n            if complement in num_set:\n                count += 1\n        num_set.add(xor_sum)\n        \n    return count\n```"}
+{"id": "mbpp_557", "generation": "def toggle_string(s):\n    return s.swapcase()"}
+{"id": "mbpp_558", "generation": "```python\ndef digit_distance_nums(a, b):\n    return sum(abs(int(digit1) - int(digit2)) for digit1 in str(a) for digit2 in str(b))\n```"}
+{"id": "mbpp_559", "generation": "```python\ndef max_sub_array_sum(lst, k):\n    if not lst or k < 1:\n        return 0\n    \n    window_sum = sum(lst[:k])\n    max_sum = window_sum\n    \n    for i in range(k, len(lst)):\n        window_sum = window_sum - lst[i-k] + lst[i]\n        max_sum = max(max_sum, window_sum)\n    \n    return max_sum\n```"}
+{"id": "mbpp_560", "generation": "```python\ndef union_elements(tuple1, tuple2):\n    return sorted(set(tuple1 + tuple2))\n```"}
+{"id": "mbpp_562", "generation": "```python\ndef Find_Max_Length(lists):\n    return max(len(sublist) for sublist in lists)\n```"}
+{"id": "mbpp_563", "generation": "```python\ndef extract_values(s):\n    values = []\n    in_quotes = False\n    current_value = ''\n    for char in s:\n        if char == '\"':\n            in_quotes = not in_quotes\n        elif in_quotes and char.isalnum():\n            current_value += char\n        elif in_quotes and not char.isalnum() and not current_value:\n            values.append(current_value)\n            current_value = ''\n    if in_quotes and current_value:\n        values.append(current_value)\n    return values\n```"}
+{"id": "mbpp_564", "generation": "```python\ndef count_Pairs(lst, n):\n    return sum(1 for i in range(len(lst)) for j in range(i+1, len(lst)) if lst[i] != lst[j])\n```"}
+{"id": "mbpp_565", "generation": "```python\ndef split(s):\n    return list(s)\n```"}
+{"id": "mbpp_566", "generation": "```python\ndef sum_digits(n):\n    return sum(int(digit) for digit in str(n))\n```"}
+{"id": "mbpp_567", "generation": "```python\ndef issort_list(lst):\n    return lst == sorted(lst)\n```"}
+{"id": "mbpp_568", "generation": "```python\ndef empty_list(n):\n    return [{}] * n\n```"}
+{"id": "mbpp_569", "generation": "```python\ndef sort_sublists(lst):\n    return [sorted(sublist) for sublist in lst]\n```"}
+{"id": "mbpp_572", "generation": "```python\ndef two_unique_nums(nums):\n    return list(set(num for num in nums if nums.count(num) == 1))\n```"}
+{"id": "mbpp_573", "generation": "```python\ndef unique_product(lst):\n    product = 1\n    seen = set()\n    for num in lst:\n        if num not in seen:\n            product *= num\n            seen.add(num)\n    return product\n```"}
+{"id": "mbpp_574", "generation": "```python\nimport math\n\ndef surfacearea_cylinder(r,h):\n    return 2 * math.pi * r * (r + h)\n```"}
+{"id": "mbpp_576", "generation": "```python\ndef is_Sub_Array(main_array, sub_array):\n    if len(sub_array) > len(main_array):\n        return False\n    for i in range(len(main_array)-len(sub_array)+1):\n        if main_array[i:i+len(sub_array)] == sub_array:\n            return True\n    return False\n```"}
+{"id": "mbpp_577", "generation": "```python\ndef last_Digit_Factorial(n):\n    if n < 10:\n        return n\n    else:\n        return last_Digit_Factorial(n-1) * last_Digit_Factorial(n-2) % 10\n```"}
+{"id": "mbpp_578", "generation": "```python\ndef interleave_lists(list1, list2, list3):\n    result = []\n    min_len = min(len(list1), len(list2), len(list3))\n    for i in range(min_len):\n        result.append(list1[i])\n        result.append(list2[i])\n        result.append(list3[i])\n    return result\n```"}
+{"id": "mbpp_579", "generation": "```python\ndef find_dissimilar(tuple1, tuple2):\n    return tuple(set(tuple1) ^ set(tuple2))\n```"}
+{"id": "mbpp_580", "generation": "```python\ndef extract_even(nested_tuple):\n    def recursive_extract(tup):\n        result = []\n        for item in tup:\n            if isinstance(item, tuple):\n                result.append(recursive_extract(item))\n            elif item % 2 == 0:\n                result.append(item)\n        return tuple(result)\n\n    return recursive_extract(nested_tuple)\n```"}
+{"id": "mbpp_581", "generation": "```python\ndef surface_Area(base_edge, height):\n    return base_edge**2 + 4 * (0.5 * base_edge * height)**2\n```"}
+{"id": "mbpp_582", "generation": "```python\ndef my_dict(d):\n    return len(d) == 0\n```"}
+{"id": "mbpp_583", "generation": "```python\ndef catalan_number(n):\n    if n < 0:\n        return 0\n    elif n == 0 or n == 1:\n        return 1\n    else:\n        catalans = [0 for i in range(n+1)]\n        catalans[0] = catalans[1] = 1\n        for i in range(2, n + 1):\n            for j in range(i):\n                catalans[i] += catalans[j] * catalans[i-j-1]\n        return catalans[n]\n```"}
+{"id": "mbpp_584", "generation": "```python\nimport re\n\ndef find_adverbs(s):\n    adverbs = re.findall(r'\\b\\w+ly\\b', s)\n    if not adverbs:\n        return None\n    first_adverb = adverbs[0]\n    positions = [m.start() for m in re.finditer(first_adverb, s)]\n    return f'{positions[0]}-{positions[-1]}: {first_adverb}'\n```"}
+{"id": "mbpp_585", "generation": "```python\ndef expensive_items(dataset, n):\n    return sorted(dataset, key=lambda x: x['price'], reverse=True)[:n]\n```"}
+{"id": "mbpp_586", "generation": "```python\ndef split_Arr(arr, n):\n    return arr[n:] + arr[:n]\n```"}
+{"id": "mbpp_587", "generation": "```python\ndef list_tuple(lst):\n    return tuple(lst)\n```"}
+{"id": "mbpp_588", "generation": "```python\ndef big_diff(lst):\n    return max(lst) - min(lst)\n```"}
+{"id": "mbpp_589", "generation": "```python\ndef perfect_squares(a, b):\n    return [i**2 for i in range(int(a**0.5)+1, int(b**0.5)+1) if i**2 >= a and i**2 <= b]\n```"}
+{"id": "mbpp_590", "generation": "```python\nimport math\n\ndef polar_rect(r, theta):\n    x = r * math.cos(theta)\n    y = r * math.sin(theta)\n    return (x, round(math.degrees(theta), 6)), complex(x, 0) if abs(y) < 1e-9 else (x, round(math.degrees(theta), 6))\n```"}
+{"id": "mbpp_591", "generation": "```python\ndef swap_List(lst):\n    if len(lst) > 1:\n        lst[0], lst[-1] = lst[-1], lst[0]\n    return lst\n```"}
+{"id": "mbpp_592", "generation": "```python\nimport math\n\ndef sum_Of_product(n):\n    result = 0\n    for i in range(n):\n        product = math.comb(n-1,i)\n        result += product * math.comb(i+1,n-i-1)\n    return result\n```"}
+{"id": "mbpp_593", "generation": "```python\ndef removezero_ip(ip):\n    parts = ip.split('.')\n    return '.'.join(part.lstrip('0') or '0' for part in parts)\n```"}
+{"id": "mbpp_594", "generation": "```python\ndef diff_even_odd(lst):\n    even = next((x for x in lst if x % 2 == 0), None)\n    odd = next((x for x in lst if x % 2 != 0), None)\n    return abs(even - odd) if even and odd else None\n```"}
+{"id": "mbpp_595", "generation": "```python\ndef min_Swaps(s1, s2):\n    if sorted(s1) != sorted(s2):\n        return \"Not Possible\"\n\n    n = len(s1)\n    swaps = 0\n    visited = [False] * n\n\n    def dfs(i, j, k):\n        nonlocal swaps\n        if i == j:\n            return\n        if visited[i] or visited[j]:\n            return\n        visited[i] = True\n        visited[j] = True\n        if s1[i] != s2[k]:\n            swaps += 1\n            dfs(i + 1, k, k + 1)\n            dfs(j - 1, i, i + 1)\n        else:\n            dfs(i + 1, k, k + 1)\n            dfs(j - 1, i, i + 1)\n\n    for i in range(n):\n        if s1[i] != s2[i]:\n            return \"Not Possible\"\n    for i in range(n):\n        for j in range(i + 1, n):\n            if s1[i] == s2[j]:\n                swaps = 0\n                dfs(i, j, i)\n                break\n\n    return swaps\n```"}
+{"id": "mbpp_596", "generation": "```python\nimport sys\n\ndef tuple_size(t):\n    return sys.getsizeof(t)\n```"}
+{"id": "mbpp_597", "generation": "```python\ndef find_kth(arr1, arr2, k):\n    i = j = 0\n    while i < len(arr1) and j < len(arr2):\n        if arr1[i] <= arr2[j]:\n            i += 1\n        else:\n            j += 1\n    return arr1[i-1] if i != len(arr1) else arr2[j-1]\n```"}
+{"id": "mbpp_598", "generation": "```python\ndef armstrong_number(n):\n    return n == sum(int(digit)**len(str(n)) for digit in str(n))\n```"}
+{"id": "mbpp_599", "generation": "```python\ndef sum_average(n):\n    return (n * (n + 1) // 2), n / 2\n```"}
+{"id": "mbpp_600", "generation": "```python\ndef is_Even(n):\n    return n % 2 == 0\n```"}
+{"id": "mbpp_602", "generation": "```python\ndef first_repeated_char(s):\n    seen = set()\n    for char in s:\n        if char in seen:\n            return char\n        seen.add(char)\n    return None\n```"}
+{"id": "mbpp_603", "generation": "def get_ludic(n):\n    def is_prime(x):\n        if x < 2:\n            return False\n        for i in range(2, int(x**0.5) + 1):\n            if x % i == 0:\n                return False\n        return True\n\n    lucid = []\n    for i in range(1, n+1):\n        if is_prime(i) and (i - 1) % i == 0:\n            lucid.append(i)\n    return lucid"}
+{"id": "mbpp_604", "generation": "```python\ndef reverse_words(s):\n    words = s.split()\n    reversed_words = ' '.join(reversed(words))\n    return reversed_words\n```"}
+{"id": "mbpp_605", "generation": "```python\ndef prime_num(n):\n    if n <= 1:\n        return False\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n```"}
+{"id": "mbpp_606", "generation": "import math\n\ndef radian_degree(degrees):\n    return degrees * math.pi / 180"}
+{"id": "mbpp_607", "generation": "```python\nimport re\n\ndef find_literals(s, pattern):\n    match = re.search(pattern, s)\n    if match:\n        return (match.group(), match.start(), match.end())\n    else:\n        return None\n```"}
+{"id": "mbpp_608", "generation": "```python\ndef Number(n):\n    if n < 1:\n        return \"Input should be a positive integer\"\n    elif n == 1:\n        return 0\n    else:\n        fib_sequence = [0, 1]\n        for i in range(2, n):\n            fib_sequence.append(fib_sequence[i-1] + fib_sequence[i-2])\n        return fib_sequence[-1]\n```"}
+{"id": "mbpp_610", "generation": "```python\ndef remove_kth_element(lst, k):\n    return lst[:k-1] + lst[k:] if k > 0 else lst\n```"}
+{"id": "mbpp_611", "generation": "```python\ndef max_of_nth(matrix, n):\n    return max(col[n-1] for col in matrix)\n```"}
+{"id": "mbpp_612", "generation": "```python\ndef merge(lst):\n    return [sublist[0] + sublist[1:] for sublist in lst], [sublist[1] + sublist[0] for sublist in lst]\n```"}
+{"id": "mbpp_614", "generation": "```python\ndef cummulative_sum(tuples_list):\n    cumulative = 0\n    for tup in tuples_list:\n        cumulative += sum(tup)\n    return cumulative\n```"}
+{"id": "mbpp_615", "generation": "```python\ndef average_tuple(tuples):\n    return [sum(t)/len(t) for t in tuples]\n```"}
+{"id": "mbpp_616", "generation": "```python\ndef tuple_modulo(t1, t2):\n    return tuple(x % y for x, y in zip(t1, t2))\n```"}
+{"id": "mbpp_617", "generation": "```python\nimport math\n\ndef min_Jumps(point, length):\n    x, y = point\n    return math.ceil(math.sqrt(2 * (x + length) / 2)) - math.floor(math.sqrt(2 * (x + length) / 2))\n```"}
+{"id": "mbpp_618", "generation": "```python\ndef div_list(list1, list2):\n    return [x / y for x, y in zip(list1, list2)]\n```"}
+{"id": "mbpp_619", "generation": "def move_num(s):\n    num = ''\n    result = []\n    for char in s:\n        if char.isdigit():\n            num += char\n        else:\n            if num:\n                result.append(num)\n                num = ''\n            result.append(char)\n    if num:\n        result.append(num)\n    return ''.join(result)"}
+{"id": "mbpp_620", "generation": "def largest_subset(nums):\n    nums.sort()\n    n = len(nums)\n    dp = [0] * (n + 1)\n    for i in range(2, n + 1):\n        if nums[i - 2] % nums[i - 1] == 0:\n            dp[i] = max(dp[i], dp[i - 1])\n        dp[i] = max(dp[i], dp[i - 2] + 1)\n    return dp[n]"}
+{"id": "mbpp_622", "generation": "```python\ndef get_median(list1, list2, size):\n    merged = sorted(list1 + list2)\n    return float(merged[size // 2] if size % 2 else (merged[size // 2 - 1] + merged[size // 2]) / 2.0)\n```"}
+{"id": "mbpp_623", "generation": "```python\ndef nth_nums(nums, n):\n    return [num ** n for num in nums]\n```"}
+{"id": "mbpp_624", "generation": "```python\ndef is_upper(s):\n    return s.upper()\n```"}
+{"id": "mbpp_625", "generation": "```python\ndef swap_List(lst):\n    if len(lst) <= 1:\n        return lst\n    else:\n        return [lst[-1]] + lst[1:-1] + [lst[0]]\n```"}
+{"id": "mbpp_626", "generation": "```python\nimport math\n\ndef triangle_area(r):\n    if r <= 0:\n        return None\n    return (r**2)/2\n```"}
+{"id": "mbpp_627", "generation": "```python\ndef find_First_Missing(nums):\n    for i in range(len(nums)):\n        while nums[i] > len(nums) or nums[nums[i]-1] != nums[i]:\n            nums[nums[i]-1], nums[i] = nums[i], nums[nums[i]-1]\n    return 0 if nums[0] == 0 else nums[0]+1\n```"}
+{"id": "mbpp_628", "generation": "```python\ndef replace_spaces(s):\n    return s.replace(' ', '%20')\n```"}
+{"id": "mbpp_629", "generation": "```python\ndef Split(numbers):\n    return [num for num in numbers if num % 2 == 0]\n```"}
+{"id": "mbpp_630", "generation": "```python\ndef get_coordinates(coord):\n    x, y = coord\n    return [[x-1, y], [x+1, y], [x, y-1], [x, y+1],\n            [x-1, y-1], [x-1, y+1], [x+1, y-1], [x+1, y+1]]\n```"}
+{"id": "mbpp_631", "generation": "```python\ndef replace_spaces(s):\n    return s.replace(' ', '_').replace('_', ' ')\n```"}
+{"id": "mbpp_632", "generation": "```python\ndef move_zero(nums):\n    return [num for num in nums if num != 0] + [0] * nums.count(0)\n```"}
+{"id": "mbpp_633", "generation": "```python\ndef pair_xor_Sum(lst, target):\n    xor_sum = 0\n    for i in range(len(lst)):\n        for j in range(i+1, len(lst)):\n            xor_sum += lst[i] ^ lst[j]\n    return xor_sum\n```"}
+{"id": "mbpp_635", "generation": "```python\nimport heapq\n\ndef heap_sort(lst):\n    heap = []\n    for item in lst:\n        heapq.heappush(heap, item)\n    \n    sorted_lst = []\n    while heap:\n        sorted_lst.append(heapq.heappop(heap))\n    \n    return sorted_lst\n```"}
+{"id": "mbpp_637", "generation": "```python\ndef noprofit_noloss(amount, price):\n    return amount <= price and price <= 2 * amount\n```"}
+{"id": "mbpp_638", "generation": "```python\ndef wind_chill(wind_velocity, temperature):\n    if wind_velocity <= 3:\n        return round((35.74 + 0.6215 * temperature - (35.75 * wind_velocity**0.16) + (0.4275 * temperature * wind_velocity**0.16)) * 10) / 10\n    elif wind_velocity <= 19:\n        return round(13.12 + 0.6215 * temperature - (0.3965 * wind_velocity) - (0.0545 * temperature * wind_velocity) + (0.0018 * temperature**2 * wind_velocity**2)) \n    else:\n        return round((13.12 + 0.6215 * temperature - (0.3965 * wind_velocity) - (0.0545 * temperature * wind_velocity) + (0.0018 * temperature**2 * wind_velocity**2)) / 10)\n```"}
+{"id": "mbpp_639", "generation": "```python\ndef sample_nam(names):\n    return sum(len(name) for name in names if name[0].isupper())\n```"}
+{"id": "mbpp_640", "generation": "```python\ndef remove_parenthesis(lst):\n    return lst[0].strip('()')\n```"}
+{"id": "mbpp_641", "generation": "def is_nonagonal(n):\n    i = 1\n    while True:\n        nonagonal_num = (i * (i + 1)) // 2\n        if nonagonal_num >= n:\n            return n - ((nonagonal_num - n) // i)\n        i += 1"}
+{"id": "mbpp_643", "generation": "```python\ndef text_match_wordz_middle(text):\n    return 'z' in text[1:-1]\n```"}
+{"id": "mbpp_644", "generation": "```python\ndef reverse_Array_Upto_K(arr, k):\n    return arr[:k][::-1] + arr[k:][::-1]\n```"}
+{"id": "mbpp_720", "generation": "```python\ndef add_dict_to_tuple(tup, d):\n    return tup + (d,)\n```"}
+{"id": "mbpp_721", "generation": "```python\ndef maxAverageOfPath(matrix):\n    rows = len(matrix)\n    cols = len(matrix[0])\n    \n    # Create a memoization table to store results of subproblems\n    dp = [[0] * cols for _ in range(rows)]\n    \n    # Initialize the first cell with its cost\n    dp[0][0] = matrix[0][0]\n    \n    # Fill the first row\n    for j in range(1, cols):\n        dp[0][j] = dp[0][j-1] + matrix[0][j]\n        \n    # Fill the first column\n    for i in range(1, rows):\n        dp[i][0] = dp[i-1][0] + matrix[i][0]\n        \n    # Fill the rest of the table\n    for i in range(1, rows):\n        for j in range(1, cols):\n            dp[i][j] = (dp[i-1][j] + dp[i][j-1]) / 2 + matrix[i][j]\n            \n    return max(dp[-1][-1], dp[-1][-2])\n```"}
+{"id": "mbpp_722", "generation": "```python\ndef filter_data(students, min_height, min_weight):\n    return {name: height_weight for name, height_weight in students.items() if height_weight[0] >= min_height and height_weight[1] >= min_weight}\n```"}
+{"id": "mbpp_723", "generation": "```python\ndef count_same_pair(list1, list2):\n    return sum(1 for i in range(len(list1)) if list1[i] == list2[i])\n```"}
+{"id": "mbpp_724", "generation": "```python\ndef power_base_sum(base, power):\n    return sum(int(digit) for digit in str(base ** power))\n```"}
+{"id": "mbpp_725", "generation": "```python\nimport re\n\ndef extract_quotation(s):\n    return re.findall(r'\"([^\"]*)\"', s)\n```"}
+{"id": "mbpp_726", "generation": "```python\ndef multiply_elements(t):\n    return tuple(t[i] * t[i+1] for i in range(len(t) - 1))\n```"}
+{"id": "mbpp_728", "generation": "```python\ndef sum_list(a, b):\n    return [x + y for x, y in zip(a, b)]\n```"}
+{"id": "mbpp_730", "generation": "```python\ndef consecutive_duplicates(lst):\n    result = []\n    for i in range(len(lst)):\n        if not result or lst[i] != lst[i-1]:\n            result.append(lst[i])\n    return result\n```"}
+{"id": "mbpp_731", "generation": "```python\nimport math\n\ndef lateralsurface_cone(r, h):\n    return math.pi * r * (r + math.sqrt(r**2 + h**2))\n```"}
+{"id": "mbpp_732", "generation": "```python\ndef replace_specialchar(s):\n    return s.replace(' ', ':').replace(',', ':').replace('.', ':')\n```"}
+{"id": "mbpp_733", "generation": "```python\ndef find_first_occurrence(arr, target):\n    left, right = 0, len(arr) - 1\n    while left <= right:\n        mid = (left + right) // 2\n        if arr[mid] == target:\n            if mid == 0 or arr[mid-1] != target:\n                return mid\n            else:\n                right = mid - 1\n        elif arr[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n    return -1\n```"}
+{"id": "mbpp_734", "generation": "```python\ndef sum_Of_Subarray_Prod(lst):\n    n = len(lst)\n    total_sum = 0\n    for i in range(n):\n        product = lst[i]\n        for j in range(i+1, n+1):\n            total_sum += product * eval('*'.join(map(str, lst[i:j])))\n    return total_sum\n```"}
+{"id": "mbpp_735", "generation": "```python\ndef toggle_middle_bits(n):\n    return n ^ ((n >> 1) & 0b1110000111110000) | ((n << 1) & 0b1001100110101000)\n```"}
+{"id": "mbpp_736", "generation": "```python\ndef left_insertion(arr, target):\n    for i in range(len(arr)):\n        if arr[i] >= target:\n            return i\n    return len(arr)\n```"}
+{"id": "mbpp_737", "generation": "```python\nimport re\n\ndef check_str(s):\n    return bool(re.match(r'^[aeiouAEIOU]+$', s))\n```"}
+{"id": "mbpp_738", "generation": "```python\ndef geometric_sum(n):\n    if n <= 0:\n        return 0\n    elif n == 1:\n        return 1\n    else:\n        return (n - 1) * ((2 / n) ** (n - 1))\n```"}
+{"id": "mbpp_739", "generation": "```python\ndef find_Index(n):\n    i = 1\n    while True:\n        triangular_num = (i * (i + 1)) // 2\n        if len(str(triangular_num)) >= n:\n            return bin(i)[2:].find('1')\n        i += 1\n```"}
+{"id": "mbpp_740", "generation": "```python\ndef tuple_to_dict(t):\n    return {t[i]: t[i+1] for i in range(0, len(t)-1, 2)}\n```"}
+{"id": "mbpp_741", "generation": "```python\ndef all_Characters_Same(s):\n    return len(set(s)) == 1\n```"}
+{"id": "mbpp_742", "generation": "import math\n\ndef area_tetrahedron(a):\n    return (math.sqrt(3)/4) * a**2"}
+{"id": "mbpp_743", "generation": "```python\ndef rotate_right(lst, num):\n    num = num % len(lst)\n    return lst[-num:] + lst[:-num]\n```"}
+{"id": "mbpp_744", "generation": "```python\ndef check_none(tup):\n    return any(x is None for x in tup)\n```"}
+{"id": "mbpp_745", "generation": "```python\ndef divisible_by_digits(startnum, endnum):\n    def is_divisible(n):\n        for digit in str(n):\n            if int(digit) == 0 or n % int(digit) != 0:\n                return False\n        return True\n\n    return [i for i in range(startnum, endnum+1) if is_divisible(i)]\n```"}
+{"id": "mbpp_746", "generation": "```python\nimport math\n\ndef sector_area(radius, angle):\n    if angle > 360:\n        return None\n    else:\n        return (angle / 360) * math.pi * radius ** 2\n```"}
+{"id": "mbpp_747", "generation": "```python\ndef lcs_of_three(s1, s2, s3):\n    m = len(s1)\n    n = len(s2)\n    p = len(s3)\n\n    L = [[0] * (p + 1) for _ in range(m + 1)]\n\n    for i in range(1, m + 1):\n        for j in range(1, n + 1):\n            k = max(0, min(i, j) - 1)\n            if s1[i - 1] == s2[j - 1] and s2[j - 1] == s3[k]:\n                L[i][j] = L[i - 1][j - 1] + 1\n            else:\n                L[i][j] = max(L[i - 1][j], L[i][j - 1])\n\n    return L[m][p]\n```"}
+{"id": "mbpp_748", "generation": "```python\ndef capital_words_spaces(s):\n    result = ''\n    for i in range(len(s)):\n        if s[i].isupper() and (i == 0 or not s[i-1].isalpha()):\n            result += ' '\n        result += s[i]\n    return result.strip()\n```"}
+{"id": "mbpp_749", "generation": "```python\ndef sort_numeric_strings(lst):\n    return sorted(lst, key=lambda x: int(x))\n```"}
+{"id": "mbpp_750", "generation": "```python\ndef add_tuple(lst, tup):\n    return lst + list(tup)\n```"}
+{"id": "mbpp_751", "generation": "```python\ndef check_min_heap(arr):\n    n = len(arr)\n    \n    for i in range(n):\n        left_child = 2 * i + 1\n        right_child = 2 * i + 2\n        \n        if left_child < n and arr[i] > arr[left_child]:\n            return False\n            \n        if right_child < n and arr[i] > arr[right_child]:\n            return False\n            \n    return True\n```"}
+{"id": "mbpp_752", "generation": "```python\ndef jacobsthal_num(n):\n    if n <= 0:\n        return \"Input should be a positive integer\"\n    elif n == 1:\n        return 0\n    elif n == 2:\n        return 1\n    else:\n        a, b = 0, 1\n        for _ in range(2, n):\n            a, b = b, a + b\n        return b\n```"}
+{"id": "mbpp_753", "generation": "```python\ndef min_k(records, k):\n    return sorted(records, key=lambda x: x[1])[:k]\n```"}
+{"id": "mbpp_754", "generation": "```python\ndef extract_index_list(l1, l2, l3):\n    return [i for i in range(min(len(l1), len(l2), len(l3))) if l1[i] == l2[i] == l3[i]]\n```"}
+{"id": "mbpp_755", "generation": "```python\ndef second_smallest(nums):\n    if len(set(nums)) < 2:\n        return None\n    nums.sort()\n    return nums[1]\n```"}
+{"id": "mbpp_756", "generation": "```python\nimport re\n\ndef text_match_zero_one(text):\n    return bool(re.match('a.*b', text))\n```"}
+{"id": "mbpp_757", "generation": "```python\ndef count_reverse_pairs(lst):\n    reverse_count = {}\n    for s in lst:\n        rev_s = s[::-1]\n        if rev_s in reverse_count:\n            reverse_count[rev_s] += 1\n        else:\n            reverse_count[rev_s] = 1\n    pairs = 0\n    for count in reverse_count.values():\n        pairs += (count - 1) * count // 2\n    return pairs\n```"}
+{"id": "mbpp_758", "generation": "```python\ndef unique_sublists(lst):\n    sublists = set(tuple(sublist) for sublist in lst)\n    return {sublist: lst.count(sublist) for sublist in sublists}\n```"}
+{"id": "mbpp_759", "generation": "```python\ndef is_decimal(s):\n    parts = s.split('.')\n    if len(parts) > 2:\n        return False\n    for part in parts:\n        if not part.isdigit():\n            return False\n        if len(part) > 2:\n            return False\n    return True\n```"}
+{"id": "mbpp_760", "generation": "```python\ndef unique_Element(lst):\n    return len(set(lst)) == 1\n```"}
+{"id": "mbpp_762", "generation": "```python\ndef check_monthnumber_number(month):\n    return month in [1, 3, 5, 7, 8, 10, 12]\n```"}
+{"id": "mbpp_763", "generation": "```python\ndef find_min_diff(arr, target):\n    arr.sort()\n    low = 0\n    high = len(arr) - 1\n    min_diff = float('inf')\n    \n    while low < high:\n        diff = abs(arr[high] - arr[low])\n        if diff < min_diff:\n            min_diff = diff\n        if arr[high] > target:\n            high -= 1\n        else:\n            low += 1\n            \n    return min_diff\n```"}
+{"id": "mbpp_764", "generation": "```python\ndef number_ctr(s):\n    return len([c for c in s if c.isdigit()])\n```"}
+{"id": "mbpp_765", "generation": "```python\ndef is_prime(n):\n    if n < 2:\n        return False\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n\ndef nth_polite_number(n):\n    count = 0\n    num = 1\n    while True:\n        sum_divisors = sum(i for i in range(1, int(num**0.5) + 1) if num % i == 0)\n        if is_prime(sum_divisors) and is_prime(num // sum_divisors):\n            count += 1\n            if count == n:\n                return num\n        num += 1\n```"}
+{"id": "mbpp_766", "generation": "```python\ndef pair_wise(lst):\n    return [(lst[i], lst[i+1]) for i in range(len(lst)-1)]\n```"}
+{"id": "mbpp_767", "generation": "```python\ndef get_pairs_count(nums, sum):\n    count = 0\n    num_set = set()\n    for num in nums:\n        complement = sum - num\n        if complement in num_set:\n            count += 1\n        num_set.add(num)\n    return count\n```"}
+{"id": "mbpp_769", "generation": "```python\ndef Diff(list1, list2):\n    return [x for x in list1 + list2 if (x not in list1) and (x not in list2)]\n```"}
+{"id": "mbpp_770", "generation": "```python\ndef odd_num_sum(n):\n    return sum(i**4 for i in range(n*2-1, 0, -2))\n```"}
+{"id": "mbpp_771", "generation": "```python\ndef check_expression(expression):\n    stack = []\n    mapping = {')': '(', '}': '{', ']': '['}\n    for char in expression:\n        if char in mapping.values():\n            stack.append(char)\n        elif char in mapping.keys():\n            if not stack or mapping[char] != stack.pop():\n                return False\n    return not stack\n```"}
+{"id": "mbpp_772", "generation": "```python\ndef remove_length(s, k):\n    words = s.split()\n    return ' '.join([word for word in words if len(word) != k])\n```"}
+{"id": "mbpp_773", "generation": "```python\ndef occurance_substring(s, sub):\n    try:\n        return (sub, s.index(sub), s.index(sub) + len(sub))\n    except ValueError:\n        return None\n```"}
+{"id": "mbpp_775", "generation": "```python\ndef odd_position(lst):\n    return all(len(lst[i:i+2]) % 2 != 0 for i in range(0, len(lst), 2))\n```"}
+{"id": "mbpp_776", "generation": "```python\ndef count_vowels(s):\n    vowels = 'aeiou'\n    s = ''.join(c for c in s if c.isalnum())\n    return sum(1 for i in range(len(s)) if (i > 0 and s[i-1] in vowels) or (i < len(s)-1 and s[i+1] in vowels))\n```"}
+{"id": "mbpp_777", "generation": "```python\ndef find_sum(lst):\n    count = {}\n    for num in lst:\n        if num in count:\n            count[num] += 1\n        else:\n            count[num] = 1\n    return sum(num for num in set(lst) if count[num] == 1)\n```"}
+{"id": "mbpp_778", "generation": "```python\ndef pack_consecutive_duplicates(lst):\n    result = []\n    current_group = [lst[0]]\n    \n    for i in range(1, len(lst)):\n        if lst[i] == lst[i-1]:\n            current_group.append(lst[i])\n        else:\n            result.append(current_group)\n            current_group = [lst[i]]\n            \n    result.append(current_group)\n    return result\n```"}
+{"id": "mbpp_779", "generation": "```python\ndef unique_sublists(lst):\n    sublists = {}\n    for sublist in lst:\n        sorted_sublist = tuple(sorted(sublist))\n        if sorted_sublist in sublists:\n            sublists[sorted_sublist] += 1\n        else:\n            sublists[sorted_sublist] = 1\n    return sublists\n```"}
+{"id": "mbpp_780", "generation": "```python\nfrom itertools import combinations\n\ndef find_combinations(tuple_list):\n    result = set()\n    for t1 in tuple_list:\n        for t2 in tuple_list:\n            if t1 != t2:\n                result.add(tuple(sorted((t1[0] + t2[0], t1[1] + t2[1]))))\n    return list(result)\n```"}
+{"id": "mbpp_781", "generation": "```python\ndef count_divisors(n):\n    divisors = 0\n    for i in range(1, int(n**0.5) + 1):\n        if n % i == 0:\n            if n // i == i:\n                divisors += 1\n            else:\n                divisors += 2\n    return divisors % 2 == 0\n```"}
+{"id": "mbpp_782", "generation": "```python\ndef odd_length_sum(arr):\n    n = len(arr)\n    total_sum = 0\n    for i in range(n):\n        for j in range(i+1, n+1):\n            if (j-i) % 2 != 0:\n                total_sum += sum(arr[i:j])\n    return total_sum\n```"}
+{"id": "mbpp_783", "generation": "```python\nimport math\n\ndef rgb_to_hsv(r, g, b):\n    r, g, b = r/255.0, g/255.0, b/255.0\n    mx = max(r, g, b)\n    mn = min(r, g, b)\n    df = mx - mn\n    if mx == mn:\n        h = 0\n    elif mx == r:\n        h = (60 * ((g-b)/df) + 360) % 360\n    elif mx == g:\n        h = (60 * ((b-r)/df) + 120) % 360\n    else:\n        h = (60 * ((r-g)/df) + 240) % 360\n    if mx == 0:\n        s = 0\n    else:\n        s = df/mx\n    v = mx\n    return round(h, 4), round(s*100, 4), round(v*100, 4)\n```"}
+{"id": "mbpp_784", "generation": "```python\ndef mul_even_odd(lst):\n    even = [i for i in lst if i % 2 == 0]\n    odd = [i for i in lst if i % 2 != 0]\n    return min(even) * max(odd)\n```"}
+{"id": "mbpp_785", "generation": "```python\ndef tuple_str_int(s):\n    return tuple(int(i) for i in s[1:-1].split(','))\n```"}
+{"id": "mbpp_786", "generation": "```python\ndef right_insertion(nums, target):\n    left, right = 0, len(nums) - 1\n    while left <= right:\n        mid = (left + right) // 2\n        if nums[mid] == target:\n            return mid\n        elif nums[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n    return left\n```"}
+{"id": "mbpp_787", "generation": "```python\ndef text_match_three(text):\n    return 'a' in text and text.count('b') == 3\n```"}
+{"id": "mbpp_788", "generation": "```python\ndef new_tuple(lst, string):\n    return tuple(lst + [string])\n```"}
+{"id": "mbpp_790", "generation": "```python\ndef even_position(lst):\n    return all(len(lst[i::2]) % 2 == 0 for i in range(len(lst)))\n```"}
+{"id": "mbpp_791", "generation": "```python\ndef remove_nested(tup):\n    result = []\n    for item in tup:\n        if isinstance(item, tuple):\n            result.extend(remove_nested(item))\n        else:\n            result.append(item)\n    return tuple(result)\n```"}
+{"id": "mbpp_792", "generation": "```python\ndef count_list(lst):\n    return len(lst)\n```"}
+{"id": "mbpp_793", "generation": "```python\ndef last(arr, target):\n    try:\n        return arr.index(target)\n    except ValueError:\n        return -1\n```"}
+{"id": "mbpp_794", "generation": "def text_starta_endb(text):\n    return 'a' in text and text.endswith('b')"}
+{"id": "mbpp_796", "generation": "```python\ndef return_sum(dictionary):\n    return sum(dictionary.values())\n```"}
+{"id": "mbpp_797", "generation": "```python\ndef sum_in_range(l, r):\n    return sum(i for i in range(l, r+1) if i % 2 != 0)\n```"}
+{"id": "mbpp_798", "generation": "```python\ndef _sum(arr):\n    return sum(arr)\n```"}
+{"id": "mbpp_799", "generation": "```python\ndef left_rotate(n, d):\n    return (n << d) | (n >> (32 - d))\n```"}
+{"id": "mbpp_800", "generation": "```python\ndef remove_all_spaces(s):\n    return s.replace(\" \", \"\")\n```"}
+{"id": "mbpp_801", "generation": "```python\ndef test_three_equal(a, b, c):\n    return sum(1 for x in [a, b, c] if x == a)\n```"}
+{"id": "mbpp_802", "generation": "```python\ndef count_rotation(arr):\n    n = len(arr)\n    for i in range(n-1):\n        if arr[i] > arr[i+1]:\n            return i + 1\n    return 0\n```"}
+{"id": "mbpp_803", "generation": "```python\nimport math\n\ndef is_perfect_square(n):\n    if n < 0:\n        return False\n    sqrt = math.sqrt(n)\n    return sqrt == int(sqrt)\n```"}
+{"id": "mbpp_804", "generation": "```python\ndef is_product_even(lst):\n    product = 1\n    for num in lst:\n        product *= num\n    return product % 2 == 0\n```"}
+{"id": "mbpp_805", "generation": "```python\ndef max_sum_list(lists):\n    return max(lists, key=sum)\n```"}
+{"id": "mbpp_806", "generation": "```python\ndef max_run_uppercase(s):\n    max_run = 0\n    current_run = 0\n    for char in s:\n        if char.isupper():\n            current_run += 1\n            max_run = max(max_run, current_run)\n        else:\n            current_run = 0\n    return max_run\n```"}
+{"id": "mbpp_807", "generation": "```python\ndef first_odd(numbers):\n    for num in numbers:\n        if num % 2 != 0:\n            return num\n    return None\n```"}
+{"id": "mbpp_808", "generation": "```python\ndef check_K(tup, k):\n    return k in tup\n```"}
+{"id": "mbpp_809", "generation": "```python\ndef check_smaller(t1, t2):\n    return all(x < y for x, y in zip(t1, t2))\n```"}
