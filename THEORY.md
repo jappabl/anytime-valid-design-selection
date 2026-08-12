@@ -207,38 +207,54 @@ while every mixture-based alternative pays an additive
 (K + #boundary)/2 · log n that dominates when log n ≈ 6–8.**
 
 
-## The frontier experiment (conservation hypothesis: SUPPORTED)
+## The frontier experiment (conservation hypothesis: FALSIFIED)
 
-Testing whether any construction escapes the learning tax
-([results_frontier.txt](results_frontier.txt); hypothesis pre-registered
-in [scripts/run_frontier.py](scripts/run_frontier.py)): a sequentialized
-universal-inference statistic (doubling-epoch frozen plug-in numerator —
-no mixture integral) landed at 1.48–1.72× the mixture's overhead
-(prediction window [0.7, 1.5]; falsification line 0.5× — not
-approached), and the one-shot freeze variant collapsed into the
-predicted variance-risk corner (0–24% certification). The UI mixture's
-measured overhead matched (d/2)·log n with d = K + #boundary within
-~1 nat at all three margins.
+**Original reading (2026-08-11): "SUPPORTED." That reading was wrong
+twice over, and audit round 2 caught both errors
+(audit/AUDIT_LAW_CAPSTONE.md).** First, the original artifact never
+printed its own pre-registered ratios: epoch-split landed at
+1.67/1.72/1.48× the mixture — the support window [0.7, 1.5] was MISSED
+at 2 of 3 margins, not confirmed. Second and decisive: the original
+"one-shot split" arm was an accidental strawman — it bet at p = 0.5
+through its burn-in and charged ~111 nats of estimation loss to the
+martingale, which the split-LRT lineage it cited
+(Wasserman–Ramdas–Balakrishnan) never does.
 
-**Answer to the reframed open problem, as the evidence now stands:** the
-stratified information rate cannot be obtained without paying
-~(K + #boundary)/2 · log n of adaptivity overhead (Rissanen-type
-redundancy); rate-sacrifice (the WSR corner) is the only demonstrated
-escape; split/epoch constructions sit above the mixture frontier, not
-below; and therefore the allocation-rule question Spertus et al. leave
-open is second-order at practical sample sizes — the binding constraint
-is the learning tax, which no allocation removes. The remaining open
-mathematics is the matching lower bound for this frontier (classical
-ingredients: Rissanen 1984; Pollak 1978; multiparameter Lai–Zhang 1994 —
-plausibly assemblable by someone with the right training; flagged for
-expert collaboration in OUTREACH_NOTE.md).
+REVISION 2 ([results_frontier.txt](results_frontier.txt)) adds the
+faithful discard-burn-in split-LRT (estimation half contributes nothing
+to log E; validity gated at the null boundary): at ≥95% certification
+it reaches **0.373× the mixture's overhead at τ = 0.15 (b = 50) and
+0.398× at τ = 0.16 (b = 100)** — across the pre-registered
+falsification line of 0.5×. The conservation hypothesis AS
+PRE-REGISTERED is falsified: **sample splitting escapes the
+(d/2)·log n learning tax at the n ~ 10³ scales this project studies.**
+The refined true statement: splitting converts the log n adaptivity tax
+into a burn-in-tuned constant plus an abstention tail that binds only
+at razor margins (at τ = 0.17 the corner is visible: 24–90%
+certification depending on burn-in). The asymptotic mixture-redundancy
+statement is untouched — but it was not what was pre-registered.
+
+**Answer to the reframed open problem, as corrected:** the stratified
+rate CAN be approached cold-start without the full log n tax — by
+sample splitting (frozen bets, abstention risk at razor margins), by
+rate-sacrifice (WSR's corner), or, best of all where a prior epoch
+exists, by warm-starting (~1 nat, adaptive, full certification). The
+binding design question is therefore not "mixture vs allocation" but
+"which tax-escape fits the deployment": burn-in freeze (cold, moderate
+margins), block reduction (any margin, robust), or transfer prior
+(recurring evals). The matching lower-bound mathematics for the
+adaptive-uniformly-powerful class remains open (Rissanen 1984; Pollak
+1978; Lai–Zhang 1994) — but it now excludes split constructions by
+construction, which is exactly why they escape.
 
 
 ## Solving the bottleneck in its loophole: warm-start certification
 
-The conservation result says the learning tax is unavoidable for
-COLD-START uniformly-powerful procedures. Real evaluations recur, and a
-prior epoch converts the tax to a constant with validity untouched
+The learning tax binds fully-adaptive cold-start procedures (the
+frontier experiment's split-LRT escape pays for its freedom with frozen
+bets and an abstention tail; see above). Real evaluations recur, and a
+prior epoch converts the tax to a ~1-nat constant with validity
+untouched and no abstention corner
 ([results_warmstart.txt](results_warmstart.txt),
 [results_warmstart_joint.txt](results_warmstart_joint.txt); predictions
 pre-registered per arm, three misses honestly logged):
@@ -328,10 +344,19 @@ scoring — two confirmed, one half, one REVERSED:
    the clean ones that are 3/4 of the round-robin stream, where the
    prior keeps predicting failures that never arrive.
 
-Deployment rule: the staleness budget is ~0.03-0.06 downward drift but
-only ~0.01 upward; when uncertain, shade the transfer prior DOWN — a
-"model may have regressed" prior costs almost nothing, an alarmist
+Deployment rule: the staleness budget is ~0.015-0.03 downward drift
+but only ~0.01 upward; when uncertain, shade the transfer prior DOWN —
+a "model may have regressed" prior costs almost nothing, an alarmist
 prior costs the full learning tax back.
+
+REVISION 2 (per-rep CRN seeding, audit round 2): the -0.03 point is a
+seed-level TIE with WSR (rev 1: 364 vs 374, winning; rev 2: 362 vs
+350, losing — a ±4% flip across seedings), so the robust beats-WSR
+region is |delta| <= 0.015 downward. Everything else is stable across
+seedings: asymmetry direction (362 vs 928 at ±0.03), saturation at the
+contamination ceiling (1748 vs ~1753 predicted), cold beaten even at
+-0.10, and zero wrong certifications. The pre-registered breakeven
+window [0.015, 0.06] still contains the negative-side breakeven.
 
 
 ## Multi-epoch chaining (the deployment loop, pre-registered)

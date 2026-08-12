@@ -5,21 +5,21 @@ current pools p_k = [0.004, 0.0, 0.068, 0.736] (p* = 0.2020)
 tau=0.16 (V_rr=0.0127), joint contamination kappa=200 eps=0.1, alpha=0.05, 200 reps, n_max=6000, BASE_SEED=42
 prior_k = clip(p_k + delta, 0.001, 0.999); incumbents: cold UI and WSR blocks
 
-    delta      cert wrong abst median   overhead  vs WSR(374) / cold(1498)
-   -0.100  200/200     0    0   1312  +13.64 nats  loses to WSR, beats cold
-   -0.060  200/200     0    0    826   +7.48 nats  loses to WSR, beats cold
-   -0.030  200/200     0    0    364   +1.62 nats  BEATS both
-   -0.015  200/200     0    0    330   +1.19 nats  BEATS both
-   +0.000  200/200     0    0    306   +0.88 nats  BEATS both
-   +0.015  200/200     0    0    458   +2.81 nats  loses to WSR, beats cold
-   +0.030  200/200     0    0   1008   +9.78 nats  loses to WSR, beats cold
-   +0.060  200/200     0    0   1770  +19.44 nats  loses to both
-   +0.100  200/200     0    0   1740  +19.06 nats  loses to both
+    delta      cert wrong abst median   overhead  vs WSR(350) / cold(1572)
+   -0.100  200/200     0    0   1350  +14.12 nats  loses to WSR, beats cold
+   -0.060  200/200     0    0    836   +7.60 nats  loses to WSR, beats cold
+   -0.030  200/200     0    0    362   +1.59 nats  loses to WSR, beats cold
+   -0.015  200/200     0    0    288   +0.66 nats  BEATS both
+   +0.000  200/200     0    0    276   +0.50 nats  BEATS both
+   +0.015  200/200     0    0    460   +2.84 nats  loses to WSR, beats cold
+   +0.030  200/200     0    0    928   +8.77 nats  loses to WSR, beats cold
+   +0.060  200/200     0    0   1718  +18.78 nats  loses to both
+   +0.100  200/200     0    0   1748  +19.17 nats  loses to both
 
-  breakeven vs WSR: last winning |delta| = 0.03; first losing |delta| = 0.015
-  saturation check: worst median 1770 vs predicted ceiling ~1700 (cold 1498 + log(1/eps)/V_rr ~ 181)
+  breakeven vs WSR: last winning |delta| = 0.015; first losing |delta| = 0.015
+  saturation check: worst median 1748 vs predicted ceiling ~1700 (cold 1572 + log(1/eps)/V_rr ~ 181)
   wrong certifications across all deltas: 0
 
 ============================================================================
-Checksum (SHA256): 1e5e5d85a8cad4fc
+Checksum (SHA256): ee59ebda2288dd15
 ============================================================================

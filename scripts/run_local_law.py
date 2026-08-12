@@ -188,7 +188,11 @@ def main():
                 done = [t for t in times if t is not None]
                 frac = len(done) / N_REPS
                 med = int(np.median(done)) if done else None
-                if med:
+                # Frozen convention (fit_overhead_law.py / audit): fit
+                # only points with >= 90% certification — censored
+                # medians are biased low and flatten the slope. Rev 1
+                # of this script omitted the filter by mistake.
+                if med and frac >= 0.9:
                     pts[key].append((med, v))
                 row += f" {med if med else '--':>7}|{frac:>4.2f}"
             print(row)

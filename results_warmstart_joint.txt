@@ -6,35 +6,47 @@ PRIOR epoch p_k  = [0.004, 0.0, 0.08, 0.748] (stale + mislabeled epoch; kappa=20
 alpha=0.05, 200 reps, n_max=6000, BASE_SEED=42
 
   tau=0.15 (V_rr=0.0192):
-    cold UI mixture : certified 200/200, wrong 0, abstain   0, median 960, overhead  +15.47 nats
-    joint (benign)  : certified 200/200, wrong 0, abstain   0, median 186, overhead   +0.58 nats
-    joint (drifted) : certified 200/200, wrong 0, abstain   0, median 914, overhead  +14.59 nats
-    joint (inverted): certified 200/200, wrong 0, abstain   0, median 1078, overhead  +17.74 nats
-    perstrat (inverted): certified 200/200, wrong 0, abstain   0, median 1476, overhead  +25.40 nats
-    WSR (ref)       : certified 200/200, median 248
+    cold UI mixture : certified 200/200, wrong 0, abstain   0, median 958, overhead  +15.43 nats
+    joint (benign)  : certified 200/200, wrong 0, abstain   0, median 196, overhead   +0.77 nats
+    joint (drifted) : certified 200/200, wrong 0, abstain   0, median 942, overhead  +15.13 nats
+    joint (inverted): certified 200/200, wrong 0, abstain   0, median 1068, overhead  +17.55 nats
+    perstrat (inverted): certified 200/200, wrong 0, abstain   0, median 1484, overhead  +25.55 nats
+    WSR (ref)       : certified 200/200, median 240
 
   tau=0.16 (V_rr=0.0127):
-    cold UI mixture : certified 200/200, wrong 0, abstain   0, median 1498, overhead  +16.00 nats
-    joint (benign)  : certified 200/200, wrong 0, abstain   0, median 302, overhead   +0.83 nats
-    joint (drifted) : certified 200/200, wrong 0, abstain   0, median 1722, overhead  +18.84 nats
+    cold UI mixture : certified 200/200, wrong 0, abstain   0, median 1572, overhead  +16.93 nats
+    joint (benign)  : certified 200/200, wrong 0, abstain   0, median 266, overhead   +0.38 nats
+    joint (drifted) : certified 200/200, wrong 0, abstain   0, median 1710, overhead  +18.68 nats
     joint (inverted): certified 200/200, wrong 0, abstain   0, median 1748, overhead  +19.17 nats
-    perstrat (inverted): certified 200/200, wrong 0, abstain   0, median 2362, overhead  +26.95 nats
-    WSR (ref)       : certified 200/200, median 374
+    perstrat (inverted): certified 200/200, wrong 0, abstain   0, median 2372, overhead  +27.08 nats
+    WSR (ref)       : certified 200/200, median 350
 
   tau=0.17 (V_rr=0.0075):
-    cold UI mixture : certified 200/200, wrong 0, abstain   0, median 2872, overhead  +18.42 nats
-    joint (benign)  : certified 200/200, wrong 0, abstain   0, median 548, overhead   +1.09 nats
-    joint (drifted) : certified 199/200, wrong 0, abstain   1, median 3136, overhead  +20.39 nats
-    joint (inverted): certified 200/200, wrong 0, abstain   0, median 3244, overhead  +21.19 nats
-    perstrat (inverted): certified 188/200, wrong 0, abstain  12, median 4160, overhead  +28.02 nats
-    WSR (ref)       : certified 200/200, median 640
+    cold UI mixture : certified 200/200, wrong 0, abstain   0, median 2880, overhead  +18.48 nats
+    joint (benign)  : certified 200/200, wrong 0, abstain   0, median 540, overhead   +1.03 nats
+    joint (drifted) : certified 200/200, wrong 0, abstain   0, median 3202, overhead  +20.88 nats
+    joint (inverted): certified 200/200, wrong 0, abstain   0, median 3202, overhead  +20.88 nats
+    perstrat (inverted): certified 190/200, wrong 0, abstain  10, median 4210, overhead  +28.39 nats
+    WSR (ref)       : certified 200/200, median 600
 
-Scoring: warm-start overhead in [1.5, 6] nats and >= 2.5x faster than
-the cold mixture everywhere; within +-30% of WSR at tau=0.17. Validity
-note: the prior epoch predates and is independent of the current pools'
-sampling stream, so anytime validity is exact; misspecification risk is
-capped by the eps-contamination at log(1/eps) ~ 2.3 nats.
+PRE-REGISTERED SCORING (verdicts printed per audit round 2; ALL
+three inverted-arm premiums shown — no selection):
+  tau=0.15: inverted-minus-cold overhead +2.12 nats; benign vs cold 4.9x
+  tau=0.16: inverted-minus-cold overhead +2.23 nats; benign vs cold 5.9x
+  tau=0.17: inverted-minus-cold overhead +2.40 nats; benign vs cold 5.3x
+  inverted premiums: +2.12, +2.23, +2.40 nats vs cap log(1/eps) = 2.30. NOTE (audit round 2): the cap bounds
+  the LOG E-VALUE premium PATHWISE (verified exact); these median-
+  overhead gaps are a downstream statistic and may exceed it by
+  stopping-time noise — values above the cap are DISCLOSED, not
+  'consistent with' it.
+
+Validity note (corrected per audit round 2): the prior file is the SAME
+prompt pool relabeled by a validator fix (16/1000 labels differ), i.e.
+an ORACLE-adjacent prior — realistic staleness lives in
+results_warmstart_drift.txt. Validity holds because the prior is fixed
+w.r.t. the resampling stream (conditional on the pools), not because
+it "predates" the current pools.
 
 ============================================================================
-Checksum (SHA256): 3f1e93b6a2ea4f8e
+Checksum (SHA256): 1516eb4a6a1021d6
 ============================================================================

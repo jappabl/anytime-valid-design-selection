@@ -5,31 +5,54 @@ gpt-4o-mini pools, UNSAFE direction, alpha=0.05, 200 reps, n_max=6000, BASE_SEED
 Overhead defined as median(n)*V_rr - log(1/alpha), using the shared allocation-constrained rate V_rr for the three stratified-rate arms (WSR reported for reference at its own Kelly rate).
 
   tau=0.15 (margin 0.052, V_rr=0.0192, V_pool=0.0097):
-    UI mixture      : certified 200/200, abstain   0, median 960, overhead  +15.47 nats
-    epoch-split     : certified 200/200, abstain   0, median 1502, overhead  +25.90 nats
-    one-shot split  : certified  47/200, abstain 153, median 5264, overhead  +98.27 nats
-    single-stream   : certified 200/200, abstain   0, median 576, overhead   +2.62 nats
-    WSR (ref)       : certified 200/200, abstain   0, median 248, overhead       --
+    UI mixture        : certified 200/200, abstain   0, median 960, overhead  +15.47 nats
+    epoch-split       : certified 200/200, abstain   0, median 1502, overhead  +25.90 nats ratio 1.674x
+    0.5-burnin-charged: certified  47/200, abstain 153, median 5264, overhead  +98.27 nats ratio 6.351x [CENSORED: cert<95%]
+    split-LRT b=25    : certified 160/200, abstain  40, median 408, overhead   +4.85 nats ratio 0.314x [CENSORED: cert<95%]
+    split-LRT b=50    : certified 193/200, abstain   7, median 456, overhead   +5.78 nats ratio 0.373x
+    split-LRT b=100   : certified 200/200, abstain   0, median 580, overhead   +8.16 nats ratio 0.528x
+    single-stream     : certified 200/200, abstain   0, median 576, overhead   +2.62 nats ratio 0.169x
+    WSR (ref)         : certified 200/200, abstain   0, median 248, overhead       --
 
   tau=0.16 (margin 0.042, V_rr=0.0127, V_pool=0.0062):
-    UI mixture      : certified 200/200, abstain   0, median 1498, overhead  +16.00 nats
-    epoch-split     : certified 200/200, abstain   0, median 2402, overhead  +27.46 nats
-    one-shot split  : certified   0/200, abstain 200, median None, overhead       --
-    single-stream   : certified 200/200, abstain   0, median 972, overhead   +2.98 nats
-    WSR (ref)       : certified 200/200, abstain   0, median 374, overhead       --
+    UI mixture        : certified 200/200, abstain   0, median 1498, overhead  +16.00 nats
+    epoch-split       : certified 200/200, abstain   0, median 2402, overhead  +27.46 nats ratio 1.716x
+    0.5-burnin-charged: certified   0/200, abstain 200, median None, overhead       -- [CENSORED: cert<95%]
+    split-LRT b=25    : certified  97/200, abstain 103, median 520, overhead   +3.60 nats ratio 0.225x [CENSORED: cert<95%]
+    split-LRT b=50    : certified 174/200, abstain  26, median 662, overhead   +5.40 nats ratio 0.337x [CENSORED: cert<95%]
+    split-LRT b=100   : certified 198/200, abstain   2, median 738, overhead   +6.36 nats ratio 0.398x
+    single-stream     : certified 200/200, abstain   0, median 972, overhead   +2.98 nats ratio 0.187x
+    WSR (ref)         : certified 200/200, abstain   0, median 374, overhead       --
 
   tau=0.17 (margin 0.032, V_rr=0.0075, V_pool=0.0035):
-    UI mixture      : certified 200/200, abstain   0, median 2872, overhead  +18.42 nats
-    epoch-split     : certified 184/200, abstain  16, median 4068, overhead  +27.33 nats
-    one-shot split  : certified   0/200, abstain 200, median None, overhead       --
-    single-stream   : certified 200/200, abstain   0, median 1868, overhead   +3.47 nats
-    WSR (ref)       : certified 200/200, abstain   0, median 640, overhead       --
+    UI mixture        : certified 200/200, abstain   0, median 2872, overhead  +18.42 nats
+    epoch-split       : certified 184/200, abstain  16, median 4068, overhead  +27.33 nats ratio 1.484x [CENSORED: cert<95%]
+    0.5-burnin-charged: certified   0/200, abstain 200, median None, overhead       -- [CENSORED: cert<95%]
+    split-LRT b=25    : certified  48/200, abstain 152, median 702, overhead   +2.24 nats ratio 0.122x [CENSORED: cert<95%]
+    split-LRT b=50    : certified 127/200, abstain  73, median 1264, overhead   +6.43 nats ratio 0.349x [CENSORED: cert<95%]
+    split-LRT b=100   : certified 180/200, abstain  20, median 1042, overhead   +4.77 nats ratio 0.259x [CENSORED: cert<95%]
+    single-stream     : certified 200/200, abstain   0, median 1868, overhead   +3.47 nats ratio 0.189x
+    WSR (ref)         : certified 200/200, abstain   0, median 640, overhead       --
 
-Reading: the conservation hypothesis predicts epoch-split overhead in
-[0.7, 1.5]x of the UI mixture's at each tau; below 0.5x falsifies it.
-One-shot split is predicted to show the variance-risk corner (fast
-medians, elevated abstention).
+Pre-registered scoring (support window [0.7, 1.5]x of the UI mixture;
+below 0.5x at full certification falsifies the conservation hypothesis):
+  tau=0.15 epoch-split        ratio 1.674x  -> WINDOW MISSED
+  tau=0.15 split-LRT b=50     ratio 0.373x  -> FALSIFIES (<0.5x)
+  tau=0.15 split-LRT b=100    ratio 0.528x  -> above 0.5x
+  tau=0.16 epoch-split        ratio 1.716x  -> WINDOW MISSED
+  tau=0.16 split-LRT b=100    ratio 0.398x  -> FALSIFIES (<0.5x)
+
+VERDICT: epoch-split missed the support window at 2 of 3 margins,
+and the faithful split-LRT crosses the pre-registered falsification
+line at 2 grid points. The conservation hypothesis AS PRE-REGISTERED
+is FALSIFIED at these sample sizes: sample splitting escapes the
+(d/2) log n learning tax at the n ~ 10^3 scales this project studies,
+at the price of a frozen (non-adaptive) bet whose tail risk does not
+bind at these margins. The asymptotic version (mixture-optimal
+redundancy) is untouched but was not what was pre-registered. Medians
+are comparable only at matched certification fractions; censored arms
+are flagged above.
 
 ============================================================================
-Checksum (SHA256): 4520abeb30d9bca6
+Checksum (SHA256): 4d71e395094c4be6
 ============================================================================

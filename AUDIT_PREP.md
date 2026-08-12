@@ -826,3 +826,14 @@ within 1000 samples in this regime.
   wrong certifications in 14,400 runs). Deliberately stopped at v2 to
   avoid iterate-until-win forking. Local pools committed (llama3.2-3b
   p*=0.483, qwen2.5-7b p*=0.297).
+- 2026-08-12: REV-2 warm-start family regenerated with per-rep CRN +
+  printed verdicts (results_warmstart{,_joint,_drift}.txt) and the
+  promoted null-coverage artifact (results_warmstart_null.txt: worst
+  type-I 0.047 <= alpha over 8 boundary configs x 3 arms x 2000 reps).
+  Benign window [1.5,6] MISSED LOW at all three margins — now printed
+  in-artifact. Inverted premiums +2.12/+2.23/+2.40 vs cap 2.30, all
+  disclosed with correct units language. Drift breakeven tightened
+  under honest seeding (robust region |delta| <= 0.015 downward; -0.03
+  is a seed-level tie). Frontier rev-2: conservation FALSIFIED as
+  pre-registered (split-LRT 0.373x/0.398x at >=95% certification);
+  THEORY.md and FINDINGS.md rewritten accordingly.

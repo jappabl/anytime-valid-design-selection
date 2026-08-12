@@ -393,11 +393,12 @@ somewhere better than where it aimed:
    ([results_live_prediction.txt](results_live_prediction.txt)).
 
 6. Drift phase diagram: warm-start's staleness budget is ASYMMETRIC —
-   downward prior drift (model regressed) costs almost nothing (still
-   beats WSR at delta=-0.03, beats cold even at -0.10) while upward
-   drift is expensive (loses to WSR by +0.015, saturates at the
-   contamination floor by +0.06); zero wrong certifications at every
-   drift. My pre-registered asymmetry prediction was REVERSED — the
+   downward prior drift (model regressed) is cheap (robust beats-WSR
+   region |delta| <= 0.015; the -0.03 point is a seed-level tie with
+   WSR — 362 vs 350 under rev-2 CRN, 364 vs 374 under rev-1; beats
+   cold even at -0.10) while upward drift is expensive (loses to WSR
+   by +0.015, saturates at the contamination floor by +0.06); zero
+   wrong certifications at every drift. My pre-registered asymmetry prediction was REVERSED — the
    miss is documented in THEORY.md with the mechanism (zero-rate strata
    absorb negative drift via clipping; positive drift poisons all
    strata). Rule: shade transfer priors down when uncertain
@@ -426,20 +427,48 @@ somewhere better than where it aimed:
    at practical scales ([results_router.txt](results_router.txt),
    [results_router2.txt](results_router2.txt)).
 
+9. Conservation hypothesis FALSIFIED (audit round 2 + frontier
+   revision 2): the original "supported" reading rested on an artifact
+   that never printed its own pre-registered ratios (epoch-split
+   actually MISSED the support window at 2 of 3 margins) and on a
+   strawman one-shot arm that charged its burn-in to the martingale. A
+   faithful discard-burn-in split-LRT crosses the pre-registered
+   falsification line (0.373x / 0.398x of the mixture overhead at >=95%
+   certification) — sample splitting escapes the learning tax at
+   practical scales, paying with an abstention tail that binds only at
+   razor margins. The cold-start design map gains a third escape route
+   alongside rate-sacrifice (WSR) and transfer priors
+   ([results_frontier.txt](results_frontier.txt)).
+
 ### F12. Warm-start certification: the bottleneck solved where it matters
 
-The learning tax (F11) binds only cold-start. Using a prior epoch (the
-archived stale/mislabeled pools — realistic, not oracle) with
-ε-contaminated transfer priors: overhead drops 15.5–18.4 → **0.6–1.4
-nats**, medians beat every incumbent including WSR at all tested
-margins, worst-case adversarial-prior degradation is provably and
-measurably capped at log(1/ε) ≈ 2.3 nats (joint contamination), and
-zero wrong certifications occurred in any arm
+The learning tax (F11) binds fully-adaptive cold-start procedures.
+Using a prior epoch with ε-contaminated transfer priors converts it to
+**0.6–1.4 nats** (from 15.5–18.4) with no abstention corner and zero
+wrong certifications in any arm
 ([results_warmstart.txt](results_warmstart.txt),
-[results_warmstart_joint.txt](results_warmstart_joint.txt)). Three
-pre-registered prediction misses en route are logged in THEORY.md.
-Practical statement: first-contact evaluation pays the tax; every
-recurring evaluation lives in the loophole.
+[results_warmstart_joint.txt](results_warmstart_joint.txt)).
+
+AUDIT ROUND 2 QUALIFICATIONS (audit/AUDIT_WARMSTART.md), all applied:
+the benign "prior epoch" is the SAME prompt pool relabeled by a
+validator fix (16/1000 labels differ — 0.0014 nats of residual KL), so
+the benign arm measures an ORACLE-ADJACENT warm start; realistic
+staleness is the drift phase diagram (item 6: robustly beats WSR
+within ~0.015 downward drift, breaks by +0.015 upward; -0.03 is a
+seed-level tie). "Beats every incumbent including WSR"
+holds for fresh strong priors at clear margins — per-epoch, not
+trajectory-wide (items 7–8: WSR wins whole release chains). Validity
+holds because the prior is fixed w.r.t. the resampling stream, not
+because it "predates" anything — and it survived a genuinely
+adversarial null Monte Carlo (worst type-I 0.047 ≤ α = 0.05, now a
+first-class artifact:
+[results_warmstart_null.txt](results_warmstart_null.txt)). The ε-cap
+bounds the log e-value premium PATHWISE (verified exact to 1e-9);
+median crossing-time gaps are a downstream statistic and all three are
+disclosed. Four pre-registered prediction misses en route are logged
+in THEORY.md. Practical statement: first-contact evaluation pays the
+tax (or splits, F11 item 9); every recurring evaluation with smooth
+drift lives in the loophole.
 
 ## Audit trail: what the adversarial review changed
 
