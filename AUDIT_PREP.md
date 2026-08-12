@@ -837,3 +837,9 @@ within 1000 samples in this regime.
   is a seed-level tie). Frontier rev-2: conservation FALSIFIED as
   pre-registered (split-LRT 0.373x/0.398x at >=95% certification);
   THEORY.md and FINDINGS.md rewritten accordingly.
+- 2026-08-12: results_local_law.txt rev 2 (frozen >=90% cert filter;
+  rev 1 omitted it — censored medians flattened slopes; both revisions
+  in git). Out-of-family PASS: UI d 4.22/4.31 vs rule 4; single
+  0.92/0.81 vs 1; WSR sub-log. Partial misses disclosed (qwen WSR c;
+  llama single cert fraction; vacuous zero-wrong clause noted).
+  Cross-model generalization arc complete: three vendor lineages.

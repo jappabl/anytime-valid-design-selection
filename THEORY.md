@@ -426,3 +426,39 @@ confirmation at the policy level (after allocation: GROW/TaSC, and
 priors under drift). We deliberately stop at v2: iterating until a
 router wins would be the forking-paths pattern our audits exist to
 prevent.
+
+
+## Out-of-family verdict: the expansion on local models (2026-08-12)
+
+The strongest generalization test yet: pools from two NON-OpenAI model
+families collected locally (Ollama; llama3.2-3b p* = 0.483, qwen2.5-7b
+p* = 0.297 — regimes far from the calibration pools), frozen margin
+grid, predictions pre-registered in scripts/run_local_law.py,
+independent per-(margin, method) seeds (fixing the shared-stream defect
+audit round 2 found in the original grid).
+
+With the project's frozen >= 90%-certification filter
+(results_local_law.txt):
+
+- UI+RR: fitted d = 4.22 (llama) and 4.31 (qwen) vs the rule's
+  out-of-family prediction d = K + #boundary = 4 + 0 = 4 — PASS, both
+  within 0.35, max residuals 0.13/0.18 nats. After the code-pool
+  downgrade (2-for-3, "only discriminates 6-vs-4"), this is the rule
+  recovering credibility exactly where it makes a sharp prediction.
+- single-stream: d = 0.92 / 0.81 vs theoretical d = 1 — PASS
+  (residuals 0.07/0.11 nats).
+- WSR at its Kelly ceiling: d = -0.19 / +0.46 — PASS (sub-logarithmic
+  regime); the c in [1,3] clause FAILED for qwen (c = 0.09).
+- Partial P4 miss: llama single-stream certified 85% at margin 0.027
+  (predicted >= 95%); and the zero-wrong clause was VACUOUS by
+  construction (only UNSAFE decisions possible on these grids) — noted
+  per the audit's own lesson about vacuous evidence.
+- Functional form: log n and log log n remain indistinguishable on
+  these windows (residuals within 0.03 nats of each other) — the form
+  stays theory-adopted, not data-established.
+
+Scoreboard reading on local pools: WSR blocks dominate all six margins
+on both models (its rate V_kelly ~ V_rr here while paying no log n),
+consistent with the calibrated design map's hard-margin prediction.
+REV 1 of this artifact omitted the certification filter (censored
+medians flattened every slope); the bug and both revisions are in git.
