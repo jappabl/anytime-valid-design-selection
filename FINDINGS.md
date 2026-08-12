@@ -414,6 +414,18 @@ somewhere better than where it aimed:
    alpha-splitting
    ([results_warmstart_chain.txt](results_warmstart_chain.txt)).
 
+8. Prior-routed portfolio: two pre-registered router iterations BOTH
+   failed their targets (1.090x and 1.259x pure WSR on the two test
+   trajectories; targets <= 1.00 / <= 0.85) with zero wrong
+   certifications; failure mechanisms characterized (prior starvation
+   after fast epochs; drift cliffs defeating extrapolation;
+   kappa-blindness of margin rules). Pure WSR is the best single
+   policy across whole release trajectories; warm-start remains the
+   per-epoch specialist. Third independent confirmation of the
+   meta-finding that simple robustness beats sophisticated adaptivity
+   at practical scales ([results_router.txt](results_router.txt),
+   [results_router2.txt](results_router2.txt)).
+
 ### F12. Warm-start certification: the bottleneck solved where it matters
 
 The learning tax (F11) binds only cold-start. Using a prior epoch (the

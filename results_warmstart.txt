@@ -6,26 +6,34 @@ PRIOR epoch p_k  = [0.004, 0.0, 0.08, 0.748] (stale + mislabeled epoch; kappa=20
 alpha=0.05, 200 reps, n_max=6000, BASE_SEED=42
 
   tau=0.15 (V_rr=0.0192):
-    cold UI mixture : certified 200/200, wrong 0, abstain   0, median 960, overhead  +15.47 nats
-    WARM-START UI   : certified 200/200, wrong 0, abstain   0, median 204, overhead   +0.93 nats
-    WSR (ref)       : certified 200/200, median 248
+    cold UI mixture : certified 200/200, wrong 0, abstain   0, median 958, overhead  +15.43 nats
+    WARM-START UI   : certified 200/200, wrong 0, abstain   0, median 200, overhead   +0.85 nats
+    WSR (ref)       : certified 200/200, median 240
 
   tau=0.16 (V_rr=0.0127):
-    cold UI mixture : certified 200/200, wrong 0, abstain   0, median 1498, overhead  +16.00 nats
-    WARM-START UI   : certified 200/200, wrong 0, abstain   0, median 316, overhead   +1.01 nats
-    WSR (ref)       : certified 200/200, median 374
+    cold UI mixture : certified 200/200, wrong 0, abstain   0, median 1572, overhead  +16.93 nats
+    WARM-START UI   : certified 200/200, wrong 0, abstain   0, median 296, overhead   +0.76 nats
+    WSR (ref)       : certified 200/200, median 350
 
   tau=0.17 (V_rr=0.0075):
-    cold UI mixture : certified 200/200, wrong 0, abstain   0, median 2872, overhead  +18.42 nats
-    WARM-START UI   : certified 200/200, wrong 0, abstain   0, median 586, overhead   +1.37 nats
-    WSR (ref)       : certified 200/200, median 640
+    cold UI mixture : certified 200/200, wrong 0, abstain   0, median 2880, overhead  +18.48 nats
+    WARM-START UI   : certified 200/200, wrong 0, abstain   0, median 568, overhead   +1.24 nats
+    WSR (ref)       : certified 200/200, median 600
 
-Scoring: warm-start overhead in [1.5, 6] nats and >= 2.5x faster than
-the cold mixture everywhere; within +-30% of WSR at tau=0.17. Validity
-note: the prior epoch predates and is independent of the current pools'
-sampling stream, so anytime validity is exact; misspecification risk is
-capped by the eps-contamination at log(1/eps) ~ 2.3 nats.
+PRE-REGISTERED SCORING (verdicts printed per audit round 2):
+  tau=0.15: overhead +0.85 in [1.5,6]? MISSED LOW (favorably wrong is still wrong); vs cold 4.8x (>=2.5x? PASS)
+  tau=0.16: overhead +0.76 in [1.5,6]? MISSED LOW (favorably wrong is still wrong); vs cold 5.3x (>=2.5x? PASS)
+  tau=0.17: overhead +1.24 in [1.5,6]? MISSED LOW (favorably wrong is still wrong); vs cold 5.1x (>=2.5x? PASS); vs WSR 0.95x (within +-30%? PASS)
+
+Validity note (corrected per audit round 2): the prior file is the SAME
+prompt pool relabeled by a validator fix (16/1000 labels differ), i.e.
+an ORACLE-adjacent prior, not a genuinely stale epoch — realistic
+staleness lives in results_warmstart_drift.txt. Validity holds because
+the prior is fixed w.r.t. the resampling stream (conditional on the
+pools), NOT because the prior "predates" anything. The eps-cap bounds
+the LOG E-VALUE premium pathwise (verified exact in the audit); it does
+not directly bound median crossing-time gaps.
 
 ============================================================================
-Checksum (SHA256): c6684a068de30647
+Checksum (SHA256): 78eebfeec85a36c7
 ============================================================================

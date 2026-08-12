@@ -366,3 +366,38 @@ alpha-splitting. Epoch-level readout from the chain table (threshold
 0.05): the router picks the per-epoch winner at 4 of 5 routed epochs
 and lands within ~2% of the hindsight-best portfolio. Full per-rep
 router experiment queued.
+
+
+## Prior-routed portfolio: a characterized negative (v1 + v2)
+
+The chain result suggested routing each epoch to warm-UI vs WSR by
+prior-epoch signals (valid with no alpha-split since routing uses only
+prior-epoch data). Two pre-registered iterations both FAILED their
+headline targets and are reported as failures
+(results_router.txt, results_router2.txt):
+
+- v1 (margin threshold): 1.101x pure WSR on the chain trajectory
+  (target <= 1.05x). Diagnosis: fast epochs starve the next epoch's
+  prior (kappa ~ 28 after a 114-sample WSR epoch), and prior margin
+  alone cannot separate drift-toward from drift-away epochs (0.045 vs
+  0.044 with opposite winners).
+- v2 (drift-extrapolated margin + LCB rule + decay-cumulative priors):
+  1.090x pure WSR on the boundary-heavy trajectory (target <= 1.00)
+  and 1.259x on a margin-rich trajectory (target <= 0.85), despite
+  4/5 and 5/5 majority routing accuracy. Diagnosis: warm-UI's speed
+  depends on prior STRENGTH and CENTER accuracy in ways margin rules
+  cannot see; a drift cliff (0.216 -> 0.104 between epochs) defeats
+  one-step extrapolation entirely. Zero wrong certifications in all
+  14,400 runs across both versions.
+
+Conclusions that survive: (1) pure WSR blocks are the best SINGLE
+policy across whole release trajectories in both regimes tested — its
+robustness extends from single evaluations to chains; (2) warm-start
+UI is a per-epoch specialist, 2-3x faster than WSR at clear-margin
+epochs with strong fresh priors (the smooth-drift steady state);
+(3) the project meta-finding — sophisticated adaptivity fails to beat
+simple robustness at practical scales — now has a third independent
+confirmation at the policy level (after allocation: GROW/TaSC, and
+priors under drift). We deliberately stop at v2: iterating until a
+router wins would be the forking-paths pattern our audits exist to
+prevent.

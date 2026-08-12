@@ -820,3 +820,9 @@ within 1000 samples in this regime.
   (5) Code hardening: replay-order assertion + labeled abstain reasons
   in resume_live_prediction.py; per-(tau,method) seeds in the new local
   law grid; functional-form (log n vs log log n) honesty line added.
+- 2026-08-12: results_router.txt + results_router2.txt — prior-routed
+  portfolio, two pre-registered iterations, BOTH failed headline targets
+  (documented as characterized negatives; mechanisms diagnosed; zero
+  wrong certifications in 14,400 runs). Deliberately stopped at v2 to
+  avoid iterate-until-win forking. Local pools committed (llama3.2-3b
+  p*=0.483, qwen2.5-7b p*=0.297).

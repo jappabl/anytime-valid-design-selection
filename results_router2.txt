@@ -1,0 +1,66 @@
+============================================================================
+ROUTER V2: drift-extrapolated margin routing (predictions pre-registered in header)
+============================================================================
+tau=0.16, alpha=0.05, LCB_THRESH=0.03, decay=0.5, 200 reps, n_max=6000, pools 2000/stratum, BASE_SEED=42
+
+  trajectory A (boundary-heavy): pooled rates [0.2319, 0.2053, 0.177, 0.1454, 0.1156, 0.0902]
+    epoch 1 (truth UNSAFE, pooled 0.2319; warm 0/200):
+      router-v2       : correct 200/200, wrong 0, abstain   0, median 114
+      pure chain-warm : correct 200/200, wrong 0, abstain   0, median 428
+      pure WSR        : correct 200/200, wrong 0, abstain   0, median 114
+    epoch 2 (truth UNSAFE, pooled 0.2053; warm 199/200):
+      router-v2       : correct 200/200, wrong 0, abstain   0, median 638
+      pure chain-warm : correct 200/200, wrong 0, abstain   0, median 322
+      pure WSR        : correct 200/200, wrong 0, abstain   0, median 348
+    epoch 3 (truth UNSAFE, pooled 0.1770; warm 61/200):
+      router-v2       : correct 123/200, wrong 0, abstain  77, median 2268
+      pure chain-warm : correct  57/200, wrong 0, abstain 143, median 3620
+      pure WSR        : correct 165/200, wrong 0, abstain  35, median 2052
+    epoch 4 (truth SAFE, pooled 0.1454; warm 52/200):
+      router-v2       : correct 133/200, wrong 0, abstain  67, median 2532
+      pure chain-warm : correct  24/200, wrong 0, abstain 176, median 5164
+      pure WSR        : correct 173/200, wrong 0, abstain  27, median 2344
+    epoch 5 (truth SAFE, pooled 0.1156; warm 190/200):
+      router-v2       : correct 200/200, wrong 0, abstain   0, median 338
+      pure chain-warm : correct 200/200, wrong 0, abstain   0, median 512
+      pure WSR        : correct 200/200, wrong 0, abstain   0, median 414
+    epoch 6 (truth SAFE, pooled 0.0902; warm 198/200):
+      router-v2       : correct 200/200, wrong 0, abstain   0, median 142
+      pure chain-warm : correct 200/200, wrong 0, abstain   0, median 136
+      pure WSR        : correct 200/200, wrong 0, abstain   0, median 260
+    totals: router-v2 6032, pure warm 10182, pure WSR 5532; v2/WSR = 1.090, v2/warm = 0.592
+    routing accuracy (majority choice vs true winner): 4/5 routed epochs; wrong certs 0
+
+  trajectory B (margin-rich): pooled rates [0.235, 0.2161, 0.1039, 0.0724, 0.0425, 0.0326]
+    epoch 1 (truth UNSAFE, pooled 0.2350; warm 0/200):
+      router-v2       : correct 200/200, wrong 0, abstain   0, median 110
+      pure chain-warm : correct 200/200, wrong 0, abstain   0, median 388
+      pure WSR        : correct 200/200, wrong 0, abstain   0, median 110
+    epoch 2 (truth UNSAFE, pooled 0.2161; warm 200/200):
+      router-v2       : correct 200/200, wrong 0, abstain   0, median 352
+      pure chain-warm : correct 200/200, wrong 0, abstain   0, median 192
+      pure WSR        : correct 200/200, wrong 0, abstain   0, median 228
+    epoch 3 (truth SAFE, pooled 0.1039; warm 98/200):
+      router-v2       : correct 200/200, wrong 0, abstain   0, median 596
+      pure chain-warm : correct 200/200, wrong 0, abstain   0, median 1062
+      pure WSR        : correct 200/200, wrong 0, abstain   0, median 360
+    epoch 4 (truth SAFE, pooled 0.0724; warm 200/200):
+      router-v2       : correct 200/200, wrong 0, abstain   0, median 346
+      pure chain-warm : correct 200/200, wrong 0, abstain   0, median 88
+      pure WSR        : correct 200/200, wrong 0, abstain   0, median 204
+    epoch 5 (truth SAFE, pooled 0.0425; warm 195/200):
+      router-v2       : correct 200/200, wrong 0, abstain   0, median 48
+      pure chain-warm : correct 200/200, wrong 0, abstain   0, median 68
+      pure WSR        : correct 200/200, wrong 0, abstain   0, median 152
+    epoch 6 (truth SAFE, pooled 0.0326; warm 199/200):
+      router-v2       : correct 200/200, wrong 0, abstain   0, median 56
+      pure chain-warm : correct 200/200, wrong 0, abstain   0, median 60
+      pure WSR        : correct 200/200, wrong 0, abstain   0, median 144
+    totals: router-v2 1508, pure warm 1858, pure WSR 1198; v2/WSR = 1.259, v2/warm = 0.812
+    routing accuracy (majority choice vs true winner): 5/5 routed epochs; wrong certs 0
+
+  wrong certifications, both trajectories: 0
+
+============================================================================
+Checksum (SHA256): 46a2dc858c5e88a2
+============================================================================
