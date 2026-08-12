@@ -261,3 +261,31 @@ protocol are documented in scripts/resume_live_prediction.py. Live p̂
 ran ~0.5pp below the pool rate, placing the median 15% above
 theory-central — within the propagated prior-rate uncertainty stated at
 pre-registration.
+
+
+## Warm-start drift phase diagram (staleness budget)
+
+Sweep of additive prior drift delta on all strata (joint contamination,
+tau=0.16, 200 reps; results_warmstart_drift.txt). Pre-registered
+scoring — two confirmed, one half, one REVERSED:
+
+1. CONFIRMED: zero wrong certifications at every delta (1800 reps).
+2. CONFIRMED: damage saturates at the contamination floor — worst
+   median 1770 vs predicted ceiling ~1700 = cold + log(1/eps)/V_rr.
+3. HALF: breakeven vs WSR predicted |delta| in [0.015, 0.06]; the
+   negative side lands inside it (between 0.03 and 0.06), the positive
+   side breaks even BELOW 0.015.
+4. REVERSED (the informative miss): predicted understatement hurts
+   more; measured the opposite — delta=+0.03 gives median 1008 vs 364
+   at -0.03; even -0.10 (826..1312) beats the cold mixture, while
+   +0.06 saturates at 1770. Mechanism: three of four strata have
+   near-zero true rates, so negative drift is absorbed by the clip at
+   zero (misspecification concentrates in the one hot stratum), while
+   positive drift poisons the kappa=200 prior in ALL strata — including
+   the clean ones that are 3/4 of the round-robin stream, where the
+   prior keeps predicting failures that never arrive.
+
+Deployment rule: the staleness budget is ~0.03-0.06 downward drift but
+only ~0.01 upward; when uncertain, shade the transfer prior DOWN — a
+"model may have regressed" prior costs almost nothing, an alarmist
+prior costs the full learning tax back.

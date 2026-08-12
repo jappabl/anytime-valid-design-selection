@@ -381,6 +381,17 @@ somewhere better than where it aimed:
    UNSAFE, zero SAFE**
    ([results_live_prediction.txt](results_live_prediction.txt)).
 
+6. Drift phase diagram: warm-start's staleness budget is ASYMMETRIC —
+   downward prior drift (model regressed) costs almost nothing (still
+   beats WSR at delta=-0.03, beats cold even at -0.10) while upward
+   drift is expensive (loses to WSR by +0.015, saturates at the
+   contamination floor by +0.06); zero wrong certifications at every
+   drift. My pre-registered asymmetry prediction was REVERSED — the
+   miss is documented in THEORY.md with the mechanism (zero-rate strata
+   absorb negative drift via clipping; positive drift poisons all
+   strata). Rule: shade transfer priors down when uncertain
+   ([results_warmstart_drift.txt](results_warmstart_drift.txt)).
+
 ### F12. Warm-start certification: the bottleneck solved where it matters
 
 The learning tax (F11) binds only cold-start. Using a prior epoch (the

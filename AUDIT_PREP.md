@@ -776,3 +776,15 @@ within 1000 samples in this regime.
 5. ⏳ Request clarification on any remaining questions
 
 **Contact**: All artifacts are in the repository with full documentation
+
+- 2026-08-11: results_warmstart_drift.txt (scripts/run_warmstart_drift.py,
+  offline, deterministic) — warm-start staleness budget. Pre-registered
+  predictions scored in header/THEORY.md: validity + saturation CONFIRMED,
+  breakeven window half-right, asymmetry prediction REVERSED (documented
+  as an honest miss with mechanism). No claims withdrawn; adds the
+  deployment rule "shade transfer priors down."
+- 2026-08-11: adversarial audit round 2 IN PROGRESS (two independent
+  agents) against the previously-unaudited arcs: warm-start validity/
+  coverage/contamination math; overhead-law accounting; capstone
+  pre-registration integrity + crash-resume replay. Reports will land in
+  audit/AUDIT_WARMSTART.md and audit/AUDIT_LAW_CAPSTONE.md.
