@@ -850,3 +850,12 @@ within 1000 samples in this regime.
   long horizons), P4 half (V-ratio confirmed; WSR-dominance REFUTED —
   single-stream wins mild heterogeneity). Design map extended with the
   heterogeneity axis. MBPP pools committed at e38d04f.
+- 2026-08-12: paper/DRAFT.md v3 (four-regime design map spine; failures
+  promoted; every number artifact-cited). Reconciliations from the draft
+  agent's cross-check: single-stream d fits count is SIX pools (FINDINGS
+  said five; corrected); results_block_reduction.txt prints "p*q* =
+  0.165" while exact pool p*q* = 0.1612 — the artifact value appears to
+  be the realized-stream empirical variance; cosmetic, no conclusion
+  depends on it; both values disclosed here. Figures 7-9 committed;
+  reproduce.sh registry extended to the full new artifact family
+  (spot-check: run_adjudication PASS byte-identical).
