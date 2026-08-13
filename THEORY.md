@@ -578,3 +578,19 @@ class (stock WSRBlockCS untouched so all committed artifacts remain
 byte-reproducible). Together with the shade win: both project method
 wins were designed from measured failure mechanisms; all seven
 intuition-designed methods lost.
+
+
+## Shade in the chain: deployment win, extrapolation strikes out
+
+results_chain_shaded.txt (pre-registered): shading the chained
+estimates beats the unshaded chain at EVERY epoch (P2 main clause
+PASS; the epoch-3 magnitude clause missed at 1.12x vs the predicted
+1.5x — at razor margins better centering cannot replace missing
+information), and the flip-epoch deciding power rises 1.44x / 2.17x
+(82 vs 57 correct at epoch 3; 52 vs 24 at epoch 4) — the shaded chain
+DECIDES where the unshaded chain abstains. Zero wrong certifications
+in 3,600 runs. The extrapolated-center variant failed its e3-e4
+clause (ratio 1.27 at epoch 3 — overshoots into the boundary) even on
+a smooth trajectory: third independent strike against
+drift-extrapolation (after routers v1-v2). Production chain
+recommendation: chained estimates, flat shade 0.015, no extrapolation.

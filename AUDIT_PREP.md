@@ -882,3 +882,9 @@ within 1000 samples in this regime.
   razor llama margins, within alpha). Pathology fix: llama-MBPP d
   2.46 -> 0.51. Promoted opt-in to src (stock class untouched for
   reproducibility); 4 new tests (106 total).
+- 2026-08-13: results_chain_shaded.txt — shade-in-chain deployment win
+  (every-epoch improvement, flip-epoch correct counts 1.44x/2.17x, zero
+  wrong); magnitude clause missed at e3 (1.12x vs 1.5x, logged);
+  extrapolated centers failed their clause (third strike). Mechanism
+  thread complete: 2 wins (shade, Kelly floor), refinements and
+  extrapolation all honestly lost.

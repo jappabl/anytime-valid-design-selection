@@ -1,0 +1,44 @@
+============================================================================
+SHADED CHAIN WARM-START (predictions pre-registered in header)
+============================================================================
+tau=0.16, alpha=0.05, shade=0.015, 200 reps, n_max=6000, pools 2000/stratum, BASE_SEED=42
+
+  epoch 1 (truth UNSAFE, pooled 0.2319):
+    chain-warm    : correct 200/200, wrong 0, abstain   0, median 428
+    shaded        : correct 200/200, wrong 0, abstain   0, median 428
+    extrap-shaded : correct 200/200, wrong 0, abstain   0, median 428
+
+  epoch 2 (truth UNSAFE, pooled 0.2053):
+    chain-warm    : correct 200/200, wrong 0, abstain   0, median 322
+    shaded        : correct 200/200, wrong 0, abstain   0, median 278
+    extrap-shaded : correct 200/200, wrong 0, abstain   0, median 278
+
+  epoch 3 (truth UNSAFE, pooled 0.1770):
+    chain-warm    : correct  57/200, wrong 0, abstain 143, median 3620
+    shaded        : correct  82/200, wrong 0, abstain 118, median 3220
+    extrap-shaded : correct  56/200, wrong 0, abstain 144, median 4088
+
+  epoch 4 (truth SAFE, pooled 0.1454):
+    chain-warm    : correct  24/200, wrong 0, abstain 176, median 5164
+    shaded        : correct  52/200, wrong 0, abstain 148, median 4824
+    extrap-shaded : correct  75/200, wrong 0, abstain 125, median 3364
+
+  epoch 5 (truth SAFE, pooled 0.1156):
+    chain-warm    : correct 200/200, wrong 0, abstain   0, median 512
+    shaded        : correct 200/200, wrong 0, abstain   0, median 372
+    extrap-shaded : correct 200/200, wrong 0, abstain   0, median 308
+
+  epoch 6 (truth SAFE, pooled 0.0902):
+    chain-warm    : correct 200/200, wrong 0, abstain   0, median 136
+    shaded        : correct 200/200, wrong 0, abstain   0, median 108
+    extrap-shaded : correct 200/200, wrong 0, abstain   0, median 118
+
+PRE-REGISTERED SCORING:
+  P2 shaded < unshaded at every epoch >= 2? PASS; epoch-3 speedup 1.12x (>=1.5? FAIL)
+  P3 flip-epoch correct counts: e3 82 vs 57 (PASS); e4 52 vs 24 (PASS)
+  P4 extrap-shaded: e3-e4 ratios ['1.27', '0.70'] (<=0.90? FAIL); e5-e6 ['0.83', '1.09'] (<=1.10? PASS)
+  P1 wrong certifications: 0
+
+============================================================================
+Checksum (SHA256): 6d8a4c9fa55ab621
+============================================================================
