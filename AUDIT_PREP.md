@@ -859,3 +859,10 @@ within 1000 samples in this regime.
   depends on it; both values disclosed here. Figures 7-9 committed;
   reproduce.sh registry extended to the full new artifact family
   (spot-check: run_adjudication PASS byte-identical).
+- 2026-08-12: SEVERE LIVE TEST frozen at commit fe01a4c (design-stage
+  skeleton committed separately at 921431e to prove windows postdated
+  it). Disclosed severity P(all|theory) = 0.59 central. Pilot finding
+  (F-item 12): temp-0 pools do not transfer to temp-0.7 at 3B scale
+  (+7.3pp); windows pilot-centered. Test running (~8h). Also launched:
+  results_asym_prior.txt experiment (designed from the drift table,
+  predictions pre-registered).
