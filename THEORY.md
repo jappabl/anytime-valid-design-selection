@@ -552,3 +552,29 @@ instantiation of the right insight beats sophisticated versions of the
 same insight. Fourth in-project confirmation of simplicity-first, now
 measured WITHIN a winning method family. Flat shade 0.015 remains the
 production recommendation.
+
+
+## Kelly-floored lambda: the second designed-method win
+
+Designed from the referee's measured pathology (the stock WSR schedule
+forfeits the Kelly rate; MBPP horizons exposed it as overhead growth):
+floor the bet at a shrunk Kelly plug-in after a 10-block warmup —
+still predictable, so validity is unchanged by construction
+(results_kelly_floor.txt; null MC 0.0335/0.0325 <= alpha).
+
+Scoring (honest): the pathology fix is emphatic — llama-MBPP stock
+fitted d = 2.46 collapses to 0.51 with uniformly higher certification
+fractions, and medians improve 15-33% on ALL THREE pools including the
+short-horizon JSON control. Clause misses logged: the qwen d-clause
+missed by 0.02 (1.02 vs <= 1.0); the JSON prediction band (within
++/-5% of stock) was exceeded FAVORABLY (8-30% faster — a miss is a
+miss); and "zero wrong" P4 failed at 2/7,200 runs — localized to ONE
+SAFE per arm at the two razor-thin llama margins, i.e. the per-run
+alpha budget behaving as designed, not an asymmetry (the zero-claim
+was the error, as audit round 1 already taught us once).
+
+Promoted to src/eval_harness/stats/wsr_kelly_floor.py as an OPT-IN
+class (stock WSRBlockCS untouched so all committed artifacts remain
+byte-reproducible). Together with the shade win: both project method
+wins were designed from measured failure mechanisms; all seven
+intuition-designed methods lost.

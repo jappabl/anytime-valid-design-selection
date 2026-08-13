@@ -876,3 +876,9 @@ within 1000 samples in this regime.
   Flat shade 0.015 stands. Family-wise iteration disclosed: this is
   the second (and per the frozen rule, final) iteration on the
   shade family.
+- 2026-08-13: results_kelly_floor.txt — Kelly-floored lambda WIN with
+  logged clause misses (qwen d 1.02 vs <=1.0; JSON parity band exceeded
+  favorably; zero-wrong failed at 2/7200, localized one-per-arm at
+  razor llama margins, within alpha). Pathology fix: llama-MBPP d
+  2.46 -> 0.51. Promoted opt-in to src (stock class untouched for
+  reproducibility); 4 new tests (106 total).
