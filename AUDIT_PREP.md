@@ -870,3 +870,9 @@ within 1000 samples in this regime.
   (arm A 5/5 clauses, worst case 0.50x baseline; arm B 0.44x worst case
   with one clause missed 0.77 vs 0.75, logged). Zero wrong in 3,000
   runs. Production recommendation: shade transfer priors down 0.015.
+- 2026-08-13: results_shade_refine.txt — prop-shade and kappa-ladder
+  refinements both FAILED pre-registered clauses; flat-shade control
+  reproduced its banked 0.50x exactly; zero wrong in 4,000 runs.
+  Flat shade 0.015 stands. Family-wise iteration disclosed: this is
+  the second (and per the frozen rule, final) iteration on the
+  shade family.

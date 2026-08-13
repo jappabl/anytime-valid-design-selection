@@ -1,0 +1,44 @@
+============================================================================
+SHADE REFINEMENTS (predictions pre-registered in header)
+============================================================================
+tau=0.16 (V_rr=0.0127), kappa=200, alpha=0.05, 200 reps, n_max=6000, BASE_SEED=42
+
+  true-drift delta=-0.030:
+    baseline joint: certified 200/200, wrong 0, abstain   0, median 362, overhead +1.59 nats
+    flat-shade    : certified 200/200, wrong 0, abstain   0, median 460, overhead +2.84 nats
+    prop-shade    : certified 200/200, wrong 0, abstain   0, median 506, overhead +3.42 nats
+    kappa-ladder  : certified 200/200, wrong 0, abstain   0, median 484, overhead +3.14 nats
+
+  true-drift delta=-0.015:
+    baseline joint: certified 200/200, wrong 0, abstain   0, median 288, overhead +0.66 nats
+    flat-shade    : certified 200/200, wrong 0, abstain   0, median 362, overhead +1.59 nats
+    prop-shade    : certified 200/200, wrong 0, abstain   0, median 376, overhead +1.77 nats
+    kappa-ladder  : certified 200/200, wrong 0, abstain   0, median 376, overhead +1.77 nats
+
+  true-drift delta=+0.000:
+    baseline joint: certified 200/200, wrong 0, abstain   0, median 276, overhead +0.50 nats
+    flat-shade    : certified 200/200, wrong 0, abstain   0, median 288, overhead +0.66 nats
+    prop-shade    : certified 200/200, wrong 0, abstain   0, median 338, overhead +1.29 nats
+    kappa-ladder  : certified 200/200, wrong 0, abstain   0, median 340, overhead +1.31 nats
+
+  true-drift delta=+0.015:
+    baseline joint: certified 200/200, wrong 0, abstain   0, median 460, overhead +2.84 nats
+    flat-shade    : certified 200/200, wrong 0, abstain   0, median 276, overhead +0.50 nats
+    prop-shade    : certified 200/200, wrong 0, abstain   0, median 368, overhead +1.67 nats
+    kappa-ladder  : certified 200/200, wrong 0, abstain   0, median 314, overhead +0.99 nats
+
+  true-drift delta=+0.030:
+    baseline joint: certified 200/200, wrong 0, abstain   0, median 928, overhead +8.77 nats
+    flat-shade    : certified 200/200, wrong 0, abstain   0, median 460, overhead +2.84 nats
+    prop-shade    : certified 200/200, wrong 0, abstain   0, median 514, overhead +3.52 nats
+    kappa-ladder  : certified 200/200, wrong 0, abstain   0, median 492, overhead +3.24 nats
+
+PRE-REGISTERED SCORING:
+  P2 prop-shade: +0.03 1.12x flat (<=0.95? FAIL); benign 1.17x (in [0.97,1.05]? FAIL); -0.03 1.10x (<=1.10? PASS)
+  P3 kappa-ladder: worst 492 vs flat 460 (1.07x, <=0.90? FAIL); benign 1.23x baseline (<=1.10? FAIL); best worst-case arm = flat-shade
+  P4 sanity: flat-shade worst 460 vs baseline 928 (0.50x, <=0.55? PASS)
+  worst-case by arm: {'baseline joint': 928, 'flat-shade': 460, 'prop-shade': 514, 'kappa-ladder': 492}
+
+============================================================================
+Checksum (SHA256): 1a055734b4962635
+============================================================================

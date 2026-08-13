@@ -532,3 +532,23 @@ understatement is absorbed by zero-rate strata, overstatement poisons
 every stratum; a built-in downward shade buys insurance against the
 expensive direction at the cheap direction's price. Validity is
 untouched (any data-independent prior is valid).
+
+
+## Shade refinements: both lost (the win does not compound)
+
+Two mechanism-designed refinements of the flat-shade win were
+pre-registered and both FAILED (results_shade_refine.txt):
+proportional (one-prior-sd) shading lost 2 of 3 clauses (1.12x flat at
++0.03 drift, 1.17x benign — deeper hot-stratum shading costs more than
+the drift table's arithmetic suggested), and the kappa-ladder lost
+both clauses (1.07x worst case, 1.23x benign — the medium-resolution
+component dilutes more than it insures). The flat-shade control
+reproduced its banked result exactly (worst case 0.50x baseline; P4
+sanity PASS). Zero wrong certifications in 4,000 runs.
+
+Reading: the asymmetric-prior win came from the mechanism DIRECTION
+(shade down), not from fine-tuning its shape; the simplest
+instantiation of the right insight beats sophisticated versions of the
+same insight. Fourth in-project confirmation of simplicity-first, now
+measured WITHIN a winning method family. Flat shade 0.015 remains the
+production recommendation.
