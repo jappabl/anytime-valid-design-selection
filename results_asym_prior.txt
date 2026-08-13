@@ -1,0 +1,39 @@
+============================================================================
+ASYMMETRIC CONTAMINATION PRIORS (predictions pre-registered in header)
+============================================================================
+tau=0.16 (V_rr=0.0127), kappa=200, alpha=0.05, 200 reps, n_max=6000, BASE_SEED=42
+
+  true-drift delta=-0.030:
+    baseline joint: certified 200/200, wrong 0, abstain   0, median 362, overhead +1.59 nats
+    A shift-down  : certified 200/200, wrong 0, abstain   0, median 460, overhead +2.84 nats
+    B two-center  : certified 200/200, wrong 0, abstain   0, median 412, overhead +2.23 nats
+
+  true-drift delta=-0.015:
+    baseline joint: certified 200/200, wrong 0, abstain   0, median 288, overhead +0.66 nats
+    A shift-down  : certified 200/200, wrong 0, abstain   0, median 362, overhead +1.59 nats
+    B two-center  : certified 200/200, wrong 0, abstain   0, median 360, overhead +1.57 nats
+
+  true-drift delta=+0.000:
+    baseline joint: certified 200/200, wrong 0, abstain   0, median 276, overhead +0.50 nats
+    A shift-down  : certified 200/200, wrong 0, abstain   0, median 288, overhead +0.66 nats
+    B two-center  : certified 200/200, wrong 0, abstain   0, median 304, overhead +0.86 nats
+
+  true-drift delta=+0.015:
+    baseline joint: certified 200/200, wrong 0, abstain   0, median 460, overhead +2.84 nats
+    A shift-down  : certified 200/200, wrong 0, abstain   0, median 276, overhead +0.50 nats
+    B two-center  : certified 200/200, wrong 0, abstain   0, median 352, overhead +1.47 nats
+
+  true-drift delta=+0.030:
+    baseline joint: certified 200/200, wrong 0, abstain   0, median 928, overhead +8.77 nats
+    A shift-down  : certified 200/200, wrong 0, abstain   0, median 460, overhead +2.84 nats
+    B two-center  : certified 200/200, wrong 0, abstain   0, median 354, overhead +1.49 nats
+
+PRE-REGISTERED SCORING:
+  A shift-down: benign 1.04x (<= 1.08? PASS); +0.015 0.60x (<= 0.7? PASS); +0.03 0.50x (<= 0.6? PASS); -0.03 1.27x (<= 1.35? PASS)
+    worst-case 460 vs baseline 928 (0.50x) -> WIN per P5
+  B two-center: benign 1.10x (<= 1.15? PASS); +0.015 0.77x (<= 0.75? FAIL); +0.03 0.38x (<= 0.65? PASS); -0.03 1.14x (<= 1.15? PASS)
+    worst-case 412 vs baseline 928 (0.44x) -> WIN per P5
+
+============================================================================
+Checksum (SHA256): 0d923b6853d420cc
+============================================================================

@@ -502,3 +502,33 @@ could not see):
 - recurring evaluations with smooth drift: warm-start UI (~1 nat);
 - cold-start moderate margins where a frozen bet is acceptable:
   split-LRT (frontier rev 2).
+
+
+## Asymmetric contamination: the first designed-method WIN
+
+Every earlier invention attempt (GROW, TaSC, sharp priors, PPC
+refinement, routers v1-v2) lost its pre-registered test. This one won,
+and the difference is the design source: it was built FROM the drift
+phase diagram's measured asymmetry, not from an optimality intuition
+(results_asym_prior.txt; predictions frozen in the script header
+before running).
+
+Arm A — center the concentrated component at clip(prior - 0.015):
+ALL FIVE clauses PASS. Benign cost 1.04x (limit 1.08); protection at
++0.015 drift 0.60x (limit 0.70); at +0.03 drift 0.50x (limit 0.60);
+downward robustness at -0.03 1.27x (limit 1.35); zero wrong
+certifications in all 3,000 runs. Worst case over the drift grid:
+460 vs the symmetric baseline's 928 — the staleness worst case is
+HALVED for a 4% benign premium.
+
+Arm B (two-center mixture) also wins the worst-case criterion (0.44x)
+with one clause narrowly missed (+0.015 protection 0.77x vs the 0.75
+limit — logged as a miss).
+
+PRODUCTION RECOMMENDATION (updated): recurring-eval warm starts should
+use joint eps-contamination with the concentrated center shaded down
+by 0.015. The mechanism is the drift table's clipping asymmetry:
+understatement is absorbed by zero-rate strata, overstatement poisons
+every stratum; a built-in downward shade buys insurance against the
+expensive direction at the cheap direction's price. Validity is
+untouched (any data-independent prior is valid).

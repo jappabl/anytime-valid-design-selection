@@ -866,3 +866,7 @@ within 1000 samples in this regime.
   (+7.3pp); windows pilot-centered. Test running (~8h). Also launched:
   results_asym_prior.txt experiment (designed from the drift table,
   predictions pre-registered).
+- 2026-08-12: results_asym_prior.txt — asymmetric contamination WIN
+  (arm A 5/5 clauses, worst case 0.50x baseline; arm B 0.44x worst case
+  with one clause missed 0.77 vs 0.75, logged). Zero wrong in 3,000
+  runs. Production recommendation: shade transfer priors down 0.015.

@@ -84,10 +84,17 @@ class Certifier:
     eps : float
         Contamination weight of the uniform component in the warm
         prior (worst-case validity premium log(1/eps) nats total).
+    shade : float
+        Downward shift applied to the concentrated prior center.
+        results_asym_prior.txt: shade=0.015 halves the worst-case
+        staleness cost for a ~4% benign premium (drift asymmetry —
+        overstated priors are the expensive mistake). Default 0.0
+        keeps the unshaded prior; 0.015 is the recommended
+        production setting.
     """
 
     def __init__(self, tau, alpha=0.05, k=1, method="mixture",
-                 prior_rates=None, prior_n=None, eps=0.1):
+                 prior_rates=None, prior_n=None, eps=0.1, shade=0.0):
         if method not in ("mixture", "wsr"):
             raise ValueError(f"unknown method {method!r}")
         if method == "wsr" and k < 2:
@@ -105,8 +112,9 @@ class Certifier:
             if prior_rates is not None:
                 kappa = (np.minimum(np.asarray(prior_n, dtype=float), 200.0)
                          if prior_n is not None else 200.0)
+                shaded = np.asarray(prior_rates, dtype=float) - shade
                 self._cs = _TransferPriorJointUICS(
-                    prior_rates, kappa, k=k, alpha=alpha, eps=eps)
+                    shaded, kappa, k=k, alpha=alpha, eps=eps)
             else:
                 self._cs = StratifiedUICS(
                     k=k, weights=None if k > 1 else [1.0], alpha=alpha)
