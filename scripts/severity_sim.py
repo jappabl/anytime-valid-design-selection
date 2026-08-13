@@ -30,7 +30,7 @@ from scipy.special import betaln
 N_MAX = 4000
 N_SIMS = 8000
 LOG1A = float(np.log(20.0))
-OFFSETS = [-0.008, 0.0, +0.008]   # assumed live-vs-pool rate band
+OFFSETS = [-0.006, 0.0, +0.006]   # pilot-estimate MC band (se 0.0053)
 
 
 def crossing_times(p_live, tau, sims, rng):

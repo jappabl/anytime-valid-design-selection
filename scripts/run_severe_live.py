@@ -19,8 +19,20 @@ capstone (audit/AUDIT_LAW_CAPSTONE.md):
   silent stopping rules (abstains labeled; no spend cap — local
   inference is free).
 
-FROZEN PARAMETERS (committed before any temperature-0.7 sampling; the
-commit hash of the freeze is the pre-registration):
+FROZEN PARAMETERS (this commit is the pre-registration; the disclosed
+4000-sample pilot measured p_live = 0.5580 (se 0.0053) and its samples
+are never reused below). Windows from scripts/severity_sim.py at
+p_live = 0.558, offsets +/-0.006, 20 reps/tau: the test passes only if
+ALL of C1-C4 hold, and the pre-computed pass probability GIVEN the
+theory is 0.59 (central) — this test is designed to be able to fail.
+Interpretation rule, frozen now: C3 (ratio) is first-order immune to a
+wrong live-rate estimate, so [C1/C2 fail, C3 pass] indicts the rate
+estimate; [C3 fail] indicts the log-n overhead structure itself.
+PILOT FINDING, disclosed: the temp-0 pool rate (0.485) is 7.3pp below
+the live temp-0.7 rate at this model scale — temp-0 replay pools do
+NOT transfer to sampled decoding for 3B models (they did at 4o-mini
+scale, ~0.5pp); windows are therefore pilot-centered, not
+pool-centered.
 """
 
 import json
@@ -43,13 +55,13 @@ from eval_harness.validators.json_schema import JSONSchemaValidator
 # ----- FROZEN (values set at freeze commit; runner refuses PLACEHOLDER)
 MODEL = "llama3.2:3b"
 POP_SEED = 20260812
-TAU1 = "PLACEHOLDER"          # harder margin
-TAU2 = "PLACEHOLDER"          # easier margin
-REPS_PER_TAU = "PLACEHOLDER"
-WIN_C1 = "PLACEHOLDER"        # (lo, hi) median window at TAU1
-WIN_C2 = "PLACEHOLDER"        # (lo, hi) median window at TAU2
-WIN_C3 = "PLACEHOLDER"        # (lo, hi) ratio median(TAU2)/median(TAU1)
-SEVERITY = "PLACEHOLDER"      # disclosed P(all pass | theory+band)
+TAU1 = 0.49                   # harder margin (pilot p_live - 0.068)
+TAU2 = 0.45                   # easier margin (pilot p_live - 0.108)
+REPS_PER_TAU = 20
+WIN_C1 = (396, 632)           # median window at TAU1
+WIN_C2 = (148, 240)           # median window at TAU2
+WIN_C3 = (0.258, 0.561)       # ratio median(TAU2)/median(TAU1)
+SEVERITY = "0.59 central; 0.31/0.45 at +/-0.006 pilot-error band"
 # C4: zero SAFE certifications across all reps (both taus are on the
 # UNSAFE side of the pool rate by construction).
 # ----------------------------------------------------------------------
