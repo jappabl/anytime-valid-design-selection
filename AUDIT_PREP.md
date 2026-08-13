@@ -888,3 +888,8 @@ within 1000 samples in this regime.
   extrapolated centers failed their clause (third strike). Mechanism
   thread complete: 2 wins (shade, Kelly floor), refinements and
   extrapolation all honestly lost.
+- 2026-08-13: FULL REPRODUCTION SWEEP: 26/26 artifacts reproduced
+  byte-identically from committed pools (./reproduce.sh all), 106 tests
+  green — the exactly-reproducible claim verified end-to-end, not
+  spot-checked. Severe live test resumed from journal after a host
+  process restart (journal replay bit-exact by design; 10/40 reps in).
