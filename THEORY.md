@@ -594,3 +594,39 @@ clause (ratio 1.27 at epoch 3 — overshoots into the boundary) even on
 a smooth trajectory: third independent strike against
 drift-extrapolation (after routers v1-v2). Production chain
 recommendation: chained estimates, flat shade 0.015, no extrapolation.
+
+
+## The severe live test: FAILED, as pre-registered tests are allowed to
+
+The test built to fix every severity defect of the first capstone
+(fresh population, fresh vendor, pilot-centered windows, disclosed
+P(pass|theory) = 0.59, frozen at commit fe01a4c) returned:
+
+    C1 median(tau1) 982  vs [396, 632]   FAIL
+    C2 median(tau2) 252  vs [148, 240]   FAIL
+    C3 ratio      0.2566 vs [0.258, 0.561]  FAIL (by 0.0014)
+    C4 zero wrong certifications in 40/40  PASS
+
+(results_severe_live.txt, regenerated deterministically from the
+committed journal.) The frozen interpretation rule said a C3 failure
+indicts the log-n overhead structure; the verdict therefore stands as
+FAILED, and it is not re-scored after the fact.
+
+POST-HOC DIAGNOSIS (labeled as such): both arms inflated as if the
+live rate were ~0.54 rather than the pilot's 0.558 — 2.5-4 pilot
+standard errors, or genuine day-scale drift of sampled decoding at 3B
+scale. Under that correction the predicted ratio is ~0.29 and the
+observed 0.2566 is within 20-rep median noise of it; the miss landed
+0.0014 outside the frozen edge. What failed decisively was not the
+fifty-year-old expansion but our ability to PIN A SMALL MODEL'S LIVE
+RATE — the second, sharper form of finding F12: at 3B scale, even a
+4,000-sample same-population pilot from the previous day does not
+transfer to test day. Rate stability, not theory, is the binding
+constraint on live prediction at small scale.
+
+What survives untouched: anytime validity (40/40 correct UNSAFE, zero
+SAFE — now 56/56 across both live prediction exercises), the offline
+calibrations (26/26 byte-reproducible), and the honest-severity
+methodology itself, which did exactly what it promised: it produced a
+real failure with a pre-committed reading, where the first capstone
+could only produce an unfalsifiable pass.

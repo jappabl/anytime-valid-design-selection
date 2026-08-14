@@ -1,0 +1,75 @@
+============================================================================
+SEVERE LIVE TEST — SUMMARY FROM JOURNAL (pre-registration frozen at commit fe01a4c)
+============================================================================
+llama3.2:3b live temp 0.7, fresh population (seed 20260812), 20 reps/arm,
+pilot-centered windows; disclosed severity P(all|theory) = 0.59 central; 0.31/0.45 at +/-0.006 pilot-error band
+
+  tau1 rep  0: UNSAFE  n= 1352 p_hat=0.539
+  tau1 rep  1: UNSAFE  n=  488 p_hat=0.570
+  tau1 rep  2: UNSAFE  n= 1280 p_hat=0.540
+  tau1 rep  3: UNSAFE  n=  820 p_hat=0.551
+  tau1 rep  4: UNSAFE  n=  580 p_hat=0.562
+  tau1 rep  5: UNSAFE  n= 1948 p_hat=0.531
+  tau1 rep  6: UNSAFE  n=  604 p_hat=0.561
+  tau1 rep  7: UNSAFE  n= 1188 p_hat=0.542
+  tau1 rep  8: UNSAFE  n=  852 p_hat=0.550
+  tau1 rep  9: UNSAFE  n=  980 p_hat=0.547
+  tau1 rep 10: UNSAFE  n=  536 p_hat=0.567
+  tau1 rep 11: UNSAFE  n=  648 p_hat=0.559
+  tau1 rep 12: UNSAFE  n= 1280 p_hat=0.540
+  tau1 rep 13: UNSAFE  n=  984 p_hat=0.547
+  tau1 rep 14: UNSAFE  n= 1212 p_hat=0.541
+  tau1 rep 15: UNSAFE  n= 1044 p_hat=0.545
+  tau1 rep 16: UNSAFE  n= 1156 p_hat=0.542
+  tau1 rep 17: UNSAFE  n=  504 p_hat=0.567
+  tau1 rep 18: UNSAFE  n= 1008 p_hat=0.546
+  tau1 rep 19: UNSAFE  n=  656 p_hat=0.558
+  tau2 rep  0: UNSAFE  n=  284 p_hat=0.549
+  tau2 rep  1: UNSAFE  n=  264 p_hat=0.553
+  tau2 rep  2: UNSAFE  n=  252 p_hat=0.556
+  tau2 rep  3: UNSAFE  n=  180 p_hat=0.572
+  tau2 rep  4: UNSAFE  n=  160 p_hat=0.581
+  tau2 rep  5: UNSAFE  n=  368 p_hat=0.541
+  tau2 rep  6: UNSAFE  n=  276 p_hat=0.551
+  tau2 rep  7: UNSAFE  n=  240 p_hat=0.558
+  tau2 rep  8: UNSAFE  n=  372 p_hat=0.540
+  tau2 rep  9: UNSAFE  n=  192 p_hat=0.573
+  tau2 rep 10: UNSAFE  n=  232 p_hat=0.560
+  tau2 rep 11: UNSAFE  n=  196 p_hat=0.577
+  tau2 rep 12: UNSAFE  n=  252 p_hat=0.556
+  tau2 rep 13: UNSAFE  n=  216 p_hat=0.565
+  tau2 rep 14: UNSAFE  n=  112 p_hat=0.607
+  tau2 rep 15: UNSAFE  n=  372 p_hat=0.540
+  tau2 rep 16: UNSAFE  n=  428 p_hat=0.533
+  tau2 rep 17: UNSAFE  n=  412 p_hat=0.534
+  tau2 rep 18: UNSAFE  n=  316 p_hat=0.547
+  tau2 rep 19: UNSAFE  n=  252 p_hat=0.556
+
+C1 median(tau1=0.49) = 982 in (396, 632): FAIL
+C2 median(tau2=0.45) = 252 in (148, 240): FAIL
+C3 ratio = 0.2566 in (0.258, 0.561): FAIL
+C4 zero SAFE: 0 SAFE across 40 reps: PASS
+
+SEVERE TEST VERDICT (frozen rule): FAILED
+
+Frozen interpretation rule (from the pre-registration): a C3 failure
+indicts the log-n overhead structure itself. The verdict stands as
+FAILED under that rule.
+
+POST-HOC DIAGNOSIS (labeled as such; not part of the frozen scoring):
+both arms inflated (tau1 1.95x, tau2 1.31x vs the simulator's central
+medians), the pattern of a live rate ~0.538-0.545 rather than the
+pilot's 0.558 (2.5-4 pilot standard errors, or genuine day-to-day
+drift of small-model sampled decoding — reinforcing finding F12's
+scale boundary a second way: at 3B scale even a 4,000-sample
+same-population pilot does not pin the live rate for the next day).
+Under that rate correction the predicted ratio moves to ~0.29 and the
+observed 0.257 sits within 20-rep median noise of it — but the frozen
+window edge was 0.258 and the observed ratio is 0.2566: the test
+fails by 0.0014, and pre-registration means exactly that it is not
+re-scored after the fact. Validity was perfect throughout: 40/40
+correct UNSAFE certifications, zero SAFE, zero wrong.
+
+============================================================================
+Checksum (SHA256): ddb7dea2c414d2e3
+============================================================================

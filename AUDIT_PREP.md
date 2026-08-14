@@ -893,3 +893,11 @@ within 1000 samples in this regime.
   green — the exactly-reproducible claim verified end-to-end, not
   spot-checked. Severe live test resumed from journal after a host
   process restart (journal replay bit-exact by design; 10/40 reps in).
+- 2026-08-14: SEVERE LIVE TEST VERDICT: FAILED (C1 982 vs [396,632];
+  C2 252 vs [148,240]; C3 0.2566 vs [0.258,0.561] — by 0.0014; C4 PASS
+  40/40 correct, zero wrong). Scored strictly under the frozen rule; no
+  post-hoc re-scoring. Post-hoc diagnosis (labeled): live-rate
+  shortfall ~2pp vs pilot — small-scale rate instability, not the
+  expansion, is the binding constraint (F12 second form).
+  results_severe_live.txt regenerated deterministically from the
+  committed journal by scripts/summarize_severe_live.py.
