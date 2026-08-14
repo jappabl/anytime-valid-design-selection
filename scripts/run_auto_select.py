@@ -10,7 +10,8 @@ miss costs. The pilot tax (120 samples) is charged to the auto arm
 explicitly.
 
 Cells: 8 pools x 2 directions; tau = p* -/+ 0.045 (UNSAFE/SAFE),
-clipped to [0.02, 0.9]; 200 reps/cell/design; n_max 6000. Oracle =
+clipped to [0.02, 0.9]; 100 reps/cell/design (runtime-bound through
+the shipped wrapper, disclosed); n_max 6000. Oracle =
 lower median among designs certifying >= 90% (ineligible designs
 excluded; if none eligible the cell is reported UNRESOLVED and not
 scored). Auto arm: per rep, a fresh 120-sample round-robin pilot
@@ -42,7 +43,7 @@ from eval_harness.certify import Certifier  # noqa: E402
 
 BASE_SEED = 42
 ALPHA = 0.05
-N_REPS = 200
+N_REPS = 100
 N_MAX = 6000
 PILOT_N = 120
 POOLS = [
