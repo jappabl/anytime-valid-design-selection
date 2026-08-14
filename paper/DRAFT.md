@@ -199,7 +199,12 @@ generations for every call are stored alongside the binary outcomes.
 `results_local_law.txt`; code: `results_overhead_law_code.txt`; MBPP:
 `results_mbpp_law.txt`. Figure 1.)
 
-The difficulty ordering is preserved for every model and family tested;
+The difficulty ordering is preserved for every model at roughly
+llama3.2-3b capability and above (violations only at noise level,
+z <= 1.65), and VIOLATED at the simple/medium boundary by the weakest
+models tested (llama3-8b z = +8.65, qwen2-7b z = +2.76; see the scope
+correction in FINDINGS) — the structural grading is
+capability-dependent;
 the model × task grid is doubly monotone (JSON p\*
 .202/.080/.036 and code p\* .050/.016/.009 rank the three OpenAI models
 identically). The dominant synthetic failure mode is character counting

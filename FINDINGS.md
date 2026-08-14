@@ -61,9 +61,20 @@ symmetric re-collection of all 3,000 JSON outcomes):
 | JSON, gpt-4.1-mini | .000 | .000 | .004 | .140 | **.0360** |
 | Code, gpt-4o-mini | .000 | .000 | .063 | .138 | **.0500** |
 
-The difficulty ordering is preserved for all three models tested and
-both families. Dominant failure mode: character counting (exact-length
-strings, long digit runs). The pre-audit table had gpt-4.1-mini at
+The difficulty ordering is preserved for the three OpenAI models,
+both task families, and the two stronger local models (llama3.2-3b
+z = 0.48, qwen2.5-7b z = 1.65 on the simple-vs-medium boundary — noise
+level). SCOPE CORRECTION (2026-08-14, release-trajectory pools): the
+ordering BREAKS for the weakest models tested — llama3-8b has simple
+3.6x HARDER than medium (0.456 vs 0.128, z = +8.65) and qwen2-7b
+violates at z = +2.76. The structural grading (frozen before any
+collection, no per-template tuning) induces the intended order for
+capable models and breaks down at the simple/medium boundary for weak
+ones — a scoping finding of the same shape as the temp-0 transfer
+boundary: the testbed's assumptions are capability-dependent, and the
+violation size grows as capability falls. Dominant failure mode for
+capable models: character counting (exact-length strings, long digit
+runs). The pre-audit table had gpt-4.1-mini at
 p\* = .083; most of that was the validator bug.
 
 ## Findings
