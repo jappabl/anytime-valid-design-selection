@@ -695,9 +695,12 @@ lineage whose siblings have none. Scored honestly
   only through the unidentifiable sibling. Against the clean
   comparator the boundary premium is +0.08 — ABSENT at +/-0.3 fit
   noise where the rule predicts +1.
-- P4: single-stream d = 0.81 / 0.92 on the identifiable pools (sixth
-  and seventh consecutive in-window fits); llama3-8b's 0.15 is the
-  same censored artifact.
+- P4 FAIL AS FROZEN (correction per peer review — the frozen clause
+  said all three pools, and llama3-8b's censored 0.15 is outside
+  [0.3, 1.5]): the identifiable pools pass at 0.81 / 0.92 (sixth and
+  seventh consecutive), the frozen scoring is 2-of-4 (not the 3-of-4
+  an earlier commit message implied), and the artifact now prints its
+  own verdicts including the P3 hollow-pass disclosure.
 
 Reading: the +1-per-boundary-stratum clause does not survive its
 sharpest test. Combined with the code-pool adjudication ("~6 not ~4")
@@ -755,15 +758,27 @@ The disclosed severity operated as designed: P(false fail | exact
 process) = 0.35, and the strict-form criterion failed while every
 d-discriminating criterion passed.
 
-Sweep conclusion for the paper: the (d/2) log n STRUCTURE with d = 1
-is confirmed against the adjacent hypotheses at many-point resolution;
-the STRICT three-term form with c constant-in-tau is refuted at
-0.26-nat precision by its own power-checked test; the gap is the
-measured size of the o(1) terms, and proving/bounding them is the
-Month-2 formalization target (now with a number to hit).
+Sweep conclusion for the paper, sharpened by peer re-analysis (both
+numbers re-derived from the artifact): there are TWO measured
+deviations, not one. The differenced statistic (c removed) sits at
+mean -0.258 nats; the RAW residual against the c = 0 closed form sits
+at mean -1.144 nats — all 17 points negative, t = -13.9 — and it is
+STRUCTURED IN p*, not tau (group means -0.86 to -1.51, slope ~ -1.4
+nats per unit p*; within each group tau varies and D differences c
+out, so the earlier "c constant-in-tau is refuted" phrasing named the
+wrong variable and is corrected here). The p*-dependence is the
+signature the overshoot reading predicts (Woodroofe's constants
+depend on the increment distribution, which p* governs). The Month-2
+formalization target is therefore falsifiable and specific: derive
+the o(1)/overshoot correction and reproduce a deviation of slope
+~ -1.4 nats per unit p* plus a differenced remainder of ~ -0.26
+nats.
 
-Meta-observation across the project's severe tests: outcomes track
-their pre-disclosed severities (a 0.59-severity test failed; a
-0.65-severity test failed on its strict criterion while excluding the
-alternatives) — the honest-severity machinery is calibrated, which is
-itself evidence the methodology works.
+Meta-observation, restated after peer review caught the first
+phrasing overclaiming: across the three severity-quantified tests
+(capstone 0.94, severe live 0.59, margin sweep 0.65) the disclosed
+severities predict 2.18 passes; 1 was observed, and
+P(<=1 | severities correct) = 0.17. At n = 3 that is NO EVIDENCE OF
+MISCALIBRATION and nothing more — the earlier "the machinery is
+calibrated" claim was the same vacuous-validation shape this project
+polices elsewhere, and is withdrawn.

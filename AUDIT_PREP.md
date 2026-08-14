@@ -964,3 +964,18 @@ within 1000 samples in this regime.
   emphasis; o(1)/overshoot localization and the rho protocol effect
   added to paper Section 5.2). The doc-sync rule was violated between
   f016a02 and this commit; recorded per the rule itself.
+- 2026-08-14: PEER QUEUE (4 items + 1 minor), all re-derived before
+  adoption: (1) raw-residual structure recorded (-1.144 mean, all 17
+  negative, t=-13.9, slope ~-1.4/unit p*) — Month-2 target now a
+  falsifiable curve; "constant-in-tau" phrasing corrected to p*.
+  (2) severity "calibrated" meta-claim WITHDRAWN (expected 2.18
+  passes, observed 1, P(<=1)=0.17 — no-evidence-of-miscalibration at
+  n=3 is all that survives). (3) severity_sim revision-3 rules:
+  procedure identity (powered model must share the executed stopping
+  rule) + gate-every-clause. (4) results_lineage_d.txt did not print
+  verdicts (house-standard violation); scoring corrected 3-of-4 ->
+  2-of-4 as frozen (P4 all-three fails); verdict block added and
+  artifact regenerating. (5) 34f0e01 note: real-chain P1/P3 passes
+  near-vacuous (shaded arm byte-identical to unshaded at these
+  drifts); two load-bearing passes (P2, P4), not four — do not carry
+  "all pass" into the paper.

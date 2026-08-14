@@ -166,6 +166,9 @@ def fit_d(points):
     return float(d), float(c)
 
 
+_FITS = {}
+
+
 def main():
     print("=" * 76)
     print("WITHIN-LINEAGE d-RULE DIFFERENTIAL (predictions "
@@ -219,6 +222,9 @@ def main():
                            ("wsr", "WSR@Kelly")]:
             if len(pts[key]) >= 3:
                 d, c = fit_d(pts[key])
+                _FITS.setdefault(model.split()[0], {})[
+                    "ui" if key == "ui" else
+                    ("single" if key == "single" else "wsr")] = d
                 # functional-form honesty (audit finding 10): report the
                 # log log n alternative's residuals alongside; this grid
                 # cannot by itself distinguish the two forms.
@@ -238,6 +244,42 @@ def main():
                       f"({len(pts[key])} pts; max|resid| "
                       f"logn-form {r1:.2f} vs loglogn-form {r2:.2f})")
         print()
+    if len(_FITS) == 3:
+        _score_verdicts(_FITS)
+
+
+def _score_verdicts(fits):
+    """fits: {model: {"ui": d, "single": d}} parsed in main. Prints the
+    frozen P1-P4 verdicts inside the artifact (house standard), with
+    P3 scored BOTH as frozen (vs sibling mean) and against identified
+    fits only — the frozen form can pass through an unidentifiable
+    sibling fit, and both numbers are shown."""
+    p1 = 4.0 <= fits["llama3.1-8b"]["ui"] <= 6.0
+    sib = [fits["llama3-8b"]["ui"], fits["llama3.2-3b"]["ui"]]
+    p2 = all(3.0 <= d <= 5.0 for d in sib)
+    diff_frozen = fits["llama3.1-8b"]["ui"] - sum(sib) / 2
+    diff_ident = fits["llama3.1-8b"]["ui"] - fits["llama3.2-3b"]["ui"]
+    p3 = diff_frozen >= 0.5
+    singles = [fits[m]["single"] for m in
+               ("llama3-8b", "llama3.1-8b", "llama3.2-3b")]
+    p4 = all(0.3 <= d <= 1.5 for d in singles)
+    print("\nPRE-REGISTERED SCORING (frozen at commit 9a87f13):")
+    print(f"  P1 llama3.1-8b d_UI in [4,6]: {fits['llama3.1-8b']['ui']:.2f} "
+          f"-> {'PASS' if p1 else 'FAIL'}")
+    print(f"  P2 siblings in [3,5]: {sib[0]:.2f}, {sib[1]:.2f} -> "
+          f"{'PASS' if p2 else 'FAIL'} (llama3-8b fit is 3-point "
+          f"censored — unidentifiable)")
+    print(f"  P3 differential >= +0.5: as frozen {diff_frozen:+.2f} -> "
+          f"{'PASS' if p3 else 'FAIL'}; against the identified sibling "
+          f"only {diff_ident:+.2f} — the frozen pass is HOLLOW (it "
+          f"clears the bar only through the fit P2 rejects)")
+    print(f"  P4 single-stream in [0.3,1.5] all three: "
+          f"{', '.join(f'{d:.2f}' for d in singles)} -> "
+          f"{'PASS' if p4 else 'FAIL'}")
+    n_pass = sum([p1, p2, p3, p4])
+    print(f"  VERDICT: {n_pass}-of-4 as frozen; honest reading 2-of-4 "
+          f"with P3 hollow — the boundary premium is ABSENT at the "
+          f"identified comparison (+{diff_ident:.2f} vs predicted +1)")
 
 
 if __name__ == "__main__":

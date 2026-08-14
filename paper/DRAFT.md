@@ -625,7 +625,12 @@ d = 2 decisively: the residual is a persistent **−0.26-nat** mean
 deviation, the measured size of the o(1) overshoot and
 median-versus-mean terms the truncated expansion drops (the same terms
 the adversarial referee identified as why fitted d lands at 0.7–1.0
-rather than exactly 1). The sweep also surfaced a protocol constant
+rather than exactly 1). The deviation has structure: the raw residual
+against the c = 0 form is **−1.14 nats** on average (all 17 points
+negative, t = −13.9) with a **~−1.4 nats-per-unit-p\* slope** across
+rate groups — the p\*-dependence Woodroofe's overshoot constants
+predict, which turns the §7 formalization target into a falsifiable
+curve rather than a scalar. The sweep also surfaced a protocol constant
 the expansion hides: because the Beta-mixture e-value is exchangeable,
 round-robin streams (variance-reduced counts) cross **~20% slower**
 than iid streams at the same pooled rate (median 1024 vs 844 at one

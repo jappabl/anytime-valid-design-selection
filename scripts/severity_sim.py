@@ -39,6 +39,18 @@ this tool now detects and refuses:
       hypothesis with the d = 1 dispersion, and the tool REFUSES the
       design when the d = 1 pass probability does not exceed the best
       alternative by at least 0.30.
+
+REVISION 3 RULES (post margin-sweep, per peer review): (c) PROCEDURE
+IDENTITY — a power calculation is void unless the powered model and
+the executed replay share the SAME stopping rule (v1 of the margin
+sweep printed DESIGN ACCEPTED for a one-sided power model gating a
+two-sided replay; the gate worked as built and still validated a
+procedure that was not the one executed). Any test using this tool
+must state the stopping rule once and assert both stages read it from
+the same constant. (d) GATE EVERY CLAUSE — every scored criterion
+must appear in the power calculation or be explicitly marked
+ungated-and-why; the margin sweep's P4 was ungated and was exactly
+the clause that turned out ill-posed.
 """
 
 import sys
