@@ -135,19 +135,28 @@ def main():
     # regime (a rate error inflating both arms) where C2/C3 still get
     # scored. Any m1 up to 2.5x the design median must leave C2 and C3
     # jointly satisfiable.
-    stress = np.linspace(0.4 * np.min(m1c), 2.5 * np.max(m1c), 2000)
-    lo_needed = np.maximum(c3[0] * stress, c2[0])
-    hi_allowed = np.minimum(c3[1] * stress, c2[1])
-    bad = stress[lo_needed > hi_allowed]
+    stress_lo = 0.4 * float(np.min(m1c))
+    stress_hi = 2.5 * float(np.max(m1c))
+    # Closed form: C2 [a2,b2] and C3 [r_lo,r_hi] are jointly
+    # satisfiable iff r_lo*m1 <= b2 and r_hi*m1 >= a2, i.e.
+    # m1 in [a2/r_hi, b2/r_lo]. The grid is display-only.
+    win_lo = c2[0] / c3[1]
+    win_hi = c2[1] / c3[0]
     print(f"\n  (a) joint satisfiability over realized m1 in "
-          f"[{stress[0]:.0f}, {stress[-1]:.0f}]:")
-    if len(bad):
-        print(f"      REFUSE: dead zone for m1 in [{bad.min():.0f}, "
-              f"{bad.max():.0f}] — C2/C3 incompatible exactly where a "
-              f"rate error lands the first arm")
-    else:
-        print("      ok: no dead zone anywhere in the stress range")
-    dead = float(len(bad) > 0)
+          f"[{stress_lo:.0f}, {stress_hi:.0f}]:")
+    print(f"      satisfiable window: m1 in [{win_lo:.0f}, "
+          f"{win_hi:.0f}]; dead-zone tails: "
+          f"[{stress_lo:.0f}, {win_lo:.0f}) and ({win_hi:.0f}, "
+          f"{stress_hi:.0f}]")
+    med_m1 = float(np.median(m1c))
+    edge = min(abs(med_m1 - win_lo), abs(win_hi - med_m1))
+    print(f"      design-expected m1 = {med_m1:.0f} "
+          f"({edge:.0f} from the nearest window edge)")
+    dead = float(not (stress_lo >= win_lo and stress_hi <= win_hi))
+    if dead:
+        print("      REFUSE: dead-zone tails are reachable within the "
+              "stress range — a rate error inflating the first arm "
+              "beyond the window forces C2/C3 mutually exclusive")
 
     # (b) DISCRIMINATING POWER: predicted medians under d in {0, 1, 2}
     # from n*V = log(1/alpha) + (d/2)*log n (c absorbed into the d=1

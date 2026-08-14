@@ -31,6 +31,9 @@ OLLAMA_URL = "http://localhost:11434/api/chat"
 MODELS = {
     "llama3.2:3b": "llama3.2-3b",
     "qwen2.5:7b": "qwen2.5-7b",
+    "llama3.1:8b": "llama3.1-8b",
+    "llama3:8b": "llama3-8b",
+    "qwen2:7b": "qwen2-7b",
 }
 
 

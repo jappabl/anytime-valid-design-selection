@@ -923,3 +923,10 @@ within 1000 samples in this regime.
   path). Severe2 pilot PAUSED at 1167/3000 samples (~$0.35; journal
   resumable); no further paid sampling until the margin-sweep design
   passes the revised validator and its cost is announced.
+- 2026-08-14: severity_sim dead-zone reporting fixed per second peer
+  review: closed-form satisfiable window emitted directly (V1: m1 in
+  [264, 930]; realized 982 — outside by 52) instead of min/max over a
+  non-contiguous bad set that read as "dead everywhere." NOTE for the
+  paper: commit 0e95d33's message phrased C3's gap as "0.76 vs 0.84"
+  (d=0); the binding alternative is d=2 at 0.83 — the code is correct,
+  do not carry the commit phrasing into Section 6.
