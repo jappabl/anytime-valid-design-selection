@@ -932,17 +932,20 @@ call are stored under `data/`, including the pre-fix archives
 **Ledger.** ≈ 8,600 OpenAI API calls through the bolstering round at
 ≈ $2.02 (FINDINGS ledger; includes the $0.25 live WSR arm,
 `results_live_wsr.txt`), plus ≈ $2.68 for the live capstone
-(`results_live_prediction.txt`) — under $5 total. The llama3.2-3b,
-qwen2.5-7b and both MBPP pools cost nothing: they were collected locally
-through Ollama with the identical protocol. Test suite: 76 passing
-tests.
+(`results_live_prediction.txt`) and ≈ $0.35 for the paused severe-v2
+pilot (`data/severe2_pilot_log.jsonl`) — under $6 total. All local
+pools (llama3.2-3b, llama3.1-8b, llama3-8b, qwen2.5-7b, qwen2-7b,
+both MBPP sets, the fresh populations, and every trajectory/sweep
+replay) cost nothing: collected locally through Ollama with the
+identical protocol. Test suite: 106 passing tests; 26/26 offline
+artifacts reproduce byte-identically via `./reproduce.sh all`.
 
 **Figures.** Figure 1 (pool heterogeneity), Figure 2 (width vs n),
 Figure 3 (peeking miscoverage), Figure 4 (certification: allocation and
 feasibility), Figure 5 (paired comparison; block reduction), Figure 6
-(invention-round scoreboard) are in `paper/figures/`. Three figures are
-in preparation: **[FIG: design map]** (§4), **[FIG: drift phase
-diagram]** (§4.4), **[FIG: frontier overheads]** (§5.5).
+(invention-round scoreboard), Figure 7 (`fig7_drift_budget.png`,
+§4.4), Figure 8 (`fig8_frontier.png`, §5.5), and Figure 9
+(`fig9_design_map.png`, §4) are in `paper/figures/`.
 
 **Key artifacts by section.**
 
