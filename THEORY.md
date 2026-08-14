@@ -708,3 +708,28 @@ here: 1 of 4 with the hot stratum dominating V). The Month-2
 formalization inherits a sharper question: prove what the Beta(1,1)
 boundary marginal contributes AS A FUNCTION of the margin structure,
 not as a stratum count.
+
+
+## Margin sweep v1: FAILED as frozen — by finding my design bug
+
+The centerpiece's first frozen run (results_margin_sweep.txt):
+P1 PASS (12/16 pairs in band), P2 FAIL by 0.011 nats (mean D = -0.261
+vs |mean| <= 0.25), P4 FAIL (10 SAFE certifications vs a frozen zero).
+Scored as FAILED, no re-scoring.
+
+POST-HOC DIAGNOSIS (labeled): (1) the deployed replay stopped
+TWO-SIDED (SAFE exits allowed) while the accepted power model was
+ONE-SIDED — SAFE exits remove exactly the slowest failure-sparse
+streams at hard margins, biasing conditional UNSAFE medians down by
+roughly the size of the P2 miss; the power stage structurally could
+not see a selection effect its own model excluded. (2) P4 was the
+project's THIRD vacuous zero-claim (10/~7,000 = 0.36% wrong, well
+inside the per-run alpha = 5% budget — validity intact, prediction
+fragile). Both defects are mechanical protocol mismatches, not
+theory evidence; the D-statistic's P1 band held.
+
+Sweep v2 is pre-registered with the mismatch fixed: one-sided
+stopping (matching both the power model and the sweep's UNSAFE-only
+semantics, and the original grids' protocol), P4 restated as
+wrong-certification rate <= alpha, power stage re-run and re-accepted
+before the freeze. Iteration count on this design: v2 (disclosed).

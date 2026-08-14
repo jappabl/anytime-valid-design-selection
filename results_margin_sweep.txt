@@ -1,0 +1,38 @@
+============================================================================
+MARGIN-SWEEP DESIGNED TEST (predictions pre-registered in header)
+============================================================================
+gpt-4o-mini pools, 17 grid points, adaptive reps {0.025: 800, 0.045: 400, 0.08: 200}, n_max=12000, alpha=0.05, BASE_SEED=42
+
+  P3 power (analytic sim, 200 scenario draws, DEPLOYED rep counts [200, 400, 800]):
+     P(pass | d=0) = 0.00   P(pass | d=1) = 0.65   P(pass | d=2) = 0.04
+     gaps: vs d=0 +0.65, vs d=2 +0.60 (need >= +0.50 each)
+     DESIGN ACCEPTED
+
+  w-light   p*=0.095 tau=0.070 margin=0.025: certified 800/800, median   1264, residual -0.98 nats
+  w-light   p*=0.095 tau=0.050 margin=0.045: certified 400/400, median    280, residual -1.00 nats
+  w-lowmid  p*=0.138 tau=0.113 margin=0.025: certified 800/800, median   2058, residual -0.80 nats
+  w-lowmid  p*=0.138 tau=0.093 margin=0.045: certified 400/400, median    472, residual -1.09 nats
+  w-lowmid  p*=0.138 tau=0.058 margin=0.080: certified 200/200, median    108, residual -0.69 nats
+  w-uniform p*=0.202 tau=0.177 margin=0.025: certified 797/800, median   2776, residual -1.21 nats
+  w-uniform p*=0.202 tau=0.157 margin=0.045: certified 400/400, median    692, residual -1.33 nats
+  w-uniform p*=0.202 tau=0.122 margin=0.080: certified 200/200, median    204, residual -0.43 nats
+  w-mid     p*=0.309 tau=0.284 margin=0.025: certified 790/800, median   3870, residual -1.37 nats
+  w-mid     p*=0.309 tau=0.264 margin=0.045: certified 399/400, median    988, residual -1.51 nats
+  w-mid     p*=0.309 tau=0.229 margin=0.080: certified 200/200, median    286, residual -1.02 nats
+  w-high    p*=0.382 tau=0.357 margin=0.025: certified 789/800, median   4232, residual -1.37 nats
+  w-high    p*=0.382 tau=0.337 margin=0.045: certified 400/400, median   1152, residual -1.36 nats
+  w-high    p*=0.382 tau=0.302 margin=0.080: certified 200/200, median    356, residual -0.73 nats
+  w-heavy   p*=0.522 tau=0.497 margin=0.025: certified 777/800, median   4224, residual -1.72 nats
+  w-heavy   p*=0.522 tau=0.477 margin=0.045: certified 399/400, median   1272, residual -1.32 nats
+  w-heavy   p*=0.522 tau=0.442 margin=0.080: certified 200/200, median    338, residual -1.51 nats
+
+  within-group pairwise D (c differenced out): +0.01, +0.29, -0.11, -0.40, +0.12, -0.78, -0.90, +0.14, -0.35, -0.49, -0.02, -0.64, -0.63, -0.40, -0.20, +0.19
+  P1: 12/16 pairs within +/-0.55 nats (need >= 10): PASS
+  P2: mean D -0.261 (|mean| <= 0.25): FAIL
+  P4: SAFE certifications = 10: FAIL
+
+  MARGIN-SWEEP VERDICT: FAILED
+
+============================================================================
+Checksum (SHA256): ceca87a4bad713b1
+============================================================================

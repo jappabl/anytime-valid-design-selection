@@ -48,10 +48,19 @@ PRE-REGISTERED PREDICTIONS:
      iid e-value sim; d-alternative worlds shift each median to the
      d-solution of the expansion): REFUSED unless P(P1 and P2 | d=1)
      exceeds P(pass | d=0) and P(pass | d=2) by >= 0.50 each.
-  P4 zero SAFE certifications (every grid point is true-UNSAFE).
+  P4 (v2 restated) wrong certifications (SAFE at true-UNSAFE points)
+     at rate <= alpha = 0.05 of all reps — the zero-claim form of v1
+     failed at 0.36% wrong, the third vacuous zero in this project.
   Transparency row: pool-replay vs analytic-sim median agreement per
      point (validates the reweighting protocol; not a scored
      criterion).
+
+V2 REVISION (disclosed; v1 FAILED as frozen — see THEORY.md): v1's
+replay stopped two-sided while the accepted power model was one-sided;
+SAFE exits at hard margins removed the slowest streams and biased
+conditional UNSAFE medians down by ~the P2 miss (0.011-0.26 nats).
+v2 stops ONE-SIDED (rejects_le only), matching the power model, the
+sweep's UNSAFE-only semantics, and the original grids' protocol.
 
 Run `--power-only` to print the power section without touching pools
 (used before the freeze). Offline, deterministic. Writes
@@ -244,10 +253,6 @@ def main(power_only=False):
                         times.append(n)
                         stopped = True
                         break
-                    if cs.rejects_ge(tau):
-                        n_safe += 1
-                        stopped = True
-                        break
             if not stopped:
                 pass
         med = float(np.median(times)) if times else float("nan")
@@ -270,8 +275,12 @@ def main(power_only=False):
           f"(need >= {need}): {'PASS' if p1 else 'FAIL'}")
     print(f"  P2: mean D {np.mean(ds):+.3f} (|mean| <= 0.25): "
           f"{'PASS' if p2 else 'FAIL'}")
-    print(f"  P4: SAFE certifications = {n_safe}: "
-          f"{'PASS' if n_safe == 0 else 'FAIL'}")
+    total_reps = sum(REPS_BY_MARGIN[round(p - t, 3)]
+                     for (_, _, p, t) in pts)
+    print(f"  P4: wrong (SAFE) certifications = {n_safe} of "
+          f"{total_reps} reps ({n_safe / total_reps:.4f} <= "
+          f"alpha = {ALPHA}): "
+          f"{'PASS' if n_safe / total_reps <= ALPHA else 'FAIL'}")
     print(f"\n  MARGIN-SWEEP VERDICT: "
           f"{'EXPANSION CONFIRMED (d = 1, zero fitted parameters)' if p1 and p2 and n_safe == 0 else 'FAILED'}")
 

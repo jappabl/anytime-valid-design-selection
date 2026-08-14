@@ -944,3 +944,9 @@ within 1000 samples in this regime.
   censored llama3-8b fit disclosed). Rule downgraded again; Month-2
   proof target sharpened to margin-structure dependence. Margin-sweep
   freeze 3b7d709 (power ACCEPTED 0.65/0.00/0.04); replay running.
+- 2026-08-14: results_margin_sweep.txt v1 — FAILED as frozen (P2 by
+  0.011 nats; P4 zero-claim broken at 0.36% wrong — third vacuous
+  zero). Diagnosed design bug: two-sided replay vs one-sided power
+  model (selection bias the power stage could not see). v2
+  pre-registered with one-sided stopping and alpha-budget P4;
+  iteration disclosed.
