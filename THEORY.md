@@ -676,3 +676,35 @@ resolution. The redesign (ISEF_PLAN 1.1) replaces the two-arm ratio
 with a many-point margin sweep scored against a pre-registered
 residual band — free, offline, and power-checked by this validator
 before freezing.
+
+
+## Within-lineage boundary-premium test: the rule weakens further
+
+The sharpest available test of d = K + #boundary-strata (frozen at
+commit 9a87f13 before any fitting): llama3.1-8b carries the first
+exact-boundary stratum in a local pool (simple = 0/250) inside a
+lineage whose siblings have none. Scored honestly
+(results_lineage_d.txt):
+
+- P1 PASS: llama3.1-8b fitted d_UI = 4.30, inside [4.0, 6.0] — but
+  0.7 below the rule's central prediction of 5.
+- P2 HALF: llama3.2-3b 4.22 in-window; llama3-8b UNIDENTIFIABLE
+  (3 surviving points after the >=90% filter at p* = 0.609; d = 1.55
+  with max residual 0.01 — the censoring pathology again).
+- P3 PASS-AS-WRITTEN (+1.41) BUT HOLLOW: the differential clears +0.5
+  only through the unidentifiable sibling. Against the clean
+  comparator the boundary premium is +0.08 — ABSENT at +/-0.3 fit
+  noise where the rule predicts +1.
+- P4: single-stream d = 0.81 / 0.92 on the identifiable pools (sixth
+  and seventh consecutive in-window fits); llama3-8b's 0.15 is the
+  same censored artifact.
+
+Reading: the +1-per-boundary-stratum clause does not survive its
+sharpest test. Combined with the code-pool adjudication ("~6 not ~4")
+this suggests the boundary premium is NOT a clean additive constant —
+plausibly it appears only when boundary strata carry a large share of
+the certification pressure (code pools: 2-3 boundary strata of 4;
+here: 1 of 4 with the hot stratum dominating V). The Month-2
+formalization inherits a sharper question: prove what the Beta(1,1)
+boundary marginal contributes AS A FUNCTION of the margin structure,
+not as a stratum count.

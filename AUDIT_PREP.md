@@ -938,3 +938,9 @@ within 1000 samples in this regime.
   correction and PREREG_S1 committed at ad8cf57; lineage-d frozen at
   9a87f13 (running). Limitation 10 closed; Limitation 8 partially
   (replay on real lineages; local live arms still available free).
+- 2026-08-14: results_lineage_d.txt — within-lineage boundary-premium
+  test scored honestly: P1 pass (4.30 in [4,6]), differential HOLLOW
+  (+0.08 vs clean sibling where rule predicts +1; formula-pass via
+  censored llama3-8b fit disclosed). Rule downgraded again; Month-2
+  proof target sharpened to margin-structure dependence. Margin-sweep
+  freeze 3b7d709 (power ACCEPTED 0.65/0.00/0.04); replay running.
