@@ -20,6 +20,25 @@ Usage:
     python3 scripts/severity_sim.py <p_pool> <tau1> <tau2> <reps_per_tau>
 Then iterate window choices in-place (edit CANDS) and freeze the final
 numbers into run_severe_live.py.
+
+REVISION 2 (post-severe-test, per the peer re-analysis and
+ISEF_PLAN.md 1.1 blocking prerequisite). The V1 design had two defects
+this tool now detects and refuses:
+  (a) JOINT SATISFIABILITY: criteria on multiple arms can become
+      mutually exclusive once the first arm's outcome is realized
+      (V1: median(tau1) = 982 forced C2 <= 240 while C3 required
+      >= 253.4 — a dead zone the disclosed severity ignored). The
+      check now runs conditional on every plausible realized first
+      arm and reports the dead-zone probability.
+  (b) DISCRIMINATING POWER: a window narrower than its statistic's
+      sampling noise tests a coin (V1's C3: P(pass | theory true)
+      = 0.59 vs P(pass | d = 0 world) computed here — if those are
+      close, the criterion discriminates nothing). Each criterion now
+      reports P(inside | d = 0), P(inside | d = 1), P(inside | d = 2)
+      using the closed-form predicted centers under each dimension
+      hypothesis with the d = 1 dispersion, and the tool REFUSES the
+      design when the d = 1 pass probability does not exceed the best
+      alternative by at least 0.30.
 """
 
 import sys
@@ -104,6 +123,91 @@ def main():
                           & (ratio >= c3[0]) & (ratio <= c3[1]))
         print(f"    offset {off:+.3f}: P(C1)={p1:.2f} P(C2)={p2:.2f} "
               f"P(C3)={p3:.2f}  P(all)={pall:.2f}")
+
+    # (a) JOINT SATISFIABILITY conditional on the realized first arm:
+    # for each simulated m1, the C2 window and the C3-implied window
+    # [r_lo*m1, r_hi*m1] must intersect.
+    m1c = all_meds[0.0][0]
+    m1c = m1c[~np.isnan(m1c)]
+    # Stress the FULL plausible realization range, not just the
+    # theory-true design distribution: V1's dead zone only bit because
+    # m1 realized at 982, far outside its design spread — exactly the
+    # regime (a rate error inflating both arms) where C2/C3 still get
+    # scored. Any m1 up to 2.5x the design median must leave C2 and C3
+    # jointly satisfiable.
+    stress = np.linspace(0.4 * np.min(m1c), 2.5 * np.max(m1c), 2000)
+    lo_needed = np.maximum(c3[0] * stress, c2[0])
+    hi_allowed = np.minimum(c3[1] * stress, c2[1])
+    bad = stress[lo_needed > hi_allowed]
+    print(f"\n  (a) joint satisfiability over realized m1 in "
+          f"[{stress[0]:.0f}, {stress[-1]:.0f}]:")
+    if len(bad):
+        print(f"      REFUSE: dead zone for m1 in [{bad.min():.0f}, "
+              f"{bad.max():.0f}] — C2/C3 incompatible exactly where a "
+              f"rate error lands the first arm")
+    else:
+        print("      ok: no dead zone anywhere in the stress range")
+    dead = float(len(bad) > 0)
+
+    # (b) DISCRIMINATING POWER: predicted medians under d in {0, 1, 2}
+    # from n*V = log(1/alpha) + (d/2)*log n (c absorbed into the d=1
+    # centering), scaled off the d = 1 simulated centers; pass
+    # probabilities computed by shifting the d = 1 median distribution
+    # to each alternative's predicted center.
+    from scipy.optimize import brentq
+    print("  (b) discriminating power per criterion "
+          "(needs P(d=1) - max alt >= 0.30):")
+    refuse = False
+    for label, meds, win, tau in [("C1", all_meds[0.0][0], c1, tau1),
+                                  ("C2", all_meds[0.0][1], c2, tau2)]:
+        meds = meds[~np.isnan(meds)]
+        v = (p_pool * np.log(p_pool / tau)
+             + (1 - p_pool) * np.log((1 - p_pool) / (1 - tau)))
+        center1 = float(np.median(meds))
+        cc = center1 * v - np.log(20) - 0.5 * np.log(center1)
+        ps = {}
+        for d in (0, 1, 2):
+            f = lambda n: n * v - np.log(20) - (d / 2) * np.log(n) - cc
+            nd = brentq(f, 8, 1e7)
+            shifted = meds * (nd / center1)
+            ps[d] = float(np.mean((shifted >= win[0])
+                                  & (shifted <= win[1])))
+        gap = ps[1] - max(ps[0], ps[2])
+        flag = "ok" if gap >= 0.30 else "REFUSE (window tests a coin)"
+        refuse |= gap < 0.30
+        print(f"      {label}: P(inside) d=0 {ps[0]:.2f} | d=1 "
+              f"{ps[1]:.2f} | d=2 {ps[2]:.2f}  gap {gap:+.2f}  {flag}")
+    # C3 (the ratio): its rate-cancellation also cancels most of its
+    # d-sensitivity — compute the predicted ratio under each d and
+    # score against the bootstrap dispersion of the realized ratio.
+    r_meds = all_meds[0.0][2]
+    r_meds = r_meds[~np.isnan(r_meds)]
+    centers = {}
+    for d in (0, 1, 2):
+        nds = []
+        for meds_c, tau in [(all_meds[0.0][0], tau1),
+                            (all_meds[0.0][1], tau2)]:
+            mc = meds_c[~np.isnan(meds_c)]
+            v = (p_pool * np.log(p_pool / tau)
+                 + (1 - p_pool) * np.log((1 - p_pool) / (1 - tau)))
+            c1_ = float(np.median(mc))
+            cc = c1_ * v - np.log(20) - 0.5 * np.log(c1_)
+            f = lambda n: n * v - np.log(20) - (d / 2) * np.log(n) - cc
+            nds.append(brentq(f, 8, 1e7))
+        centers[d] = nds[1] / nds[0]
+    r_center = float(np.median(r_meds))
+    ps3 = {d: float(np.mean(((r_meds - r_center + centers[d]) >= c3[0])
+                            & ((r_meds - r_center + centers[d]) <= c3[1])))
+           for d in (0, 1, 2)}
+    gap3 = ps3[1] - max(ps3[0], ps3[2])
+    flag3 = "ok" if gap3 >= 0.30 else "REFUSE (window tests a coin)"
+    refuse |= gap3 < 0.30
+    print(f"      C3: P(inside) d=0 {ps3[0]:.2f} | d=1 {ps3[1]:.2f} | "
+          f"d=2 {ps3[2]:.2f}  gap {gap3:+.2f}  {flag3}  (predicted "
+          f"ratio centers {centers[0]:.3f}/{centers[1]:.3f}/"
+          f"{centers[2]:.3f})")
+    if refuse or dead > 0.05:
+        print("\n  DESIGN NOT ACCEPTABLE under revision-2 rules.")
 
 
 if __name__ == "__main__":

@@ -657,3 +657,22 @@ calibrations (26/26 byte-reproducible), the pilot transfer finding,
 and the honest-severity methodology itself — which now includes two
 measured design lessons (resolution, window compatibility) that the
 next severe test inherits.
+
+
+## Severity validator, revision 2 (the failed test's methodology yield)
+
+severity_sim.py now (a) checks joint satisfiability of multi-arm
+criteria across the FULL stressed range of realized first-arm
+outcomes, and (b) computes each criterion's discriminating power
+P(inside window | d = 0 / 1 / 2), refusing any design whose d = 1
+advantage is under 0.30. Run retroactively on the V1 severe-test
+design it REFUSES on both grounds and yields the definitive number:
+C3's d-discrimination gap was +0.02 (P(inside) 0.76 under d = 0 vs
+0.84 under d = 1) — the ratio criterion structurally could not
+distinguish the hypotheses at 20 reps/arm. The V1 failure is thereby
+fully decomposed: a marginal rate offset moved the medians, a dead
+zone forced two criteria, and the arbitrating criterion had no
+resolution. The redesign (ISEF_PLAN 1.1) replaces the two-arm ratio
+with a many-point margin sweep scored against a pre-registered
+residual band — free, offline, and power-checked by this validator
+before freezing.

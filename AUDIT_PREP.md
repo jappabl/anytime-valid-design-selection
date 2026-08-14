@@ -912,3 +912,14 @@ within 1000 samples in this regime.
   Verdict unchanged: FAILED as frozen. Process rule adopted: long runs
   get announced duration + milestone check-ins + immediate
   completion/crash reports.
+- 2026-08-14: severity_sim.py REVISION 2 (ISEF_PLAN 1.1 blocking
+  prerequisite): (a) joint-satisfiability check over the FULL stressed
+  realization range of the first arm (not just the design point);
+  (b) per-criterion discriminating power P(inside | d=0/1/2) with a
+  0.30-gap floor. Retro-validation REFUSES the V1 design on both
+  grounds and quantifies the coin: C3's d-gap was +0.02 (0.76 vs 0.84)
+  — the ratio criterion could not distinguish d=0 from d=1 at 20 reps.
+  run_severe2_pilot.py docstring contradictions fixed (model/count/
+  path). Severe2 pilot PAUSED at 1167/3000 samples (~$0.35; journal
+  resumable); no further paid sampling until the margin-sweep design
+  passes the revised validator and its cost is announced.
