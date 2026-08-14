@@ -733,3 +733,37 @@ stopping (matching both the power model and the sweep's UNSAFE-only
 semantics, and the original grids' protocol), P4 restated as
 wrong-certification rate <= alpha, power stage re-run and re-accepted
 before the freeze. Iteration count on this design: v2 (disclosed).
+
+
+## Margin sweep v2 — final verdict: strict form FAILED, structure survives
+
+The centerpiece's final frozen run (results_margin_sweep.txt, v2
+protocol with the one-sided fix): P1 PASS (12/16 pairs within the
+band), P2 FAIL by 0.008 nats (mean D = -0.258 vs |mean| <= 0.25),
+P4 PASS under its honest form (0 wrong certifications in 8,200 reps).
+FAILED as frozen; no v3 — widening bands until a pass would be
+iterate-until-pass, the pattern this project's audits exist to
+prevent.
+
+What the failure measures: the persistent -0.26-nat mean deviation is
+far from the d = 0 / d = 2 signatures (+/-0.5-1.25 nats; both
+excluded by P1's pattern and the accepted power analysis) and matches
+the KNOWN o(1) corrections the truncated three-term expansion drops —
+Woodroofe's overshoot and median-vs-mean terms, which the law-referee
+had already identified as why fitted d lands at 0.7-0.9 instead of 1.
+The disclosed severity operated as designed: P(false fail | exact
+process) = 0.35, and the strict-form criterion failed while every
+d-discriminating criterion passed.
+
+Sweep conclusion for the paper: the (d/2) log n STRUCTURE with d = 1
+is confirmed against the adjacent hypotheses at many-point resolution;
+the STRICT three-term form with c constant-in-tau is refuted at
+0.26-nat precision by its own power-checked test; the gap is the
+measured size of the o(1) terms, and proving/bounding them is the
+Month-2 formalization target (now with a number to hit).
+
+Meta-observation across the project's severe tests: outcomes track
+their pre-disclosed severities (a 0.59-severity test failed; a
+0.65-severity test failed on its strict criterion while excluding the
+alternatives) — the honest-severity machinery is calibrated, which is
+itself evidence the methodology works.

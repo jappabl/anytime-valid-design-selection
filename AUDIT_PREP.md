@@ -950,3 +950,9 @@ within 1000 samples in this regime.
   model (selection bias the power stage could not see). v2
   pre-registered with one-sided stopping and alpha-budget P4;
   iteration disclosed.
+- 2026-08-14: results_margin_sweep.txt v2 FINAL — FAILED as frozen
+  (P2 by 0.008 nats; P1 pass 12/16; P4 honest form 0/8200). d=0/d=2
+  excluded; deviation -0.26 nats = measured o(1) terms; no v3 by
+  policy. Meta: severe-test outcomes track disclosed severities.
+  Task 41 closed. Month-2 formalization inherits the o(1) bound
+  target.
