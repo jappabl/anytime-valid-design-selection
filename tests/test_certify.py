@@ -116,3 +116,16 @@ def test_recommend_covers_regimes():
     assert "single-stream" in Certifier.recommend(2.0, 0.05)
     assert "wsr" in Certifier.recommend(200.0, 0.02)
     assert "warm-start" in Certifier.recommend(200.0, 0.02, recurring=True)
+
+
+def test_auto_select_dispatch():
+    hot = [(i % 4, (i % 4 == 3) and (i % 8 == 3)) for i in range(80)]
+    mild = [(i % 4, i % 5 == 0) for i in range(160)]
+    assert Certifier.auto_select(hot)[0] == "wsr"
+    assert Certifier.auto_select(mild)[0] == "single"
+
+
+def test_auto_select_zero_stratum_guarded():
+    pilot = [(i % 4, i % 4 == 3) for i in range(80)]
+    kind, k = Certifier.auto_select(pilot)
+    assert kind == "wsr" and k == 4

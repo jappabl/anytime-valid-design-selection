@@ -162,6 +162,29 @@ class Certifier:
         return list(self._history)
 
     @staticmethod
+    def auto_select(pilot, floor=10.0):
+        """Choose a shipped design from a pilot slice.
+
+        pilot: list of (stratum, is_failure) drawn from the target
+        stream (round-robin or any balanced order). Never reuse pilot
+        samples in the certification stream. Returns ("single", 1) or
+        ("wsr", k): the shipped two-way dispatch on the measured
+        stratum heterogeneity ratio (design-map axis; the directed and
+        warm-start cells of the map need inputs this API does not take
+        from a pilot alone). Shrunk ratio: (max_k p_k + h) / (min_k
+        p_k + h) with h = 1/(2 n_k) guarding zero cells; ratio >=
+        `floor` selects "wsr", else "single".
+        """
+        ks = sorted({s for s, _ in pilot})
+        rates, h = [], None
+        for k in ks:
+            ys = [int(y) for s, y in pilot if s == k]
+            h = 1.0 / (2 * max(len(ys), 1))
+            rates.append(sum(ys) / max(len(ys), 1))
+        ratio = (max(rates) + h) / (min(rates) + h)
+        return ("wsr", len(ks)) if ratio >= floor else ("single", 1)
+
+    @staticmethod
     def recommend(heterogeneity_ratio, margin, recurring=False):
         """Advisory design-map lookup (FINDINGS.md, fig9)."""
         if recurring:
