@@ -616,6 +616,23 @@ requires **one fitted constant c per model** (−1.56 / +1.91); with
 c = 0 its errors are ±12%. The honest phrasing for UI is "d from the
 rule, c fitted once per model."
 
+**The measured correction to this very form.** A power-checked
+17-point margin sweep (design accepted at discrimination 0.65 / 0.00 /
+0.04 before freezing; `results_margin_sweep.txt`) tested the strict
+three-term form by differencing out c within rate groups. It **failed
+as frozen, twice** — finally by 0.008 nats — while excluding d = 0 and
+d = 2 decisively: the residual is a persistent **−0.26-nat** mean
+deviation, the measured size of the o(1) overshoot and
+median-versus-mean terms the truncated expansion drops (the same terms
+the adversarial referee identified as why fitted d lands at 0.7–1.0
+rather than exactly 1). The sweep also surfaced a protocol constant
+the expansion hides: because the Beta-mixture e-value is exchangeable,
+round-robin streams (variance-reduced counts) cross **~20% slower**
+than iid streams at the same pooled rate (median 1024 vs 844 at one
+matched point) — c depends on the sampling protocol, not just on
+(p*, τ). Bounding the −0.26-nat term is the open formalization target
+this project hands to the theory (§7).
+
 ### 5.3 The dimension rule: status honest
 
 Our pre-registered dimension window for the UI statistic **MISSED**
@@ -812,6 +829,18 @@ complete miss ledger for the second half of the project:
 | TaSC (two pre-registered predictions) | BOTH FAILED |
 | Sharp priors: save 4–6 nats | FAILED (saved none) |
 | Prediction-powered refinement: 19% variance cut | FAILED (net loss) |
+| Severe live test (C1/C2/C3 windows, disclosed severity 0.59) | **FAILED as frozen**; C3 later shown to have d-discrimination gap +0.02 — a coin (`results_severe_live.txt`) |
+| Shade refinements (proportional, κ-ladder) | BOTH LOST to the flat-shade control (`results_shade_refine.txt`) |
+| Real-chain supplementary S1a (downward jump ≤ 1.15× cold) | MISSED by 0.01 (`results_real_chain.txt`, `PREREG_S1.md`) |
+| Within-lineage boundary premium ≥ +0.5 | **ABSENT** (+0.08 vs the clean sibling where the rule predicts +1; formula-pass via a censored fit disclosed as hollow, `results_lineage_d.txt`) |
+| Margin sweep v1 (P2, P4) | **FAILED**; caught our own two-sided/one-sided protocol bug; P4 zero-claim ill-posed and restated (`results_margin_sweep.txt` v1) |
+| Margin sweep v2 (P2, one-sided protocol) | **FAILED by 0.008 nats** (mean D −0.258) at power-checked severity 0.65 — the deviation is the measured o(1) overshoot term (§5.2) |
+
+The margin-sweep pair deserves emphasis rather than burial: the
+centerpiece experiment failed, received one legitimate mechanical bug
+fix, and **failed again** under the corrected protocol — while
+excluding d = 0 and d = 2 decisively both times. A severity machinery
+that never produced this sequence would not be worth trusting.
 
 Against this ledger, the three *load-bearing* passes are: the
 single-stream zero-fit prediction (§5.2), the out-of-family dimension

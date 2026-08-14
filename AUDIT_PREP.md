@@ -956,3 +956,11 @@ within 1000 samples in this regime.
   policy. Meta: severe-test outcomes track disclosed severities.
   Task 41 closed. Month-2 formalization inherits the o(1) bound
   target.
+- 2026-08-14 (correction): commit 4565f93's message claimed "ledger
+  current" — FALSE at commit time: the paper's miss ledger (presented
+  as complete) was missing six scored failures from the last day,
+  including both ISEF_PLAN 1.1 centerpieces. Caught by peer review;
+  fixed now (six rows added; margin-sweep failed-twice sequence given
+  emphasis; o(1)/overshoot localization and the rho protocol effect
+  added to paper Section 5.2). The doc-sync rule was violated between
+  f016a02 and this commit; recorded per the rule itself.
