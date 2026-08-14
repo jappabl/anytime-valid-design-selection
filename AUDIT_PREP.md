@@ -930,3 +930,11 @@ within 1000 samples in this regime.
   paper: commit 0e95d33's message phrased C3's gap as "0.76 vs 0.84"
   (d=0); the binding alternative is d=2 at 0.83 — the code is correct,
   do not carry the commit phrasing into Section 6.
+- 2026-08-14: results_real_chain.txt — real-trajectory chains: frozen
+  P1-P4 all PASS (floor saturation 1.16-1.19x cold; WSR wins totals;
+  zero wrong in 2,800 runs); supplementary S1a MISSED by 0.01 (logged,
+  direction-semantics caveat), S1b PASS. Warm-start scope now measured
+  on real Meta/Alibaba history: close releases only. Monotonicity scope
+  correction and PREREG_S1 committed at ad8cf57; lineage-d frozen at
+  9a87f13 (running). Limitation 10 closed; Limitation 8 partially
+  (replay on real lineages; local live arms still available free).

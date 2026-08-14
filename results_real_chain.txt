@@ -1,0 +1,52 @@
+============================================================================
+WARM-START ON REAL RELEASE TRAJECTORIES (predictions pre-registered in header)
+============================================================================
+alpha=0.05, 200 reps, n_max=6000, shade=0.015, BASE_SEED=42
+
+  Meta (tau=0.35): pooled [0.609, 0.267, 0.483] truths ['UNSAFE', 'SAFE', 'UNSAFE']
+    epoch 1 (truth UNSAFE, pooled 0.609):
+      cold UI           : correct 200/200, wrong 0, abstain   0, median 44
+      chain-warm        : correct 200/200, wrong 0, abstain   0, median 44
+      chain-warm shaded : correct 200/200, wrong 0, abstain   0, median 44
+      WSR               : correct 200/200, wrong 0, abstain   0, median 40
+    epoch 2 (truth SAFE, pooled 0.267):
+      cold UI           : correct 200/200, wrong 0, abstain   0, median 386
+      chain-warm        : correct 200/200, wrong 0, abstain   0, median 448
+      chain-warm shaded : correct 200/200, wrong 0, abstain   0, median 448
+      WSR               : correct 200/200, wrong 0, abstain   0, median 184
+    epoch 3 (truth UNSAFE, pooled 0.483):
+      cold UI           : correct 200/200, wrong 0, abstain   0, median 124
+      chain-warm        : correct 200/200, wrong 0, abstain   0, median 148
+      chain-warm shaded : correct 200/200, wrong 0, abstain   0, median 148
+      WSR               : correct 200/200, wrong 0, abstain   0, median 64
+    scoring:
+      epoch 2 chain-warm/cold = 1.16 (P2 window [0.9, 1.4]: PASS)
+      epoch 2 chain-warm shaded/cold = 1.16 (P2 window [0.9, 1.4]: PASS)
+      epoch 2 shade effect 1.00 (P3 |r-1| <= 0.10: PASS)
+      epoch 3 chain-warm/cold = 1.19 (P2 window [0.9, 1.4]: PASS)
+      epoch 3 chain-warm shaded/cold = 1.19 (P2 window [0.9, 1.4]: PASS)
+      epoch 3 shade effect 1.00 (P3 |r-1| <= 0.10: PASS)
+    totals {'cold UI': 554, 'chain-warm': 640, 'chain-warm shaded': 640, 'WSR': 288} -> best: WSR (P4 WSR wins: PASS)
+
+  Alibaba (tau=0.34): pooled [0.389, 0.297] truths ['UNSAFE', 'SAFE']
+    epoch 1 (truth UNSAFE, pooled 0.389):
+      cold UI           : correct 200/200, wrong 0, abstain   0, median 1092
+      chain-warm        : correct 200/200, wrong 0, abstain   0, median 1092
+      chain-warm shaded : correct 200/200, wrong 0, abstain   0, median 1092
+      WSR               : correct 200/200, wrong 0, abstain   0, median 290
+    epoch 2 (truth SAFE, pooled 0.297):
+      cold UI           : correct 200/200, wrong 0, abstain   0, median 1336
+      chain-warm        : correct 200/200, wrong 0, abstain   0, median 1572
+      chain-warm shaded : correct 200/200, wrong 0, abstain   0, median 1572
+      WSR               : correct 200/200, wrong 0, abstain   0, median 364
+    scoring:
+      epoch 2 chain-warm/cold = 1.18 (P2 window [0.9, 1.4]: PASS)
+      epoch 2 chain-warm shaded/cold = 1.18 (P2 window [0.9, 1.4]: PASS)
+      epoch 2 shade effect 1.00 (P3 |r-1| <= 0.10: PASS)
+    totals {'cold UI': 2428, 'chain-warm': 2664, 'chain-warm shaded': 2664, 'WSR': 654} -> best: WSR (P4 WSR wins: PASS)
+
+  P1 wrong certifications, all chains/arms/epochs: 0
+
+============================================================================
+Checksum (SHA256): 30b3c8867db5fa4e
+============================================================================
