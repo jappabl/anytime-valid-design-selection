@@ -624,9 +624,36 @@ RATE — the second, sharper form of finding F12: at 3B scale, even a
 transfer to test day. Rate stability, not theory, is the binding
 constraint on live prediction at small scale.
 
+INDEPENDENT RE-ANALYSIS (peer session, 2026-08-14; verified against
+the journal before adoption — all three claims reproduce):
+
+1. RESOLUTION DEFICIT: bootstrapping the realized stopping times, the
+   C3 ratio statistic at 20 reps/arm has 95% interval [0.21, 0.40] and
+   P(landing inside the frozen window | the realized data) ~ 0.57 —
+   the window is narrower than the statistic's own sampling noise. The
+   frozen FAIL stands, but C3 is additionally scored
+   UNRESOLVED-BY-DESIGN: a miss by 0.0014 at this resolution carries
+   almost no evidential weight about the log-n structure. Design
+   lesson (added to the severity methodology): a criterion's window
+   must be wider than its estimator's noise, or it tests a coin.
+2. DEAD ZONE: once the tau1 arm closed at median 982, C2 required
+   median(tau2) <= 240 while C3 required >= 253.4 — mutually
+   exclusive. Two of the three failures were geometrically forced
+   before the second arm finished; "3 of 4 criteria failed" therefore
+   overstates the evidence against the theory. Severity calibrators
+   must check cross-criterion window compatibility conditional on a
+   realized first arm.
+3. RATE CLAIM SOFTENED: the selection-free live-rate estimate (fixed
+   windows every rep reached) is 0.545 +/- 0.003 vs pilot 0.558 — a
+   marginal -1.3pp offset (t ~ -2), not the "~2pp / 2.5-4 se" first
+   written here; no detectable within-run drift. And the
+   reconstruction "all criteria pass at the corrected rate" ASSUMES
+   the 1/(p-tau)^2 structure that C3 was probing — it is labeled as
+   conditional-on-the-theory, not evidence for it.
+
 What survives untouched: anytime validity (40/40 correct UNSAFE, zero
 SAFE — now 56/56 across both live prediction exercises), the offline
-calibrations (26/26 byte-reproducible), and the honest-severity
-methodology itself, which did exactly what it promised: it produced a
-real failure with a pre-committed reading, where the first capstone
-could only produce an unfalsifiable pass.
+calibrations (26/26 byte-reproducible), the pilot transfer finding,
+and the honest-severity methodology itself — which now includes two
+measured design lessons (resolution, window compatibility) that the
+next severe test inherits.

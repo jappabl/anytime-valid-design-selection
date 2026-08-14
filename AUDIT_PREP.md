@@ -901,3 +901,14 @@ within 1000 samples in this regime.
   expansion, is the binding constraint (F12 second form).
   results_severe_live.txt regenerated deterministically from the
   committed journal by scripts/summarize_severe_live.py.
+- 2026-08-14: PEER RE-ANALYSIS of the severe test adopted after
+  numerical verification (all three claims reproduce from the journal):
+  C3 scored UNRESOLVED-BY-DESIGN alongside the frozen FAIL (bootstrap
+  P(in-window) ~ 0.57 — window narrower than estimator noise); C2/C3
+  dead-zone disclosed (mutually exclusive once m1 = 982; two of three
+  failures geometrically forced); rate-shortfall claim softened to
+  -1.3pp marginal (t ~ -2) and the pass-at-corrected-rate
+  reconstruction labeled circular (assumes the structure under test).
+  Verdict unchanged: FAILED as frozen. Process rule adopted: long runs
+  get announced duration + milestone check-ins + immediate
+  completion/crash reports.
