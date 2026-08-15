@@ -221,6 +221,13 @@ def main():
     print()
     w2 = run_traj(TRAJ_B, "B (margin-rich)")
     print(f"\n  wrong certifications, both trajectories: {w1 + w2}")
+    print("\nPRE-REGISTERED VERDICTS (headline clauses; totals per "
+          "trajectory printed above):")
+    print(f"  P1 zero wrong: {'PASS' if w1 + w2 == 0 else 'FAIL'}")
+    print("  P2/P3 (A <= 1.00x WSR; B <= 0.85x WSR): scored from the "
+          "per-trajectory total lines above — both FAILED as frozen "
+          "(see FINDINGS item 8)")
+    print("  ROUTER V2 VERDICT: FAILED")
 
 
 if __name__ == "__main__":

@@ -61,6 +61,11 @@ tau=0.16, alpha=0.05, LCB_THRESH=0.03, decay=0.5, 200 reps, n_max=6000, pools 20
 
   wrong certifications, both trajectories: 0
 
+PRE-REGISTERED VERDICTS (headline clauses; totals per trajectory printed above):
+  P1 zero wrong: PASS
+  P2/P3 (A <= 1.00x WSR; B <= 0.85x WSR): scored from the per-trajectory total lines above — both FAILED as frozen (see FINDINGS item 8)
+  ROUTER V2 VERDICT: FAILED
+
 ============================================================================
-Checksum (SHA256): 46a2dc858c5e88a2
+Checksum (SHA256): a645cc971bf7f4e7
 ============================================================================

@@ -194,6 +194,15 @@ def main():
     print(f"  routing accuracy: picked per-epoch winner {picks}/"
           f"{N_EPOCHS} epochs")
     print(f"  wrong certifications, all arms x epochs: {total_wrong}")
+    print("\nPRE-REGISTERED VERDICTS:")
+    print(f"  P1 zero wrong: "
+          f"{'PASS' if total_wrong == 0 else 'FAIL'}")
+    print(f"  P2 router <= 1.05x pure WSR: {t_router/t_wsr:.3f} -> "
+          f"{'PASS' if t_router <= 1.05 * t_wsr else 'FAIL'}")
+    print(f"  P3 routing accuracy >= 4/6: {picks}/6 -> "
+          f"{'PASS' if picks >= 4 else 'FAIL'}")
+    print(f"  ROUTER V1 VERDICT: "
+          f"{'ALL PASS' if total_wrong == 0 and t_router <= 1.05 * t_wsr and picks >= 4 else 'FAILED (documented as the characterized negative it is)'}")
 
 
 if __name__ == "__main__":

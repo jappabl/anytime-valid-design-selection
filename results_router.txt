@@ -48,6 +48,12 @@ tau=0.16, alpha=0.05, THRESH=0.05, 200 reps, n_max=6000, pools 2000/stratum, BAS
   routing accuracy: picked per-epoch winner 4/6 epochs
   wrong certifications, all arms x epochs: 0
 
+PRE-REGISTERED VERDICTS:
+  P1 zero wrong: PASS
+  P2 router <= 1.05x pure WSR: 1.101 -> FAIL
+  P3 routing accuracy >= 4/6: 4/6 -> PASS
+  ROUTER V1 VERDICT: FAILED (documented as the characterized negative it is)
+
 ============================================================================
-Checksum (SHA256): 92d8e2e4971a5a76
+Checksum (SHA256): 6d671beffa02d73b
 ============================================================================
