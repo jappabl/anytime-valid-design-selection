@@ -1,0 +1,13 @@
+============================================================================
+DERIVED PHASE BOUNDARY: single-stream vs WSR blocks (frozen curve)
+============================================================================
+alpha=0.05, K=4, two-level profile (3 cold + 1 hot), expansion constants as banded in the header
+
+  A1 (MBPP-like, R~2.6): single 900 vs WSR 835 -> FAIL
+  A2 (llama-like, R~31): single 1423 vs WSR 324 -> WSR wins: PASS
+
+  ANCHORS FAILED under central constants — curve NOT frozen; constants need re-derivation
+
+============================================================================
+Checksum (SHA256): 09b5551f7f856a9e
+============================================================================
