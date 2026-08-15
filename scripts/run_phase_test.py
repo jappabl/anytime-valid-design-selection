@@ -38,16 +38,27 @@ only near the band edge.
   0.30  0.060   3      in-band   unresolved (reported)
   0.20  0.060   7      in-band   unresolved (reported)
 
-PRE-REGISTERED SCORING (v2):
-  P1 below-band points won by single-stream in >= 8 of 10 (both arms
-     >= 90% certified);
-  P2 all 3 above-band sanity points won by WSR;
-  P3 wrong certifications <= alpha of all reps.
-Diagnostic readout (not scored): the spatial pattern of any P1
-misses — uniform-across-m=0.08 indicts the margin model; edge-
-concentrated indicts c_short(R). 200 reps/arm/point, n_max 12000,
-UNSAFE, round-robin. Offline, deterministic. Writes
-results_phase_test.txt (v2; v1 preserved in git at 065f9a8).
+V2B SCORING PROTOCOL (v2's rule — "which median is lower", no error
+bars, arms not even CRN-paired — was the census generator's FOURTH
+instance, caught by peer review with a pre-stated falsifiable
+prediction recorded here: MOST below-band points at m = 0.08 will
+come back TIE, making the honest claim "below the boundary the
+designs are statistically indistinguishable" rather than "single
+wins"). v2b re-scores with the instrument the project already built
+for exactly this (Section 4.1 / results_uncertainty.txt):
+
+  - arms CRN-PAIRED (same rng seed per rep);
+  - paired bootstrap (10,000 resamples of rep indices) on
+    median(single) - median(wsr) per point, CI printed;
+  - three-way verdict: SINGLE / WSR / TIE (CI straddles zero);
+  - P1: every RESOLVING below-band point is SINGLE (ties reported
+    and excluded, like in-band points); tie fraction printed and the
+    peer prediction scored against it;
+  - P2: all resolving sanity points WSR; P3 wrong-certs <= alpha.
+
+200 reps/arm/point, n_max 12000, UNSAFE, round-robin. Offline,
+deterministic. Writes results_phase_test.txt (v2b; v1 at 065f9a8,
+v2 at the prior commit).
 """
 
 import hashlib
@@ -151,27 +162,58 @@ def main():
 
     p1_ok, p2_ok, p1_n, p2_n = 0, 0, 0, 0
     wrong, total = 0, 0
+    ties = 0
     for i, (p_star, m, R, expect) in enumerate(POINTS):
         rates = strata_for(p_star, R)
         tau = round(p_star - m, 3)
-        meds = {}
+        times = {"single": [], "wsr": []}
         fracs = {}
         for kind, fn in [("single", run_single), ("wsr", run_wsr)]:
-            rng = np.random.default_rng(
-                BASE_SEED + 5000 + 137 * i
-                + (0 if kind == "single" else 61))
-            outs = [fn(rates, tau, lo_pool, hi_pool, rng)
-                    for _ in range(N_REPS)]
-            dec = [n for d, n in outs if d == "UNSAFE"]
-            wrong += sum(1 for d, _ in outs if d == "SAFE")
-            total += N_REPS
-            fracs[kind] = len(dec) / N_REPS
-            meds[kind] = int(np.median(dec)) if dec else None
-        both_ok = all(fracs[k] >= 0.9 and meds[k] for k in meds)
-        winner = (min(meds, key=meds.get) if both_ok else None)
+            done = 0
+            for rep in range(N_REPS):
+                # CRN: same per-rep seed for BOTH arms
+                rng = np.random.default_rng(
+                    BASE_SEED + 5000 + 137 * i + 1009 * rep)
+                d, n = fn(rates, tau, lo_pool, hi_pool, rng)
+                if d == "UNSAFE":
+                    times[kind].append(n)
+                    done += 1
+                elif d == "SAFE":
+                    wrong += 1
+                    times[kind].append(N_MAX)   # censored
+                else:
+                    times[kind].append(N_MAX)   # censored at n_max
+                total += 1
+            fracs[kind] = done / N_REPS
+        meds = {k: int(np.median(v)) for k, v in times.items()}
+        both_ok = all(fracs[k] >= 0.9 for k in fracs)
+        # paired bootstrap on the median difference (CRN pairing)
+        brng = np.random.default_rng(999 + i)
+        s_arr = np.array(times["single"])
+        w_arr = np.array(times["wsr"])
+        diffs = []
+        for _ in range(10000):
+            idx = brng.integers(0, N_REPS, N_REPS)
+            diffs.append(np.median(s_arr[idx]) - np.median(w_arr[idx]))
+        lo_ci, hi_ci = np.percentile(diffs, [2.5, 97.5])
+        if not both_ok:
+            winner = None
+        elif hi_ci < 0:
+            winner = "single"
+        elif lo_ci > 0:
+            winner = "wsr"
+        else:
+            winner = "tie"
         if expect is None:
             print(f"  p*={p_star} m={m} R={R:5.1f}: meds {meds} "
                   f"[in-band, unresolved-by-design, unscored]")
+            continue
+        if winner == "tie":
+            ties += 1
+            print(f"  p*={p_star} m={m} R={R:5.1f}: predict "
+                  f"{expect:6s} -> TIE (meds {meds}, CI "
+                  f"[{lo_ci:+.0f}, {hi_ci:+.0f}]) [unresolved-by-"
+                  f"measurement, unscored]")
             continue
         hit = winner == expect
         if expect == "single":
@@ -181,14 +223,17 @@ def main():
             p2_n += 1
             p2_ok += hit
         print(f"  p*={p_star} m={m} R={R:5.1f}: predict {expect:6s} "
-              f"-> winner {winner} (meds {meds}) "
-              f"{'HIT' if hit else 'MISS'}")
+              f"-> winner {winner} (meds {meds}, CI [{lo_ci:+.0f}, "
+              f"{hi_ci:+.0f}]) {'HIT' if hit else 'MISS'}")
 
-    p1 = p1_ok >= 8
+    p1 = p1_ok == p1_n and p1_n > 0
     p2 = p2_ok == p2_n
     p3 = wrong / total <= ALPHA
-    print(f"\n  P1 below-band -> single: {p1_ok}/{p1_n} "
-          f"(need >= 8): {'PASS' if p1 else 'FAIL'}")
+    print(f"\n  ties (unresolved-by-measurement): {ties} of 13 "
+          f"scored points; peer prediction 'most below-band points "
+          f"tie': {'CONFIRMED' if ties >= 5 else 'REFUTED'}")
+    print(f"  P1 every RESOLVING below-band point -> single: "
+          f"{p1_ok}/{p1_n}: {'PASS' if p1 else 'FAIL'}")
     print(f"  P2 above-band -> wsr: {p2_ok}/{p2_n}: "
           f"{'PASS' if p2 else 'FAIL'}")
     print(f"  P3 wrong-cert rate {wrong}/{total} = "
