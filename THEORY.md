@@ -851,3 +851,20 @@ n-of-m claims without adjacent enumeration
 (results_relation_gate.txt). The gate now runs before freezes and
 before verdict-asserting commits; the census's falsifiable prediction
 is that the next defect will also be an uncomputed relation.
+
+
+## The fourth term passes its blind test (A1)
+
+The peer-mandated independent test: the derived fourth term
+(-1/2 log(2 pi p q) in the residual, plus ONE measured renewal scalar
+-1.105 disclosed as measured-not-derived) had to make phase-boundary
+anchor A1 pass where fitted constants failed by 8%. It does, and
+robustly: single 832 vs WSR 835 (central), 908 and 945 at both WSR
+envelope corners — the winner relation matches the measured MBPP cell
+(single by 9%) across the entire band. A term derived to explain one
+dataset's residual structure, passing a different functional test on
+different data, is very hard to have gotten by accident. Remaining
+honesty: both arms' absolute medians predict ~10-20% low (WSR still
+lacks its own o(1) treatment — the symmetric derivation is the open
+next clause), so the phase curve's WINNER predictions are now
+trustworthy while its absolute-n predictions carry that caveat.

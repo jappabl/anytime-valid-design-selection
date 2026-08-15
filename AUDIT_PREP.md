@@ -1024,3 +1024,9 @@ within 1000 samples in this regime.
   (3) d392c74 unit mix fixed: corr collapse is -0.616 -> -0.133
   per-point (slope -1.398 -> -0.255); -0.900 was the 6-group-mean
   statistic. Overshoot artifact regenerated on one unit.
+- 2026-08-15: A1 BLIND TEST PASSED under four-term derived single-arm
+  constants (+ one disclosed measured renewal scalar): single 832 vs
+  WSR 835/908/945 across the whole envelope band, matching the
+  measured cell direction. Phase-curve pass 4 (full curve regeneration
+  + gate + freeze) queued. Absolute-median caveat recorded (~10-20%
+  low both arms; WSR o(1) treatment open).
