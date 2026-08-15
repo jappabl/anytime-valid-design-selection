@@ -1,0 +1,33 @@
+============================================================================
+THE FOURTH TERM, DERIVED: c(p) = -(1/2) log(2 pi p q)
+============================================================================
+
+  C1 identity: max |betaln - four-term| = 0.00374 over the grid (Stirling remainder bound 0.00632): PASS
+
+  C2 slope removal on the frozen 17-point grid:
+     raw residuals:      slope -1.398 nats/unit p*
+     after c_Laplace:    slope -0.255, corr -0.133
+     |slope| <= 0.35 and |corr| <= 0.45: PASS
+
+  C3 remaining offset: mean -1.105 nats, std 0.286 (<= 0.25: FAIL) — the renewal/selection constant, closed form OPEN
+
+  C4 decomposition of the offset (exact simulator, p = 0.202, tau = 0.157, 8000 reps):
+     selection E[N(KL(p_hat)-KL(p*))] = +0.681 (enters with minus)
+     crossing overshoot E[logE_N - L]  = +0.229
+     median-vs-mean (medN-meanN)*V     = -0.645
+     c_Laplace(p)                      = -0.006
+     sum -> predicted residual -1.103 vs measured residual at the simulated median -1.228
+     |sum - measured| <= 0.2: PASS
+
+READING: the fourth term is DERIVED and it is the p*-structure — the
+slope the margin sweep measured is the Laplace constant's derivative,
+predicted with nothing fitted. What remains open in closed form is a
+~-1.10-nat p*-independent renewal constant (selection +
+overshoot + median effects), decomposed numerically in C4. The blind
+test of this derivation is the phase-boundary anchor gate
+(derive_phase_boundary.py pass 4): the four-term expansion must make
+A1 pass with derived constants.
+
+============================================================================
+Checksum (SHA256): 0b7fa43558e3530f
+============================================================================
