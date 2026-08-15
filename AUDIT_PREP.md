@@ -986,3 +986,12 @@ within 1000 samples in this regime.
   (2-of-4 as frozen, P3 hollow disclosed). Certifier O(n)-per-update
   defect (peer-found, 900x) fixed + regression-tested; auto-select
   relaunched on the fixed wrapper.
+- 2026-08-14: peer rev-2 profiling correction adopted: the defect was
+  a ~6-9ms per-block exact Lagrange decision, not O(n) growth. Fixed
+  with a cached-feasible-boundary-point gate (sound upper bound on the
+  min-statistic; skipping evaluations is validity-free). k=4 mixture:
+  ~2ms -> 21.2us/sample amortized (~1,300x across both wrapper fixes);
+  2,000-sample wall-clock regression test replaces the flat-in-n form
+  that would not have caught the original defect. auto-select
+  relaunched on the gated wrapper (decision semantics identical across
+  wrapper versions). Target 1 sweep unblocked.
