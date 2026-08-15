@@ -995,3 +995,9 @@ within 1000 samples in this regime.
   that would not have caught the original defect. auto-select
   relaunched on the gated wrapper (decision semantics identical across
   wrapper versions). Target 1 sweep unblocked.
+- 2026-08-15: host machine died mid-runs; recovery per design (all
+  work committed; partial files resumed; zero loss). results_auto_select.txt
+  scored: P1 FAIL by one cell (11/16), P2/P3 PASS (mean regret +8.3%).
+  mistral-7b pool complete; gemma2 resumed at 735/1000; phi3.5 and
+  deepseek queued. Auto-select ran on the gated wrapper (~12 min vs the
+  29h quadratic-era estimate).

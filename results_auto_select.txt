@@ -1,0 +1,30 @@
+============================================================================
+AUTO-SELECT VALIDATION (predictions pre-registered in header)
+============================================================================
+alpha=0.05, 100 reps/cell/design, pilot 120, n_max=6000, BASE_SEED=42
+
+  gpt4omini-json  UNSAFE: oracle wsr    (meds {'single': 922, 'wsr': 306}), auto chose wsr (100/100), auto med 418 -> MATCH, regret -0.02
+  gpt4omini-json  SAFE: oracle wsr    (meds {'single': 1027, 'wsr': 416}), auto chose wsr (100/100), auto med 516 -> MATCH, regret -0.04
+  gpt41nano-json  UNSAFE: oracle single (meds {'single': 222, 'wsr': 284}), auto chose wsr (97/100), auto med 384 -> MISS, regret +0.12
+  gpt41nano-json  SAFE: oracle wsr    (meds {'single': 577, 'wsr': 438}), auto chose wsr (98/100), auto med 546 -> MATCH, regret -0.02
+  gpt41mini-json  UNSAFE: oracle wsr    (meds {'single': 1272, 'wsr': 1042}), auto chose single (60/100), auto med 1128 -> MISS, regret -0.03
+  gpt41mini-json  SAFE: oracle single (meds {'single': 337, 'wsr': 416}), auto chose single (65/100), auto med 468 -> MATCH, regret +0.02
+  gpt4omini-code  UNSAFE: oracle single (meds {'single': 335, 'wsr': 462}), auto chose single (57/100), auto med 480 -> MATCH, regret +0.05
+  gpt4omini-code  SAFE: oracle single (meds {'single': 384, 'wsr': 420}), auto chose single (59/100), auto med 542 -> MATCH, regret +0.08
+  llama32-json    UNSAFE: oracle wsr    (meds {'single': 1496, 'wsr': 260}), auto chose wsr (99/100), auto med 374 -> MATCH, regret -0.02
+  llama32-json    SAFE: oracle wsr    (meds {'single': 1456, 'wsr': 244}), auto chose wsr (100/100), auto med 390 -> MATCH, regret +0.07
+  qwen25-json     UNSAFE: oracle wsr    (meds {'single': 1309, 'wsr': 222}), auto chose wsr (100/100), auto med 392 -> MATCH, regret +0.15
+  qwen25-json     SAFE: oracle wsr    (meds {'single': 1307, 'wsr': 344}), auto chose wsr (100/100), auto med 478 -> MATCH, regret +0.03
+  llama32-mbpp    UNSAFE: oracle wsr    (meds {'single': 1190, 'wsr': 1100}), auto chose single (100/100), auto med 1370 -> MISS, regret +0.12
+  llama32-mbpp    SAFE: oracle wsr    (meds {'single': 1247, 'wsr': 1052}), auto chose single (100/100), auto med 1411 -> MISS, regret +0.20
+  qwen25-mbpp     UNSAFE: oracle single (meds {'single': 793, 'wsr': 804}), auto chose single (100/100), auto med 1067 -> MATCH, regret +0.17
+  qwen25-mbpp     SAFE: oracle wsr    (meds {'single': 1132, 'wsr': 672}), auto chose single (96/100), auto med 1129 -> MISS, regret +0.43
+
+  P1 oracle match: 11/16 scoreable cells (need >= 12): FAIL
+  P2 regret: mean +0.083 (<= 0.15: PASS), worst +0.43 (<= 0.60: PASS)
+  P3 cells exceeding the alpha wrong-cert budget: 0 (0 required): PASS
+  unresolved cells (excluded): 0
+
+============================================================================
+Checksum (SHA256): 6f5282713eadaa85
+============================================================================
