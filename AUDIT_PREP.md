@@ -1001,3 +1001,10 @@ within 1000 samples in this regime.
   mistral-7b pool complete; gemma2 resumed at 735/1000; phi3.5 and
   deepseek queued. Auto-select ran on the gated wrapper (~12 min vs the
   29h quadratic-era estimate).
+- 2026-08-15: results_overshoot.txt — fourth term derived (residual
+  -(1/2)log(2 pi p q); slope collapse -1.398 -> -0.255 zero-fit; C4
+  decomposition closes within 0.125; C3 marginal fail std 0.286 vs
+  0.25 disclosed; two in-artifact corrections disclosed). Phase curve
+  passes 1-3 self-refused honestly (8bbccb2); pass 4 with the
+  four-term expansion is the derivation's blind test. Peer reordering
+  (Target 3 blocks Target 1) adopted.

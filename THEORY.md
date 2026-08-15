@@ -805,3 +805,24 @@ only where wrong-regime regret exceeds ~log(3)/(log(1/alpha)+OH),
 i.e. on grids more mild-heterogeneity-heavy than ours. Fourth
 independent confirmation of the meta-finding: routing lost twice, and
 now hedging-instead-of-routing loses to just-use-WSR too.
+
+
+## Target 3, first blood: the fourth term is derived
+
+The p*-structure the margin sweep measured is now DERIVED
+(results_overshoot.txt, commit d392c74). Stirling on the Beta-mixture
+e-value gives the exact-to-O(1/n) identity
+
+    log E_n = n KL(p_hat, tau) - (1/2) log n + (1/2) log(2 pi p_hat q_hat),
+
+so the predicted crossing residual is -(1/2) log(2 pi p* q*) — and
+subtracting that zero-fitted-parameter term from the frozen 17-point
+grid collapses the measured slope from -1.398 to -0.255 nats per unit
+p* and the correlation from -0.900 to -0.133 (C2 PASS). The remaining
+p*-independent offset (~ -1.10 nats) decomposes numerically to within
+0.125 nats as selection (-0.68) + discrete-check overshoot (+0.23) +
+median-vs-mean (-0.65); its closed form (Woodroofe ladder heights) is
+the stated remaining open clause. Disclosure: this explains structure
+measured BEFORE the derivation; its blind test is next — the
+four-term expansion must make the phase-boundary anchor A1 pass with
+derived constants where fitted ones failed by 8%.
