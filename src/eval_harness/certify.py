@@ -118,6 +118,8 @@ class Certifier:
             else:
                 self._cs = StratifiedUICS(
                     k=k, weights=None if k > 1 else [1.0], alpha=alpha)
+            self._m_le = None
+            self._m_ge = None
         else:
             self._cs = WSRBlockCS(alpha=alpha)
             self._pending = [[] for _ in range(k)]
@@ -152,9 +154,22 @@ class Certifier:
             # half-lines, so lo > tau iff rejects_le(tau) and
             # hi <= tau iff rejects_ge(tau).
             if self.method == "mixture":
-                if self._cs.rejects_le(self.tau):
+                # Cheap sound gate (peer rev 2): evaluating the
+                # e-statistic at ANY feasible boundary point m0 upper-
+                # bounds the exact min-over-boundary statistic, so
+                # "cached-point value < log(1/alpha) => cannot reject"
+                # lets us skip the exact Lagrange test on almost every
+                # block. Caches hold the previous exact test's
+                # least-favorable point (tight); skipping evaluations
+                # is statistically free (anytime validity holds at any
+                # subset of stopping times).
+                thresh = float(np.log(1.0 / self.alpha))
+                if self._gate("le") >= thresh \
+                        and self._cs.rejects_le(self.tau):
                     self.decision = "UNSAFE"
-                elif self._cs.rejects_ge(self.tau):
+                    self._m_le = None
+                elif self._gate("ge") >= thresh \
+                        and self._cs.rejects_ge(self.tau):
                     self.decision = "SAFE"
             else:
                 lo, hi = self._cs.get_bounds()
@@ -163,6 +178,29 @@ class Certifier:
                 elif hi <= self.tau:
                     self.decision = "SAFE"
         return self.decision or "CONTINUE"
+
+    def _gate(self, side):
+        """Upper bound on the exact statistic via a cached feasible
+        boundary point; refreshes the cache from least_favorable when
+        the exact test is about to run. O(k) per call."""
+        cs = self._cs
+        m = self._m_le if side == "le" else self._m_ge
+        if m is None:
+            m = np.full(self.k, self.tau)
+        with np.errstate(divide="ignore"):
+            loglik = float(np.sum(cs.f * np.log(np.maximum(m, 1e-12))
+                                  + cs.s * np.log(np.maximum(1 - m,
+                                                             1e-12))))
+        ub = cs.log_pred - loglik
+        thresh = float(np.log(1.0 / self.alpha))
+        if ub >= thresh:
+            # exact test will run; refresh the cache for next block
+            mstar = cs.least_favorable(self.tau, side)
+            if side == "le":
+                self._m_le = mstar
+            else:
+                self._m_ge = mstar
+        return ub
 
     def bounds(self):
         """Current anytime-valid confidence bounds on the pooled rate."""
