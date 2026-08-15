@@ -3,11 +3,38 @@ DERIVED PHASE BOUNDARY: single-stream vs WSR blocks (frozen curve)
 ============================================================================
 alpha=0.05, K=4, two-level profile (3 cold + 1 hot), expansion constants as banded in the header
 
-  A1 (MBPP-like, R~2.6): single 900 vs WSR 835 -> FAIL
-  A2 (llama-like, R~31): single 1423 vs WSR 324 -> WSR wins: PASS
+  A1 (MBPP-like, R~2.6): single 832; expected single -> PASS (all corners)
+  A3 (llama3-8b-like, R~7.5): single 1266; expected wsr -> PASS (all corners)
+  A2 (llama3.2-like, R~31; UNSCORED per R1): single 1283; expected wsr -> PASS (all corners) [reported, not scored]
 
-  ANCHORS FAILED under central constants — curve NOT frozen; constants need re-derivation
+  p* = 0.2:
+   margin R* central            R* band
+    0.030        1.1 [   1.1,    3.3]
+    0.045        2.5 [   1.1,   12.3]
+    0.060        7.3 [   1.1,  400.0]
+    0.080      400.0 [   4.5,  400.0]
+
+  p* = 0.3:
+   margin R* central            R* band
+    0.030        1.1 [   1.1,    2.2]
+    0.045        1.7 [   1.1,    4.1]
+    0.060        3.1 [   1.1,    7.0]
+    0.080        6.1 [   2.2,   20.9]
+
+  p* = 0.4:
+   margin R* central            R* band
+    0.030        1.1 [   1.1,    1.8]
+    0.045        1.5 [   1.1,    2.8]
+    0.060        2.3 [   1.1,    3.7]
+    0.080        3.4 [   1.7,    5.4]
+
+FROZEN VERIFICATION PREDICTION (for run_phase_test.py):
+constructed reweighted pools with measured ratio R below the band's
+lower edge at their margin are won by single-stream (lower median,
+>= 90% certification both arms); above the upper edge, by WSR; points
+inside the band are unresolved-by-design and not scored. The curve
+above is committed BEFORE any verification replay runs.
 
 ============================================================================
-Checksum (SHA256): 09b5551f7f856a9e
+Checksum (SHA256): c4a4720dbba3ccb8
 ============================================================================
