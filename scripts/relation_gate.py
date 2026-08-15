@@ -25,6 +25,13 @@ adds their non-experiment forms plus R4-R7):
   R6 PROPAGATION: --propagate <term> greps the repo's living docs and
      artifacts for a quantity and lists every asserting site, so a
      change to the quantity comes with an explicit still-holds check.
+  R1b SCORING RESOLUTION (extension of R1, fourth-instance rule):
+     any verdict rule comparing two measured quantities must state
+     the comparison's resolution (CI) and report ties as
+     unresolved-by-measurement. A comparison with no error bar is an
+     anchor with no discrimination check. Enforced by protocol in
+     run_phase_test v2b; future comparison tests must print per-point
+     CIs or be refused at freeze.
   R8 ALLOCATION DISCRIMINATION: a verification whose scored points
      concentrate in the region where the hypothesis is already
      established is not discriminating regardless of point count
