@@ -1030,3 +1030,8 @@ within 1000 samples in this regime.
   measured cell direction. Phase-curve pass 4 (full curve regeneration
   + gate + freeze) queued. Absolute-median caveat recorded (~10-20%
   low both arms; WSR o(1) treatment open).
+- 2026-08-15: results_phase_test.txt — phase curve FAILED as frozen
+  (P1 0/2, P2 7/7, P3 1/4400). WSR region derivation-verified; single
+  region misses diagnosed as c_short(R) dependence (constant treated
+  as object, not relation — the generator again). c_short(R)
+  derivation queued as its own frozen artifact; no same-day patching.

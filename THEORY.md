@@ -868,3 +868,31 @@ honesty: both arms' absolute medians predict ~10-20% low (WSR still
 lacks its own o(1) treatment — the symmetric derivation is the open
 next clause), so the phase curve's WINNER predictions are now
 trustworthy while its absolute-n predictions carry that caveat.
+
+
+## Phase-curve verification: FAILED as frozen, 7/9 with structure
+
+results_phase_test.txt (frozen at 8382cfa): P2 PASS — all seven
+above-band points confirm WSR, so the curve's WSR region (where
+hard-margin certification decisions actually live) is now
+derivation-verified on constructed real-outcome pools. P3 PASS
+(1/4,400 wrong). P1 FAIL 0/2: both predict-single points (R = 1.3-1.5
+at margin 0.08) went to WSR by 12-18%. Verdict: FAILED as frozen; one
+scored miss fails the curve, and there were two.
+
+Diagnosis (labeled post-hoc): the WSR envelope's short-horizon
+constant c_short = 2.3 was calibrated on extreme-heterogeneity pools,
+where near-zero block variance throttles the predictable bet; at
+near-homogeneity the block distribution is well-spread and WSR runs
+~0.7-1.0 nats cheaper than the envelope — erasing the derived
+single-wins region at easy margins. c_short is a FUNCTION of the
+block distribution, treated as a constant: the defect census's
+generator, once more, caught by a frozen test. The derivable next
+clause is c_short(R) from the betting dynamics; queued as its own
+frozen artifact per the no-iterate-until-pass rule, not patched
+tonight.
+
+Net state of Target 1: the design map's WSR region is a verified
+derived theory; its single region awaits one more derived constant.
+Five self-refusals, one frozen failure, and seven confirmed points —
+exactly what building a predictive theory in public looks like.
