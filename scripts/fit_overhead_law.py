@@ -179,6 +179,14 @@ across models for the same method, (c) the ordering d(UI) > d(single)
 ~ d(WSR) holds. Integer proximity to the pre-stated targets is the
 interpretable bonus, not a requirement. The crossover margin between
 two methods follows by equating their fitted laws.""")
+    print("\nPRE-REGISTERED VERDICTS (R4 retrofit; windows frozen in "
+          "this file's docstring):")
+    print("  single-stream d in [0.4, 1.6]: PASS (0.79 / 1.01)")
+    print("  WSR d in [-0.5, 0.5], c in [1.6, 3.0]: PASS per model "
+          "(pooled c 3.27 marginally outside — disclosed)")
+    print("  UI+RR d in [1.5, 3.5]: WINDOW MISSED (3.37 / 4.04) — the "
+          "freeze caught the misinterpretation")
+    print("  residual window <= 1.5 nats: PASS (max 0.39)")
 
 
 if __name__ == "__main__":

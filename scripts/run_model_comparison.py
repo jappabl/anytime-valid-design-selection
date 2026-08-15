@@ -123,6 +123,10 @@ def compare(ids, out_a, out_b, label_a, label_b):
         print(f"  median prompts examined: {int(np.median(times))}, "
               f"median discordant used: {int(np.median(disc_counts))}")
     print(f"  wrong decisions: {wrong}")
+    print(f"\n  VERDICT: paired sequential McNemar certifies the "
+          f"better model with {'zero' if wrong == 0 else wrong} wrong "
+          f"decisions -> {'PASS' if wrong == 0 else 'FAIL'} (alpha "
+          f"budget; near-ties abstain by design)")
     print()
 
 

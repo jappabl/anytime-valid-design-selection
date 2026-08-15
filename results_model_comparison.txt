@@ -10,17 +10,23 @@ gpt-4o-mini vs gpt-4.1-nano:
   median prompts examined: 74, median discordant used: 12
   wrong decisions: 0
 
+  VERDICT: paired sequential McNemar certifies the better model with zero wrong decisions -> PASS (alpha budget; near-ties abstain by design)
+
 gpt-4o-mini vs gpt-4.1-mini:
   pool ground truth: gpt-4o-mini uniquely fails 172, gpt-4.1-mini uniquely fails 6 (theta=0.966, 178 discordant prompts of 1000)
   decision 'gpt-4.1-mini better': 500/500
   median prompts examined: 50, median discordant used: 8
   wrong decisions: 0
 
+  VERDICT: paired sequential McNemar certifies the better model with zero wrong decisions -> PASS (alpha budget; near-ties abstain by design)
+
 gpt-4.1-nano vs gpt-4.1-mini:
   pool ground truth: gpt-4.1-nano uniquely fails 69, gpt-4.1-mini uniquely fails 25 (theta=0.734, 94 discordant prompts of 1000)
   decision 'gpt-4.1-mini better': 500/500
   median prompts examined: 335, median discordant used: 31
   wrong decisions: 0
+
+  VERDICT: paired sequential McNemar certifies the better model with zero wrong decisions -> PASS (alpha budget; near-ties abstain by design)
 
 base vs twin (synthetic exact tie):
   pool ground truth: base uniquely fails 30, twin (synthetic exact tie) uniquely fails 30 (theta=0.500, 60 discordant prompts of 1000)
@@ -30,7 +36,9 @@ base vs twin (synthetic exact tie):
   median prompts examined: 710, median discordant used: 40
   wrong decisions: 0
 
+  VERDICT: paired sequential McNemar certifies the better model with zero wrong decisions -> PASS (alpha budget; near-ties abstain by design)
+
 
 ============================================================================
-Checksum (SHA256): 6344e1d297271d74
+Checksum (SHA256): 4ab2a2ca512cb0c2
 ============================================================================

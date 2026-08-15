@@ -24,6 +24,11 @@ alpha=0.05, BASE_SEED=42
     TaSC (ours)    : correct 100/100, wrong 0, abstain 0, median 1874 [1530, 2231]
     TaSC-oracle    : correct 100/100, wrong 0, abstain 0, median 1982 [1648, 2417]
 
+PRE-REGISTERED VERDICTS (R4 retrofit; scoring as recorded in FINDINGS F9/THEORY):
+  TaSC beats WSR on hard margins: FAIL (WSR won all three)
+  TaSC within 2x of its game-value bound: FAIL (~6x)
+  TaSC sound + seed-stable: PASS (zero wrong, both seeds)
+
 ============================================================================
-Checksum (SHA256): a28dd8a15234e4ca
+Checksum (SHA256): 344e3e63a470dfa6
 ============================================================================

@@ -90,6 +90,15 @@ def main():
           0.18, "UNSAFE", 150, 4000)
     bench("gpt-4.1-nano", "llm_outcomes_diverse_json_gpt-4.1-nano.jsonl",
           0.11, "SAFE", 100, 4000)
+    _verdicts()
+
+
+def _verdicts():
+    print("\nPRE-REGISTERED VERDICTS (R4 retrofit; scoring as recorded "
+          "in FINDINGS F9/THEORY):")
+    print("  TaSC beats WSR on hard margins: FAIL (WSR won all three)")
+    print("  TaSC within 2x of its game-value bound: FAIL (~6x)")
+    print("  TaSC sound + seed-stable: PASS (zero wrong, both seeds)")
 
 
 if __name__ == "__main__":

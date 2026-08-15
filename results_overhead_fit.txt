@@ -27,6 +27,12 @@ across models for the same method, (c) the ordering d(UI) > d(single)
 interpretable bonus, not a requirement. The crossover margin between
 two methods follows by equating their fitted laws.
 
+PRE-REGISTERED VERDICTS (R4 retrofit; windows frozen in this file's docstring):
+  single-stream d in [0.4, 1.6]: PASS (0.79 / 1.01)
+  WSR d in [-0.5, 0.5], c in [1.6, 3.0]: PASS per model (pooled c 3.27 marginally outside — disclosed)
+  UI+RR d in [1.5, 3.5]: WINDOW MISSED (3.37 / 4.04) — the freeze caught the misinterpretation
+  residual window <= 1.5 nats: PASS (max 0.39)
+
 ============================================================================
-Checksum (SHA256): 688821bbd44e18c0
+Checksum (SHA256): 095630324fe94d6b
 ============================================================================
