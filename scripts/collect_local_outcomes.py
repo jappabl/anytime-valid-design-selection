@@ -34,6 +34,10 @@ MODELS = {
     "llama3.1:8b": "llama3.1-8b",
     "llama3:8b": "llama3-8b",
     "qwen2:7b": "qwen2-7b",
+    "mistral:7b": "mistral-7b",
+    "gemma2:9b": "gemma2-9b",
+    "phi3.5": "phi3.5-3.8b",
+    "deepseek-llm:7b": "deepseek-llm-7b",
 }
 
 

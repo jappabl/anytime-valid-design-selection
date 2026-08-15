@@ -1,0 +1,31 @@
+============================================================================
+BONFERRONI DESIGN PORTFOLIO (derivation + predictions pre-registered in header)
+============================================================================
+alpha=0.05 (alpha/3 per portfolio arm), 100 reps/cell, n_max=6000, BASE_SEED=42
+
+  gpt4omini-json  UNSAFE: oracle wsr      324, portfolio   398 (1.23x) OK; meds {'single': 780, 'ui': 1296, 'wsr': 324}
+  gpt4omini-json  SAFE: oracle wsr      388, portfolio   492 (1.27x) OK; meds {'single': 1070, 'ui': 1234, 'wsr': 388}
+  gpt41nano-json  UNSAFE: oracle single   234, portfolio   310 (1.32x) OVER; meds {'single': 234, 'ui': 698, 'wsr': 268}
+  gpt41nano-json  SAFE: oracle wsr      450, portfolio   604 (1.34x) OVER; meds {'single': 562, 'ui': 1198, 'wsr': 450}
+  gpt41mini-json  UNSAFE: oracle single  1152, portfolio  1212 (1.05x) OK; meds {'single': 1152, 'ui': None, 'wsr': 1192}
+  gpt41mini-json  SAFE: oracle single   366, portfolio   400 (1.09x) OK; meds {'single': 366, 'ui': 1072, 'wsr': 416}
+  gpt4omini-code  UNSAFE: oracle single   362, portfolio   400 (1.10x) OK; meds {'single': 362, 'ui': 1128, 'wsr': 440}
+  gpt4omini-code  SAFE: oracle single   424, portfolio   496 (1.17x) OK; meds {'single': 424, 'ui': 1264, 'wsr': 428}
+  llama32-json    UNSAFE: oracle wsr      230, portfolio   320 (1.39x) OVER; meds {'single': 1526, 'ui': 1000, 'wsr': 230}
+  llama32-json    SAFE: oracle wsr      304, portfolio   266 (0.88x) OK; meds {'single': 1564, 'ui': 472, 'wsr': 304}
+  qwen25-json     UNSAFE: oracle wsr      232, portfolio   360 (1.55x) OVER; meds {'single': 1176, 'ui': 988, 'wsr': 232}
+  qwen25-json     SAFE: oracle wsr      336, portfolio   462 (1.38x) OVER; meds {'single': 1392, 'ui': 1242, 'wsr': 336}
+  llama32-mbpp    UNSAFE: oracle wsr     1160, portfolio  1346 (1.16x) OK; meds {'single': 1326, 'ui': 2976, 'wsr': 1160}
+  llama32-mbpp    SAFE: oracle wsr     1112, portfolio  1420 (1.28x) OK; meds {'single': 1366, 'ui': 3180, 'wsr': 1112}
+  qwen25-mbpp     UNSAFE: oracle wsr      686, portfolio   788 (1.15x) OK; meds {'single': 776, 'ui': 2080, 'wsr': 686}
+  qwen25-mbpp     SAFE: oracle wsr      752, portfolio   950 (1.26x) OK; meds {'single': 1108, 'ui': 2962, 'wsr': 752}
+
+  P1 validity: 2/1600 wrong (0.0013 <= 0.05): PASS
+  P2 premium <= 1.30x oracle: 11/16 (need >= 13): FAIL
+  P3 HEADLINE totals (cells where the design certified >= 90%; incomplete designs listed): {'portfolio': 10224, 'single': 15184, 'ui': 22790, 'wsr': 8718}
+     portfolio <= every complete fixed design? FAIL (incomplete: ['ui'])
+  P4 stop-arm distribution (descriptive): {'wsr': 974, 'single': 581, 'ui': 45}
+
+============================================================================
+Checksum (SHA256): fe8f2ab9219255ef
+============================================================================

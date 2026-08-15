@@ -782,3 +782,26 @@ P(<=1 | severities correct) = 0.17. At n = 3 that is NO EVIDENCE OF
 MISCALIBRATION and nothing more — the earlier "the machinery is
 calibrated" claim was the same vacuous-validation shape this project
 polices elsewhere, and is withdrawn.
+
+
+## Target 2 verdict: the portfolio LOSES its headline — honestly
+
+The Bonferroni portfolio (all three designs at alpha/3, stop at first
+certification; frozen at 6487058) scored: P1 validity PASS (2/1600
+wrong, 0.13% <= 5%); P2 FAIL as frozen (11/16 cells within the 1.30x
+premium cap — the five misses are the five FASTEST cells, where the
+log(3)/V premium is a constant sample count against a small base:
+the derived mechanism, confirmed, with my cap mis-set for tiny-n
+cells); P3 HEADLINE FAIL: grid totals portfolio 10,224 vs fixed WSR
+8,718 — NOT CHOOSING COSTS MORE THAN WSR'S WRONG-REGIME ERRORS on
+this testbed. P4 descriptive: the portfolio's stopping arm is WSR in
+974/1600 reps, single in 581 (the mild-heterogeneity cells), UI in 45.
+
+Reading: the derivation was right (aggregate premium 17.3%, inside
+the predicted 6-27%) and the DESIGN still loses, because this grid's
+fixed-design regret is smaller than the hedge premium — WSR's
+robustness again. Scope for the paper: a Bonferroni portfolio pays
+only where wrong-regime regret exceeds ~log(3)/(log(1/alpha)+OH),
+i.e. on grids more mild-heterogeneity-heavy than ours. Fourth
+independent confirmation of the meta-finding: routing lost twice, and
+now hedging-instead-of-routing loses to just-use-WSR too.

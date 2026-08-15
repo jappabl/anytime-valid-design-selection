@@ -979,3 +979,10 @@ within 1000 samples in this regime.
   near-vacuous (shaded arm byte-identical to unshaded at these
   drifts); two load-bearing passes (P2, P4), not four — do not carry
   "all pass" into the paper.
+- 2026-08-14: results_portfolio.txt — Target 2 verdict: P1 PASS, P2
+  FAIL as frozen (mechanism confirmed, cap mis-set at tiny n), P3
+  HEADLINE LOST to fixed WSR (8,718 vs 10,224). Reported as the loss
+  it is. results_lineage_d.txt regenerated with printed verdicts
+  (2-of-4 as frozen, P3 hollow disclosed). Certifier O(n)-per-update
+  defect (peer-found, 900x) fixed + regression-tested; auto-select
+  relaunched on the fixed wrapper.

@@ -41,6 +41,13 @@ frozen margins: [0.022, 0.027, 0.032, 0.042, 0.052, 0.057]
     fit WSR@Kelly    : d = -0.19, c = +1.70 (6 pts; max|resid| logn-form 0.21 vs loglogn-form 0.21)
 
 
+PRE-REGISTERED SCORING (frozen at commit 9a87f13):
+  P1 llama3.1-8b d_UI in [4,6]: 4.30 -> PASS
+  P2 siblings in [3,5]: 1.55, 4.22 -> FAIL (llama3-8b fit is 3-point censored — unidentifiable)
+  P3 differential >= +0.5: as frozen +1.42 -> PASS; against the identified sibling only +0.08 — the frozen pass is HOLLOW (it clears the bar only through the fit P2 rejects)
+  P4 single-stream in [0.3,1.5] all three: 0.15, 0.81, 0.92 -> FAIL
+  VERDICT: 2-of-4 as frozen; honest reading 2-of-4 with P3 hollow — the boundary premium is ABSENT at the identified comparison (+0.08 vs predicted +1)
+
 ============================================================================
-Checksum (SHA256): 5e732334bda51424
+Checksum (SHA256): 05e7839c29822875
 ============================================================================
