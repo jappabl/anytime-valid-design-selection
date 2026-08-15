@@ -25,6 +25,13 @@ adds their non-experiment forms plus R4-R7):
   R6 PROPAGATION: --propagate <term> greps the repo's living docs and
      artifacts for a quantity and lists every asserting site, so a
      change to the quantity comes with an explicit still-holds check.
+  R8 ALLOCATION DISCRIMINATION: a verification whose scored points
+     concentrate in the region where the hypothesis is already
+     established is not discriminating regardless of point count
+     (three instances: the pool sweep, anchor A2, phase-test v1's
+     7-of-9 WSR-region allocation). --allocation checks the phase
+     test's POINTS list: >= 50% of scored points must carry the
+     novel-region prediction.
   R7 RESOURCE INVARIANT: --budgets runs the shipped wall-clock
      regression (certify 2,000 samples inside budget) so "fast enough"
      is a tested relation, not an assumption.
@@ -164,6 +171,22 @@ def r6_propagate(term):
     return []
 
 
+def r8_allocation():
+    import types
+    src = open(REPO / "scripts" / "run_phase_test.py").read()
+    m = types.ModuleType("pt")
+    m.__dict__["__file__"] = str(REPO / "scripts" / "run_phase_test.py")
+    exec(src.split("def load_base")[0], m.__dict__)
+    scored = [p for p in m.POINTS if p[3]]
+    novel = [p for p in scored if p[3] == "single"]
+    frac = len(novel) / len(scored)
+    print(f"R8 allocation: {len(novel)}/{len(scored)} scored points "
+          f"in the novel (single) region ({frac:.0%}; need >= 50%): "
+          f"{'ok' if frac >= 0.5 else 'REFUSE'}")
+    return [] if frac >= 0.5 else [
+        "R8: verification concentrates in the established region"]
+
+
 def r7_budgets():
     print("R7 resource invariants (shipped wall-clock budgets):")
     r = subprocess.run(
@@ -192,6 +215,9 @@ def main():
         if a == "--propagate" and i + 1 < len(args):
             r6_propagate(args[i + 1])
             print()
+    if not args or "--allocation" in args:
+        flags += r8_allocation()
+        print()
     if not args or "--budgets" in args:
         flags += r7_budgets()
         print()
