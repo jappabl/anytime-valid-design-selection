@@ -910,3 +910,91 @@
 {"id": "diverse_json_extreme_0159", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting value: line 75 column 15 (char 1601)"}
 {"id": "diverse_json_extreme_0160", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting value: line 73 column 17 (char 1602)"}
 {"id": "diverse_json_extreme_0161", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting ',' delimiter: line 77 column 17 (char 1616)"}
+{"id": "diverse_json_extreme_0162", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'OV-1234567-AB' does not match '^OV-[0-9]{7}-[a-z]{2}$'"}
+{"id": "diverse_json_extreme_0163", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'LY-12345678-ABC' does not match '^LY-[0-9]{8}-[a-z]{3}$'"}
+{"id": "diverse_json_extreme_0164", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Unterminated string starting at: line 79 column 3 (char 1599)"}
+{"id": "diverse_json_extreme_0165", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting value: line 72 column 22 (char 1570)"}
+{"id": "diverse_json_extreme_0166", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'RUEW123456789ABC' does not match '^RUEW[0-9]{11}[a-z]{3}$'"}
+{"id": "diverse_json_extreme_0167", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting value: line 76 column 16 (char 1604)"}
+{"id": "diverse_json_extreme_0168", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'ABCDEFGHIJ' is too short"}
+{"id": "diverse_json_extreme_0169", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting value: line 75 column 14 (char 1609)"}
+{"id": "diverse_json_extreme_0170", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'YQTI123456789ABC' does not match '^YQTI[0-9]{10}[a-z]{3}$'"}
+{"id": "diverse_json_extreme_0171", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'SDGH123456789XY' does not match '^SDGH[0-9]{9}[a-z]{3}$'"}
+{"id": "diverse_json_extreme_0172", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'IPHM_1234567890_AB' does not match '^IPHM_[0-9]{11}_[a-z]{2}$'"}
+{"id": "diverse_json_extreme_0173", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Unterminated string starting at: line 73 column 5 (char 1563)"}
+{"id": "diverse_json_extreme_0174", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'MEA12345678AB' does not match '^MEA[0-9]{8}[a-z]{2}$'"}
+{"id": "diverse_json_extreme_0175", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Unterminated string starting at: line 79 column 3 (char 1621)"}
+{"id": "diverse_json_extreme_0176", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'EGMK_12345678_XYZ' does not match '^EGMK_[0-9]{8}_[a-z]{3}$'"}
+{"id": "diverse_json_extreme_0177", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Unterminated string starting at: line 77 column 5 (char 1599)"}
+{"id": "diverse_json_extreme_0178", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting ',' delimiter: line 77 column 12 (char 1604)"}
+{"id": "diverse_json_extreme_0179", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'VZF_123456789_XYZ' does not match '^VZF_[0-9]{11}_[a-z]{3}$'"}
+{"id": "diverse_json_extreme_0180", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting value: line 76 column 12 (char 1602)"}
+{"id": "diverse_json_extreme_0181", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Unterminated string starting at: line 79 column 3 (char 1616)"}
+{"id": "diverse_json_extreme_0182", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting value: line 75 column 13 (char 1599)"}
+{"id": "diverse_json_extreme_0183", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting property name enclosed in double quotes: line 78 column 5 (char 1615)"}
+{"id": "diverse_json_extreme_0184", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting value: line 74 column 12 (char 1587)"}
+{"id": "diverse_json_extreme_0185", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting value: line 74 column 13 (char 1591)"}
+{"id": "diverse_json_extreme_0186", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting value: line 75 column 13 (char 1591)"}
+{"id": "diverse_json_extreme_0187", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'OPA_12345678_XYZ' does not match '^OPA_[0-9]{10}_[a-z]{3}$'"}
+{"id": "diverse_json_extreme_0188", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Unterminated string starting at: line 76 column 5 (char 1587)"}
+{"id": "diverse_json_extreme_0189", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'NXDQ-1234567-ABC' does not match '^NXDQ-[0-9]{7}-[a-z]{3}$'"}
+{"id": "diverse_json_extreme_0190", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Unterminated string starting at: line 73 column 5 (char 1572)"}
+{"id": "diverse_json_extreme_0191", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'ABCDEFGHIJ' is too short"}
+{"id": "diverse_json_extreme_0192", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Unterminated string starting at: line 77 column 5 (char 1611)"}
+{"id": "diverse_json_extreme_0193", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting value: line 73 column 17 (char 1591)"}
+{"id": "diverse_json_extreme_0194", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting value: line 79 column 26 (char 1631)"}
+{"id": "diverse_json_extreme_0195", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Unterminated string starting at: line 72 column 5 (char 1565)"}
+{"id": "diverse_json_extreme_0196", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'MKGS_123456789' does not match '^MKGS_[0-9]{10}$'"}
+{"id": "diverse_json_extreme_0197", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'ABCDEFGHIJ' is too short"}
+{"id": "diverse_json_extreme_0198", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting value: line 73 column 17 (char 1595)"}
+{"id": "diverse_json_extreme_0199", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Unterminated string starting at: line 75 column 5 (char 1587)"}
+{"id": "diverse_json_extreme_0200", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting property name enclosed in double quotes: line 78 column 5 (char 1625)"}
+{"id": "diverse_json_extreme_0201", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'UI-123456789-XYZ' does not match '^UI-[0-9]{9}-[a-z]{3}$'"}
+{"id": "diverse_json_extreme_0202", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting value: line 73 column 17 (char 1591)"}
+{"id": "diverse_json_extreme_0203", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Unterminated string starting at: line 76 column 5 (char 1596)"}
+{"id": "diverse_json_extreme_0204", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'ZU1234567AB' does not match '^ZU[0-9]{9}[a-z]{2}$'"}
+{"id": "diverse_json_extreme_0205", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting value: line 73 column 17 (char 1581)"}
+{"id": "diverse_json_extreme_0206", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting value: line 74 column 13 (char 1584)"}
+{"id": "diverse_json_extreme_0207", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting value: line 73 column 17 (char 1580)"}
+{"id": "diverse_json_extreme_0208", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Unterminated string starting at: line 74 column 5 (char 1592)"}
+{"id": "diverse_json_extreme_0209", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'BU12345678' does not match '^BU_[0-9]{8}$'"}
+{"id": "diverse_json_extreme_0210", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting value: line 73 column 17 (char 1582)"}
+{"id": "diverse_json_extreme_0211", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'exampleCategory' is too long"}
+{"id": "diverse_json_extreme_0212", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting value: line 74 column 13 (char 1578)"}
+{"id": "diverse_json_extreme_0213", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'VDLG123456789AB' does not match '^VDLG[0-9]{9}[a-z]{2}$'"}
+{"id": "diverse_json_extreme_0214", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Unterminated string starting at: line 75 column 5 (char 1591)"}
+{"id": "diverse_json_extreme_0215", "stratum": "extreme", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_extreme_0216", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'FOOD' is too short"}
+{"id": "diverse_json_extreme_0217", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Unterminated string starting at: line 77 column 5 (char 1614)"}
+{"id": "diverse_json_extreme_0218", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'John Doe' is too short"}
+{"id": "diverse_json_extreme_0219", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting ',' delimiter: line 77 column 14 (char 1609)"}
+{"id": "diverse_json_extreme_0220", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Unterminated string starting at: line 74 column 5 (char 1577)"}
+{"id": "diverse_json_extreme_0221", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'QB12345678AB' does not match '^QB[0-9]{10}[a-z]{2}$'"}
+{"id": "diverse_json_extreme_0222", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Unterminated string starting at: line 79 column 3 (char 1622)"}
+{"id": "diverse_json_extreme_0223", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Unterminated string starting at: line 72 column 5 (char 1563)"}
+{"id": "diverse_json_extreme_0224", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting ',' delimiter: line 77 column 14 (char 1603)"}
+{"id": "diverse_json_extreme_0225", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting ',' delimiter: line 77 column 17 (char 1601)"}
+{"id": "diverse_json_extreme_0226", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Unterminated string starting at: line 72 column 5 (char 1555)"}
+{"id": "diverse_json_extreme_0227", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting value: line 74 column 12 (char 1588)"}
+{"id": "diverse_json_extreme_0228", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'GAK-1234567-XYZ' does not match '^GAK-[0-9]{7}-[a-z]{3}$'"}
+{"id": "diverse_json_extreme_0229", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting value: line 75 column 12 (char 1594)"}
+{"id": "diverse_json_extreme_0230", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'KXB_12345678_ABC' does not match '^KXB_[0-9]{8}_[a-z]{3}$'"}
+{"id": "diverse_json_extreme_0231", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'BQO_1234567_AB' does not match '^BQO_[0-9]{7}_[a-z]{2}$'"}
+{"id": "diverse_json_extreme_0232", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Unterminated string starting at: line 76 column 5 (char 1603)"}
+{"id": "diverse_json_extreme_0233", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting ',' delimiter: line 79 column 32 (char 1643)"}
+{"id": "diverse_json_extreme_0234", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting ',' delimiter: line 77 column 12 (char 1612)"}
+{"id": "diverse_json_extreme_0235", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'John Doe' is too short"}
+{"id": "diverse_json_extreme_0236", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Unterminated string starting at: line 79 column 3 (char 1601)"}
+{"id": "diverse_json_extreme_0237", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting value: line 76 column 15 (char 1595)"}
+{"id": "diverse_json_extreme_0238", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting value: line 76 column 14 (char 1602)"}
+{"id": "diverse_json_extreme_0239", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'FMV123456789AB' does not match '^FMV[0-9]{11}[a-z]{2}$'"}
+{"id": "diverse_json_extreme_0240", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'Example Title' is too long"}
+{"id": "diverse_json_extreme_0241", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Unterminated string starting at: line 77 column 5 (char 1608)"}
+{"id": "diverse_json_extreme_0242", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'ZBP1234567AB' does not match '^ZBP[0-9]{7}[a-z]{2}$'"}
+{"id": "diverse_json_extreme_0243", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting value: line 76 column 15 (char 1597)"}
+{"id": "diverse_json_extreme_0244", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'ABCDEFGHIJ' is too short"}
+{"id": "diverse_json_extreme_0245", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting property name enclosed in double quotes: line 78 column 5 (char 1603)"}
+{"id": "diverse_json_extreme_0246", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Unterminated string starting at: line 79 column 3 (char 1605)"}
+{"id": "diverse_json_extreme_0247", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'ABCDEFGHIJ' is too short"}
+{"id": "diverse_json_extreme_0248", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'UFNW_123456789_abc' does not match '^UFNW_[0-9]{10}_[a-z]{3}$'"}
+{"id": "diverse_json_extreme_0249", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Unterminated string starting at: line 77 column 5 (char 1616)"}

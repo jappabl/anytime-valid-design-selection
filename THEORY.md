@@ -817,8 +817,11 @@ e-value gives the exact-to-O(1/n) identity
 
 so the predicted crossing residual is -(1/2) log(2 pi p* q*) — and
 subtracting that zero-fitted-parameter term from the frozen 17-point
-grid collapses the measured slope from -1.398 to -0.255 nats per unit
-p* and the correlation from -0.900 to -0.133 (C2 PASS). The remaining
+grid collapses the per-point slope from -1.398 to -0.255 nats per
+unit p* (82% of the p*-dependence removed) and the PER-POINT
+correlation from -0.616 to -0.133; on the 6 group means the before
+value was -0.900 — same units kept separate per peer correction
+(C2 PASS). The remaining
 p*-independent offset (~ -1.10 nats) decomposes numerically to within
 0.125 nats as selection (-0.68) + discrete-check overshoot (+0.23) +
 median-vs-mean (-0.65); its closed form (Woodroofe ladder heights) is

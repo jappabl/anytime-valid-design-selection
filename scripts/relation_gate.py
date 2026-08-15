@@ -88,26 +88,38 @@ def r1_anchors():
 
 
 def r4_artifacts():
+    """Flag an artifact ONLY when a citing sentence asserts a verdict
+    about it (the relation), not when the artifact merely lacks
+    verdict strings (rev 2 — the first implementation had the exact
+    object-vs-relation defect this gate exists to catch, found by peer
+    review running the gate on the gate)."""
     flags = []
-    print("R4 artifact-claim identity (cited-with-verdict artifacts "
-          "must self-score):")
-    cited = set()
+    print("R4 artifact-claim identity (verdict-asserting citations "
+          "must point at self-scoring artifacts):")
+    verdict_words = re.compile(
+        r'FAILED|REFUTED|CONFIRMED|MISSED|PASS|FALSIF|vacuous|LOST'
+        r'|WIN\b|hollow|withdrawn', re.IGNORECASE)
+    cited_with_verdict = set()
     for doc in DOCS:
         txt = open(REPO / doc).read()
         for m_ in re.finditer(r'results_[a-z0-9_]+\.txt', txt):
-            cited.add(m_.group(0))
-    for art in sorted(cited):
+            window = txt[max(0, m_.start() - 160):m_.end() + 160]
+            if verdict_words.search(window):
+                cited_with_verdict.add(m_.group(0))
+    for art in sorted(cited_with_verdict):
         p = REPO / art
         if not p.exists():
             continue
         txt = open(p).read()
         if not re.search(r'\b(PASS|FAIL|VERDICT|CONFIRMED|REFUSE)',
                          txt):
-            print(f"  {art}: NO printed verdict strings")
-            flags.append(f"R4: {art} cited in docs but does not "
-                         f"self-score")
+            print(f"  {art}: cited WITH a verdict but does not "
+                  f"self-score")
+            flags.append(f"R4: {art} verdict-cited but not "
+                         f"self-scoring")
     if not flags:
-        print("  all cited artifacts self-score")
+        print(f"  {len(cited_with_verdict)} verdict-cited artifacts "
+              f"all self-score")
     return flags
 
 

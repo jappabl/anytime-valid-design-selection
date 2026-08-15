@@ -1015,3 +1015,12 @@ within 1000 samples in this regime.
   verdicts), 11 R5 flags (n-of-m claims without adjacent
   enumeration). Retrofit queued as a systematic task rather than
   rushed. Gate policy: runs before freezes and verdict commits.
+- 2026-08-15 (corrections via peer running the gate on the gate):
+  (1) R4 rev 2 — flag only verdict-asserting citations (the first
+  implementation object-checked artifacts, the exact generator defect;
+  27 flags contained false positives like measurement-only tables).
+  (2) dc020b2's message said "18 R4" where the artifact printed 27 —
+  an R5 violation inside the R5 commit; correct count recorded here.
+  (3) d392c74 unit mix fixed: corr collapse is -0.616 -> -0.133
+  per-point (slope -1.398 -> -0.255); -0.900 was the 6-group-mean
+  statistic. Overshoot artifact regenerated on one unit.

@@ -28,10 +28,12 @@ CHECKS PRINTED IN-ARTIFACT:
      Stirling remainder (1/(12n))(1/p + 1/q - 1), evaluated at the
      grid's worst point (the first bound, 1/(4n), ignored the
      p-dependence of the remainder and was wrong, not the identity).
-  C2 slope removal on the FROZEN v2 grid: subtracting c_Laplace(p*)
-     from the 17 measured residuals removes the p*-trend — |remaining
-     slope| <= 0.35 (was -1.354) and |corr| <= 0.45 (was -0.900 on
-     group means).
+  C2 slope removal on the FROZEN v2 grid, stated on ONE unit (the 17
+     individual points; rev 2 fixed a unit mix that quoted the
+     group-mean corr -0.900 beside the per-point after-value):
+     per-point slope -1.398 -> target |slope| <= 0.35; per-point corr
+     -0.616 -> target |corr| <= 0.45. (Group-mean corr was -0.900
+     before, on 6 groups — a different unit, reported separately.)
   C3 the remaining offset is ~CONSTANT: its point spread (std) is
      <= 0.25 nats; its mean is the renewal/selection constant this
      derivation does NOT yet produce in closed form (stated openly).

@@ -1,0 +1,774 @@
+{"id": "diverse_json_simple_0000", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 90)"}
+{"id": "diverse_json_simple_0001", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 93)"}
+{"id": "diverse_json_simple_0002", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 96)"}
+{"id": "diverse_json_simple_0003", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 102)"}
+{"id": "diverse_json_simple_0004", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 100)"}
+{"id": "diverse_json_simple_0005", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 96)"}
+{"id": "diverse_json_simple_0006", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 82)"}
+{"id": "diverse_json_simple_0007", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 68)"}
+{"id": "diverse_json_simple_0008", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 100)"}
+{"id": "diverse_json_simple_0009", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 76)"}
+{"id": "diverse_json_simple_0010", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 78)"}
+{"id": "diverse_json_simple_0011", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 96)"}
+{"id": "diverse_json_simple_0012", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 113)"}
+{"id": "diverse_json_simple_0013", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 99)"}
+{"id": "diverse_json_simple_0014", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 78)"}
+{"id": "diverse_json_simple_0015", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 104)"}
+{"id": "diverse_json_simple_0016", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 73)"}
+{"id": "diverse_json_simple_0017", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 107)"}
+{"id": "diverse_json_simple_0018", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 106)"}
+{"id": "diverse_json_simple_0019", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 77)"}
+{"id": "diverse_json_simple_0020", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 101)"}
+{"id": "diverse_json_simple_0021", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 76)"}
+{"id": "diverse_json_simple_0022", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 72)"}
+{"id": "diverse_json_simple_0023", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 84)"}
+{"id": "diverse_json_simple_0024", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 94)"}
+{"id": "diverse_json_simple_0025", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 98)"}
+{"id": "diverse_json_simple_0026", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 76)"}
+{"id": "diverse_json_simple_0027", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 69)"}
+{"id": "diverse_json_simple_0028", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 68)"}
+{"id": "diverse_json_simple_0029", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 77)"}
+{"id": "diverse_json_simple_0030", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 86)"}
+{"id": "diverse_json_simple_0031", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 98)"}
+{"id": "diverse_json_simple_0032", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 79)"}
+{"id": "diverse_json_simple_0033", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 96)"}
+{"id": "diverse_json_simple_0034", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 98)"}
+{"id": "diverse_json_simple_0035", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 74)"}
+{"id": "diverse_json_simple_0036", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 107)"}
+{"id": "diverse_json_simple_0037", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 69)"}
+{"id": "diverse_json_simple_0038", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 98)"}
+{"id": "diverse_json_simple_0039", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 103)"}
+{"id": "diverse_json_simple_0040", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 87)"}
+{"id": "diverse_json_simple_0041", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 77)"}
+{"id": "diverse_json_simple_0042", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 77)"}
+{"id": "diverse_json_simple_0043", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 93)"}
+{"id": "diverse_json_simple_0044", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 95)"}
+{"id": "diverse_json_simple_0045", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 65)"}
+{"id": "diverse_json_simple_0046", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 94)"}
+{"id": "diverse_json_simple_0047", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 106)"}
+{"id": "diverse_json_simple_0048", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 80)"}
+{"id": "diverse_json_simple_0049", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 97)"}
+{"id": "diverse_json_simple_0050", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 97)"}
+{"id": "diverse_json_simple_0051", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 79)"}
+{"id": "diverse_json_simple_0052", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 74)"}
+{"id": "diverse_json_simple_0053", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 76)"}
+{"id": "diverse_json_simple_0054", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 70)"}
+{"id": "diverse_json_simple_0055", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 83)"}
+{"id": "diverse_json_simple_0056", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 77)"}
+{"id": "diverse_json_simple_0057", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 79)"}
+{"id": "diverse_json_simple_0058", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 105)"}
+{"id": "diverse_json_simple_0059", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 85)"}
+{"id": "diverse_json_simple_0060", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 71)"}
+{"id": "diverse_json_simple_0061", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 97)"}
+{"id": "diverse_json_simple_0062", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 108)"}
+{"id": "diverse_json_simple_0063", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 73)"}
+{"id": "diverse_json_simple_0064", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 90)"}
+{"id": "diverse_json_simple_0065", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 82)"}
+{"id": "diverse_json_simple_0066", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 99)"}
+{"id": "diverse_json_simple_0067", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 115)"}
+{"id": "diverse_json_simple_0068", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 81)"}
+{"id": "diverse_json_simple_0069", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 104)"}
+{"id": "diverse_json_simple_0070", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 98)"}
+{"id": "diverse_json_simple_0071", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 96)"}
+{"id": "diverse_json_simple_0072", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 74)"}
+{"id": "diverse_json_simple_0073", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 73)"}
+{"id": "diverse_json_simple_0074", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 83)"}
+{"id": "diverse_json_simple_0075", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 70)"}
+{"id": "diverse_json_simple_0076", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 104)"}
+{"id": "diverse_json_simple_0077", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 89)"}
+{"id": "diverse_json_simple_0078", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 79)"}
+{"id": "diverse_json_simple_0079", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 79)"}
+{"id": "diverse_json_simple_0080", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 100)"}
+{"id": "diverse_json_simple_0081", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 72)"}
+{"id": "diverse_json_simple_0082", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 71)"}
+{"id": "diverse_json_simple_0083", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 77)"}
+{"id": "diverse_json_simple_0084", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 72)"}
+{"id": "diverse_json_simple_0085", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 95)"}
+{"id": "diverse_json_simple_0086", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 78)"}
+{"id": "diverse_json_simple_0087", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 74)"}
+{"id": "diverse_json_simple_0088", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 97)"}
+{"id": "diverse_json_simple_0089", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 94)"}
+{"id": "diverse_json_simple_0090", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 87)"}
+{"id": "diverse_json_simple_0091", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 100)"}
+{"id": "diverse_json_simple_0092", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 77)"}
+{"id": "diverse_json_simple_0093", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 96)"}
+{"id": "diverse_json_simple_0094", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 69)"}
+{"id": "diverse_json_simple_0095", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 106)"}
+{"id": "diverse_json_simple_0096", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 70)"}
+{"id": "diverse_json_simple_0097", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 85)"}
+{"id": "diverse_json_simple_0098", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 102)"}
+{"id": "diverse_json_simple_0099", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 86)"}
+{"id": "diverse_json_simple_0100", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 71)"}
+{"id": "diverse_json_simple_0101", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 88)"}
+{"id": "diverse_json_simple_0102", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 92)"}
+{"id": "diverse_json_simple_0103", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 79)"}
+{"id": "diverse_json_simple_0104", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 106)"}
+{"id": "diverse_json_simple_0105", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 72)"}
+{"id": "diverse_json_simple_0106", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 85)"}
+{"id": "diverse_json_simple_0107", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 79)"}
+{"id": "diverse_json_simple_0108", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 96)"}
+{"id": "diverse_json_simple_0109", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 113)"}
+{"id": "diverse_json_simple_0110", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 96)"}
+{"id": "diverse_json_simple_0111", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 72)"}
+{"id": "diverse_json_simple_0112", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 75)"}
+{"id": "diverse_json_simple_0113", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 97)"}
+{"id": "diverse_json_simple_0114", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 90)"}
+{"id": "diverse_json_simple_0115", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 100)"}
+{"id": "diverse_json_simple_0116", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 104)"}
+{"id": "diverse_json_simple_0117", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 90)"}
+{"id": "diverse_json_simple_0118", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 113)"}
+{"id": "diverse_json_simple_0119", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 92)"}
+{"id": "diverse_json_simple_0120", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 72)"}
+{"id": "diverse_json_simple_0121", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 70)"}
+{"id": "diverse_json_simple_0122", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 70)"}
+{"id": "diverse_json_simple_0123", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 77)"}
+{"id": "diverse_json_simple_0124", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 91)"}
+{"id": "diverse_json_simple_0125", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 100)"}
+{"id": "diverse_json_simple_0126", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 71)"}
+{"id": "diverse_json_simple_0127", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 114)"}
+{"id": "diverse_json_simple_0128", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 72)"}
+{"id": "diverse_json_simple_0129", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 98)"}
+{"id": "diverse_json_simple_0130", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 103)"}
+{"id": "diverse_json_simple_0131", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 72)"}
+{"id": "diverse_json_simple_0132", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 78)"}
+{"id": "diverse_json_simple_0133", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 78)"}
+{"id": "diverse_json_simple_0134", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 95)"}
+{"id": "diverse_json_simple_0135", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 100)"}
+{"id": "diverse_json_simple_0136", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 101)"}
+{"id": "diverse_json_simple_0137", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 78)"}
+{"id": "diverse_json_simple_0138", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 74)"}
+{"id": "diverse_json_simple_0139", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 100)"}
+{"id": "diverse_json_simple_0140", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 79)"}
+{"id": "diverse_json_simple_0141", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 117)"}
+{"id": "diverse_json_simple_0142", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 94)"}
+{"id": "diverse_json_simple_0143", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 92)"}
+{"id": "diverse_json_simple_0144", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 103)"}
+{"id": "diverse_json_simple_0145", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 107)"}
+{"id": "diverse_json_simple_0146", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 69)"}
+{"id": "diverse_json_simple_0147", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 86)"}
+{"id": "diverse_json_simple_0148", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 78)"}
+{"id": "diverse_json_simple_0149", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 94)"}
+{"id": "diverse_json_simple_0150", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 70)"}
+{"id": "diverse_json_simple_0151", "stratum": "simple", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_simple_0152", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 108)"}
+{"id": "diverse_json_simple_0153", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 83)"}
+{"id": "diverse_json_simple_0154", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting property name enclosed in double quotes: line 4 column 1 (char 52)"}
+{"id": "diverse_json_simple_0155", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 81)"}
+{"id": "diverse_json_simple_0156", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 90)"}
+{"id": "diverse_json_simple_0157", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 74)"}
+{"id": "diverse_json_simple_0158", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 91)"}
+{"id": "diverse_json_simple_0159", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 94)"}
+{"id": "diverse_json_simple_0160", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 98)"}
+{"id": "diverse_json_simple_0161", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 74)"}
+{"id": "diverse_json_simple_0162", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 73)"}
+{"id": "diverse_json_simple_0163", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 87)"}
+{"id": "diverse_json_simple_0164", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 73)"}
+{"id": "diverse_json_simple_0165", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 93)"}
+{"id": "diverse_json_simple_0166", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 97)"}
+{"id": "diverse_json_simple_0167", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 88)"}
+{"id": "diverse_json_simple_0168", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 92)"}
+{"id": "diverse_json_simple_0169", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 81)"}
+{"id": "diverse_json_simple_0170", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 77)"}
+{"id": "diverse_json_simple_0171", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 101)"}
+{"id": "diverse_json_simple_0172", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 80)"}
+{"id": "diverse_json_simple_0173", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 79)"}
+{"id": "diverse_json_simple_0174", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 80)"}
+{"id": "diverse_json_simple_0175", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 98)"}
+{"id": "diverse_json_simple_0176", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 108)"}
+{"id": "diverse_json_simple_0177", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 93)"}
+{"id": "diverse_json_simple_0178", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 85)"}
+{"id": "diverse_json_simple_0179", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 84)"}
+{"id": "diverse_json_simple_0180", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 77)"}
+{"id": "diverse_json_simple_0181", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 80)"}
+{"id": "diverse_json_simple_0182", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 111)"}
+{"id": "diverse_json_simple_0183", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 76)"}
+{"id": "diverse_json_simple_0184", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 72)"}
+{"id": "diverse_json_simple_0185", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 113)"}
+{"id": "diverse_json_simple_0186", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 81)"}
+{"id": "diverse_json_simple_0187", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 95)"}
+{"id": "diverse_json_simple_0188", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting property name enclosed in double quotes: line 4 column 2 (char 55)"}
+{"id": "diverse_json_simple_0189", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 73)"}
+{"id": "diverse_json_simple_0190", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 77)"}
+{"id": "diverse_json_simple_0191", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 99)"}
+{"id": "diverse_json_simple_0192", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 97)"}
+{"id": "diverse_json_simple_0193", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 90)"}
+{"id": "diverse_json_simple_0194", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 79)"}
+{"id": "diverse_json_simple_0195", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 77)"}
+{"id": "diverse_json_simple_0196", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 81)"}
+{"id": "diverse_json_simple_0197", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 80)"}
+{"id": "diverse_json_simple_0198", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 95)"}
+{"id": "diverse_json_simple_0199", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 73)"}
+{"id": "diverse_json_simple_0200", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 106)"}
+{"id": "diverse_json_simple_0201", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 95)"}
+{"id": "diverse_json_simple_0202", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 80)"}
+{"id": "diverse_json_simple_0203", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 102)"}
+{"id": "diverse_json_simple_0204", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 74)"}
+{"id": "diverse_json_simple_0205", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 98)"}
+{"id": "diverse_json_simple_0206", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 99)"}
+{"id": "diverse_json_simple_0207", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 76)"}
+{"id": "diverse_json_simple_0208", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 91)"}
+{"id": "diverse_json_simple_0209", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 83)"}
+{"id": "diverse_json_simple_0210", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 73)"}
+{"id": "diverse_json_simple_0211", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 83)"}
+{"id": "diverse_json_simple_0212", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 80)"}
+{"id": "diverse_json_simple_0213", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 83)"}
+{"id": "diverse_json_simple_0214", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 92)"}
+{"id": "diverse_json_simple_0215", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 93)"}
+{"id": "diverse_json_simple_0216", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 69)"}
+{"id": "diverse_json_simple_0217", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 80)"}
+{"id": "diverse_json_simple_0218", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 98)"}
+{"id": "diverse_json_simple_0219", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 81)"}
+{"id": "diverse_json_simple_0220", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 100)"}
+{"id": "diverse_json_simple_0221", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 74)"}
+{"id": "diverse_json_simple_0222", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 78)"}
+{"id": "diverse_json_simple_0223", "stratum": "simple", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_simple_0224", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 71)"}
+{"id": "diverse_json_simple_0225", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 100)"}
+{"id": "diverse_json_simple_0226", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 101)"}
+{"id": "diverse_json_simple_0227", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 69)"}
+{"id": "diverse_json_simple_0228", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 90)"}
+{"id": "diverse_json_simple_0229", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 91)"}
+{"id": "diverse_json_simple_0230", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 100)"}
+{"id": "diverse_json_simple_0231", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 95)"}
+{"id": "diverse_json_simple_0232", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 85)"}
+{"id": "diverse_json_simple_0233", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 91)"}
+{"id": "diverse_json_simple_0234", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 76)"}
+{"id": "diverse_json_simple_0235", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 78)"}
+{"id": "diverse_json_simple_0236", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 77)"}
+{"id": "diverse_json_simple_0237", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 68)"}
+{"id": "diverse_json_simple_0238", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 114)"}
+{"id": "diverse_json_simple_0239", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 82)"}
+{"id": "diverse_json_simple_0240", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 86)"}
+{"id": "diverse_json_simple_0241", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 91)"}
+{"id": "diverse_json_simple_0242", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 107)"}
+{"id": "diverse_json_simple_0243", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 90)"}
+{"id": "diverse_json_simple_0244", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 96)"}
+{"id": "diverse_json_simple_0245", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 73)"}
+{"id": "diverse_json_simple_0246", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 92)"}
+{"id": "diverse_json_simple_0247", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 72)"}
+{"id": "diverse_json_simple_0248", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 92)"}
+{"id": "diverse_json_simple_0249", "stratum": "simple", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 7 column 1 (char 73)"}
+{"id": "diverse_json_medium_0000", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 124)"}
+{"id": "diverse_json_medium_0001", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 114)"}
+{"id": "diverse_json_medium_0002", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 141)"}
+{"id": "diverse_json_medium_0003", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 145)"}
+{"id": "diverse_json_medium_0004", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 125)"}
+{"id": "diverse_json_medium_0005", "stratum": "medium", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_medium_0006", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 111)"}
+{"id": "diverse_json_medium_0007", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 122)"}
+{"id": "diverse_json_medium_0008", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 139)"}
+{"id": "diverse_json_medium_0009", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 104)"}
+{"id": "diverse_json_medium_0010", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 104)"}
+{"id": "diverse_json_medium_0011", "stratum": "medium", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_medium_0012", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 124)"}
+{"id": "diverse_json_medium_0013", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 105)"}
+{"id": "diverse_json_medium_0014", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 121)"}
+{"id": "diverse_json_medium_0015", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 131)"}
+{"id": "diverse_json_medium_0016", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 123)"}
+{"id": "diverse_json_medium_0017", "stratum": "medium", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_medium_0018", "stratum": "medium", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_medium_0019", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 129)"}
+{"id": "diverse_json_medium_0020", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 126)"}
+{"id": "diverse_json_medium_0021", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 138)"}
+{"id": "diverse_json_medium_0022", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 128)"}
+{"id": "diverse_json_medium_0023", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 156)"}
+{"id": "diverse_json_medium_0024", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 101)"}
+{"id": "diverse_json_medium_0025", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 120)"}
+{"id": "diverse_json_medium_0026", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 149)"}
+{"id": "diverse_json_medium_0027", "stratum": "medium", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_medium_0028", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 108)"}
+{"id": "diverse_json_medium_0029", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 126)"}
+{"id": "diverse_json_medium_0030", "stratum": "medium", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_medium_0031", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 106)"}
+{"id": "diverse_json_medium_0032", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 119)"}
+{"id": "diverse_json_medium_0033", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 118)"}
+{"id": "diverse_json_medium_0034", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 143)"}
+{"id": "diverse_json_medium_0035", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 125)"}
+{"id": "diverse_json_medium_0036", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 116)"}
+{"id": "diverse_json_medium_0037", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 128)"}
+{"id": "diverse_json_medium_0038", "stratum": "medium", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_medium_0039", "stratum": "medium", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_medium_0040", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 122)"}
+{"id": "diverse_json_medium_0041", "stratum": "medium", "passed": false, "failure_mode": "schema_validation_error", "error": "'monthly' is not one of [np.str_('daily'), np.str_('weekly'), np.str_('yearly')]"}
+{"id": "diverse_json_medium_0042", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 125)"}
+{"id": "diverse_json_medium_0043", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 107)"}
+{"id": "diverse_json_medium_0044", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 137)"}
+{"id": "diverse_json_medium_0045", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 135)"}
+{"id": "diverse_json_medium_0046", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 118)"}
+{"id": "diverse_json_medium_0047", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 123)"}
+{"id": "diverse_json_medium_0048", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 116)"}
+{"id": "diverse_json_medium_0049", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 113)"}
+{"id": "diverse_json_medium_0050", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 114)"}
+{"id": "diverse_json_medium_0051", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 109)"}
+{"id": "diverse_json_medium_0052", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 153)"}
+{"id": "diverse_json_medium_0053", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 124)"}
+{"id": "diverse_json_medium_0054", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 109)"}
+{"id": "diverse_json_medium_0055", "stratum": "medium", "passed": false, "failure_mode": "schema_validation_error", "error": "'YM-2023' does not match '^YM-[0-9]{3}$'"}
+{"id": "diverse_json_medium_0056", "stratum": "medium", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_medium_0057", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 99)"}
+{"id": "diverse_json_medium_0058", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 141)"}
+{"id": "diverse_json_medium_0059", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 118)"}
+{"id": "diverse_json_medium_0060", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 141)"}
+{"id": "diverse_json_medium_0061", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 139)"}
+{"id": "diverse_json_medium_0062", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 138)"}
+{"id": "diverse_json_medium_0063", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 109)"}
+{"id": "diverse_json_medium_0064", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 123)"}
+{"id": "diverse_json_medium_0065", "stratum": "medium", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_medium_0066", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 108)"}
+{"id": "diverse_json_medium_0067", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 101)"}
+{"id": "diverse_json_medium_0068", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 140)"}
+{"id": "diverse_json_medium_0069", "stratum": "medium", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_medium_0070", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 125)"}
+{"id": "diverse_json_medium_0071", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 104)"}
+{"id": "diverse_json_medium_0072", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 118)"}
+{"id": "diverse_json_medium_0073", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 111)"}
+{"id": "diverse_json_medium_0074", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 140)"}
+{"id": "diverse_json_medium_0075", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 125)"}
+{"id": "diverse_json_medium_0076", "stratum": "medium", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_medium_0077", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 128)"}
+{"id": "diverse_json_medium_0078", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 126)"}
+{"id": "diverse_json_medium_0079", "stratum": "medium", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_medium_0080", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 106)"}
+{"id": "diverse_json_medium_0081", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 147)"}
+{"id": "diverse_json_medium_0082", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 105)"}
+{"id": "diverse_json_medium_0083", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 139)"}
+{"id": "diverse_json_medium_0084", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 100)"}
+{"id": "diverse_json_medium_0085", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 126)"}
+{"id": "diverse_json_medium_0086", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 139)"}
+{"id": "diverse_json_medium_0087", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 126)"}
+{"id": "diverse_json_medium_0088", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 127)"}
+{"id": "diverse_json_medium_0089", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 123)"}
+{"id": "diverse_json_medium_0090", "stratum": "medium", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_medium_0091", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 100)"}
+{"id": "diverse_json_medium_0092", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 104)"}
+{"id": "diverse_json_medium_0093", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 102)"}
+{"id": "diverse_json_medium_0094", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 137)"}
+{"id": "diverse_json_medium_0095", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 144)"}
+{"id": "diverse_json_medium_0096", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 142)"}
+{"id": "diverse_json_medium_0097", "stratum": "medium", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_medium_0098", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 104)"}
+{"id": "diverse_json_medium_0099", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 123)"}
+{"id": "diverse_json_medium_0100", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 144)"}
+{"id": "diverse_json_medium_0101", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 102)"}
+{"id": "diverse_json_medium_0102", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 105)"}
+{"id": "diverse_json_medium_0103", "stratum": "medium", "passed": false, "failure_mode": "schema_validation_error", "error": "'LI_12345' does not match '^LI_[0-9]{4}$'"}
+{"id": "diverse_json_medium_0104", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 135)"}
+{"id": "diverse_json_medium_0105", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 122)"}
+{"id": "diverse_json_medium_0106", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 139)"}
+{"id": "diverse_json_medium_0107", "stratum": "medium", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_medium_0108", "stratum": "medium", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_medium_0109", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 104)"}
+{"id": "diverse_json_medium_0110", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 122)"}
+{"id": "diverse_json_medium_0111", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 138)"}
+{"id": "diverse_json_medium_0112", "stratum": "medium", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_medium_0113", "stratum": "medium", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_medium_0114", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 122)"}
+{"id": "diverse_json_medium_0115", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 105)"}
+{"id": "diverse_json_medium_0116", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 141)"}
+{"id": "diverse_json_medium_0117", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 138)"}
+{"id": "diverse_json_medium_0118", "stratum": "medium", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_medium_0119", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 122)"}
+{"id": "diverse_json_medium_0120", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 143)"}
+{"id": "diverse_json_medium_0121", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 123)"}
+{"id": "diverse_json_medium_0122", "stratum": "medium", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_medium_0123", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 123)"}
+{"id": "diverse_json_medium_0124", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 120)"}
+{"id": "diverse_json_medium_0125", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 120)"}
+{"id": "diverse_json_medium_0126", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 101)"}
+{"id": "diverse_json_medium_0127", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 115)"}
+{"id": "diverse_json_medium_0128", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 104)"}
+{"id": "diverse_json_medium_0129", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 119)"}
+{"id": "diverse_json_medium_0130", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 120)"}
+{"id": "diverse_json_medium_0131", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 110)"}
+{"id": "diverse_json_medium_0132", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 140)"}
+{"id": "diverse_json_medium_0133", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 133)"}
+{"id": "diverse_json_medium_0134", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 124)"}
+{"id": "diverse_json_medium_0135", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 136)"}
+{"id": "diverse_json_medium_0136", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 119)"}
+{"id": "diverse_json_medium_0137", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 144)"}
+{"id": "diverse_json_medium_0138", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 118)"}
+{"id": "diverse_json_medium_0139", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 122)"}
+{"id": "diverse_json_medium_0140", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 137)"}
+{"id": "diverse_json_medium_0141", "stratum": "medium", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_medium_0142", "stratum": "medium", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_medium_0143", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 141)"}
+{"id": "diverse_json_medium_0144", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 115)"}
+{"id": "diverse_json_medium_0145", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 143)"}
+{"id": "diverse_json_medium_0146", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 139)"}
+{"id": "diverse_json_medium_0147", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 142)"}
+{"id": "diverse_json_medium_0148", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 122)"}
+{"id": "diverse_json_medium_0149", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 118)"}
+{"id": "diverse_json_medium_0150", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 138)"}
+{"id": "diverse_json_medium_0151", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 138)"}
+{"id": "diverse_json_medium_0152", "stratum": "medium", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_medium_0153", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 148)"}
+{"id": "diverse_json_medium_0154", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 142)"}
+{"id": "diverse_json_medium_0155", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 149)"}
+{"id": "diverse_json_medium_0156", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 105)"}
+{"id": "diverse_json_medium_0157", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 101)"}
+{"id": "diverse_json_medium_0158", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 124)"}
+{"id": "diverse_json_medium_0159", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 122)"}
+{"id": "diverse_json_medium_0160", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 123)"}
+{"id": "diverse_json_medium_0161", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 117)"}
+{"id": "diverse_json_medium_0162", "stratum": "medium", "passed": false, "failure_mode": "schema_validation_error", "error": "'CIC20230415' does not match '^CIC[0-9]{4}$'"}
+{"id": "diverse_json_medium_0163", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 144)"}
+{"id": "diverse_json_medium_0164", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 128)"}
+{"id": "diverse_json_medium_0165", "stratum": "medium", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_medium_0166", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 115)"}
+{"id": "diverse_json_medium_0167", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 103)"}
+{"id": "diverse_json_medium_0168", "stratum": "medium", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_medium_0169", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 124)"}
+{"id": "diverse_json_medium_0170", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 102)"}
+{"id": "diverse_json_medium_0171", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 121)"}
+{"id": "diverse_json_medium_0172", "stratum": "medium", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_medium_0173", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 137)"}
+{"id": "diverse_json_medium_0174", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 121)"}
+{"id": "diverse_json_medium_0175", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 118)"}
+{"id": "diverse_json_medium_0176", "stratum": "medium", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_medium_0177", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 129)"}
+{"id": "diverse_json_medium_0178", "stratum": "medium", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_medium_0179", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 149)"}
+{"id": "diverse_json_medium_0180", "stratum": "medium", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_medium_0181", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 116)"}
+{"id": "diverse_json_medium_0182", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 104)"}
+{"id": "diverse_json_medium_0183", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 109)"}
+{"id": "diverse_json_medium_0184", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 141)"}
+{"id": "diverse_json_medium_0185", "stratum": "medium", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_medium_0186", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 104)"}
+{"id": "diverse_json_medium_0187", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 109)"}
+{"id": "diverse_json_medium_0188", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 130)"}
+{"id": "diverse_json_medium_0189", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 130)"}
+{"id": "diverse_json_medium_0190", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 142)"}
+{"id": "diverse_json_medium_0191", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 106)"}
+{"id": "diverse_json_medium_0192", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 125)"}
+{"id": "diverse_json_medium_0193", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 137)"}
+{"id": "diverse_json_medium_0194", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 100)"}
+{"id": "diverse_json_medium_0195", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 103)"}
+{"id": "diverse_json_medium_0196", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 138)"}
+{"id": "diverse_json_medium_0197", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 106)"}
+{"id": "diverse_json_medium_0198", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 108)"}
+{"id": "diverse_json_medium_0199", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 124)"}
+{"id": "diverse_json_medium_0200", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 105)"}
+{"id": "diverse_json_medium_0201", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 101)"}
+{"id": "diverse_json_medium_0202", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 108)"}
+{"id": "diverse_json_medium_0203", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 141)"}
+{"id": "diverse_json_medium_0204", "stratum": "medium", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_medium_0205", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 125)"}
+{"id": "diverse_json_medium_0206", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 134)"}
+{"id": "diverse_json_medium_0207", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 127)"}
+{"id": "diverse_json_medium_0208", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 106)"}
+{"id": "diverse_json_medium_0209", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 119)"}
+{"id": "diverse_json_medium_0210", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 134)"}
+{"id": "diverse_json_medium_0211", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 142)"}
+{"id": "diverse_json_medium_0212", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 107)"}
+{"id": "diverse_json_medium_0213", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 119)"}
+{"id": "diverse_json_medium_0214", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 138)"}
+{"id": "diverse_json_medium_0215", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 107)"}
+{"id": "diverse_json_medium_0216", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 126)"}
+{"id": "diverse_json_medium_0217", "stratum": "medium", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_medium_0218", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 140)"}
+{"id": "diverse_json_medium_0219", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 106)"}
+{"id": "diverse_json_medium_0220", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 140)"}
+{"id": "diverse_json_medium_0221", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 120)"}
+{"id": "diverse_json_medium_0222", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 105)"}
+{"id": "diverse_json_medium_0223", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 137)"}
+{"id": "diverse_json_medium_0224", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 117)"}
+{"id": "diverse_json_medium_0225", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 126)"}
+{"id": "diverse_json_medium_0226", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 141)"}
+{"id": "diverse_json_medium_0227", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 106)"}
+{"id": "diverse_json_medium_0228", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 122)"}
+{"id": "diverse_json_medium_0229", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 127)"}
+{"id": "diverse_json_medium_0230", "stratum": "medium", "passed": false, "failure_mode": "schema_validation_error", "error": "'VD_20231' does not match '^VD_[0-9]{4}$'"}
+{"id": "diverse_json_medium_0231", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 130)"}
+{"id": "diverse_json_medium_0232", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 125)"}
+{"id": "diverse_json_medium_0233", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 130)"}
+{"id": "diverse_json_medium_0234", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 143)"}
+{"id": "diverse_json_medium_0235", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 104)"}
+{"id": "diverse_json_medium_0236", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 120)"}
+{"id": "diverse_json_medium_0237", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 124)"}
+{"id": "diverse_json_medium_0238", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 125)"}
+{"id": "diverse_json_medium_0239", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 135)"}
+{"id": "diverse_json_medium_0240", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 106)"}
+{"id": "diverse_json_medium_0241", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 117)"}
+{"id": "diverse_json_medium_0242", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 121)"}
+{"id": "diverse_json_medium_0243", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 8 column 1 (char 104)"}
+{"id": "diverse_json_medium_0244", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 143)"}
+{"id": "diverse_json_medium_0245", "stratum": "medium", "passed": false, "failure_mode": "schema_validation_error", "error": "'QN_20231231' does not match '^QN_[0-9]{4}$'"}
+{"id": "diverse_json_medium_0246", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 10 column 1 (char 131)"}
+{"id": "diverse_json_medium_0247", "stratum": "medium", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_medium_0248", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 125)"}
+{"id": "diverse_json_medium_0249", "stratum": "medium", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 9 column 1 (char 124)"}
+{"id": "diverse_json_complex_0000", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 207)"}
+{"id": "diverse_json_complex_0001", "stratum": "complex", "passed": false, "failure_mode": "schema_validation_error", "error": "'GYM123456789AB' does not match '^GYM[0-9]{10}[a-z]{2}$'"}
+{"id": "diverse_json_complex_0002", "stratum": "complex", "passed": false, "failure_mode": "schema_validation_error", "error": "'ZN-12345678-AB' does not match '^ZN-[0-9]{9}-[a-z]{2}$'"}
+{"id": "diverse_json_complex_0003", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 217)"}
+{"id": "diverse_json_complex_0004", "stratum": "complex", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_complex_0005", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 216)"}
+{"id": "diverse_json_complex_0006", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 200)"}
+{"id": "diverse_json_complex_0007", "stratum": "complex", "passed": false, "failure_mode": "schema_validation_error", "error": "'GYAM_1234' does not match '^GYAM_[0-9]{5}$'"}
+{"id": "diverse_json_complex_0008", "stratum": "complex", "passed": false, "failure_mode": "schema_validation_error", "error": "'IDC-12345678-ABC' does not match '^IDC-[0-9]{7}-[a-z]{3}$'"}
+{"id": "diverse_json_complex_0009", "stratum": "complex", "passed": false, "failure_mode": "schema_validation_error", "error": "'ILZ123456789zz' does not match '^ILZ[0-9]{11}[a-z]{2}$'"}
+{"id": "diverse_json_complex_0010", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 226)"}
+{"id": "diverse_json_complex_0011", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 212)"}
+{"id": "diverse_json_complex_0012", "stratum": "complex", "passed": false, "failure_mode": "schema_validation_error", "error": "'WTC123456789XYZ' does not match '^WTC[0-9]{10}[a-z]{2}$'"}
+{"id": "diverse_json_complex_0013", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 235)"}
+{"id": "diverse_json_complex_0014", "stratum": "complex", "passed": false, "failure_mode": "schema_validation_error", "error": "'XG-1234567-ZD' does not match '^XG-[0-9]{7}-[a-z]{2}$'"}
+{"id": "diverse_json_complex_0015", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 216)"}
+{"id": "diverse_json_complex_0016", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 214)"}
+{"id": "diverse_json_complex_0017", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 216)"}
+{"id": "diverse_json_complex_0018", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 230)"}
+{"id": "diverse_json_complex_0019", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 222)"}
+{"id": "diverse_json_complex_0020", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 234)"}
+{"id": "diverse_json_complex_0021", "stratum": "complex", "passed": false, "failure_mode": "schema_validation_error", "error": "'LJY_20230415_NW' does not match '^LJY_[0-9]{8}_[a-z]{2}$'"}
+{"id": "diverse_json_complex_0022", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 209)"}
+{"id": "diverse_json_complex_0023", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 206)"}
+{"id": "diverse_json_complex_0024", "stratum": "complex", "passed": false, "failure_mode": "schema_validation_error", "error": "'UCVK123456789XYZ' does not match '^UCVK[0-9]{7}[a-z]{3}$'"}
+{"id": "diverse_json_complex_0025", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 223)"}
+{"id": "diverse_json_complex_0026", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 210)"}
+{"id": "diverse_json_complex_0027", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 202)"}
+{"id": "diverse_json_complex_0028", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 222)"}
+{"id": "diverse_json_complex_0029", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 254)"}
+{"id": "diverse_json_complex_0030", "stratum": "complex", "passed": false, "failure_mode": "schema_validation_error", "error": "'UMI-12345678-ABC' does not match '^UMI-[0-9]{9}-[a-z]{3}$'"}
+{"id": "diverse_json_complex_0031", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 197)"}
+{"id": "diverse_json_complex_0032", "stratum": "complex", "passed": false, "failure_mode": "schema_validation_error", "error": "'JIT_1234567_CDE' does not match '^JIT_[0-9]{7}_[a-z]{3}$'"}
+{"id": "diverse_json_complex_0033", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 225)"}
+{"id": "diverse_json_complex_0034", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 239)"}
+{"id": "diverse_json_complex_0035", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 206)"}
+{"id": "diverse_json_complex_0036", "stratum": "complex", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_complex_0037", "stratum": "complex", "passed": false, "failure_mode": "schema_validation_error", "error": "'CK1234567890AB' does not match '^CK[0-9]{11}[a-z]{2}$'"}
+{"id": "diverse_json_complex_0038", "stratum": "complex", "passed": false, "failure_mode": "schema_validation_error", "error": "Additional properties are not allowed ('additionalProperties', 'properties', 'required', 'type' were unexpected)"}
+{"id": "diverse_json_complex_0039", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 203)"}
+{"id": "diverse_json_complex_0040", "stratum": "complex", "passed": false, "failure_mode": "schema_validation_error", "error": "'NHD-1234567890' does not match '^NHD-[0-9]{9}$'"}
+{"id": "diverse_json_complex_0041", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 224)"}
+{"id": "diverse_json_complex_0042", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 198)"}
+{"id": "diverse_json_complex_0043", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 218)"}
+{"id": "diverse_json_complex_0044", "stratum": "complex", "passed": false, "failure_mode": "schema_validation_error", "error": "'LZRC_12345678_ab' does not match '^LZRC_[0-9]{10}_[a-z]{2}$'"}
+{"id": "diverse_json_complex_0045", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 231)"}
+{"id": "diverse_json_complex_0046", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 208)"}
+{"id": "diverse_json_complex_0047", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 217)"}
+{"id": "diverse_json_complex_0048", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 207)"}
+{"id": "diverse_json_complex_0049", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 220)"}
+{"id": "diverse_json_complex_0050", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 202)"}
+{"id": "diverse_json_complex_0051", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 204)"}
+{"id": "diverse_json_complex_0052", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 204)"}
+{"id": "diverse_json_complex_0053", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 198)"}
+{"id": "diverse_json_complex_0054", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 221)"}
+{"id": "diverse_json_complex_0055", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 207)"}
+{"id": "diverse_json_complex_0056", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 219)"}
+{"id": "diverse_json_complex_0057", "stratum": "complex", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_complex_0058", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 242)"}
+{"id": "diverse_json_complex_0059", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 206)"}
+{"id": "diverse_json_complex_0060", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 233)"}
+{"id": "diverse_json_complex_0061", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 195)"}
+{"id": "diverse_json_complex_0062", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 211)"}
+{"id": "diverse_json_complex_0063", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 270)"}
+{"id": "diverse_json_complex_0064", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 215)"}
+{"id": "diverse_json_complex_0065", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 235)"}
+{"id": "diverse_json_complex_0066", "stratum": "complex", "passed": false, "failure_mode": "schema_validation_error", "error": "Additional properties are not allowed ('additionalProperties', 'properties', 'required', 'type' were unexpected)"}
+{"id": "diverse_json_complex_0067", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 227)"}
+{"id": "diverse_json_complex_0068", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 217)"}
+{"id": "diverse_json_complex_0069", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 222)"}
+{"id": "diverse_json_complex_0070", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 224)"}
+{"id": "diverse_json_complex_0071", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 224)"}
+{"id": "diverse_json_complex_0072", "stratum": "complex", "passed": false, "failure_mode": "schema_validation_error", "error": "'NV_12345_ABC' does not match '^NV_[0-9]{9}_[a-z]{3}$'"}
+{"id": "diverse_json_complex_0073", "stratum": "complex", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_complex_0074", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 210)"}
+{"id": "diverse_json_complex_0075", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 206)"}
+{"id": "diverse_json_complex_0076", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 202)"}
+{"id": "diverse_json_complex_0077", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 205)"}
+{"id": "diverse_json_complex_0078", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 234)"}
+{"id": "diverse_json_complex_0079", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 202)"}
+{"id": "diverse_json_complex_0080", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 275)"}
+{"id": "diverse_json_complex_0081", "stratum": "complex", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_complex_0082", "stratum": "complex", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_complex_0083", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 220)"}
+{"id": "diverse_json_complex_0084", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 210)"}
+{"id": "diverse_json_complex_0085", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 228)"}
+{"id": "diverse_json_complex_0086", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 207)"}
+{"id": "diverse_json_complex_0087", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 266)"}
+{"id": "diverse_json_complex_0088", "stratum": "complex", "passed": false, "failure_mode": "schema_validation_error", "error": "'ZD-12345678' does not match '^ZD-[0-9]{7}$'"}
+{"id": "diverse_json_complex_0089", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 213)"}
+{"id": "diverse_json_complex_0090", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 236)"}
+{"id": "diverse_json_complex_0091", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 225)"}
+{"id": "diverse_json_complex_0092", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 203)"}
+{"id": "diverse_json_complex_0093", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 204)"}
+{"id": "diverse_json_complex_0094", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 209)"}
+{"id": "diverse_json_complex_0095", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 212)"}
+{"id": "diverse_json_complex_0096", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting value: line 27 column 1 (char 535)"}
+{"id": "diverse_json_complex_0097", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 220)"}
+{"id": "diverse_json_complex_0098", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 231)"}
+{"id": "diverse_json_complex_0099", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 208)"}
+{"id": "diverse_json_complex_0100", "stratum": "complex", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_complex_0101", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 216)"}
+{"id": "diverse_json_complex_0102", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 209)"}
+{"id": "diverse_json_complex_0103", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 210)"}
+{"id": "diverse_json_complex_0104", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 207)"}
+{"id": "diverse_json_complex_0105", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 209)"}
+{"id": "diverse_json_complex_0106", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 281)"}
+{"id": "diverse_json_complex_0107", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 219)"}
+{"id": "diverse_json_complex_0108", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 205)"}
+{"id": "diverse_json_complex_0109", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 215)"}
+{"id": "diverse_json_complex_0110", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 206)"}
+{"id": "diverse_json_complex_0111", "stratum": "complex", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_complex_0112", "stratum": "complex", "passed": false, "failure_mode": "schema_validation_error", "error": "'ALQV123456789' does not match '^ALQV[0-9]{7}$'"}
+{"id": "diverse_json_complex_0113", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 220)"}
+{"id": "diverse_json_complex_0114", "stratum": "complex", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_complex_0115", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 217)"}
+{"id": "diverse_json_complex_0116", "stratum": "complex", "passed": false, "failure_mode": "schema_validation_error", "error": "'NYF-12345678-AB' does not match '^NYF-[0-9]{9}-[a-z]{2}$'"}
+{"id": "diverse_json_complex_0117", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 222)"}
+{"id": "diverse_json_complex_0118", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 228)"}
+{"id": "diverse_json_complex_0119", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 234)"}
+{"id": "diverse_json_complex_0120", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 209)"}
+{"id": "diverse_json_complex_0121", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 205)"}
+{"id": "diverse_json_complex_0122", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 219)"}
+{"id": "diverse_json_complex_0123", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 232)"}
+{"id": "diverse_json_complex_0124", "stratum": "complex", "passed": false, "failure_mode": "schema_validation_error", "error": "'XR-1234567890' does not match '^XR-[0-9]{11}$'"}
+{"id": "diverse_json_complex_0125", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 205)"}
+{"id": "diverse_json_complex_0126", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 232)"}
+{"id": "diverse_json_complex_0127", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 209)"}
+{"id": "diverse_json_complex_0128", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 208)"}
+{"id": "diverse_json_complex_0129", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 203)"}
+{"id": "diverse_json_complex_0130", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 209)"}
+{"id": "diverse_json_complex_0131", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 211)"}
+{"id": "diverse_json_complex_0132", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 207)"}
+{"id": "diverse_json_complex_0133", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 236)"}
+{"id": "diverse_json_complex_0134", "stratum": "complex", "passed": false, "failure_mode": "schema_validation_error", "error": "'UM123456789XYZ' does not match '^UM[0-9]{11}[a-z]{2}$'"}
+{"id": "diverse_json_complex_0135", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 233)"}
+{"id": "diverse_json_complex_0136", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 212)"}
+{"id": "diverse_json_complex_0137", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 209)"}
+{"id": "diverse_json_complex_0138", "stratum": "complex", "passed": false, "failure_mode": "schema_validation_error", "error": "'TBPA98765' does not match '^TBPA_[0-9]{6}$'"}
+{"id": "diverse_json_complex_0139", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 230)"}
+{"id": "diverse_json_complex_0140", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 249)"}
+{"id": "diverse_json_complex_0141", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 224)"}
+{"id": "diverse_json_complex_0142", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 197)"}
+{"id": "diverse_json_complex_0143", "stratum": "complex", "passed": false, "failure_mode": "schema_validation_error", "error": "'XVPI12345ABCDE' does not match '^XVPI[0-9]{9}[a-z]{3}$'"}
+{"id": "diverse_json_complex_0144", "stratum": "complex", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_complex_0145", "stratum": "complex", "passed": false, "failure_mode": "schema_validation_error", "error": "Additional properties are not allowed ('additionalProperties', 'properties', 'required', 'type' were unexpected)"}
+{"id": "diverse_json_complex_0146", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 207)"}
+{"id": "diverse_json_complex_0147", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 230)"}
+{"id": "diverse_json_complex_0148", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 260)"}
+{"id": "diverse_json_complex_0149", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 216)"}
+{"id": "diverse_json_complex_0150", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 212)"}
+{"id": "diverse_json_complex_0151", "stratum": "complex", "passed": false, "failure_mode": "schema_validation_error", "error": "'DES_123456_AB' does not match '^DES_[0-9]{9}_[a-z]{2}$'"}
+{"id": "diverse_json_complex_0152", "stratum": "complex", "passed": false, "failure_mode": "schema_validation_error", "error": "'EZH_20230415_BC' does not match '^EZH_[0-9]{8}_[a-z]{2}$'"}
+{"id": "diverse_json_complex_0153", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 209)"}
+{"id": "diverse_json_complex_0154", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting value: line 26 column 18 (char 546)"}
+{"id": "diverse_json_complex_0155", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 217)"}
+{"id": "diverse_json_complex_0156", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 216)"}
+{"id": "diverse_json_complex_0157", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting value: line 28 column 9 (char 637)"}
+{"id": "diverse_json_complex_0158", "stratum": "complex", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_complex_0159", "stratum": "complex", "passed": false, "failure_mode": "schema_validation_error", "error": "'DXPN123456789' does not match '^DXPN[0-9]{7}$'"}
+{"id": "diverse_json_complex_0160", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 200)"}
+{"id": "diverse_json_complex_0161", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 232)"}
+{"id": "diverse_json_complex_0162", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 209)"}
+{"id": "diverse_json_complex_0163", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 220)"}
+{"id": "diverse_json_complex_0164", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting property name enclosed in double quotes: line 19 column 1 (char 366)"}
+{"id": "diverse_json_complex_0165", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 209)"}
+{"id": "diverse_json_complex_0166", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 220)"}
+{"id": "diverse_json_complex_0167", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 223)"}
+{"id": "diverse_json_complex_0168", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 242)"}
+{"id": "diverse_json_complex_0169", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 200)"}
+{"id": "diverse_json_complex_0170", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 208)"}
+{"id": "diverse_json_complex_0171", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 200)"}
+{"id": "diverse_json_complex_0172", "stratum": "complex", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_complex_0173", "stratum": "complex", "passed": false, "failure_mode": "schema_validation_error", "error": "'CKZ-123456' does not match '^CKZ-[0-9]{7}$'"}
+{"id": "diverse_json_complex_0174", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 210)"}
+{"id": "diverse_json_complex_0175", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 224)"}
+{"id": "diverse_json_complex_0176", "stratum": "complex", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_complex_0177", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 211)"}
+{"id": "diverse_json_complex_0178", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 239)"}
+{"id": "diverse_json_complex_0179", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 227)"}
+{"id": "diverse_json_complex_0180", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting value: line 26 column 18 (char 543)"}
+{"id": "diverse_json_complex_0181", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 221)"}
+{"id": "diverse_json_complex_0182", "stratum": "complex", "passed": false, "failure_mode": "schema_validation_error", "error": "'HWWH123456789X_active' does not match '^HWWH_[0-9]{7}_[a-z]{3}$'"}
+{"id": "diverse_json_complex_0183", "stratum": "complex", "passed": false, "failure_mode": "schema_validation_error", "error": "'FHG_123456AB' does not match '^FHG_[0-9]{7}_[a-z]{2}$'"}
+{"id": "diverse_json_complex_0184", "stratum": "complex", "passed": false, "failure_mode": "schema_validation_error", "error": "'LDJV1234567890ABC' does not match '^LDJV[0-9]{10}[a-z]{3}$'"}
+{"id": "diverse_json_complex_0185", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 230)"}
+{"id": "diverse_json_complex_0186", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 264)"}
+{"id": "diverse_json_complex_0187", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 229)"}
+{"id": "diverse_json_complex_0188", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 230)"}
+{"id": "diverse_json_complex_0189", "stratum": "complex", "passed": false, "failure_mode": "schema_validation_error", "error": "'NZ123456789012' does not match '^NZ[0-9]{10}$'"}
+{"id": "diverse_json_complex_0190", "stratum": "complex", "passed": false, "failure_mode": "schema_validation_error", "error": "'JP-202301A' does not match '^JP-[0-9]{8}-[a-z]{2}$'"}
+{"id": "diverse_json_complex_0191", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 235)"}
+{"id": "diverse_json_complex_0192", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 213)"}
+{"id": "diverse_json_complex_0193", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 196)"}
+{"id": "diverse_json_complex_0194", "stratum": "complex", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_complex_0195", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 207)"}
+{"id": "diverse_json_complex_0196", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 218)"}
+{"id": "diverse_json_complex_0197", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 224)"}
+{"id": "diverse_json_complex_0198", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 228)"}
+{"id": "diverse_json_complex_0199", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 223)"}
+{"id": "diverse_json_complex_0200", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 206)"}
+{"id": "diverse_json_complex_0201", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 211)"}
+{"id": "diverse_json_complex_0202", "stratum": "complex", "passed": false, "failure_mode": "schema_validation_error", "error": "'OMB_1234567890AB' does not match '^OMB_[0-9]{11}_[a-z]{3}$'"}
+{"id": "diverse_json_complex_0203", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 211)"}
+{"id": "diverse_json_complex_0204", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 215)"}
+{"id": "diverse_json_complex_0205", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 209)"}
+{"id": "diverse_json_complex_0206", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 217)"}
+{"id": "diverse_json_complex_0207", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 226)"}
+{"id": "diverse_json_complex_0208", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 228)"}
+{"id": "diverse_json_complex_0209", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 214)"}
+{"id": "diverse_json_complex_0210", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 222)"}
+{"id": "diverse_json_complex_0211", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 217)"}
+{"id": "diverse_json_complex_0212", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 232)"}
+{"id": "diverse_json_complex_0213", "stratum": "complex", "passed": false, "failure_mode": "schema_validation_error", "error": "'HORG-20230415-north' does not match '^HORG-[0-9]{8}-[a-z]{3}$'"}
+{"id": "diverse_json_complex_0214", "stratum": "complex", "passed": false, "failure_mode": "schema_validation_error", "error": "'RTV_1234567890_abc' does not match '^RTV_[0-9]{9}_[a-z]{3}$'"}
+{"id": "diverse_json_complex_0215", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 203)"}
+{"id": "diverse_json_complex_0216", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting ',' delimiter: line 11 column 43 (char 236)"}
+{"id": "diverse_json_complex_0217", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 210)"}
+{"id": "diverse_json_complex_0218", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 229)"}
+{"id": "diverse_json_complex_0219", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 235)"}
+{"id": "diverse_json_complex_0220", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 270)"}
+{"id": "diverse_json_complex_0221", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 196)"}
+{"id": "diverse_json_complex_0222", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 205)"}
+{"id": "diverse_json_complex_0223", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 208)"}
+{"id": "diverse_json_complex_0224", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting value: line 26 column 18 (char 560)"}
+{"id": "diverse_json_complex_0225", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 200)"}
+{"id": "diverse_json_complex_0226", "stratum": "complex", "passed": false, "failure_mode": "schema_validation_error", "error": "'FF-1234567890' does not match '^FF-[0-9]{11}$'"}
+{"id": "diverse_json_complex_0227", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 227)"}
+{"id": "diverse_json_complex_0228", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 226)"}
+{"id": "diverse_json_complex_0229", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 226)"}
+{"id": "diverse_json_complex_0230", "stratum": "complex", "passed": false, "failure_mode": "schema_validation_error", "error": "'ZD_12345_east' does not match '^ZD_[0-9]{9}_[a-z]{3}$'"}
+{"id": "diverse_json_complex_0231", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 218)"}
+{"id": "diverse_json_complex_0232", "stratum": "complex", "passed": true, "failure_mode": null, "error": null}
+{"id": "diverse_json_complex_0233", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 230)"}
+{"id": "diverse_json_complex_0234", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 190)"}
+{"id": "diverse_json_complex_0235", "stratum": "complex", "passed": false, "failure_mode": "schema_validation_error", "error": "'CNA1234567890' does not match '^CNA_[0-9]{11}$'"}
+{"id": "diverse_json_complex_0236", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 232)"}
+{"id": "diverse_json_complex_0237", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 204)"}
+{"id": "diverse_json_complex_0238", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 213)"}
+{"id": "diverse_json_complex_0239", "stratum": "complex", "passed": false, "failure_mode": "schema_validation_error", "error": "'TF_1234567890_AB' does not match '^TF_[0-9]{11}_[a-z]{2}$'"}
+{"id": "diverse_json_complex_0240", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 213)"}
+{"id": "diverse_json_complex_0241", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 225)"}
+{"id": "diverse_json_complex_0242", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 264)"}
+{"id": "diverse_json_complex_0243", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 210)"}
+{"id": "diverse_json_complex_0244", "stratum": "complex", "passed": false, "failure_mode": "schema_validation_error", "error": "'DU_123456AB' does not match '^DU_[0-9]{7}_[a-z]{2}$'"}
+{"id": "diverse_json_complex_0245", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting property name enclosed in double quotes: line 19 column 1 (char 362)"}
+{"id": "diverse_json_complex_0246", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 231)"}
+{"id": "diverse_json_complex_0247", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 14 column 1 (char 229)"}
+{"id": "diverse_json_complex_0248", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 208)"}
+{"id": "diverse_json_complex_0249", "stratum": "complex", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 13 column 1 (char 220)"}
+{"id": "diverse_json_extreme_0000", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting property name enclosed in double quotes: line 18 column 1 (char 367)"}
+{"id": "diverse_json_extreme_0001", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting property name enclosed in double quotes: line 18 column 1 (char 386)"}
+{"id": "diverse_json_extreme_0002", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'License Title Here9' is too long"}
+{"id": "diverse_json_extreme_0003", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'XR_12345678' does not match '^XR_[0-9]{9}$'"}
+{"id": "diverse_json_extreme_0004", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting property name enclosed in double quotes: line 18 column 1 (char 369)"}
+{"id": "diverse_json_extreme_0005", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting property name enclosed in double quotes: line 18 column 1 (char 412)"}
+{"id": "diverse_json_extreme_0006", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'MRAR123456789012' is too long"}
+{"id": "diverse_json_extreme_0007", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'PT_20210405_AIR' does not match '^PT_[0-9]{8}_[a-z]{3}$'"}
+{"id": "diverse_json_extreme_0008", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'ZSSD20230415AB' does not match '^ZSSD[0-9]{8}[a-z]{3}$'"}
+{"id": "diverse_json_extreme_0009", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting property name enclosed in double quotes: line 18 column 1 (char 373)"}
+{"id": "diverse_json_extreme_0010", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 19 column 1 (char 342)"}
+{"id": "diverse_json_extreme_0011", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting property name enclosed in double quotes: line 18 column 1 (char 370)"}
+{"id": "diverse_json_extreme_0012", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'SGF_1234567890' does not match '^SGF_[0-9]{9}$'"}
+{"id": "diverse_json_extreme_0013", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'NTZ12345678AB' does not match '^NTZ[0-9]{7}[a-z]{2}$'"}
+{"id": "diverse_json_extreme_0014", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'OV_1234567_AB' does not match '^OV_[0-9]{7}_[a-z]{2}$'"}
+{"id": "diverse_json_extreme_0015", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting property name enclosed in double quotes: line 4 column 31 (char 106)"}
+{"id": "diverse_json_extreme_0016", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Extra data: line 17 column 1 (char 345)"}
+{"id": "diverse_json_extreme_0017", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'NorthAmerica' is too long"}
+{"id": "diverse_json_extreme_0018", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting property name enclosed in double quotes: line 18 column 1 (char 357)"}
+{"id": "diverse_json_extreme_0019", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'ZUCX123456789' does not match '^ZUCX[0-9]{7}$'"}
+{"id": "diverse_json_extreme_0020", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'BBFT-1234567890AB' does not match '^BBFT-[0-9]{11}-[a-z]{2}$'"}
+{"id": "diverse_json_extreme_0021", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'LS12345678XYZ' does not match '^LS[0-9]{11}[a-z]{2}$'"}
+{"id": "diverse_json_extreme_0022", "stratum": "extreme", "passed": false, "failure_mode": "schema_validation_error", "error": "'HOPL-12345678-AB' does not match '^HOPL-[0-9]{8}-[a-z]{2}$'"}
+{"id": "diverse_json_extreme_0023", "stratum": "extreme", "passed": false, "failure_mode": "json_parse_error", "error": "Expecting property name enclosed in double quotes: line 18 column 1 (char 378)"}
