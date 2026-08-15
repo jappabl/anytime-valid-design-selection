@@ -892,7 +892,14 @@ clause is c_short(R) from the betting dynamics; queued as its own
 frozen artifact per the no-iterate-until-pass rule, not patched
 tonight.
 
-Net state of Target 1: the design map's WSR region is a verified
-derived theory; its single region awaits one more derived constant.
-Five self-refusals, one frozen failure, and seven confirmed points —
-exactly what building a predictive theory in public looks like.
+Net state of Target 1, restated per peer review: v1's honest verdict
+is narrower than its printed FAILED — the WSR region re-confirmed
+what Section 4 already established (7 sanity points, not evidence per
+R8), and the NOVEL single region was tested at only two points in one
+corner (same margin, adjacent R): "untested at useful resolution, one
+corner wrong," not "curve refuted." v2 inverts the allocation (10
+below-band points across p* and R at m = 0.08, the only margin where
+the frozen bands admit single territory) and its spatial miss pattern
+will separate margin-model error from c_short(R) before anything is
+derived. The concentration mistake is the census generator's third
+appearance and is now gate rule R8.

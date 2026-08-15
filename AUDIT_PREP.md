@@ -1035,3 +1035,7 @@ within 1000 samples in this regime.
   region misses diagnosed as c_short(R) dependence (constant treated
   as object, not relation — the generator again). c_short(R)
   derivation queued as its own frozen artifact; no same-day patching.
+- 2026-08-15: v1 phase verdict restated (single region untested at
+  resolution, one corner wrong — not curve-refuted); v2 frozen with
+  inverted allocation (R8-compliant, 77% novel-region); c_short(R)
+  derivation held pending v2's diagnostic pattern.
