@@ -143,11 +143,25 @@ class Certifier:
                 block = [self._pending[i].pop(0) for i in range(self.k)]
                 self._cs.update(float(np.mean(block)))
         if self.decision is None and complete_block and self.n >= _MIN_N:
-            lo, hi = self.bounds()
-            if lo > self.tau:
-                self.decision = "UNSAFE"
-            elif hi <= self.tau:
-                self.decision = "SAFE"
+            # Decision via the direct rejection tests at tau — two
+            # boundary minimizations — NOT via bounds(), whose double
+            # bisection costs ~3,200 minimizations per call and made
+            # update() ~900x slower than the validated replay path
+            # (defect found in peer review, 2026-08-14). Semantics are
+            # identical by construction: the rejection regions are
+            # half-lines, so lo > tau iff rejects_le(tau) and
+            # hi <= tau iff rejects_ge(tau).
+            if self.method == "mixture":
+                if self._cs.rejects_le(self.tau):
+                    self.decision = "UNSAFE"
+                elif self._cs.rejects_ge(self.tau):
+                    self.decision = "SAFE"
+            else:
+                lo, hi = self._cs.get_bounds()
+                if lo > self.tau:
+                    self.decision = "UNSAFE"
+                elif hi <= self.tau:
+                    self.decision = "SAFE"
         return self.decision or "CONTINUE"
 
     def bounds(self):

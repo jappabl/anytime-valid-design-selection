@@ -129,3 +129,41 @@ def test_auto_select_zero_stratum_guarded():
     pilot = [(i % 4, i % 4 == 3) for i in range(80)]
     kind, k = Certifier.auto_select(pilot)
     assert kind == "wsr" and k == 4
+
+
+def test_update_cost_flat_in_history_length():
+    import time
+    c = Certifier(tau=0.9, alpha=0.05, k=1)
+    xs = list(np.random.default_rng(9).random(2400) < 0.3)
+    for y in xs[:200]:
+        c.update(bool(y))
+    t0 = time.perf_counter()
+    for y in xs[200:400]:
+        c.update(bool(y))
+    early = time.perf_counter() - t0
+    for y in xs[400:2200]:
+        c.update(bool(y))
+    t0 = time.perf_counter()
+    for y in xs[2200:2400]:
+        c.update(bool(y))
+    late = time.perf_counter() - t0
+    assert late < 3 * early + 0.05
+    assert late / 200 < 0.002
+
+
+def test_fixed_wrapper_decisions_match_direct_class():
+    from eval_harness.stats.stratified_ui_cs import StratifiedUICS as S
+    rng = np.random.default_rng(12)
+    xs = [bool(r < 0.35) for r in rng.random(400)]
+    c = Certifier(tau=0.2, alpha=0.05, k=1)
+    ref = S(k=1, weights=[1.0], alpha=0.05)
+    ref_decision = None
+    for n, y in enumerate(xs, 1):
+        v = c.update(y)
+        ref.update(0, y)
+        if ref_decision is None and n >= 20 and n % 1 == 0:
+            if ref.rejects_le(0.2):
+                ref_decision = "UNSAFE"
+            elif ref.rejects_ge(0.2):
+                ref_decision = "SAFE"
+        assert v == (ref_decision or "CONTINUE")
