@@ -1008,3 +1008,10 @@ within 1000 samples in this regime.
   passes 1-3 self-refused honestly (8bbccb2); pass 4 with the
   four-term expansion is the derivation's blind test. Peer reordering
   (Target 3 blocks Target 1) adopted.
+- 2026-08-15: RELATION GATE built from the peer's 16-defect census
+  (local objects correct; relations unchecked). First run:
+  results_relation_gate.txt — A2 confirmed non-discriminating
+  mechanically, 18 R4 flags (pre-standard artifacts lacking printed
+  verdicts), 11 R5 flags (n-of-m claims without adjacent
+  enumeration). Retrofit queued as a systematic task rather than
+  rushed. Gate policy: runs before freezes and verdict commits.

@@ -1,0 +1,91 @@
+R1 anchor discrimination (verdict under every corner):
+  A1 (MBPP-like R~2.6): corners -> ['single', 'wsr', 'single', 'wsr', 'wsr']; expected single; central DISAGREES; discriminating
+  A2 (llama-like R~31): corners -> ['wsr', 'wsr', 'wsr', 'wsr', 'wsr']; expected wsr; central agrees; NON-DISCRIMINATING (verdict invariant across the band)
+
+R4 artifact-claim identity (cited-with-verdict artifacts must self-score):
+  results_adjudication.txt: NO printed verdict strings
+  results_block_reduction.txt: NO printed verdict strings
+  results_codetask.txt: NO printed verdict strings
+  results_crossmodel.txt: NO printed verdict strings
+  results_graded_scores.txt: NO printed verdict strings
+  results_live_certification.txt: NO printed verdict strings
+  results_local_law.txt: NO printed verdict strings
+  results_mbpp_law.txt: NO printed verdict strings
+  results_model_comparison.txt: NO printed verdict strings
+  results_overhead_fit.txt: NO printed verdict strings
+  results_overhead_law.txt: NO printed verdict strings
+  results_overhead_law_code.txt: NO printed verdict strings
+  results_ppc.txt: NO printed verdict strings
+  results_realllm_betting.txt: NO printed verdict strings
+  results_router.txt: NO printed verdict strings
+  results_router2.txt: NO printed verdict strings
+  results_sharp.txt: NO printed verdict strings
+  results_spertus_baseline.txt: NO printed verdict strings
+  results_spertus_crn.txt: NO printed verdict strings
+  results_sprt_comparison.txt: NO printed verdict strings
+  results_tasc_hard.txt: NO printed verdict strings
+  results_uncertainty.txt: NO printed verdict strings
+  results_warmstart_chain.txt: NO printed verdict strings
+  results_warmstart_drift.txt: NO printed verdict strings
+  results_warmstart_joint.txt: NO printed verdict strings
+  results_warmstart_null.txt: NO printed verdict strings
+  results_wsr_hard.txt: NO printed verdict strings
+
+R5 aggregation transparency (n-of-m claims):
+  FINDINGS.md: '4 of 5' -> NO per-cell breakdown found near claim
+  FINDINGS.md: '2 of 3' -> NO per-cell breakdown found near claim
+  THEORY.md: '2 of 3' -> NO per-cell breakdown found near claim
+  THEORY.md: '4 of 5' -> NO per-cell breakdown found near claim
+  THEORY.md: '3 of 4' -> NO per-cell breakdown found near claim
+  THEORY.md: '2-of-4' -> NO per-cell breakdown found near claim
+  THEORY.md: '3-of-4' -> NO per-cell breakdown found near claim
+  THEORY.md: '1 of 4' -> NO per-cell breakdown found near claim
+  paper/DRAFT.md: '4 of 5' -> NO per-cell breakdown found near claim
+  paper/DRAFT.md: '2 of 3' -> NO per-cell breakdown found near claim
+  paper/DRAFT.md: '4 of 6' -> NO per-cell breakdown found near claim
+  paper/DRAFT.md: '2 of 3' -> NO per-cell breakdown found near claim
+
+R7 resource invariants (shipped wall-clock budgets):
+  certify 2,000 samples in budget: PASS
+
+GATE FLAGS:
+  R1: A2 (llama-like R~31) cannot fail under any constants in the band — it is not evidence
+  R4: results_adjudication.txt cited in docs but does not self-score
+  R4: results_block_reduction.txt cited in docs but does not self-score
+  R4: results_codetask.txt cited in docs but does not self-score
+  R4: results_crossmodel.txt cited in docs but does not self-score
+  R4: results_graded_scores.txt cited in docs but does not self-score
+  R4: results_live_certification.txt cited in docs but does not self-score
+  R4: results_local_law.txt cited in docs but does not self-score
+  R4: results_mbpp_law.txt cited in docs but does not self-score
+  R4: results_model_comparison.txt cited in docs but does not self-score
+  R4: results_overhead_fit.txt cited in docs but does not self-score
+  R4: results_overhead_law.txt cited in docs but does not self-score
+  R4: results_overhead_law_code.txt cited in docs but does not self-score
+  R4: results_ppc.txt cited in docs but does not self-score
+  R4: results_realllm_betting.txt cited in docs but does not self-score
+  R4: results_router.txt cited in docs but does not self-score
+  R4: results_router2.txt cited in docs but does not self-score
+  R4: results_sharp.txt cited in docs but does not self-score
+  R4: results_spertus_baseline.txt cited in docs but does not self-score
+  R4: results_spertus_crn.txt cited in docs but does not self-score
+  R4: results_sprt_comparison.txt cited in docs but does not self-score
+  R4: results_tasc_hard.txt cited in docs but does not self-score
+  R4: results_uncertainty.txt cited in docs but does not self-score
+  R4: results_warmstart_chain.txt cited in docs but does not self-score
+  R4: results_warmstart_drift.txt cited in docs but does not self-score
+  R4: results_warmstart_joint.txt cited in docs but does not self-score
+  R4: results_warmstart_null.txt cited in docs but does not self-score
+  R4: results_wsr_hard.txt cited in docs but does not self-score
+  R5: FINDINGS.md claim '4 of 5' lacks an enumerating artifact citation
+  R5: FINDINGS.md claim '2 of 3' lacks an enumerating artifact citation
+  R5: THEORY.md claim '2 of 3' lacks an enumerating artifact citation
+  R5: THEORY.md claim '4 of 5' lacks an enumerating artifact citation
+  R5: THEORY.md claim '3 of 4' lacks an enumerating artifact citation
+  R5: THEORY.md claim '2-of-4' lacks an enumerating artifact citation
+  R5: THEORY.md claim '3-of-4' lacks an enumerating artifact citation
+  R5: THEORY.md claim '1 of 4' lacks an enumerating artifact citation
+  R5: paper/DRAFT.md claim '4 of 5' lacks an enumerating artifact citation
+  R5: paper/DRAFT.md claim '2 of 3' lacks an enumerating artifact citation
+  R5: paper/DRAFT.md claim '4 of 6' lacks an enumerating artifact citation
+  R5: paper/DRAFT.md claim '2 of 3' lacks an enumerating artifact citation

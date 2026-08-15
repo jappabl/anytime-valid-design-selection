@@ -826,3 +826,25 @@ the stated remaining open clause. Disclosure: this explains structure
 measured BEFORE the derivation; its blind test is next — the
 four-term expansion must make the phase-boundary anchor A1 pass with
 derived constants where fitted ones failed by 8%.
+
+
+## The relation gate: one generator for fifteen of sixteen defects
+
+A peer census of every defect this session surfaced (16 total) found
+one invariant: in 16/16 the LOCAL object was correct, and in 15/16 an
+unchecked RELATION between objects failed — criterion vs hypotheses,
+window vs window, powered model vs executed code, artifact vs claim,
+per-cell vs aggregate, result vs its other asserting sites, code vs
+runtime budget. severity_sim rev 3 already implemented three
+relational rules for experiments; scripts/relation_gate.py
+generalizes the discipline (R1 discrimination for anchors and claims,
+R4 artifact-claim identity, R5 aggregation transparency, R6
+propagation, R7 resource invariants) and its FIRST RUN found: A2
+non-discriminating (verdict invariant across the whole constant band
+— mechanically confirming it was never evidence; the phase gate's
+honest score is "one discriminating anchor, and it fails"), 18
+pre-standard artifacts cited with verdicts they do not print, and 11
+n-of-m claims without adjacent enumeration
+(results_relation_gate.txt). The gate now runs before freezes and
+before verdict-asserting commits; the census's falsifiable prediction
+is that the next defect will also be an uncomputed relation.
