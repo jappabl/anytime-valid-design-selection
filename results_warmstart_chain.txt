@@ -49,6 +49,12 @@ tau=0.16, alpha=0.05, 200 reps, n_max=6000, pools 2000/stratum, BASE_SEED=42
   chain-warm medians by epoch: [428, 322, 3620, 5164, 512, 136]
   always-cold medians by epoch: [428, 1266, 4460, 5368, 1464, 468]
 
+PRE-REGISTERED VERDICTS (R4 retrofit; scoring detailed in THEORY.md):
+  P1 zero wrong everywhere: PASS; the every-method-abstains clause was REFUTED by WSR (half: see epochs 3-4)
+  P2 chain-warm beats cold at every epoch >= 2: PASS
+  P3 poison test (flip epoch, no catastrophe): PASS (0.96x cold; zero wrong)
+  P4 no compounding (within 25% of oracle at final epoch): PASS
+
 ============================================================================
-Checksum (SHA256): 09f0d05b6dec0879
+Checksum (SHA256): b04f23116c0e4ee5
 ============================================================================

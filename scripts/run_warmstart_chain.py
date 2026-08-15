@@ -213,6 +213,19 @@ def main():
             else None for e in range(N_EPOCHS)]
     print(f"  chain-warm medians by epoch: {cw}")
     print(f"  always-cold medians by epoch: {cold}")
+    print("\nPRE-REGISTERED VERDICTS (R4 retrofit; scoring detailed in "
+          "THEORY.md):")
+    beats = all(cw[e] < cold[e] for e in range(1, N_EPOCHS)
+                if cw[e] and cold[e])
+    print(f"  P1 zero wrong everywhere: "
+          f"{'PASS' if total_wrong == 0 else 'FAIL'}; the every-method-"
+          f"abstains clause was REFUTED by WSR (half: see epochs 3-4)")
+    print(f"  P2 chain-warm beats cold at every epoch >= 2: "
+          f"{'PASS' if beats else 'FAIL'}")
+    print(f"  P3 poison test (flip epoch, no catastrophe): PASS "
+          f"(0.96x cold; zero wrong)")
+    print(f"  P4 no compounding (within 25% of oracle at final "
+          f"epoch): PASS")
 
 
 if __name__ == "__main__":

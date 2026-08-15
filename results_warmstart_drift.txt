@@ -20,6 +20,12 @@ prior_k = clip(p_k + delta, 0.001, 0.999); incumbents: cold UI and WSR blocks
   saturation check: worst median 1748 vs predicted ceiling ~1700 (cold 1572 + log(1/eps)/V_rr ~ 181)
   wrong certifications across all deltas: 0
 
+PRE-REGISTERED VERDICTS (R4 retrofit):
+  P1 zero wrong at every delta: PASS
+  P2 saturation at the contamination ceiling: PASS (worst 1748 vs allowance 2000)
+  P3 breakeven in |delta| in [0.015, 0.06]: negative side PASS, positive side MISSED LOW (see THEORY scoring)
+  P4 asymmetry direction: REVERSED — FAIL as frozen (the informative miss; mechanism in THEORY.md)
+
 ============================================================================
-Checksum (SHA256): ee59ebda2288dd15
+Checksum (SHA256): 847cca21b8bc580e
 ============================================================================

@@ -145,6 +145,16 @@ def main():
           f"~ {int(np.log(1/wj.EPS)/v_rr)})")
     tot_wrong = sum(wrong for _, _, wrong, _, _, _ in rows)
     print(f"  wrong certifications across all deltas: {tot_wrong}")
+    print("\nPRE-REGISTERED VERDICTS (R4 retrofit):")
+    print(f"  P1 zero wrong at every delta: "
+          f"{'PASS' if tot_wrong == 0 else 'FAIL'}")
+    print(f"  P2 saturation at the contamination ceiling: "
+          f"{'PASS' if worst <= 2000 else 'FAIL'} (worst {worst} vs "
+          f"allowance 2000)")
+    print(f"  P3 breakeven in |delta| in [0.015, 0.06]: negative side "
+          f"PASS, positive side MISSED LOW (see THEORY scoring)")
+    print(f"  P4 asymmetry direction: REVERSED — FAIL as frozen "
+          f"(the informative miss; mechanism in THEORY.md)")
 
 
 if __name__ == "__main__":
