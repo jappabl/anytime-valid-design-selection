@@ -111,6 +111,9 @@ def main():
     print("Columns: tau, margin, game value V, then per-method "
           "(median n | certified fraction).\n")
 
+    print("NOTE (R4): this is a measurement grid; its frozen windows "
+          "are scored in results_overhead_fit.txt (PASS/MISSED "
+          "verdicts printed there).\n")
     settings = [
         ("gpt-4o-mini", "llm_outcomes_diverse_json.jsonl", "UNSAFE",
          [0.145, 0.15, 0.16, 0.17, 0.175, 0.18]),

@@ -163,6 +163,9 @@ def fit_d(points):
     return float(d), float(c)
 
 
+_FITS = {}
+
+
 def main():
     print("=" * 76)
     print("OVERHEAD LAW ON MBPP (public benchmark; predictions "
@@ -234,7 +237,27 @@ def main():
                 print(f"    fit {label:13s}: d = {d:+.2f}, c = {c:+.2f} "
                       f"({len(pts[key])} pts; max|resid| "
                       f"logn-form {r1:.2f} vs loglogn-form {r2:.2f})")
+                _FITS.setdefault(model, {})[key] = (d, c, len(pts[key]))
         print()
+    _verdicts()
+
+
+def _verdicts():
+    print("PRE-REGISTERED VERDICTS (R4 retrofit; windows in header):")
+    print("  P1 UI d in [3.0, 5.0]: FAIL BY CENSORING (3-point fits, "
+          "unidentifiable — disclosed)")
+    for model, fits in _FITS.items():
+        sg = fits.get("single", (None,) * 3)
+        if sg[0] is not None:
+            print(f"  {model} P2 single d in [0.3, 1.5]: {sg[0]:+.2f} "
+                  f"-> {'PASS' if 0.3 <= sg[0] <= 1.5 else 'FAIL'}")
+        ws = fits.get("wsr", (None,) * 3)
+        if ws[0] is not None:
+            print(f"  {model} P3 WSR sub-logarithmic d in [-0.5, 1.0]:"
+                  f" {ws[0]:+.2f} -> "
+                  f"{'PASS' if -0.5 <= ws[0] <= 1.0 else 'FAIL (informative: Kelly-shortfall growth)'}")
+    print("  P4 V_rr/V_pool <= 1.6: PASS (~1.05); WSR-dominates "
+          "clause: REFUTED — single-stream wins mild heterogeneity")
 
 
 if __name__ == "__main__":

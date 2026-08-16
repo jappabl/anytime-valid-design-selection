@@ -28,7 +28,15 @@ frozen margins: [0.022, 0.027, 0.032, 0.042, 0.052, 0.057]
     fit UI+RR        : d = +4.31, c = -1.41 (5 pts; max|resid| logn-form 0.18 vs loglogn-form 0.15)
     fit WSR@Kelly    : d = +0.46, c = +0.09 (6 pts; max|resid| logn-form 0.42 vs loglogn-form 0.45)
 
+PRE-REGISTERED VERDICTS (R4 retrofit; windows in header):
+  llama3.2-3b P1 UI d in [3.0, 5.0]: +4.22 -> PASS
+  llama3.2-3b P2 single d in [0.3, 1.5]: +0.92 -> PASS
+  llama3.2-3b P3 WSR d in [-0.5, 1.0]: -0.19 -> PASS; c in [1, 3]: +1.70 -> PASS
+  qwen2.5-7b P1 UI d in [3.0, 5.0]: +4.31 -> PASS
+  qwen2.5-7b P2 single d in [0.3, 1.5]: +0.81 -> PASS
+  qwen2.5-7b P3 WSR d in [-0.5, 1.0]: +0.46 -> PASS; c in [1, 3]: +0.09 -> FAIL
+  P4: certified-fraction and vacuous-zero-wrong notes as scored in THEORY.md (llama single 0.85 at margin 0.027: PARTIAL MISS)
 
 ============================================================================
-Checksum (SHA256): c5388a2a8d5a5cfa
+Checksum (SHA256): 171ab4cbc0230009
 ============================================================================

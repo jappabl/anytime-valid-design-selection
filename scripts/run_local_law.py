@@ -147,6 +147,9 @@ def fit_d(points):
     return float(d), float(c)
 
 
+_FITS = {}
+
+
 def main():
     print("=" * 76)
     print("OVERHEAD LAW ON LOCAL MODELS (out-of-family; predictions "
@@ -218,7 +221,31 @@ def main():
                 print(f"    fit {label:13s}: d = {d:+.2f}, c = {c:+.2f} "
                       f"({len(pts[key])} pts; max|resid| "
                       f"logn-form {r1:.2f} vs loglogn-form {r2:.2f})")
+                _FITS.setdefault(model, {})[key] = (d, c, len(pts[key]))
         print()
+    _verdicts()
+
+
+def _verdicts():
+    print("PRE-REGISTERED VERDICTS (R4 retrofit; windows in header):")
+    for model, fits in _FITS.items():
+        ui = fits.get("ui", (None,) * 3)
+        sg = fits.get("single", (None,) * 3)
+        ws = fits.get("wsr", (None,) * 3)
+        if ui[0] is not None:
+            print(f"  {model} P1 UI d in [3.0, 5.0]: {ui[0]:+.2f} -> "
+                  f"{'PASS' if 3.0 <= ui[0] <= 5.0 else 'FAIL'}")
+        if sg[0] is not None:
+            print(f"  {model} P2 single d in [0.3, 1.5]: {sg[0]:+.2f} "
+                  f"-> {'PASS' if 0.3 <= sg[0] <= 1.5 else 'FAIL'}")
+        if ws[0] is not None:
+            print(f"  {model} P3 WSR d in [-0.5, 1.0]: {ws[0]:+.2f} "
+                  f"-> {'PASS' if -0.5 <= ws[0] <= 1.0 else 'FAIL'}; "
+                  f"c in [1, 3]: {ws[1]:+.2f} -> "
+                  f"{'PASS' if 1.0 <= ws[1] <= 3.0 else 'FAIL'}")
+    print("  P4: certified-fraction and vacuous-zero-wrong notes as "
+          "scored in THEORY.md (llama single 0.85 at margin 0.027: "
+          "PARTIAL MISS)")
 
 
 if __name__ == "__main__":

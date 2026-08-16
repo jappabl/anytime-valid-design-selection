@@ -67,25 +67,26 @@ def r1_anchors():
     m.__dict__["__file__"] = str(REPO / "scripts"
                                  / "derive_phase_boundary.py")
     exec(src.rsplit("if __name__", 1)[0], m.__dict__)
-    corners = [
-        (-0.95, 3.0, -3.4, 0.72, 1.81), (0.78, 1.6, -5.9, 1.01, 2.34),
-        (-0.95, 1.6, -5.9, 0.72, 2.34), (0.78, 3.0, -3.4, 1.01, 1.81),
-        (-0.30, 2.3, -4.6, 0.86, 1.95),
-    ]
+    # Synced to the FROZEN pass-4 constants (f75eb8d): single arm is
+    # the derived four-term form; corners span only the WSR envelope.
+    corners = [(1.6, 1.81, -3.4), (3.0, 2.34, -5.9), (2.3, 1.95, -4.6)]
     anchors = {
         "A1 (MBPP-like R~2.6)": (np.array([0.140, 0.215, 0.224, 0.358]),
                                  "single"),
+        "A3 (llama3-8b-like R~7.5)": (np.array([0.456, 0.128, 0.892,
+                                                0.960]), "wsr"),
         "A2 (llama-like R~31)": (np.array([0.040, 0.032, 0.864, 0.996]),
                                  "wsr"),
     }
     flags = []
-    print("R1 anchor discrimination (verdict under every corner):")
+    print("R1 anchor discrimination (frozen pass-4 constants; verdict "
+          "under every WSR corner):")
     for name, (rates, expect) in anchors.items():
         p = float(rates.mean())
         tau = p - 0.045
+        n_s = m.single_fourterm(p, tau)
         verdicts = []
-        for c_s, csh, clg, ds, dlg in corners:
-            n_s = m.crossing_n(m.kl(p, tau), ds, c_s)
+        for csh, dlg, clg in corners:
             n_w = m.wsr_crossing(m.v_kelly_block(rates, tau),
                                  csh, dlg, clg)
             verdicts.append("single" if n_s < n_w else "wsr")

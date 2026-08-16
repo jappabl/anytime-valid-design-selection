@@ -1050,3 +1050,34 @@ within 1000 samples in this regime.
   restructure the paper around the general derivable-selection thesis,
   then LLM-safety domain, then RLA bridge (Spertus already
   implemented). Restructure launched before any domain work.
+- 2026-08-15: paper/DRAFT.md v4 — spine changed from the four-regime
+  empirical map to the DERIVABLE DESIGN BOUNDARY (three pre-observable
+  quantities: stratum heterogeneity ratio, decision direction, margin;
+  §1.1 discloses that the derivation covers ratio+margin and that
+  direction is empirically mapped, not derived). §1.1 now claims the
+  boundary derivation, its verification, and the fourth term as
+  ORIGINAL while every classical-priority disclaimer (WSR, UI,
+  mixtures, Pollak-Siegmund-era expansion) is kept verbatim. §4 = THE
+  BOUNDARY: 4.1 four-regime map retained as the empirical origin, 4.2
+  derived curve (four passes, three self-refusing per 8bbccb2/f75eb8d;
+  two discriminating anchors; A2 unscored per R1), 4.3 v1/v2/v2b saga
+  told with both frozen failures, 4.4 three-region final form
+  strong-arm-first. §5.3 = fourth term derived, centerpiece after the
+  zero-fit table (C1-C4 with the C3 std FAIL disclosed; per-point units
+  kept separate from the -0.900 group statistic; blind A1 test). §6.2 =
+  relation gate (16-defect census, R1-R8 incl. R1b, four generator
+  instances in the phase work alone). Miss ledger 21 -> 27 rows (all 21
+  v3 rows kept verbatim; six added): phase v1 (FAILED-restated), v2
+  (instrument-limited), v2b (CONFIRMED), portfolio P2/P3, auto-select
+  P1, overshoot C3. Test-suite count
+  refreshed 106 -> 110 (verified). Gate run against the new draft: 4 R4
+  flags repo-wide; R5 flags rise 4 -> 33 on the draft because R5 only
+  recognizes artifact-side enumeration while v4 enumerates its
+  verification points in-paper — disclosed inside §6.2 as an open
+  methodology item (R5 needs the object->relation fix R4 already got),
+  NOT waived. Untracked-artifact note: results_auto_select.txt is cited
+  by §4.4/§6.3 and is not yet committed. Follow-up flagged: the gate's
+  own r1_anchors() still evaluates A1 under the PASS-3 fitted constants
+  (it prints "central DISAGREES" for A1), which contradicts the frozen
+  pass-4 curve in results_phase_curve.txt — the gate's anchor copy needs
+  syncing to the derived constants before the next freeze.
