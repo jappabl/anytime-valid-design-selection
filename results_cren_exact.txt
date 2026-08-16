@@ -1,0 +1,26 @@
+============================================================================
+c_ren EXACT via absorption recursion (zero fitted parameters)
+============================================================================
+     p*    tau  d  n0   medN       c_ren       mass
+  0.202  0.157  4  20    716  -1.1700824   1.000000
+  0.300  0.255  4  20    996  -1.1866026   1.000000
+  0.150  0.105  4  20    528  -1.1449169   1.000000
+  0.202  0.157  1  20    696  -1.2985462   1.000000
+  0.202  0.157  4  40    720  -1.1443421   1.000000
+
+  median convention at (0.202,0.157,d4,n0-20): discrete -1.1700824 (n=716) vs interpolated -1.1785 -> gap 0.0084 nats (paper uses DISCRETE)
+  repo -1.105 REJECTED: exact discrete value -1.1700824, off by 0.065 nats (8000-rep MC noise).
+
+  STATUS: c_ren is EXACTLY COMPUTABLE for any (p*, tau, alpha, d, n0)
+  with zero fit, via this finite absorption recursion (verified vs the
+  peer's transfer operator to 7 decimals). It is NOT universal — it
+  depends on (d, n0). A scalar closed form is OPEN; the obstruction is
+  a time-inhomogeneous noncommuting killed kernel (C_j P_d do not
+  commute across j). The three-piece selection/overshoot/median
+  decomposition was an approximate diagnostic and is SUPERSEDED by this
+  exact result; it does not sum exactly to c_ren and should not be
+  presented as if it did.
+
+============================================================================
+Checksum (SHA256): 7b03c4008a44bc83
+============================================================================
