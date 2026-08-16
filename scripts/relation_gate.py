@@ -90,15 +90,29 @@ def r1_anchors():
             n_w = m.wsr_crossing(m.v_kelly_block(rates, tau),
                                  csh, dlg, clg)
             verdicts.append("single" if n_s < n_w else "wsr")
-        invariant = len(set(verdicts)) == 1
-        agree = verdicts[-1] == expect
-        tag = ("NON-DISCRIMINATING (verdict invariant across the "
-               "band)" if invariant else "discriminating")
-        print(f"  {name}: corners -> {verdicts}; expected {expect}; "
-              f"central {'agrees' if agree else 'DISAGREES'}; {tag}")
-        if invariant:
-            flags.append(f"R1: {name} cannot fail under any constants "
-                         f"in the band — it is not evidence")
+        # Discrimination = the verdict CHANGES under a wrong theory
+        # (d-alternative single arms), not merely across envelope
+        # corners: post-freeze, corner-invariant AGREEMENT is
+        # robustness, not vacuity (semantics fixed after the pass-4
+        # sync falsely flagged robust passes).
+        alt_verdicts = []
+        for d_alt in (0.0, 2.0):
+            c4 = (-0.5 * np.log(2 * np.pi * p * (1 - p)) - 1.105)
+            n_alt = m.crossing_n(m.kl(p, tau), d_alt, c4)
+            n_w_c = m.wsr_crossing(m.v_kelly_block(rates, tau),
+                                   *corners[-1])
+            alt_verdicts.append("single" if n_alt < n_w_c else "wsr")
+        agree = all(v == expect for v in verdicts)
+        can_fail = len(set(verdicts + alt_verdicts)) > 1
+        tag = ("discriminating (verdict flips under d-alternatives)"
+               if can_fail else "NON-DISCRIMINATING (cannot fail even "
+               "under wrong theory)")
+        print(f"  {name}: corners -> {verdicts}; d-alts -> "
+              f"{alt_verdicts}; expected {expect}; "
+              f"{'agrees' if agree else 'DISAGREES'}; {tag}")
+        if not can_fail:
+            flags.append(f"R1: {name} verdict invariant even under "
+                         f"wrong theory — not evidence")
     return flags
 
 
