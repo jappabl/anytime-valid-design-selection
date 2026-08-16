@@ -1173,3 +1173,30 @@ indistinguishable). No cell contradicts the derived partition. The
 design map is therefore a DERIVED, VERIFIED two-region partition
 (single | WSR) with UI provably and now empirically nowhere optimal --
 a sharper and stronger statement than the observed four-regime table.
+
+
+## WSR has no standard expansion (stock schedule); 5.4's anomaly explained
+
+Peer-relayed derivation (gpt-5.6-sol, structural claim verified by the
+peer on our schedule; constant H/16 = 0.2306 REFUTED by their own
+measurement A = 0.1469 — form adopted, coefficient reported as
+measured only): the stock predictable lambda schedule admits NO fixed
+(d, c) with nV = log(1/alpha) + (d/2)log n + c + o(1). The true growth
+is nV ~ A log n (loglog n)^2, so nV/log n diverges and any fitted
+"dimension" is a horizon-dependent artifact that must drift upward.
+Fitting the standard form to this growth predicts d = 2.14 at n=700
+rising to 2.75 at n=10000 — reproducing Section 5.4's measured
+d = 1.8-2.3 MBPP anomaly from a constant measured independently of
+those fits. 5.4's anti-result is what a divergent quantity looks like
+when a constant is fitted to it.
+
+Consequences: (1) the two-regime envelope in the phase boundary is the
+CORRECT description of stock WSR, not a placeholder — the boundary is
+inherently semi-empirical on that side (BOUNDARY_THEOREM 4.3 updated);
+(2) the Kelly-floored variant is promoted from pragmatic patch to the
+only remaining route to a full boundary theorem — if the floor
+restores a non-decaying drift it may restore a genuine expansion. That
+discrimination is frozen and running (results_wsr_expansion.txt, P3,
+outcome not pre-committed). Our own reproduction of the stock
+divergence (P1/P2, on the real WSRBlockCS class) is in the same
+artifact.

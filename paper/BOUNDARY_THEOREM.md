@@ -144,10 +144,21 @@ committed before this derivation existed):
    in the lineage test), not a theorem. WSR's overhead is a measured
    two-regime envelope, not derived.
 3. **The boundary as a theorem.** §4's phase boundary equates Eq. (3)
-   (derived) with WSR's *empirical* envelope; it is therefore a
-   verified prediction (v2b: above-band 10/10, below-band 3/3 resolving
-   + 7 ties), not a proof. Deriving WSR's own fourth term would close
-   this; it is open.
+   (derived) with WSR's *empirical* envelope; it is a verified
+   prediction (v2b: above-band 10/10, below-band 3/3 resolving + 7
+   ties), not a proof. The once-open route "derive WSR's fourth term"
+   is now CLOSED for the stock schedule: the predictable lambda
+   schedule admits no (d/2) log n expansion — nV grows as
+   A log n (loglog n)² (structural claim derived by an independent
+   lineage and reproduced on our own classes,
+   results_wsr_expansion.txt), so a fitted WSR "dimension" must drift
+   with horizon, which retro-predicts §5.4's d = 1.8–2.3 anomaly. The
+   boundary is therefore INHERENTLY semi-empirical on the stock-WSR
+   side — a scoped limitation, not an open task. The single remaining
+   theorem route is the Kelly-floored variant (opt-in,
+   results_kelly_floor.txt): if the floor's non-decaying drift
+   restores a true expansion, the boundary closes on the floored arm;
+   that discrimination is measured in results_wsr_expansion.txt.
 
 ## 5. Relation to classical results
 
