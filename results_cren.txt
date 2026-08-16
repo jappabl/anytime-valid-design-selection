@@ -1,0 +1,26 @@
+============================================================================
+THRESHOLD CYCLE — closing the median-vs-mean piece of c_ren
+============================================================================
+alpha=0.05, prediction (*) Delta_mvm = -(gamma1/6)*sd(N)*V, ZERO fitted
+
+     p*    tau    medN    meanN      sd   skew  measured formula(*)  |err|
+   0.15  0.105     528    595.3   411.5   1.01    -0.650     -0.666  0.016
+   0.20  0.155     712    801.6   545.4   0.94    -0.645     -0.616  0.029
+   0.30  0.255     996   1115.9   757.2   0.90    -0.616     -0.585  0.031
+   0.20  0.170    1796   1992.4  1306.7   0.85    -0.600     -0.565  0.035
+   0.20  0.140     356    410.6   283.7   1.02    -0.735     -0.651  0.084
+   0.40  0.355    1172   1307.6   882.3   0.92    -0.589     -0.585  0.004
+
+  worst |measured - formula(*)| = 0.084 nats (<= 0.10: PASS)
+
+READING: if PASS, the median-vs-mean piece of c_ren is CLOSED in terms
+of the crossing-time skewness and sd — order statistics, exactly as the
+fork predicted. c_ren then reduces to selection + overshoot; the
+overshoot term takes the literature pass (Woodroofe nonlinear renewal
+ladder heights; Lai-Siegmund; Siegmund's renewal overshoot), which is
+recall-gap territory, not a new derivation. The selection term
+(E[N(KL(p_hat)-KL(p*))]) is a variance-of-the-rate effect, moderate.
+
+============================================================================
+Checksum (SHA256): 53a66c2ec16bbc9c
+============================================================================
