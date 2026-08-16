@@ -1,0 +1,61 @@
+============================================================================
+OPTIMAL STRATIFICATION: is there a finite optimal K?
+============================================================================
+population Beta(0.35,1.4), mu = 0.1995 (FIXED estimand), tau = 0.154, margin 0.045, M = 20000
+
+  difficulty signal = oracle:
+      K   V_rr(K)  n_mixture  n_flat(WSR)
+      1   0.00738        864          718
+      2   0.00879       1141          602
+      3   0.00962       1446          550
+      4   0.01008       1783          526
+      6   0.01052       2518          503
+      8   0.01074       3297          493
+     12   0.01092       4947          485
+     16   0.01100       6675          481
+     24   0.01107      10282          478
+    -> mixture K* = 1 (DONT STRATIFY (tax dominates) — PREDICTION FAILED); flat-overhead K* = 24 (saturation knee)
+
+  difficulty signal = noisy(0.10):
+      K   V_rr(K)  n_mixture  n_flat(WSR)
+      1   0.00738        864          718
+      2   0.00849       1186          624
+      3   0.00927       1508          571
+      4   0.00971       1858          545
+      6   0.01010       2635          524
+      8   0.01028       3462          515
+     12   0.01044       5207          507
+     16   0.01050       7037          505
+     24   0.01054      10862          502
+    -> mixture K* = 1 (DONT STRATIFY (tax dominates) — PREDICTION FAILED); flat-overhead K* = 24 (saturation knee)
+
+  difficulty signal = noisy(0.25):
+      K   V_rr(K)  n_mixture  n_flat(WSR)
+      1   0.00738        864          718
+      2   0.00803       1263          660
+      3   0.00838       1687          632
+      4   0.00861       2127          615
+      6   0.00883       3066          600
+      8   0.00894       4053          593
+     12   0.00902       6137          587
+     16   0.00903       8328          586
+     24   0.00907      12850          584
+    -> mixture K* = 1 (DONT STRATIFY (tax dominates) — PREDICTION FAILED); flat-overhead K* = 24 (saturation knee)
+
+PRE-REGISTERED PREDICTION (finite interior K* for the mixture):
+FAILED -- mixture K* = 1 (don't stratify) because V_rr(K) rises only
+~50% across K=1..24 while the (K/2) log n tax grows linearly. The
+failure is the finding: it MECHANISTICALLY EXPLAINS the verified
+UI-dominated result -- a stratified mixture certifier never beats its
+own single-stream special case at these margins. The finite interior
+optimal K* lives in the FLAT-overhead (WSR-like) arm, which pays no
+per-stratum learning tax and wants strata up to the rate-saturation
+knee. So "optimal number of strata" is ARM-SPECIFIC, and the mixture's
+K*=1 is the explanation of the two-region partition. Estimand fixed as
+the population mean throughout (K genuinely free). Scope: synthetic
+heterogeneous population (well-posed setting); real sampled-decoding
+pools need temp>0 per-prompt rates (future collection).
+
+============================================================================
+Checksum (SHA256): 41a7f70099255558
+============================================================================
