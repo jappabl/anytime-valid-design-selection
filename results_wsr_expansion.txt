@@ -16,10 +16,10 @@ p = 0.5, K = 4 blocks, alpha = 0.05; V = per-sample block Kelly rate
    0.009  floor    38390    6.217    0.589           0.1061  cert 1.00
 
   P1 stock nV/log n diverges (monotone, >=1.5x): 1.23x FAIL
-  P2 stock form nV/(log n (loglog n)^2) flat +/-10% (excl. deepest): spread 11.9% PASS; mean A = 0.1769 (peer 0.1469; H/16=0.2306 refuted)
+  P2 stock form nV/(log n (loglog n)^2) flat +/-10% (excl. deepest): max dev from mean 6.1%, total spread 11.9% PASS; mean A = 0.1769 (peer 0.1469; H/16=0.2306 refuted)
   P3 floored-arm discrimination: nV/log n drift 1.2% (stock 22.9%) -> FLAT: an expansion EXISTS on the floored arm — the boundary theorem can close there
      floored-arm fit: d = +1.27, c = -3.35 (report as measured; derive before claiming)
 
 ============================================================================
-Checksum (SHA256): 57faf5f83c06d771
+Checksum (SHA256): 1d90b32264342885
 ============================================================================
