@@ -91,11 +91,14 @@ is the harness; streams are CRN-seeded.
 
 1. PARTITION (near done): run the three-arm verification; then paper 4
    becomes a derived partition.
-2. OPTIMAL STRATIFICATION: DONE (results_optimal_k.txt). Answer is
-   ARM-SPECIFIC: mixture K*=1 (tax dominates — explains UI-domination,
-   pre-registered finite-interior prediction FAILED); flat/WSR arm
-   wants strata to the saturation knee. Follow-up: block-granularity
-   cost gives WSR's interior K*; real temp>0 per-prompt pools.
+2. OPTIMAL STRATIFICATION: DONE, rev 2 (results_gain.txt supersedes
+   the universal claim in results_optimal_k.txt). K* is POPULATION-
+   dependent: census on the ten real pools is K*=1 on 4, K*=2 on 4
+   (llama3.2 2.8x faster stratified), K*=4 on 2; gains 1.06-4.31x.
+   Finite-interior-K* prediction CONFIRMED on 4 pools. "K*=1 explains
+   UI-domination" RETRACTED (WSR beats UI, single does not, on 6/10).
+   Follow-ups: WSR block-granularity K*; temp>0 per-prompt pools for
+   finer K.
 
 ## IN FLIGHT
 

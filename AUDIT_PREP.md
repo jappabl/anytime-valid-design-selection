@@ -1135,3 +1135,12 @@ within 1000 samples in this regime.
   UI-domination (F13/F14). Arm-specific: mixture K*=1, flat/WSR large.
   Estimand fixed as population mean. Synthetic-population scope stated;
   reported as the failed-prediction-yielding-mechanism it is.
+- 2026-08-16 (rev 2 of F14, peer-triggered): quoted-gain check on the
+  real pools OVERTURNED the universal mixture-K*=1 claim — census
+  K*=1:4, K*=2:4, K*=4:2 across ten pools; gains 1.06-4.31x (both
+  synthetic figures unrepresentative); finite-interior-K* prediction
+  CONFIRMED on 4 pools after rev 1 declared it failed; "K*=1 explains
+  UI-domination" RETRACTED (WSR is why UI loses). The generalization-
+  from-one-synthetic-population error is recorded as such.
+  results_gain.txt is authoritative; derive_optimal_k.py kept as the
+  well-posedness construction, superseded-in-part note added.

@@ -28,8 +28,15 @@ its crossing time obeys the expansion with dimension d = K:
 PREDICTION (pre-registered): n(K) has a FINITE interior minimizer K*.
 Mechanism: V_rr(K) saturates while the (K/2) log n tax grows.
 
-ARM-DEPENDENCE (the finding, after the prediction FAILED for the
-mixture): the optimal K depends on the ARM'S OVERHEAD LAW.
+SUPERSEDED IN PART (rev 2, results_gain.txt): the universal "mixture
+K* = 1" conclusion below was refuted on the committed real pools —
+K* = 1 on only 4 of 10 (census 1:4, 2:4, 4:2), because real pools'
+near-boundary strata give gains up to 4.31x, far beyond this
+synthetic population's +50%. This file remains the well-posedness
+construction and the synthetic-population result, attributed as such.
+
+ARM-DEPENDENCE (as stated on THIS synthetic population): the optimal K
+depends on the ARM'S OVERHEAD LAW.
   - MIXTURE / UI arm (tax = (K/2) log n): the rate gain from
     stratification (V_rr rises only ~50% across K=1..24) never outpaces
     the per-stratum half-log-n tax, so K* = 1 -- DON'T STRATIFY. This

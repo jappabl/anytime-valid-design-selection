@@ -1,0 +1,44 @@
+============================================================================
+STRATIFICATION GAIN ON THE COMMITTED POOLS (peer correction to F14's magnitude)
+============================================================================
+margin 0.045, size-proportional weights, K in {1,2,4} (temp-0 pools: designed strata are the finest honest partition)
+
+  pool               mu  KLg(2)  KLg(4)  varg(4)   n(K) and K*
+  gpt-4o-mini    0.2020   1.256   2.034    2.464  n(1/2/4)=897/1118/1182 K*=1
+  llama3.2-3b    0.4830   3.871   4.314    5.233  n(1/2/4)=1638/593/947 K*=2
+  qwen2.5-7b     0.2970   1.511   3.328    3.448  n(1/2/4)=1268/1299/972 K*=4
+  llama3.1-8b    0.2670   1.425   2.314    2.563  n(1/2/4)=1164/1269/1341 K*=1
+  llama3-8b      0.6090   1.790   1.943    1.926  n(1/2/4)=1609/1374/2286 K*=2
+  qwen2-7b       0.3890   2.031   2.921    3.023  n(1/2/4)=1512/1120/1354 K*=2
+  mistral-7b     0.4280   1.743   2.284    2.219  n(1/2/4)=1579/1388/1870 K*=2
+  gemma2-9b      0.3100   1.626   3.251    3.381  n(1/2/4)=1310/1238/1032 K*=4
+  phi3.5-3.8b    0.9490   1.078   1.101    1.065  n(1/2/4)=436/633/1117 K*=1
+  deepseek-7b    0.9890   1.024   1.058    1.020  n(1/2/4)=201/302/520 K*=1
+
+  RANGE across committed pools (K=4 vs pooled):
+    KL gain  V_rr/V_pool: 1.058 - 4.314
+    variance gain:        1.020 - 5.233
+  Saturation: NOT uniform — most gain arrives by K=2 on some pools
+  (llama3.2: 3.87 of 4.31) but between K=2 and K=4 on others
+  (qwen2.5: 1.51 -> 3.33; gemma2: 1.63 -> 3.25). Finer-K behavior
+  needs temp>0 per-prompt rates (standing scope caveat; the temp-0
+  degeneracy is its concrete form).
+
+  K* CENSUS (mixture arm, real pools): {1: 4, 2: 4, 4: 2} — K* = 1 on
+  4/10, INTERIOR K* = 2 on 4/10, K* = 4 (range boundary)
+  on 2/10.
+
+  VERDICT: F14's universal "mixture K* = 1" is REFUTED on 6 of 10
+  committed pools — it was a synthetic-population artifact (both the
+  +50% and +7% synthetic gains are far below the real 1.06-4.31 range,
+  because real pools concentrate mass in near-boundary strata that
+  carry almost no variance). The pre-registered finite-interior-K*
+  prediction is CONFIRMED on the 4 pools with K* = 2. The arm-specific
+  tax structure survives; where the tax-vs-gain balance tips is a
+  POPULATION property. RETRACTED: "K*=1 explains UI-domination" — UI
+  beats single on 6/10 real pools; UI is dominated because WSR beats
+  it everywhere measured, not because single does.
+
+============================================================================
+Checksum (SHA256): 6741923850ff0c66
+============================================================================
