@@ -1089,3 +1089,10 @@ within 1000 samples in this regime.
   seven flags are the heuristic's artifact-side-only limitation
   (claims hand-verified; open methodology item per paper 6.2).
   110 tests green.
+- 2026-08-16: threshold cycle recorded as project method (THEORY);
+  handoff doc rewritten (ISEF_PLAN.md, resumable). c_ren cycle:
+  median-vs-mean CLOSED zero-fit (results_cren.txt); overshoot
+  literature-pass done — classical average-excess framework
+  (Lorden/Siegmund) identified but naive non-lattice constant refuted
+  2x by the periodic every-4-check boundary (exact Lotov-type
+  correction OPEN, cited not fudged); selection untouched.

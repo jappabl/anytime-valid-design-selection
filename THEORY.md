@@ -973,3 +973,32 @@ constant with a numerical decomposition) => derive, with a literature
 pass queued for its overshoot piece; the below-band region is NOISE at
 200 reps => improve the instrument (full-distribution comparison), not
 add reps.
+
+
+## c_ren, cycle progress: one piece closed, one framed, one open
+
+Applying the threshold cycle to c_ren = -1.105 nats:
+
+- MEDIAN-VS-MEAN (-0.65): CLOSED. Cornish-Fisher order-statistic form
+  Delta = -(gamma1/6)*sd(N)*V, within 0.084 nats zero-fit across six
+  points (results_cren.txt). The fork's "order statistics, not renewal
+  theory" call was right.
+- OVERSHOOT (+0.23): LITERATURE PASS done. The framework is the
+  classical renewal average-excess (Lorden's sequential-analysis
+  contributions; Siegmund's overshoot-as-drift-to-zero) — E[Z^2]/(2 E[Z])
+  for the crossing increment Z. But a numerical check REFUTES the naive
+  non-lattice constant: it gives +0.42/+0.34/+0.31 against measured
+  +0.23/+0.19/+0.15 — about 2x high. Diagnosis: the every-4th-sample
+  check makes this a PERIODIC-boundary crossing, where the textbook
+  non-lattice formula does not apply; the exact constant needs the
+  lattice/periodic-boundary correction (Lotov-type). That correction is
+  the remaining open sub-clause. Honest state: framework identified and
+  cited, exact constant open — NOT closed, and not fudged to look so.
+- SELECTION (-0.68): not yet attempted; variance-of-the-rate effect
+  E[N(KL(p_hat)-KL(p*))], moderate.
+
+Net: c_ren is one-third closed exactly, one-third classically framed
+with a named open correction, one-third untouched. The cycle
+terminates a sub-clause only when it is closed OR shown to need
+machinery beyond reach and cited as such — the overshoot piece is the
+latter.

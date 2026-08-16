@@ -40,13 +40,16 @@ relation gate.
 
 **c_ren = −1.105 nats**, p\*-independent, decomposes numerically
 (±0.13) as selection −0.68 + overshoot +0.23 + median-vs-mean −0.65.
-Closed form open. Not uniformly hard:
-- median-vs-mean (−0.65): order statistics, should close EXACTLY.
-- selection (−0.68): moderate.
-- overshoot (+0.23): the genuinely hard piece — LITERATURE PASS here
-  (Woodroofe ladder heights, Lai–Siegmund, Siegmund renewal overshoot).
-Test data already frozen (results_margin_sweep.txt); any closed form is
-checked against it with nothing fitted.
+- median-vs-mean (−0.65): **CLOSED** — Cornish-Fisher form
+  −(γ₁/6)·sd(N)·V, within 0.084 nats zero-fit
+  (results_cren.txt, scripts/derive_cren.py).
+- selection (−0.68): moderate; variance-of-the-rate effect
+  E[N(KL(p̂)−KL(p\*))]. Next derivation target.
+- overshoot (+0.23): the hard piece — LITERATURE PASS (lattice/periodic
+  boundary overshoot: Lotov, Siegmund lattice renewal; the every-4th
+  check makes this a periodic-boundary crossing, not a smooth one).
+Test data frozen (results_margin_sweep.txt); any closed form is checked
+against it with nothing fitted.
 
 ## OPEN — measurement threshold
 
