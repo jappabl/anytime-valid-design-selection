@@ -1037,3 +1037,40 @@ The optimal-stratification inverse problem (fix the estimand as the
 population mean, treat the partition as a free variance-reduction
 choice, minimize the V_rr-driven crossing time -> a derivable finite
 optimal K) is the larger follow-on.
+
+
+## Selection term corrected: Bregman closed form, first-order exactly zero
+
+Peer correction (2026-08-16), re-verified here at 60k reps before
+adoption (results_selection.txt, scripts/verify_selection.py):
+
+- BREGMAN IDENTITY (exact to 2.7e-12):
+  N[D(p_hat||tau) - D(p*||tau)] = theta*M_N + N*D(p_hat||p*),
+  theta = D'(p*||tau), M_N = F_N - p* N.
+- FIRST-ORDER TERM EXACTLY ZERO: E[M_N] = 0 by Wald (measured
+  -0.01 +/- 0.05), so selection = E[N*D(p_hat_N||p*)] EXACT, no
+  approximation. The earlier "1/2 via Var(p_hat)=p*q*/n" reasoning was
+  wrong (stopping selects boundary-avoiding paths).
+- THE REPO C4 VALUE +0.681 WAS NOISE-HIGH: 60k-rep value is 0.6387
+  +/- 0.0034 (z vs 0.681 = -12.6; agrees with the peer's exact
+  recursion 0.640). results_overshoot.txt C4 is STALE and flagged for
+  regeneration.
+
+CONSEQUENCE for the decomposition, stated honestly (the peer flagged
+it): c_ren's three measured pieces were -selection + overshoot +
+median-vs-mean = -0.681 + 0.23 - 0.65 = -1.10, matching c_ren = -1.105
+-- but that match USED the inflated selection. With the corrected
+0.639 the sum is ~ -1.06, leaving a ~0.05-nat gap. So the decomposition
+does NOT close as an exact numerical identity; only median-vs-mean is
+in exact closed form, selection has an exact closed FORM (value
+schedule-dependent), and overshoot remains open. Do not claim the
+three-piece sum closes.
+
+SCHEDULE DEPENDENCE (finding in its own right): selection depends on
+the check schedule, so c_ren is not universal -- any closed form must
+carry the check period d, with d=1 a special case. This shares one
+cause with the 2x-off overshoot constant: the boundary is evaluated on
+a period-4 sublattice. MAGNITUDE DISPUTED: this run measures the
+every1-minus-every4 gap at +0.011/+0.012 (two p* points), the peer
+reported +0.086; the qualitative dependence is adopted, no every-1
+value is encoded until reconciled.

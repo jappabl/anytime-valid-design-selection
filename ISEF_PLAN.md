@@ -43,13 +43,18 @@ relation gate.
 - median-vs-mean (−0.65): **CLOSED** — Cornish-Fisher form
   −(γ₁/6)·sd(N)·V, within 0.084 nats zero-fit
   (results_cren.txt, scripts/derive_cren.py).
-- selection (−0.68): moderate; variance-of-the-rate effect
-  E[N(KL(p̂)−KL(p\*))]. Next derivation target.
+- selection: EXACT CLOSED FORM E[N·D(p̂‖p\*)] with first-order term
+  exactly zero (Wald + Bregman identity, verified 2.7e-12). Corrected
+  value 0.639 (repo C4's +0.681 was noise-high, rejected z=−12.6).
+  SCHEDULE-DEPENDENT — carries the check period d. results_selection.txt.
 - overshoot (+0.23): the hard piece — LITERATURE PASS (lattice/periodic
   boundary overshoot: Lotov, Siegmund lattice renewal; the every-4th
   check makes this a periodic-boundary crossing, not a smooth one).
 Test data frozen (results_margin_sweep.txt); any closed form is checked
-against it with nothing fitted.
+against it with nothing fitted. NOTE: c_ren is schedule-dependent (a
+finding); results_overshoot.txt C4 is STALE (regenerate with the
+corrected selection + higher reps); the three-piece decomposition does
+NOT close exactly once the inflated selection is fixed.
 
 ## OPEN — measurement threshold
 

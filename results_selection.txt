@@ -1,0 +1,20 @@
+============================================================================
+SELECTION TERM: Bregman closed form + corrected value
+============================================================================
+
+  (1) Bregman identity: max error 2.73e-12 (EXACT)
+
+  (2/3) selection = E[N D(p_hat||p*)], and E[M_N] (Wald: exactly 0):
+     p*    tau   sched   reps  selection      SE   E[M_N]
+   0.20  0.155     n%4  60000     0.6387  0.0034    -0.01
+   0.20  0.155     n%1  40000     0.6500  0.0041    +0.02
+        schedule gap every1-every4 = +0.011 (peer reported +0.086 at p*=0.2 -- DISPUTED, not adopted)
+   0.30  0.255     n%4  60000     0.6538  0.0035    -0.12
+   0.30  0.255     n%1  40000     0.6657  0.0043    +0.13
+        schedule gap every1-every4 = +0.012 (peer reported +0.086 at p*=0.2 -- DISPUTED, not adopted)
+
+  VERDICT: repo C4 value +0.681 REJECTED (this run 0.6387 +/- 0.0034, z vs 0.681 = -12.6); selection closed form E[N D(p_hat||p*)] with first-order term exactly zero; c_ren is SCHEDULE-DEPENDENT (carries the check period d). results_overshoot.txt C4 is STALE and flagged for regeneration. No constant fitted.
+
+============================================================================
+Checksum (SHA256): 2e8aef35917d44c5
+============================================================================

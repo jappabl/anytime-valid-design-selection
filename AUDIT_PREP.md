@@ -1096,3 +1096,12 @@ within 1000 samples in this regime.
   (Lorden/Siegmund) identified but naive non-lattice constant refuted
   2x by the periodic every-4-check boundary (exact Lotov-type
   correction OPEN, cited not fudged); selection untouched.
+- 2026-08-16: SELECTION correction (peer-originated, self-corrected;
+  re-verified 60k reps): Bregman identity exact; first-order term
+  exactly zero => selection = E[N D(p_hat||p*)] exact form; repo C4
+  value +0.681 REJECTED as noise-high (true ~0.639, z=-12.6);
+  c_ren SCHEDULE-DEPENDENT (carries check period d), gap magnitude
+  DISPUTED (my +0.011 vs peer +0.086, not adopted). Decomposition no
+  longer closes with corrected number (~-1.06 vs -1.105) -- disclosed,
+  not fudged. results_overshoot.txt C4 flagged STALE. No constant
+  fitted (per request). results_selection.txt is authoritative.
