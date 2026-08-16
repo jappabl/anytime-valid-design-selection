@@ -69,25 +69,33 @@ LADDER = [(0.035, 300, 30000), (0.025, 300, 60000),
 
 
 def median_crossing(cls, tau, reps, n_max, seed0):
+    """v2: v1 computed block means with numpy BOOLEAN addition
+    (logical OR — means capped at 0.25 < tau, so nothing ever
+    crossed and both arms returned identical censored n_max rows;
+    the first artifact was INVALID and its P3 verdict nonsense).
+    v2 uses int8 + reshape, and returns the crossing fraction so
+    verdicts can be validity-guarded."""
     times = []
+    done = 0
+    n_blocks = n_max // 4
     for rep in range(reps):
         rng = np.random.default_rng(seed0 + rep)
         cs = cls(alpha=ALPHA)
+        x = (rng.random(n_blocks * 4) < P).astype(np.int8)
+        means = x.reshape(-1, 4).mean(axis=1)
         crossed = None
-        # draw in chunks for speed
-        for start in range(0, n_max, 40000):
-            x = rng.random(min(40000, n_max - start)) < P
-            for j in range(0, len(x) - 3, 4):
-                m = float(x[j] + x[j + 1] + x[j + 2] + x[j + 3]) / 4.0
-                cs.update(m)
-                lo, _ = cs.get_bounds()
-                if lo > tau:
-                    crossed = start + j + 4
-                    break
-            if crossed:
+        for j in range(n_blocks):
+            cs.update(float(means[j]))
+            lo, _ = cs.get_bounds()
+            if lo > tau:
+                crossed = 4 * (j + 1)
                 break
-        times.append(crossed if crossed else n_max)
-    return int(np.median(times))
+        if crossed:
+            done += 1
+            times.append(crossed)
+        else:
+            times.append(n_max)
+    return int(np.median(times)), done / reps
 
 
 def main():
@@ -106,18 +114,25 @@ def main():
         tau = P - delta
         V = pb.v_kelly_block(rates, tau)
         for arm, cls in [("stock", WSRBlockCS), ("floor", KellyFloorWSR)]:
-            n = median_crossing(cls, tau, reps, n_max,
-                                BASE_SEED + 1000 * i
-                                + (0 if arm == "stock" else 500))
+            n, frac = median_crossing(cls, tau, reps, n_max,
+                                      BASE_SEED + 1000 * i
+                                      + (0 if arm == "stock" else 500))
             nv = n * V
             r1 = nv / np.log(n)
             r2 = nv / (np.log(n) * np.log(np.log(n)) ** 2)
-            rows[arm].append((delta, n, nv, r1, r2))
+            rows[arm].append((delta, n, nv, r1, r2, frac))
             print(f"  {delta:>6.3f} {arm:>6} {n:>8} {nv:>8.3f} "
-                  f"{r1:>8.3f} {r2:>16.4f}")
+                  f"{r1:>8.3f} {r2:>16.4f}  cert {frac:.2f}")
 
     s = rows["stock"]
     f = rows["floor"]
+    # VALIDITY GUARD (v2; generator instance six — a verdict computed
+    # from censored data): every scored rung must have >= 90% of reps
+    # actually crossing, else the artifact declares itself INVALID.
+    if min(r[5] for r in s + f) < 0.9:
+        print("\n  INVALID: a rung has < 90% crossings — instrument "
+              "failure, no verdicts scored.")
+        return
     p1 = (all(s[i + 1][3] > s[i][3] for i in range(len(s) - 1))
           and s[-1][3] / s[0][3] >= 1.5)
     core = [r[4] for r in s[:-1]]

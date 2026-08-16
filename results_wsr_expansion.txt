@@ -1,0 +1,25 @@
+============================================================================
+WSR EXPANSION TEST: stock schedule vs Kelly-floored, shrinking margins
+============================================================================
+p = 0.5, K = 4 blocks, alpha = 0.05; V = per-sample block Kelly rate
+
+   delta    arm    n_med       nV  nV/logn nV/(logn llog^2)
+   0.035  stock    30000   73.142    7.095           1.3035
+   0.035  floor    30000   73.142    7.095           1.3035
+   0.025  stock    60000   74.813    6.800           1.1824
+   0.025  floor    60000   74.813    6.800           1.1824
+   0.018  stock   120000   77.659    6.640           1.0980
+   0.018  floor   120000   77.659    6.640           1.0980
+   0.013  stock   250000   84.443    6.794           1.0698
+   0.013  floor   250000   84.443    6.794           1.0698
+   0.009  stock   600000   97.168    7.303           1.0903
+   0.009  floor   600000   97.168    7.303           1.0903
+
+  P1 stock nV/log n diverges (monotone, >=1.5x): 1.03x FAIL
+  P2 stock form nV/(log n (loglog n)^2) flat +/-10% (excl. deepest): spread 20.1% FAIL; mean A = 1.1634 (peer 0.1469; H/16=0.2306 refuted)
+  P3 floored-arm discrimination: nV/log n drift 2.9% (stock 2.9%) -> FLAT: an expansion EXISTS on the floored arm — the boundary theorem can close there
+     floored-arm fit: d = +15.81, c = -14.41 (report as measured; derive before claiming)
+
+============================================================================
+Checksum (SHA256): 124352067c666db1
+============================================================================
