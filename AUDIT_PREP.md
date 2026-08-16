@@ -1105,3 +1105,12 @@ within 1000 samples in this regime.
   longer closes with corrected number (~-1.06 vs -1.105) -- disclosed,
   not fudged. results_overshoot.txt C4 flagged STALE. No constant
   fitted (per request). results_selection.txt is authoritative.
+- 2026-08-16: OVERSHOOT asymptotic constant CLOSED (peer Spitzer
+  derivation, re-verified two ways across 3 points to <0.0003;
+  rho_1=0.0942, rho_4=0.1703 matching exact enumeration). It is the
+  block-skeleton ladder height (rho_d = E[H_d^2]/(2E[H_d])), NOT a
+  lattice span — my earlier 2x diagnosis was wrong. rho_4/rho_1=1.81
+  PROVES the schedule dependence. Asymptotic 0.170 kept distinct from
+  finite-L measured 0.228; the gap is the single remaining obstruction
+  (shared with selection). Citations recorded (Kim & Woodroofe
+  math/0611695). Nothing fitted. results_overshoot_closed.txt.

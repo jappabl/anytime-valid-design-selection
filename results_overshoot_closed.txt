@@ -1,0 +1,29 @@
+============================================================================
+OVERSHOOT: asymptotic constant rho_d CLOSED (two independent checks)
+============================================================================
+
+  rho_d = E[H_d^2]/(2 E[H_d]) for the d-sample block-skeleton ladder height
+
+     p*    tau  d  rho_spitzer  rho_ladderMC  |diff|
+  0.202  0.157  1      0.09417       0.09424  0.0001
+  0.202  0.157  4      0.17035       0.17068  0.0003
+  0.300  0.255  1      0.06354       0.06364  0.0001
+  0.300  0.255  4      0.13806       0.13833  0.0003
+  0.150  0.105  1      0.13089       0.13099  0.0001
+  0.150  0.105  4      0.21654       0.21665  0.0001
+
+  two-method agreement: worst |diff| 0.0003 (PASS)
+  d-dependence (the 'factor of 2'): rho_4/rho_1 = 1.809 at (0.202, 0.157)
+
+  STATUS:
+    ASYMPTOTIC overshoot: CLOSED. rho_4 = 0.1703 at (0.202, 0.157),
+      Spitzer closed form = ladder-height MC to <0.01, matching the
+      peer's exact-enumeration 0.1703462.
+    FINITE-L overshoot: measured ~0.228 at L = log 20 = 3.0 (far from
+      asymptotic). The 0.170 -> 0.228 gap is the OPEN finite-L
+      correction, now the single obstruction shared with selection.
+    Not fitted; both numbers recorded with status.
+
+============================================================================
+Checksum (SHA256): ec90531e7eefa2ab
+============================================================================

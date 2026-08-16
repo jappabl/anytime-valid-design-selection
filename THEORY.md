@@ -1074,3 +1074,36 @@ a period-4 sublattice. MAGNITUDE DISPUTED: this run measures the
 every1-minus-every4 gap at +0.011/+0.012 (two p* points), the peer
 reported +0.086; the qualitative dependence is adopted, no every-1
 value is encoded until reconciled.
+
+
+## Overshoot asymptotic constant CLOSED; finite-L gap is the obstruction
+
+Peer derivation (Spitzer fluctuation identity), RE-VERIFIED here two
+independent ways across three (p*,tau) before adoption
+(results_overshoot_closed.txt, scripts/verify_overshoot.py): the
+Spitzer closed form and a direct ladder-height Monte Carlo agree to
+<0.0003, matching the peer's exact-enumeration rho_1 = 0.0941692,
+rho_4 = 0.1703462.
+
+The overshoot is the first strict ascending ladder height of the
+d-SAMPLE BLOCK SKELETON (not the per-sample increment — that was the
+error in both my "lattice span" guess and the naive E[Y^2]/(2E[Y])):
+    rho_d = sigma^2/(2 mu) + d mu/2 - sum_m A_{dm}/m.
+The measured "factor of 2" IS the schedule dependence: rho_4/rho_1 =
+1.809. This confirms the standing c_ren finding — the renewal constant
+carries the check period d — now with a proof, not a conjecture.
+
+CRITICAL, kept sharp: rho_d is the ASYMPTOTIC (large log(1/alpha))
+constant. The measured finite-boundary overshoot at L = log 20 = 3.0
+is ~0.228, far from asymptotic. The 0.170 -> 0.228 gap is REAL and is
+the OPEN finite-L correction. c_ren now stands as:
+  - median-vs-mean: CLOSED (Cornish-Fisher).
+  - selection: EXACT closed FORM E[N D(p_hat||p*)], first-order
+    exactly zero (Bregman + Wald); asymptotic value schedule-dependent.
+  - overshoot: ASYMPTOTIC constant CLOSED (rho_d); finite-L OPEN.
+The SINGLE remaining obstruction is finite-L behaviour at L~3, shared
+by selection and overshoot. Right frame: Kim & Woodroofe nonlinear
+renewal with slowly-changing perturbations (arXiv math/0611695), which
+accommodates the quadratic xi_n = (F_n-np)^2/(2npq). Do NOT collapse
+the asymptotic and finite-L numbers; both recorded with status, none
+fitted.

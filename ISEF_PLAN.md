@@ -36,7 +36,17 @@ relation gate.
   artifact retrofit R4-clean. scripts/relation_gate.py.
 - 110 tests green. Certifier is O(1)/block (21 µs/sample).
 
-## OPEN — theory threshold (the number to hit)
+## OPEN — theory threshold (the SINGLE remaining obstruction)
+
+c_ren's three pieces: median-vs-mean CLOSED, selection EXACT FORM
+(first-order zero), overshoot ASYMPTOTIC CLOSED. The one obstruction
+left is FINITE-L behaviour at L = log(1/alpha) ~ 3 (both selection and
+overshoot have asymptotic closed forms but finite-L gaps: overshoot
+0.170 asymptotic vs 0.228 at L=3). Frame: Kim & Woodroofe nonlinear
+renewal (arXiv math/0611695). Peer running a max-effort attack on the
+unified finite-L structure.
+
+## OPEN — c_ren piece detail
 
 **c_ren = −1.105 nats**, p\*-independent, decomposes numerically
 (±0.13) as selection −0.68 + overshoot +0.23 + median-vs-mean −0.65.
@@ -47,9 +57,11 @@ relation gate.
   exactly zero (Wald + Bregman identity, verified 2.7e-12). Corrected
   value 0.639 (repo C4's +0.681 was noise-high, rejected z=−12.6).
   SCHEDULE-DEPENDENT — carries the check period d. results_selection.txt.
-- overshoot (+0.23): the hard piece — LITERATURE PASS (lattice/periodic
-  boundary overshoot: Lotov, Siegmund lattice renewal; the every-4th
-  check makes this a periodic-boundary crossing, not a smooth one).
+- overshoot: ASYMPTOTIC constant CLOSED — rho_d = E[H_d^2]/(2E[H_d]),
+  block-skeleton ladder height via Spitzer (rho_4=0.1703), verified two
+  ways (results_overshoot_closed.txt). The measured 0.228 at L=3 is
+  finite-L; the 0.170->0.228 gap is OPEN. Ladder height, NOT a lattice
+  span (my earlier guess was wrong).
 Test data frozen (results_margin_sweep.txt); any closed form is checked
 against it with nothing fitted. NOTE: c_ren is schedule-dependent (a
 finding); results_overshoot.txt C4 is STALE (regenerate with the
