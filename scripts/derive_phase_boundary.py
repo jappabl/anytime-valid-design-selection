@@ -52,7 +52,10 @@ import io
 from contextlib import redirect_stdout
 
 import numpy as np
+from pathlib import Path
 from scipy.optimize import brentq
+
+REPO = Path(__file__).parent.parent
 
 ALPHA = 0.05
 L = float(np.log(1 / ALPHA))
@@ -144,14 +147,21 @@ def wsr_crossing(V, c_short, d_long, c_long):
         return np.inf
 
 
-C_REN = -1.105   # measured renewal scalar (results_overshoot.txt)
+# EXACT single-arm crossing via the absorption recursion (supersedes
+# the four-term-with-scalar-C_REN approximation; c_ren is a full
+# function c_ren(p*,tau,alpha,d,n0), not a scalar — results_cren_exact).
+import types as _types
+_ce_src = open(REPO / "scripts" / "derive_cren_exact.py").read()
+_ce = _types.ModuleType("ce")
+_ce.__dict__["__file__"] = str(REPO / "scripts" / "derive_cren_exact.py")
+exec(_ce_src.rsplit("if __name__", 1)[0], _ce.__dict__)
 
 
 def single_fourterm(p, tau):
-    """Derived four-term single-arm crossing (no fitted parameters
-    beyond the one disclosed measured scalar C_REN)."""
-    c = -0.5 * np.log(2 * np.pi * p * (1 - p)) + C_REN
-    return crossing_n(kl(p, tau), 1.0, c)
+    """EXACT single-arm median crossing (absorption recursion, d=4,
+    n0=20 — the every-4th-check-from-20 stopping rule; zero fit)."""
+    med, _, _ = _ce.c_ren(p, tau, alpha=ALPHA, d=4, n0=20)
+    return float(med)
 
 
 def flip_ratio(p_star, m, c_short, c_long, d_long):

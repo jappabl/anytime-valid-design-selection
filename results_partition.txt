@@ -3,25 +3,25 @@ DESIGN-SPACE PARTITION: single / UI+RR / WSR pairwise boundaries
 ============================================================================
 
 ANCHOR DISCRIMINATION (R1):
-  ANC-1 mild R~2.6: winner wsr (runner-up gap 2%), UI-alt ui; expect single-or-tie, UI never -> PASS (tie band); discriminating yes
+  ANC-1 mild R~2.6: winner wsr (runner-up gap 1%), UI-alt ui; expect single-or-tie, UI never -> PASS (tie band); discriminating yes
   ANC-2 hard R~200: corners ['wsr', 'wsr', 'wsr']; expect crisp wsr -> PASS
 
   ANC-3 UI-dominated check: UI is outright fastest at 0/84 grid cells (PASS — thin/empty as observed)
 
   PARTITION at p* = 0.2 (central WSR envelope):
    margin R=1.5    R=2.5    R=4      R=7      R=15     R=40   
-    0.030   sing~    wsr~     wsr      wsr      wsr      wsr    
-    0.045   sing~    wsr~     wsr~     wsr      wsr      wsr    
-    0.060   singl    singl    sing~    sing~    wsr~     wsr    
+    0.030   sing~    sing~    wsr      wsr      wsr      wsr    
+    0.045   sing~    sing~    wsr~     wsr      wsr      wsr    
+    0.060   singl    singl    sing~    wsr~     wsr~     wsr    
     0.080   singl    singl    singl    singl    singl    sing~  
     (~ = tie band: winner within 5% of runner-up — choice does not matter)
 
   PARTITION at p* = 0.3 (central WSR envelope):
    margin R=1.5    R=2.5    R=4      R=7      R=15     R=40   
-    0.030   singl    wsr~     wsr      wsr      wsr      wsr    
+    0.030   singl    sing~    wsr      wsr      wsr      wsr    
     0.045   sing~    wsr~     wsr      wsr      wsr      wsr    
     0.060   singl    sing~    wsr~     wsr      wsr      wsr    
-    0.080   singl    singl    singl    wsr~     wsr      wsr    
+    0.080   singl    singl    sing~    wsr~     wsr      wsr    
     (~ = tie band: winner within 5% of runner-up — choice does not matter)
 
   PARTITION at p* = 0.4 (central WSR envelope):
@@ -29,7 +29,7 @@ ANCHOR DISCRIMINATION (R1):
     0.030   singl    wsr~     wsr      wsr      wsr      wsr    
     0.045   sing~    wsr      wsr      wsr      wsr      wsr    
     0.060   singl    wsr~     wsr      wsr      wsr      wsr    
-    0.080   singl    singl    wsr~     wsr      wsr      wsr    
+    0.080   singl    singl    wsr      wsr      wsr      wsr    
     (~ = tie band: winner within 5% of runner-up — choice does not matter)
 
 READING: the partition is DERIVED, not observed — one crossing-time
@@ -43,5 +43,5 @@ four-regime table. Verification harness: run_phase_test.py extended to
 three arms (queued).
 
 ============================================================================
-Checksum (SHA256): c4fdac1a61537b65
+Checksum (SHA256): 633da7306797abd8
 ============================================================================

@@ -8,8 +8,10 @@ the single-stream expansion — and states the phase boundary as a
 corollary whose remaining input (WSR's overhead envelope) is empirical,
 not proved. Every numerical claim is checked in
 [results_overshoot.txt](../results_overshoot.txt) (identity C1, slope
-C2, decomposition C4) and [results_phase_test.txt](../results_phase_test.txt)
-(the boundary verification). Scope is stated plainly at the end.
+C2), [results_cren_exact.txt](../results_cren_exact.txt) (the exact
+c_ren value, superseding the old C4 decomposition), and
+[results_phase_test.txt](../results_phase_test.txt) (the boundary
+verification). Scope is stated plainly at the end.
 
 ## 1. Setup
 
@@ -53,8 +55,9 @@ so the median crossing n satisfies
 
 with q\* = 1−p\*. The p\*-dependent constant is **derived**:
 c_Laplace(p\*) = −½ log(2π p\* q\*). The residual carries one further
-p\*-independent term c_ren (selection + discrete-check overshoot +
-median-vs-mean), stated open in §4.
+term c_ren = c_ren(p\*, tau, alpha, d, n0) — NOT p\*-independent and
+NOT a universal scalar; it is a full function, EXACTLY COMPUTABLE by a
+finite absorption recursion (§4, results_cren_exact.txt).
 
 ## 3. What the theorem buys (measured, zero fitted parameters)
 
@@ -70,18 +73,28 @@ committed before this derivation existed):
   per-point p\*-slope from −1.398 to −0.255 nats and the per-point
   correlation from −0.616 to −0.133, with **nothing fitted** — 82% of
   the measured p\*-structure is the derived term.
-- **Decomposition C4.** The residual c_ren ≈ −1.10 nats decomposes
-  numerically (within 0.13) into selection −0.68, discrete-check
-  overshoot +0.23, median-vs-mean −0.65.
+- **Exact value.** c_ren = −1.1700824 at
+  (p\*, τ, α, d, n0) = (0.202, 0.157, 0.05, 4, 20), discrete-median
+  convention, computed exactly by the absorption recursion (verified to
+  7 decimals against an independent transfer-operator; the earlier
+  8000-rep Monte-Carlo −1.105 was noise-high by 0.065). The
+  three-piece selection/overshoot/median decomposition was an
+  approximate diagnostic and is SUPERSEDED by the exact recursion — it
+  does not sum exactly.
 
 ## 4. What is NOT proved (stated open)
 
-1. **c_ren in closed form.** The p\*-independent renewal constant
-   (≈ −1.10 nats) is measured and numerically decomposed, not derived.
-   Its closed form requires Woodroofe's nonlinear-renewal ladder-height
-   distribution for Bernoulli log-likelihood increments — the named
-   Month-2+ open clause. C3 (its point-spread ≤ 0.25 nats) marginally
-   fails at 0.286, i.e. it is *nearly* but not exactly p\*-independent.
+1. **c_ren scalar closed form.** c_ren is EXACTLY COMPUTABLE for any
+   (p\*, τ, α, d, n0) by the finite absorption recursion (zero fit) —
+   so the four-term expansion is fully predictive in practice. What is
+   OPEN is a scalar elementary/special-function reduction: the
+   obstruction is a time-inhomogeneous, NONCOMMUTING killed kernel
+   (continuation-then-draw operators do not commute across check
+   times), a genuine mathematical obstruction, not an unfitted
+   constant. The overshoot piece has an asymptotic closed form
+   (ρ_d = E[H_d²]/(2E[H_d]), Spitzer) but a finite-L gap (0.170 vs
+   0.228 at α = 0.05); selection has an exact closed form
+   E[N·D(p̂‖p\*)] with first-order term exactly zero (Wald).
 2. **The other statistics.** Eqs. (2)–(3) are the single-stream arm only.
    The UI product e-process has d = K + #boundary empirically (a coarse
    regularity, downgraded to 2-of-3 and shown margin-structure-dependent

@@ -36,15 +36,18 @@ relation gate.
   artifact retrofit R4-clean. scripts/relation_gate.py.
 - 110 tests green. Certifier is O(1)/block (21 µs/sample).
 
-## OPEN — theory threshold (the SINGLE remaining obstruction)
+## OPEN — theory threshold (RESOLVED to an exact algorithm + named obstruction)
 
-c_ren's three pieces: median-vs-mean CLOSED, selection EXACT FORM
-(first-order zero), overshoot ASYMPTOTIC CLOSED. The one obstruction
-left is FINITE-L behaviour at L = log(1/alpha) ~ 3 (both selection and
-overshoot have asymptotic closed forms but finite-L gaps: overshoot
-0.170 asymptotic vs 0.228 at L=3). Frame: Kim & Woodroofe nonlinear
-renewal (arXiv math/0611695). Peer running a max-effort attack on the
-unified finite-L structure.
+c_ren is EXACTLY COMPUTABLE for any (p*, tau, alpha, d, n0) by a finite
+absorption recursion, zero fit (results_cren_exact.txt): the exact
+value is -1.1700824 at (0.202,0.157,0.05,4,20), NOT the old -1.105
+(MC noise). c_ren is a full function, not a scalar/universal constant.
+The four-term expansion is now fully predictive in practice. OPEN: a
+SCALAR closed form — obstruction NAMED (time-inhomogeneous noncommuting
+killed kernel; C_j P_d do not commute across check times). Overshoot
+has an asymptotic closed form (rho_d, Spitzer) with a finite-L gap;
+selection an exact form with first-order zero. Peer attacking the
+scalar reduction.
 
 ## OPEN — c_ren piece detail
 

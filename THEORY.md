@@ -1107,3 +1107,42 @@ renewal with slowly-changing perturbations (arXiv math/0611695), which
 accommodates the quadratic xi_n = (F_n-np)^2/(2npq). Do NOT collapse
 the asymptotic and finite-L numbers; both recorded with status, none
 fitted.
+
+
+## c_ren EXACTLY COMPUTABLE — the value corrected, the decomposition superseded
+
+Peer result (absorption recursion / transfer operator), RE-VERIFIED
+here with an independent absorption recursion to 7 decimals before
+adoption (results_cren_exact.txt, scripts/derive_cren_exact.py):
+
+- c_ren = -1.1700824 at (p*, tau, alpha, d, n0) = (0.202, 0.157, 0.05,
+  4, 20), discrete-median convention, absorbed mass 1.000000. The
+  repo's earlier -1.105 (8000-rep MC) was NOISE-HIGH by 0.065 nats.
+- c_ren is a FULL FUNCTION c_ren(p*, tau, alpha, d, n0): NOT
+  p*-independent (measured -1.145/-1.170/-1.187 across three points —
+  the residual C2 slope was this dependence), NOT universal (d and n0
+  both move it: d=1 gives -1.299, n0=40 gives -1.144). Every prior
+  statement of c_ren as a scalar constant is corrected to carry
+  (d, n0); the paper implied universality and no longer does.
+- The three-piece selection/overshoot/median decomposition (old C4)
+  was an approximate diagnostic that only appeared to close because
+  the noise-high selection (+0.681, true 0.640) cancelled the
+  noise-high target (-1.105, true -1.170); it is SUPERSEDED by the
+  exact recursion and does not sum exactly. Recorded as a finding, not
+  a failure.
+- Median convention (R5): crossings occur only on multiples of d, so
+  the median is DISCRETE (-1.1700824) vs interpolated (-1.1785), 0.008
+  apart — the paper uses DISCRETE.
+
+THE RESULT, stated as the honest strong form: c_ren is EXACTLY
+COMPUTABLE for any parameters with zero fit via a finite absorption
+recursion, making the four-term expansion fully predictive in
+practice. A scalar closed form is OPEN, and the obstruction is NAMED —
+a time-inhomogeneous, noncommuting killed kernel (the C_j P_d
+continuation-then-draw operators do not commute across check times, so
+the product does not collapse to one eigenvalue). An exact algorithm
+plus a named obstruction is stronger and more honest than an
+approximate scalar. R6 PROPAGATION done: the phase-boundary single arm
+now uses the exact recursion (anchors A1/A3 still PASS: 820/1240 vs
+832/1266 before), the partition survives (UI dominated 0/84 holds),
+and BOUNDARY_THEOREM/DRAFT/handoff carry the corrected value.

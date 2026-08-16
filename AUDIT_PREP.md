@@ -1114,3 +1114,13 @@ within 1000 samples in this regime.
   finite-L measured 0.228; the gap is the single remaining obstruction
   (shared with selection). Citations recorded (Kim & Woodroofe
   math/0611695). Nothing fitted. results_overshoot_closed.txt.
+- 2026-08-16: c_ren EXACT (absorption recursion, re-verified 7
+  decimals): -1.1700824 not -1.105 (MC noise, off 0.065); a full
+  function c_ren(p*,tau,alpha,d,n0), not scalar/universal. Old C4
+  decomposition SUPERSEDED (its closure was two noise errors
+  cancelling). R6 propagation: phase-boundary single arm -> exact
+  recursion (anchors still PASS 820/1240; partition UI-dominated 0/84
+  holds; both curves regenerated); BOUNDARY_THEOREM/DRAFT/THEORY/
+  ISEF_PLAN carry -1.1700824 + (d,n0) + discrete-median convention.
+  results_overshoot.txt C4 and results_cren.txt are superseded
+  (kept for history). Nothing fitted.

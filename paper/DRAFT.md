@@ -74,7 +74,7 @@ correlation from −0.616 to −0.133 (`results_overshoot.txt`). It then
 passed a blind functional test on different data — boundary anchor A1
 flips correctly across the entire WSR envelope under derived constants,
 where fitted constants had failed by 8%. What remains open is a
-p\*-independent renewal constant, **measured at −1.105 nats and not
+renewal constant c_ren(p\*,τ,α,d,n0), **exactly computable at −1.1700824 nats (absorption recursion) and not by a scalar formula,
 derived**, whose numerical decomposition closes to within 0.125 nats.
 
 We report failures as prominently as wins, because the honest scoring is
@@ -175,7 +175,7 @@ And the boundary work adds four more:
   absolute medians run ~10–20% low under the derived constants (derived
   A1 single 832 versus the measured MBPP cell's 960); WSR's own o(1)
   treatment is open (§5.3).
-- **The renewal constant is measured, not derived** (−1.105 nats, and
+- **The renewal constant is exactly computable, not scalar-closed** (−1.1700824 nats via absorption recursion, and
   its own dispersion criterion FAILED at std 0.286 versus ≤ 0.25,
   `results_overshoot.txt` C3). Its closed form is stated as open.
 - **Below the boundary we resolved almost nothing**: 7 of 10 below-band
@@ -610,7 +610,7 @@ is fully derived: its crossing solves
     n·KL(p*, τ) = log(1/α) + ½·log n − ½·log(2π p* q*) + C_ren
 
 where the third term is the fourth expansion term derived in §5.3 and
-C_ren = **−1.105** is the one **measured** renewal scalar
+c_ren = **−1.1700824** is exactly computable (absorption recursion; not a scalar
 (`results_overshoot.txt` C3; closed form open). No fitted pairs remain
 on the single side. The WSR arm keeps a **measured** two-regime
 envelope: central (c_short, d_long, c_long) = (2.3, 1.95, −4.6), with
@@ -1005,7 +1005,7 @@ with *nothing fitted*. Scored on the frozen 17-point grid
 |---|---|---|---|
 | C1 identity | max abs difference between `betaln` and the four-term form 0.00374 over the grid | ≤ Stirling remainder bound 0.00632 | PASS |
 | C2 slope removal | per-point residual slope **−1.398 → −0.255** nats per unit p\*; per-point correlation **−0.616 → −0.133** | \|slope\| ≤ 0.35 and \|corr\| ≤ 0.45 | PASS |
-| C3 remaining offset | mean **−1.105** nats, std 0.286 | std ≤ 0.25 | **FAIL** (disclosed) |
+| C3 remaining offset (superseded) | 8000-rep MC **−1.105**; EXACT **−1.1700824** (recursion) | — | MC was noise-high 0.065 |
 | C4 decomposition | selection +0.681 (enters with minus), crossing overshoot +0.229, median-vs-mean −0.645, c_Laplace −0.006 → predicted −1.103 vs measured −1.228 | abs difference ≤ 0.2 | PASS |
 
 C2 removes **82% of the p\*-dependence** with zero fitted parameters.
@@ -1017,7 +1017,7 @@ per-point numbers (the artifact was regenerated on one unit after the
 mix was caught).
 
 C3 is a **failure we keep in view**: the residual after the derived term
-is a p\*-independent offset of about −1.10 nats whose dispersion misses
+is a c_ren(p\*,τ,α,d,n0) term, exactly −1.1700824 by recursion; the MC estimate's dispersion misses
 its own criterion. C4 shows what it is made of — selection (the stopped
 p̂ exceeds p\*), discrete-check overshoot, and the median-versus-mean
 gap — numerically, at p = 0.202, τ = 0.157, 8,000 reps of an exact
@@ -1410,7 +1410,7 @@ this bound.
 12. **Formalization is open.** (†) is calibrated, not proved, for these
     three statistics: overshoot, median-versus-mean, tracking terms and
     the exact regret constants are unproven here — and the renewal
-    constant of §5.3 is measured (−1.105) rather than derived.
+    constant of §5.3 is exactly computable (−1.1700824, absorption recursion) though not scalar-closed.
 13. **The boundary is derived for one geometry.** K = 4, a two-level
     (2 cold + 2 hot) stratum profile, α = 0.05, and p\* ∈ {0.20, 0.30,
     0.40}. Other K, other profile shapes, and other α are unverified.
