@@ -25,6 +25,16 @@ adds their non-experiment forms plus R4-R7):
   R6 PROPAGATION: --propagate <term> greps the repo's living docs and
      artifacts for a quantity and lists every asserting site, so a
      change to the quantity comes with an explicit still-holds check.
+  R4b THRESHOLD IDENTITY (audit finding, fifth generator instance):
+     any check whose pass criterion cites a NAMED theoretical quantity
+     (a bound, a derived constant) must COMPUTE that quantity from the
+     theory at the point being tested — never a tolerance multiplier
+     wearing the bound's name. C1 rev 1 printed PASS against
+     bound(-1 coeff, wrong grid point) x 1.5 while the actual error
+     exceeded the displayed bound; R4 was satisfied because a verdict
+     was printed. --thresholds scans scripts for multiplicative fudge
+     adjacent to bound-naming words and lists hits for adjudication
+     (semi-mechanical, like R5).
   R1b SCORING RESOLUTION (extension of R1, fourth-instance rule):
      any verdict rule comparing two measured quantities must state
      the comparison's resolution (CI) and report ties as
@@ -193,6 +203,24 @@ def r6_propagate(term):
     return []
 
 
+def r4b_thresholds():
+    import re
+    hits = []
+    for f in sorted((REPO / "scripts").glob("*.py")):
+        src = f.read_text()
+        for i, line in enumerate(src.splitlines(), 1):
+            if re.search(r"(bound|Bound)\w*\s*=.*\*\s*[0-9.]+\s*$",
+                         line) and "1e" not in line:
+                hits.append(f"{f.name}:{i}: {line.strip()}")
+    print("R4b threshold identity (multiplicative fudge adjacent to a "
+          "named bound):")
+    for h in hits:
+        print(f"  {h}")
+    if not hits:
+        print("  none found")
+    return [f"R4b: {h}" for h in hits]
+
+
 def r8_allocation():
     import types
     src = open(REPO / "scripts" / "run_phase_test.py").read()
@@ -237,6 +265,9 @@ def main():
         if a == "--propagate" and i + 1 < len(args):
             r6_propagate(args[i + 1])
             print()
+    if not args or "--thresholds" in args:
+        flags += r4b_thresholds()
+        print()
     if not args or "--allocation" in args:
         flags += r8_allocation()
         print()

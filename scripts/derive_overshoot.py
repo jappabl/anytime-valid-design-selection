@@ -92,10 +92,34 @@ def main():
             approx = four_term(n, f, tau)
             errs.append((n, abs(exact - approx)))
     worst = max(e for _, e in errs)
-    bound = (1 / (12 * 200)) * (1 / 0.1 + 1 / 0.9 - 1) * 1.5
-    print(f"\n  C1 identity: max |betaln - four-term| = {worst:.5f} "
-          f"over the grid (Stirling remainder bound {bound:.5f}): "
-          f"{'PASS' if worst < bound else 'FAIL'}")
+    # C1 rev 2 (audit finding, gate rule R4b): the original check
+    # compared worst grid error against an ad hoc threshold (the -1
+    # coefficient bound at a DIFFERENT grid point x an unexplained
+    # 1.5) -- the error exceeded the displayed bound and still
+    # "passed". Rev 2 tests the RIGOROUS interval from the repaired
+    # theorem pointwise: r_n in [C_n - 1/(360f^3) - 1/(360s^3),
+    # C_n + 1/(360(n+1)^3)], C_n = A_n + 1/(12f) + 1/(12s) -
+    # 1/(12(n+1)), A_n = 1 - (n+3/2)log(1+1/n). Allowance 1e-9 is
+    # float64 accumulation only (observed <= 3e-11), not a tolerance.
+    viol = 0
+    for n in (200, 800, 3200):
+        for p in (0.1, 0.2, 0.35, 0.5):
+            f = int(round(n * p))
+            sN = n - f
+            tau = p - 0.05
+            exact = float(betaln(1 + f, 1 + sN)
+                          - (f * np.log(tau) + sN * np.log(1 - tau)))
+            r = exact - four_term(n, f, tau)
+            An = 1 - (n + 1.5) * np.log(1 + 1 / n)
+            Cn = (An + 1 / (12 * f) + 1 / (12 * sN)
+                  - 1 / (12 * (n + 1)))
+            lo = Cn - 1 / (360 * f ** 3) - 1 / (360 * sN ** 3) - 1e-9
+            hi = Cn + 1 / (360 * (n + 1) ** 3) + 1e-9
+            viol += not (lo <= r <= hi)
+    print(f"\n  C1 rev 2: max |betaln - four-term| = {worst:.5f}; "
+          f"rigorous-interval violations {viol}/12 "
+          f"(float64 allowance 1e-9): "
+          f"{'PASS' if viol == 0 else 'FAIL'}")
 
     # C2/C3: the frozen v2 grid
     txt = open(REPO / "results_margin_sweep.txt").read()

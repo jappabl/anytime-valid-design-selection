@@ -29,27 +29,63 @@ the test suite.
 
 ## 2. Theorem (fourth-order expansion of the crossing level)
 
-**Claim.** Let p̂ = f/n with p̂ ∈ (0,1) bounded away from 0 and 1. Then
+**Claim.** Let p̂ = f/n with f ≥ 1 and s = n − f ≥ 1. Then
 
     log E_n = n · KL(p̂ ‖ τ) − ½ log n + ½ log(2π p̂ (1−p̂)) + r_n,   (2)
 
-with |r_n| ≤ (1/12n)(1/p̂ + 1/(1−p̂) − 1) + O(1/n), where
-KL(a‖b) = a log(a/b) + (1−a) log((1−a)/(1−b)).
+with the EXPLICIT remainder interval (rigorous, no unspecified tails)
 
-**Proof.** Write B(1+f, 1+s) = Γ(1+f)Γ(1+s)/Γ(2+n). Apply Stirling in
-the form log Γ(1+m) = m log m − m + ½ log(2π m) + 1/(12m) − … to each of
-the three Gamma factors (with arguments f, s, n+1, absorbing the +1
-shifts into the O(1/n) remainder). The −m and leading m log m terms
-regroup: f log f + s log s − (n+1) log(n+1) = −n·H(p̂) + O(log n / n)
-after factoring n, where H is binary entropy in nats. Subtracting the
-null log-likelihood f log τ + s log(1−τ) converts −n·H(p̂) minus that
-term into +n·KL(p̂‖τ) exactly. The three ½ log(2π·) half-terms collect to
-½ log(2π f s /(n+1)) = ½ log(2π n p̂(1−p̂)) + O(1/n) = ½ log n +
-½ log(2π p̂(1−p̂)) + O(1/n). The 1/(12m) terms give the stated remainder
-bound. ∎
+    C_n − 1/(360 f³) − 1/(360 s³)  ≤  r_n  ≤  C_n + 1/(360 (n+1)³),
+    C_n = A_n + 1/(12f) + 1/(12s) − 1/(12(n+1)),
+    A_n = 1 − (n + 3/2) log(1 + 1/n)  = −1/n + 5/(12 n²) + O(n⁻³),
 
-**Corollary (crossing residual).** At the stopping time log E_N = log(1/α),
-so the median crossing n satisfies
+and, uniformly for p̂ bounded away from {0, 1},
+
+    r_n = [1/p̂ + 1/(1−p̂) − 13] / (12 n) + 1/(2 n²) + O(n⁻³).
+
+(The coefficient is −13, not −1: the (n+1) shift in Γ(2+n) contributes
+−12/(12n) through A_n. An earlier version of this document displayed
+−1 and appended an untestable O(1/n) tail; both were corrected under
+adversarial audit — see §3 and AUDIT_PREP.)
+
+**Proof.** Write B(1+f, 1+s) = Γ(1+f)Γ(1+s)/Γ(2+n) and apply the
+explicit Stirling form log(m!) = (m+½)log m − m + ½ log 2π + 1/(12m) +
+ε_m with −1/(360 m³) < ε_m < 0 to each factor (arguments f, s, n+1).
+Since f + s = n, the leading terms give EXACTLY
+
+    f log f + s log s − n log n = −n·H(p̂),
+
+with H binary entropy in nats. The Gamma denominator carries n+1, not
+n; the shift is the exact deterministic quantity
+
+    (n+1) log(n+1) − n log n = log n + (n+1) log(1 + 1/n),
+
+whose −log n cancels against the +½ log(f s/(n+1)) half-log terms'
+excess and whose remainder, combined with the linear −m terms' +1,
+collects into A_n = 1 − (n + 3/2) log(1 + 1/n) exactly. Subtracting
+the null log-likelihood f log τ + s log(1−τ) converts −n·H(p̂) into
++n·KL(p̂‖τ) exactly; the half-log terms collect to ½ log(2π f s/(n+1))
+= ½ log(2π n p̂(1−p̂)) − ½ log(1 + 1/n) (the last piece absorbed into
+A_n's display above). The 1/(12m) terms and ε bounds give the stated
+interval, with nothing unspecified. ∎
+
+(An earlier draft asserted f log f + s log s − (n+1) log(n+1) =
+−n·H(p̂) + O(log n / n); the true residual of that line is O(log n)
+and Eq. (2) survived only because the −log n − 1 cancels downstream.
+The audit lineage (gpt-5.6-sol) found this; the repaired proof above
+displays the cancellation explicitly rather than hiding it in a wrong
+order estimate.)
+
+**Definition (crossing residual).** Substituting p̂_N → p\* in Eq. (2)
+at the stopping time is NOT an identity: the pathwise gap is
+θ·M_N + N·D(p̂_N‖p\*) with θ = log[p\*(1−τ)/(τ(1−p\*))] and
+M_N = F_N − p\* N (the Bregman decomposition). Wald's identity kills
+the first term in expectation (E[M_N] = 0, verified −0.01 ± 0.05);
+the second is strictly nonnegative — it is the SELECTION term, exact
+value 0.6404 at (d, n0) = (4, 20) (results_selection.txt). Eq. (3) is
+therefore a DEFINITION of c_ren (absorbing selection, overshoot, and
+the median convention), not a corollary of Eq. (2): the median
+crossing n satisfies
 
     n · KL(p\*, τ) = log(1/α) + ½ log n − ½ log(2π p\* q\*) + c_ren,   (3)
 
@@ -66,9 +102,16 @@ Eq. (3) predicts the crossing residual R(p\*) := n·KL − log(1/α) −
 sweep ([results_margin_sweep.txt](../results_margin_sweep.txt),
 committed before this derivation existed):
 
-- **Identity C1.** Eq. (2) matches Eq. (1) to max 0.0037 nats over a
-  (p, n) grid, inside the Stirling bound 0.0063 — the theorem is
-  numerically exact at the stated order.
+- **Identity C1 (rev 2).** The original C1 check compared the max grid
+  error (0.0037, at n = 200, p̂ = 0.5) against an ad hoc threshold
+  (the displayed −1 bound × an unexplained 1.5, evaluated at a
+  different grid point) — the error EXCEEDED the displayed bound and
+  the check passed anyway. Audit finding; now gate rule R4b. C1 rev 2
+  tests the rigorous interval of §2 pointwise: every grid point's r_n
+  lies inside [C_n − 1/(360f³) − 1/(360s³), C_n + 1/(360(n+1)³)] up to
+  float64 accumulation (≤ 3×10⁻¹¹ observed; the peer's high-precision
+  13,579-point grid has zero failures). The expansion was always
+  right; the old check was not testing it.
 - **Slope C2.** Subtracting c_Laplace(p\*) collapses the residual's
   per-point p\*-slope from −1.398 to −0.255 nats and the per-point
   correlation from −0.616 to −0.133, with **nothing fitted** — 82% of

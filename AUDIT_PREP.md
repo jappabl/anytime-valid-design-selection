@@ -1144,3 +1144,18 @@ within 1000 samples in this regime.
   from-one-synthetic-population error is recorded as such.
   results_gain.txt is authoritative; derive_optimal_k.py kept as the
   well-posedness construction, superseded-in-part note added.
+- 2026-08-16 (BOUNDARY_THEOREM adversarial audit, gpt-5.6-sol lineage,
+  all three findings verified here before adoption): (1) proof line
+  claiming O(log n/n) residual was O(log n) — Eq. (2) survived only by
+  downstream cancellation; proof REPAIRED with A_n = 1-(n+3/2)log(1+1/n)
+  displayed and the wrong line disclosed in-document. (2) remainder
+  coefficient corrected -1 -> -13 (verified exactly at n=1e4:
+  -7.500e-05 both) and the untestable O(1/n) tail replaced by the
+  rigorous interval. (3) C1 rev 1 was an ad hoc threshold (x1.5 at the
+  wrong grid point) that PASSED while the error exceeded the displayed
+  bound — rewritten to test the rigorous interval pointwise (0/12
+  violations, float64 allowance only); gate rule R4b added (named-
+  quantity thresholds must be computed from theory; mechanical scan
+  clean). (4) Eq. (3) restated as a DEFINITION of c_ren with the
+  dropped theta*M_N + N*D(p_hat||p*) identified (Wald + selection).
+  Conclusion unaffected; proof, bound, and check were the defects.

@@ -2,7 +2,7 @@
 THE FOURTH TERM, DERIVED: c(p) = -(1/2) log(2 pi p q)
 ============================================================================
 
-  C1 identity: max |betaln - four-term| = 0.00374 over the grid (Stirling remainder bound 0.00632): PASS
+  C1 rev 2: max |betaln - four-term| = 0.00374; rigorous-interval violations 0/12 (float64 allowance 1e-9): PASS
 
   C2 slope removal on the frozen 17-point grid:
      raw residuals:      slope -1.398 nats/unit p*
@@ -29,5 +29,5 @@ test of this derivation is the phase-boundary anchor gate
 A1 pass with derived constants.
 
 ============================================================================
-Checksum (SHA256): 0b7fa43558e3530f
+Checksum (SHA256): 0847acffb5d515d5
 ============================================================================
