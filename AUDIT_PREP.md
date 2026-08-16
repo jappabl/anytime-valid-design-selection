@@ -1044,3 +1044,9 @@ within 1000 samples in this regime.
   resolving below-band -> single; 3/3 sanity -> WSR; 0/6000 wrong).
   c_short(R) dissolved (v1 misses were unpaired-median noise). Target 1
   complete; the below-boundary indifference zone is the final form.
+- 2026-08-15: v2b independently verified by peer; emphasis corrected
+  (strong-arm-first: 10/10 above-band; 3/3-resolving + 7 ties below);
+  three-region final form adopted. Hao's scope decision relayed:
+  restructure the paper around the general derivable-selection thesis,
+  then LLM-safety domain, then RLA bridge (Spertus already
+  implemented). Restructure launched before any domain work.

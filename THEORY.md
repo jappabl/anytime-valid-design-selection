@@ -907,20 +907,25 @@ appearance and is now gate rule R8.
 
 ## Phase boundary, final verdict: CONFIRMED (v2b, honest instrument)
 
-With CRN-paired arms and paired-bootstrap three-way verdicts
-(results_phase_test.txt v2b, frozen at 15e28b8): 7 of 13 scored
-points TIE — the peer's pre-stated prediction CONFIRMED — and every
-point that RESOLVES goes exactly where the derived curve says: 3/3
-below-band to single-stream, 3/3 sanity to WSR, 0/6,000 wrong.
-Combined with v1's 7/7 WSR-region confirmations, the design map's
-final honest form is:
+Stated with the emphasis the evidence supports (peer correction:
+lead with the strong arm). ABOVE the band: WSR dominance verified
+10/10 across v1 and v2b at large effect sizes, CIs far from zero —
+the strong arm. BELOW the band: 3/3 resolving points to
+single-stream, with 7 of 10 points TIES (disclosed, and pre-predicted
+by the peer before the run). THE TIES ARE THE FINDING, not a
+shortfall: below the boundary the two designs are statistically
+indistinguishable at realistic budgets. The theory's final form is
+THREE regions:
 
-    Measure the stratum heterogeneity ratio. ABOVE the derived
-    boundary, WSR blocks win decisively (confirmed at large effect
-    sizes everywhere tested). BELOW it, single-stream wins wherever
-    the difference is measurable, and mostly the difference is a
-    statistical tie at realistic budgets — so use whichever is
-    convenient.
+    above the band  -> WSR dominates (verified 10/10)
+    in the band     -> unresolved by design
+    below the band  -> designs indistinguishable; choice is free
+
+    Practitioner rule: measure your stratum ratio; above the
+    boundary use WSR blocks; below it use whichever is convenient.
+    The boundary marks WHERE DESIGN SELECTION IS WORTH DOING AT ALL
+    — which transfers across domains better than any specific
+    winner.
 
 This also DISSOLVES the c_short(R) question: v1's two "misses" were
 median noise scored without error bars (the generator's fourth
