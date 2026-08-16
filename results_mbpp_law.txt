@@ -28,7 +28,14 @@ frozen margins: [0.022, 0.027, 0.032, 0.042, 0.052, 0.057]
     fit UI+RR        : d = +1.54, c = +4.83 (3 pts; max|resid| logn-form 0.13 vs loglogn-form 0.13)
     fit WSR@Kelly    : d = +1.81, c = -3.37 (4 pts; max|resid| logn-form 0.22 vs loglogn-form 0.23)
 
+PRE-REGISTERED VERDICTS (R4 retrofit; windows in header):
+  P1 UI d in [3.0, 5.0]: FAIL BY CENSORING (3-point fits, unidentifiable — disclosed)
+  llama3.2-3b MBPP P2 single d in [0.3, 1.5]: +0.72 -> PASS
+  llama3.2-3b MBPP P3 WSR sub-logarithmic d in [-0.5, 1.0]: +2.34 -> FAIL (informative: Kelly-shortfall growth)
+  qwen2.5-7b MBPP P2 single d in [0.3, 1.5]: +0.90 -> PASS
+  qwen2.5-7b MBPP P3 WSR sub-logarithmic d in [-0.5, 1.0]: +1.81 -> FAIL (informative: Kelly-shortfall growth)
+  P4 V_rr/V_pool <= 1.6: PASS (~1.05); WSR-dominates clause: REFUTED — single-stream wins mild heterogeneity
 
 ============================================================================
-Checksum (SHA256): 3de6e1b8ab409ede
+Checksum (SHA256): c15ce775ddaca40f
 ============================================================================

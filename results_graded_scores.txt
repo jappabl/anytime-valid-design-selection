@@ -24,6 +24,10 @@ the bridge from pass/fail validators to rubric scores, judge ratings, and
 partial-credit evaluations. (mu* = 0.9672, so 'mean score >= 0.95'
 is a 0.017-margin claim.)
 
+VERDICT: graded bounded-score certification PASS -- anytime-valid on
+[0,1] scores with unchanged machinery; the margin note above is a
+scoping caveat, not a validity failure.
+
 ============================================================================
-Checksum (SHA256): 36e5bcddc9f932f7
+Checksum (SHA256): 987a39de000360cc
 ============================================================================

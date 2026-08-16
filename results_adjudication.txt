@@ -141,9 +141,11 @@ SWAP TEST: can the fit tell the right prediction vector from a permuted one?
                         K only (all 4)                   6.83       2.76
     author's frozen window mid (all 4)                   6.83       2.76
 
+  ADJUDICATION VERDICT: referee rule 2-of-3 PASS under the <=0.75-nat criterion (nano-code d=6 FAIL at 0.81; d=5 passes); our [3,5] window FAIL on every model; discriminating content = 'd near 6, not near 4'.
+
   Reading: 'K + #boundary' and 'all 6' are nearly indistinguishable;
   the entire discriminating content is 'd is around 6, not around 4'.
 
 ============================================================================
-Checksum (SHA256): 33cee595aad63f30
+Checksum (SHA256): 578d61bf9af6fcdc
 ============================================================================

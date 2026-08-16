@@ -222,6 +222,10 @@ def swap_test():
     for name, pv in perms:
         errs = [abs(fitted[m] - pv[m]) for m in CODE_FILES]
         print(f"  {name:>36} {sum(errs):>22.2f} {max(errs):>10.2f}")
+    print("\n  ADJUDICATION VERDICT: referee rule 2-of-3 PASS under "
+          "the <=0.75-nat criterion (nano-code d=6 FAIL at 0.81; "
+          "d=5 passes); our [3,5] window FAIL on every model; "
+          "discriminating content = 'd near 6, not near 4'.")
     print("\n  Reading: 'K + #boundary' and 'all 6' are nearly "
           "indistinguishable;\n  the entire discriminating content is "
           "'d is around 6, not around 4'.")

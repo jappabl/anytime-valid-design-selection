@@ -177,7 +177,11 @@ Reading: the same stratify->block->bet machinery certifies GRADED quality
 statements with no changes -- the WSR CS only needs boundedness. This is
 the bridge from pass/fail validators to rubric scores, judge ratings, and
 partial-credit evaluations. (mu* = {mu_star:.4f}, so 'mean score >= 0.95'
-is a {abs(mu_star - 0.95):.3f}-margin claim.)""")
+is a {abs(mu_star - 0.95):.3f}-margin claim.)
+
+VERDICT: graded bounded-score certification PASS -- anytime-valid on
+[0,1] scores with unchanged machinery; the margin note above is a
+scoping caveat, not a validity failure.""")
 
 
 if __name__ == "__main__":

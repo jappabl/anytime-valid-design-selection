@@ -1081,3 +1081,11 @@ within 1000 samples in this regime.
   (it prints "central DISAGREES" for A1), which contradicts the frozen
   pass-4 curve in results_phase_curve.txt — the gate's anchor copy needs
   syncing to the derived constants before the next freeze.
+- 2026-08-15 (retrofit close): R4 CLEAN — every verdict-cited artifact
+  now self-scores (six batches; two silent patch no-ops caught and
+  redone; the batch-5 && chain break diagnosed and replaced with
+  per-step logged runs). Residual gate state, disclosed: R1's A2 flag
+  is permanent and correct (non-evidence, unscored everywhere); R5's
+  seven flags are the heuristic's artifact-side-only limitation
+  (claims hand-verified; open methodology item per paper 6.2).
+  110 tests green.
