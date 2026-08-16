@@ -91,11 +91,11 @@ is the harness; streams are CRN-seeded.
 
 1. PARTITION (near done): run the three-arm verification; then paper 4
    becomes a derived partition.
-2. OPTIMAL STRATIFICATION (bigger): fix the estimand as the POPULATION
-   mean (weights prop to stratum sizes) so the target is
-   partition-invariant, then minimize the V_rr-driven crossing time
-   over partitions -> predicts a FINITE optimal K (learning tax grows,
-   rate gain saturates). Unasked in this literature.
+2. OPTIMAL STRATIFICATION: DONE (results_optimal_k.txt). Answer is
+   ARM-SPECIFIC: mixture K*=1 (tax dominates — explains UI-domination,
+   pre-registered finite-interior prediction FAILED); flat/WSR arm
+   wants strata to the saturation knee. Follow-up: block-granularity
+   cost gives WSR's interior K*; real temp>0 per-prompt pools.
 
 ## IN FLIGHT
 

@@ -1129,3 +1129,9 @@ within 1000 samples in this regime.
   medians 1.6-3x; 0/3000 wrong); single|WSR resolving cells match the
   derived partition, ties = boundary region. Two-region partition now
   derived AND verified. Task: partition verification done.
+- 2026-08-16: results_optimal_k.txt — optimal stratification inverse
+  problem. Pre-registered finite-interior-K* FAILED for the mixture
+  (K*=1, tax dominates); the failure mechanistically explains
+  UI-domination (F13/F14). Arm-specific: mixture K*=1, flat/WSR large.
+  Estimand fixed as population mean. Synthetic-population scope stated;
+  reported as the failed-prediction-yielding-mechanism it is.
