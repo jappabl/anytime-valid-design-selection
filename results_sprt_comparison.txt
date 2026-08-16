@@ -39,6 +39,8 @@ H1/UNSAFE when truth is p <= tau; 'false safe' symmetric.
   claims ("the failure rate is below tau"), composite anytime validity is
   the requirement and SPRT does not provide it.
 
+VERDICT (R4 retrofit): SPRT well-specified speed PASS (10x); composite anytime validity FAIL (16-64% false rates between hypotheses) — the cautionary result this artifact documents.
+
 ============================================================================
-Checksum (SHA256): 94717e9c1ed2bbac
+Checksum (SHA256): 1e6b5d59d3a4760a
 ============================================================================

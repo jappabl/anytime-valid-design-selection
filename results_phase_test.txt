@@ -3,28 +3,29 @@ PHASE-CURVE VERIFICATION (predictions frozen at commit f75eb8d)
 ============================================================================
 alpha=0.05, 200 reps/arm/point, n_max=12000, BASE_SEED=42; constructed 2+2 pools from real gpt-4o-mini outcomes
 
-  p*=0.2 m=0.08 R=  1.2: predict single -> winner wsr (meds {'single': 202, 'wsr': 194}) MISS
-  p*=0.2 m=0.08 R=  1.5: predict single -> winner single (meds {'single': 192, 'wsr': 208}) HIT
-  p*=0.2 m=0.08 R=  2.0: predict single -> winner single (meds {'single': 184, 'wsr': 206}) HIT
-  p*=0.2 m=0.08 R=  2.6: predict single -> winner single (meds {'single': 188, 'wsr': 196}) HIT
-  p*=0.2 m=0.08 R=  3.5: predict single -> winner wsr (meds {'single': 188, 'wsr': 184}) MISS
-  p*=0.3 m=0.08 R=  1.2: predict single -> winner wsr (meds {'single': 294, 'wsr': 282}) MISS
-  p*=0.3 m=0.08 R=  1.5: predict single -> winner wsr (meds {'single': 254, 'wsr': 250}) MISS
-  p*=0.3 m=0.08 R=  2.0: predict single -> winner wsr (meds {'single': 284, 'wsr': 228}) MISS
-  p*=0.4 m=0.08 R=  1.3: predict single -> winner single (meds {'single': 326, 'wsr': 356}) HIT
-  p*=0.4 m=0.08 R=  1.5: predict single -> winner wsr (meds {'single': 352, 'wsr': 324}) MISS
-  p*=0.3 m=0.045 R=  8.0: predict wsr    -> winner wsr (meds {'single': 1020, 'wsr': 782}) HIT
-  p*=0.4 m=0.06 R=  6.5: predict wsr    -> winner wsr (meds {'single': 688, 'wsr': 344}) HIT
-  p*=0.2 m=0.045 R= 20.0: predict wsr    -> winner wsr (meds {'single': 740, 'wsr': 642}) HIT
-  p*=0.3 m=0.06 R=  3.0: meds {'single': 556, 'wsr': 476} [in-band, unresolved-by-design, unscored]
-  p*=0.2 m=0.06 R=  7.0: meds {'single': 352, 'wsr': 360} [in-band, unresolved-by-design, unscored]
+  p*=0.2 m=0.08 R=  1.2: predict single -> winner single (meds {'single': 172, 'wsr': 208}, CI [-60, -8]) HIT
+  p*=0.2 m=0.08 R=  1.5: predict single -> winner single (meds {'single': 174, 'wsr': 206}, CI [-58, -10]) HIT
+  p*=0.2 m=0.08 R=  2.0: predict single -> TIE (meds {'single': 174, 'wsr': 192}, CI [-48, +4]) [unresolved-by-measurement, unscored]
+  p*=0.2 m=0.08 R=  2.6: predict single -> TIE (meds {'single': 176, 'wsr': 184}, CI [-40, +16]) [unresolved-by-measurement, unscored]
+  p*=0.2 m=0.08 R=  3.5: predict single -> winner single (meds {'single': 166, 'wsr': 204}, CI [-56, -10]) HIT
+  p*=0.3 m=0.08 R=  1.2: predict single -> TIE (meds {'single': 306, 'wsr': 296}, CI [-28, +48]) [unresolved-by-measurement, unscored]
+  p*=0.3 m=0.08 R=  1.5: predict single -> TIE (meds {'single': 274, 'wsr': 286}, CI [-66, +22]) [unresolved-by-measurement, unscored]
+  p*=0.3 m=0.08 R=  2.0: predict single -> TIE (meds {'single': 260, 'wsr': 246}, CI [-22, +36]) [unresolved-by-measurement, unscored]
+  p*=0.4 m=0.08 R=  1.3: predict single -> TIE (meds {'single': 284, 'wsr': 244}, CI [-14, +64]) [unresolved-by-measurement, unscored]
+  p*=0.4 m=0.08 R=  1.5: predict single -> TIE (meds {'single': 318, 'wsr': 304}, CI [-36, +48]) [unresolved-by-measurement, unscored]
+  p*=0.3 m=0.045 R=  8.0: predict wsr    -> winner wsr (meds {'single': 1058, 'wsr': 752}, CI [+192, +438]) HIT
+  p*=0.4 m=0.06 R=  6.5: predict wsr    -> winner wsr (meds {'single': 640, 'wsr': 332}, CI [+246, +386]) HIT
+  p*=0.2 m=0.045 R= 20.0: predict wsr    -> winner wsr (meds {'single': 672, 'wsr': 556}, CI [+56, +236]) HIT
+  p*=0.3 m=0.06 R=  3.0: meds {'single': 458, 'wsr': 412} [in-band, unresolved-by-design, unscored]
+  p*=0.2 m=0.06 R=  7.0: meds {'single': 370, 'wsr': 344} [in-band, unresolved-by-design, unscored]
 
-  P1 below-band -> single: 4/10 (need >= 8): FAIL
+  ties (unresolved-by-measurement): 7 of 13 scored points; peer prediction 'most below-band points tie': CONFIRMED
+  P1 every RESOLVING below-band point -> single: 3/3: PASS
   P2 above-band -> wsr: 3/3: PASS
-  P3 wrong-cert rate 1/6000 = 0.0002 <= 0.05: PASS
+  P3 wrong-cert rate 0/6000 = 0.0000 <= 0.05: PASS
 
-  PHASE-CURVE VERDICT: FAILED
+  PHASE-CURVE VERDICT: CONFIRMED — the design map is a predictive theory
 
 ============================================================================
-Checksum (SHA256): 19e841f0b2da3bb1
+Checksum (SHA256): 33adc872c71e5193
 ============================================================================

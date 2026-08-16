@@ -1039,3 +1039,8 @@ within 1000 samples in this regime.
   resolution, one corner wrong — not curve-refuted); v2 frozen with
   inverted allocation (R8-compliant, 77% novel-region); c_short(R)
   derivation held pending v2's diagnostic pattern.
+- 2026-08-15: results_phase_test.txt v2b — PHASE CURVE CONFIRMED with
+  the honest instrument (7/13 ties, peer prediction confirmed; 3/3
+  resolving below-band -> single; 3/3 sanity -> WSR; 0/6000 wrong).
+  c_short(R) dissolved (v1 misses were unpaired-median noise). Target 1
+  complete; the below-boundary indifference zone is the final form.

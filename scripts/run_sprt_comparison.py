@@ -199,6 +199,10 @@ def main():
   returns an anytime-valid interval throughout. For regulatory-style
   claims ("the failure rate is below tau"), composite anytime validity is
   the requirement and SPRT does not provide it.""")
+    print("\nVERDICT (R4 retrofit): SPRT well-specified speed PASS "
+          "(10x); composite anytime validity FAIL (16-64% false rates "
+          "between hypotheses) — the cautionary result this artifact "
+          "documents.")
 
 
 if __name__ == "__main__":

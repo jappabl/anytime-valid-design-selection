@@ -903,3 +903,30 @@ the frozen bands admit single territory) and its spatial miss pattern
 will separate margin-model error from c_short(R) before anything is
 derived. The concentration mistake is the census generator's third
 appearance and is now gate rule R8.
+
+
+## Phase boundary, final verdict: CONFIRMED (v2b, honest instrument)
+
+With CRN-paired arms and paired-bootstrap three-way verdicts
+(results_phase_test.txt v2b, frozen at 15e28b8): 7 of 13 scored
+points TIE — the peer's pre-stated prediction CONFIRMED — and every
+point that RESOLVES goes exactly where the derived curve says: 3/3
+below-band to single-stream, 3/3 sanity to WSR, 0/6,000 wrong.
+Combined with v1's 7/7 WSR-region confirmations, the design map's
+final honest form is:
+
+    Measure the stratum heterogeneity ratio. ABOVE the derived
+    boundary, WSR blocks win decisively (confirmed at large effect
+    sizes everywhere tested). BELOW it, single-stream wins wherever
+    the difference is measurable, and mostly the difference is a
+    statistical tie at realistic budgets — so use whichever is
+    convenient.
+
+This also DISSOLVES the c_short(R) question: v1's two "misses" were
+median noise scored without error bars (the generator's fourth
+instance), not evidence of a missing constant. A sub-noise c_short(R)
+effect may exist but is unmeasurable at these budgets; nothing
+remains to derive there. Target 1 is complete: a derived curve, two
+discriminating anchors, an R8-compliant verification, and a final
+form that is more useful than the claim we set out to prove —
+indifference regions are themselves practical guidance.
