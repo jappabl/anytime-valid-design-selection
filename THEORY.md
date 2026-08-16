@@ -857,7 +857,9 @@ is that the next defect will also be an uncomputed relation.
 
 The peer-mandated independent test: the derived fourth term
 (-1/2 log(2 pi p q) in the residual, plus ONE measured renewal scalar
--1.105 disclosed as measured-not-derived) had to make phase-boundary
+-1.105 [later corrected to -1.1700824, exact recursion; the A1 blind
+test was re-run and still PASSES with the exact single arm] disclosed
+as measured-not-derived) had to make phase-boundary
 anchor A1 pass where fitted constants failed by 8%. It does, and
 robustly: single 832 vs WSR 835 (central), 908 and 945 at both WSR
 envelope corners — the winner relation matches the measured MBPP cell
@@ -977,7 +979,11 @@ add reps.
 
 ## c_ren, cycle progress: one piece closed, one framed, one open
 
-Applying the threshold cycle to c_ren = -1.105 nats:
+Applying the threshold cycle to c_ren [NOTE: this section's -1.105 was
+later found to be MC-noise-high; the exact value is -1.1700824 by the
+absorption recursion — see "c_ren EXACTLY COMPUTABLE" below; this
+chronological entry is preserved as the honest record of what the
+cycle worked with at the time]:
 
 - MEDIAN-VS-MEAN (-0.65): CLOSED. Cornish-Fisher order-statistic form
   Delta = -(gamma1/6)*sd(N)*V, within 0.084 nats zero-fit across six
