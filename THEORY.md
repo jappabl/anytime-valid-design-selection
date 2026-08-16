@@ -935,3 +935,41 @@ remains to derive there. Target 1 is complete: a derived curve, two
 discriminating anchors, an R8-compliant verification, and a final
 form that is more useful than the claim we set out to prove —
 indifference regions are themselves practical guidance.
+
+
+## The method: the threshold cycle (project methodology)
+
+Every result in the second half of this project came from one loop.
+Making it explicit is worth more than any single result, because the
+loop is what transfers. It sits alongside the relation gate in the
+paper's methodology section: the gate says what a valid test looks
+like, the cycle says what to do when one fails.
+
+  (a) State the current best claim and its MEASURED residual.
+  (b) FORK — is the residual STRUCTURED or NOISE? This is the
+      load-bearing step. Structured => a theory gap: derive. Noise =>
+      an instrument gap: improve the measurement. Calling this fork
+      wrong is expensive: phase-test v2 read a noise residual (median
+      differences within sampling error) as a theory refutation and
+      "FAILED" the curve; v2b re-scored with paired bootstrap and it
+      CONFIRMED. Same data, opposite conclusion, because the fork was
+      corrected.
+  (c) If STRUCTURED: derive from known theory, freeze the prediction,
+      test on held-out or already-frozen data (the fourth term: derived
+      from Stirling, tested on the frozen 17-point grid, zero fitted).
+  (d) If the derivation STALLS: LITERATURE PASS. Search what the field
+      already knows about the residual's specific SHAPE, not the
+      general topic; cite it and credit priority (as §5.1 does for the
+      classical expansion). This step guards against re-deriving what
+      exists and against mistaking a recall gap for a knowledge gap.
+  (e) The new (smaller) residual becomes the next target. TERMINATE
+      when the residual is unstructured at achievable precision — and
+      say so, rather than chasing noise (the below-band ties: declared
+      an indifference region, not pursued for a winner that is not
+      there).
+
+Applied to the two live thresholds: c_ren is STRUCTURED (p*-independent
+constant with a numerical decomposition) => derive, with a literature
+pass queued for its overshoot piece; the below-band region is NOISE at
+200 reps => improve the instrument (full-distribution comparison), not
+add reps.
