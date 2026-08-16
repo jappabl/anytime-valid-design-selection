@@ -1152,3 +1152,20 @@ approximate scalar. R6 PROPAGATION done: the phase-boundary single arm
 now uses the exact recursion (anchors A1/A3 still PASS: 820/1240 vs
 832/1266 before), the partition survives (UI dominated 0/84 holds),
 and BOUNDARY_THEOREM/DRAFT/handoff carry the corrected value.
+
+
+## Partition three-arm verification: UI dominated, confirmed empirically
+
+results_partition_test.txt (frozen at eeeecfd; paired-bootstrap
+three-way verdicts, CRN, 10 cells spanning the space): the derived
+UI-dominated claim (0/84 cells) is VERIFIED -- UI is the outright
+fastest arm at 0/10 constructed real-outcome cells, including the
+mild-heterogeneity easy-margin cells where its V_rr advantage is
+largest, with medians consistently 1.6-3x single and WSR. 0/3000 wrong
+certifications. Among single|WSR the 4 CI-resolving cells all fall on
+the derived WSR side; the 6 tie cells are the boundary/below region
+the three-region form predicts (WSR-leaning, single statistically
+indistinguishable). No cell contradicts the derived partition. The
+design map is therefore a DERIVED, VERIFIED two-region partition
+(single | WSR) with UI provably and now empirically nowhere optimal --
+a sharper and stronger statement than the observed four-regime table.

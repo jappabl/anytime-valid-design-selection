@@ -82,11 +82,10 @@ is the harness; streams are CRN-seeded.
 
 ## FROZEN and executable by anyone
 
-- Design-space PARTITION derived and frozen (results_partition.txt):
-  two regions (single | WSR), UI dominated 0/84. Single|WSR verified
-  (phase v2b); the UI-dominated claim needs a THREE-ARM harness run
-  (extend scripts/run_phase_test.py with a UI arm at partition cells)
-  — the frozen-but-unrun verification.
+- Design-space PARTITION derived AND VERIFIED: two regions
+  (single | WSR), UI dominated. Single|WSR by phase v2b; UI-dominated
+  by results_partition_test.txt (0/10 UI outright wins, 0/3000 wrong).
+  Both claims now empirical.
 
 ## OPEN — field-opening questions (Hao directive, in sequence)
 

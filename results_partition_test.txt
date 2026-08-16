@@ -1,0 +1,28 @@
+============================================================================
+PARTITION THREE-ARM VERIFICATION (single / UI+RR / WSR)
+============================================================================
+alpha=0.05, 100 reps/arm/cell, n_max=12000, paired bootstrap three-way verdicts
+
+  p*=0.2 m=0.045 R= 2.0: meds S652 U1924 W630 (cert 1.00/1.00/1.00); single|wsr -> tie; UI outright win: no
+  p*=0.2 m=0.045 R= 8.0: meds S668 U1722 W618 (cert 1.00/1.00/1.00); single|wsr -> tie; UI outright win: no
+  p*=0.3 m=0.045 R= 3.0: meds S1076 U2538 W960 (cert 1.00/1.00/1.00); single|wsr -> tie; UI outright win: no
+  p*=0.3 m=0.06 R= 6.0: meds S518 U1132 W396 (cert 1.00/1.00/1.00); single|wsr -> tie; UI outright win: no
+  p*=0.4 m=0.045 R= 4.0: meds S1244 U2446 W756 (cert 1.00/1.00/1.00); single|wsr -> wsr; UI outright win: no
+  p*=0.2 m=0.08 R= 2.0: meds S200 U426 W222 (cert 1.00/1.00/1.00); single|wsr -> tie; UI outright win: no
+  p*=0.2 m=0.08 R= 6.0: meds S208 U424 W204 (cert 1.00/1.00/1.00); single|wsr -> tie; UI outright win: no
+  p*=0.3 m=0.03 R=12.0: meds S2800 U5474 W1934 (cert 1.00/1.00/1.00); single|wsr -> wsr; UI outright win: no
+  p*=0.4 m=0.08 R= 3.0: meds S342 U754 W270 (cert 1.00/1.00/1.00); single|wsr -> wsr; UI outright win: no
+  p*=0.3 m=0.045 R=15.0: meds S906 U2126 W590 (cert 1.00/1.00/1.00); single|wsr -> wsr; UI outright win: no
+
+  P1 UI never outright fastest: 0/10 UI wins -> PASS
+  P3 wrong-cert rate 0/3000 = 0.0000 <= 0.05: PASS
+
+  READING: P1 is the verification of the derived UI-dominated claim
+  (0/84 cells). If UI wins outright nowhere here — including the
+  mild-heterogeneity easy-margin cells where its V_rr advantage is
+  largest — the two-region partition (single | WSR, UI nowhere
+  optimal) is empirically confirmed, not just derived.
+
+============================================================================
+Checksum (SHA256): 9394f2ca9ee52755
+============================================================================

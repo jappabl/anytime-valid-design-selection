@@ -1124,3 +1124,8 @@ within 1000 samples in this regime.
   ISEF_PLAN carry -1.1700824 + (d,n0) + discrete-median convention.
   results_overshoot.txt C4 and results_cren.txt are superseded
   (kept for history). Nothing fitted.
+- 2026-08-16: results_partition_test.txt -- three-arm verification:
+  UI-dominated claim VERIFIED (0/10 outright wins incl. UI's best case,
+  medians 1.6-3x; 0/3000 wrong); single|WSR resolving cells match the
+  derived partition, ties = boundary region. Two-region partition now
+  derived AND verified. Task: partition verification done.
