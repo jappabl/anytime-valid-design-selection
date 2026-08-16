@@ -1190,13 +1190,19 @@ d = 1.8-2.3 MBPP anomaly from a constant measured independently of
 those fits. 5.4's anti-result is what a divergent quantity looks like
 when a constant is fitted to it.
 
-Consequences: (1) the two-regime envelope in the phase boundary is the
-CORRECT description of stock WSR, not a placeholder — the boundary is
-inherently semi-empirical on that side (BOUNDARY_THEOREM 4.3 updated);
-(2) the Kelly-floored variant is promoted from pragmatic patch to the
-only remaining route to a full boundary theorem — if the floor
-restores a non-decaying drift it may restore a genuine expansion. That
-discrimination is frozen and running (results_wsr_expansion.txt, P3,
-outcome not pre-committed). Our own reproduction of the stock
-divergence (P1/P2, on the real WSRBlockCS class) is in the same
-artifact.
+VERDICT ON THE SHIPPED CLASSES (results_wsr_expansion.txt v2, and a
+process failure recorded first): the paragraph above was absorbed into
+the docs at 805ae03 WHILE the frozen test of it was still running —
+the test then scored P1 FAIL. Ordering error, now gate rule R9
+(external results may not be absorbed while a frozen test of them is
+pending). Scored results: P1 stock divergence FAILED (1.23x vs the
+1.5x threshold, non-monotone at depth; the peer's 1.80x came from a
+REIMPLEMENTATION 43% off the shipped code and is withdrawn) — the
+stock no-expansion claim is a HYPOTHESIS, form-consistent (P2 pass,
+max deviation from mean 6.1%) but not established; the
+derive-WSR-fourth-term route is OPEN AND UNRESOLVED, not closed. P3
+(within-implementation contrast, bias cancels): the KELLY-FLOORED arm
+IS regular — nV/log n drift 1.2% vs stock 22.9%, an expansion exists
+there (measured d = +1.27, c = -3.35, derive before claiming). The
+floored arm is the live theorem route. MISS LEDGER: +1 row (P1,
+frozen at 7e80dbe, FAILED as scored).

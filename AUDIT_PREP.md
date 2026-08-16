@@ -1159,3 +1159,13 @@ within 1000 samples in this regime.
   clean). (4) Eq. (3) restated as a DEFINITION of c_ren with the
   dropped theta*M_N + N*D(p_hat||p*) identified (Wald + selection).
   Conclusion unaffected; proof, bound, and check were the defects.
+- 2026-08-16 (ordering miss + WSR verdict): 805ae03 absorbed the
+  external stock-no-expansion claim while its frozen test was pending;
+  the test scored P1 FAIL (1.23x vs 1.5x on the SHIPPED classes; the
+  peer's 1.80x was a reimplementation, withdrawn). Claim downgraded to
+  hypothesis everywhere; derive-WSR-fourth-term route REOPENED; miss
+  ledger +1; gate rule R9 (no absorption while a frozen test pends).
+  P3 SURVIVES (within-implementation): Kelly-floored arm is regular
+  (drift 1.2% vs stock 22.9%), expansion exists there, d=+1.27
+  measured — the live theorem route. P2 criterion disambiguated
+  (max-dev-from-mean, 6.1% pass) and the artifact regenerated.

@@ -136,15 +136,18 @@ def main():
     p1 = (all(s[i + 1][3] > s[i][3] for i in range(len(s) - 1))
           and s[-1][3] / s[0][3] >= 1.5)
     core = [r[4] for r in s[:-1]]
-    p2 = (max(core) - min(core)) / np.mean(core) <= 0.20
+    # criterion stated precisely (R1b nit): MAX DEVIATION FROM MEAN
+    # <= 10% (equivalently total spread <= 20%); both printed.
+    maxdev = max(abs(c - np.mean(core)) for c in core) / np.mean(core)
+    p2 = maxdev <= 0.10
     drift_f = abs(f[-1][3] - f[0][3]) / f[0][3]
     drift_s = abs(s[-1][3] - s[0][3]) / s[0][3]
     print(f"\n  P1 stock nV/log n diverges (monotone, >=1.5x): "
           f"{s[-1][3] / s[0][3]:.2f}x "
           f"{'PASS' if p1 else 'FAIL'}")
     print(f"  P2 stock form nV/(log n (loglog n)^2) flat +/-10% "
-          f"(excl. deepest): spread "
-          f"{(max(core) - min(core)) / np.mean(core):.1%} "
+          f"(excl. deepest): max dev from mean {maxdev:.1%}, total "
+          f"spread {(max(core) - min(core)) / np.mean(core):.1%} "
           f"{'PASS' if p2 else 'FAIL'}; mean A = {np.mean(core):.4f} "
           f"(peer 0.1469; H/16=0.2306 refuted)")
     print(f"  P3 floored-arm discrimination: nV/log n drift "

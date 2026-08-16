@@ -25,6 +25,13 @@ adds their non-experiment forms plus R4-R7):
   R6 PROPAGATION: --propagate <term> greps the repo's living docs and
      artifacts for a quantity and lists every asserting site, so a
      change to the quantity comes with an explicit still-holds check.
+  R9 ABSORPTION ORDERING (from the 805ae03 miss): an EXTERNAL result
+     may not be absorbed into paper/THEORY while a frozen test of that
+     same result is pending — absorb only after the test scores. The
+     805ae03 instance: a no-expansion claim entered BOUNDARY_THEOREM
+     after the freeze (7e80dbe) and before the run that scored its P1
+     FAIL. Discipline rule (not mechanically scanned): every
+     absorption commit must cite the scored artifact it rests on.
   R4b THRESHOLD IDENTITY (audit finding, fifth generator instance):
      any check whose pass criterion cites a NAMED theoretical quantity
      (a bound, a derived constant) must COMPUTE that quantity from the

@@ -146,19 +146,28 @@ committed before this derivation existed):
 3. **The boundary as a theorem.** §4's phase boundary equates Eq. (3)
    (derived) with WSR's *empirical* envelope; it is a verified
    prediction (v2b: above-band 10/10, below-band 3/3 resolving + 7
-   ties), not a proof. The once-open route "derive WSR's fourth term"
-   is now CLOSED for the stock schedule: the predictable lambda
-   schedule admits no (d/2) log n expansion — nV grows as
-   A log n (loglog n)² (structural claim derived by an independent
-   lineage and reproduced on our own classes,
-   results_wsr_expansion.txt), so a fitted WSR "dimension" must drift
-   with horizon, which retro-predicts §5.4's d = 1.8–2.3 anomaly. The
-   boundary is therefore INHERENTLY semi-empirical on the stock-WSR
-   side — a scoped limitation, not an open task. The single remaining
-   theorem route is the Kelly-floored variant (opt-in,
-   results_kelly_floor.txt): if the floor's non-decaying drift
-   restores a true expansion, the boundary closes on the floored arm;
-   that discrimination is measured in results_wsr_expansion.txt.
+   ties), not a proof. The stock-WSR side's status
+   (results_wsr_expansion.txt, frozen test on the SHIPPED classes):
+   the externally-derived "no expansion — nV ~ A log n (loglog n)²"
+   claim is a HYPOTHESIS, not established. The form is consistent
+   (P2: max deviation from mean 6.1%, within the ±10% criterion) but
+   the pre-registered divergence criterion FAILED (P1: nV/log n grew
+   1.23× vs the 1.5× threshold, non-monotone at the deep end); the
+   external lineage's 1.80× came from a REIMPLEMENTATION of the
+   schedule, 43% off the shipped code at matched settings, and is
+   withdrawn. The derive-WSR's-fourth-term route is therefore OPEN
+   AND UNRESOLVED — neither derived nor proven impossible. (An earlier
+   revision of this paragraph asserted the no-expansion claim as
+   settled while the frozen test of it was still running; the test
+   then failed P1. Recorded in the miss ledger; now gate rule R9.)
+   What the same frozen test DID establish, within-implementation
+   (identical code, ladder, and seeds, so absolute-level bias cancels
+   in the contrast): the Kelly-FLOORED variant restores the
+   regularity the stock schedule lacks — nV/log n drift 1.2% vs stock
+   22.9% across the ladder — so an expansion EXISTS on the floored
+   arm (measured d = +1.27, c = −3.35; a target for derivation, not a
+   result). The floored arm is the live route to a full boundary
+   theorem.
 
 ## 5. Relation to classical results
 
