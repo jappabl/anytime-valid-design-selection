@@ -1002,3 +1002,38 @@ with a named open correction, one-third untouched. The cycle
 terminates a sub-clause only when it is closed OR shown to need
 machinery beyond reach and cited as such — the overshoot piece is the
 latter.
+
+
+## The design-space partition (field-opening, derived not observed)
+
+The phase boundary derived one curve. The same construction — both
+crossing times in the shared expansion, solve for equality — applies
+to every design pair. Extended to the three pairs among single /
+UI+RR / WSR (results_partition.txt, frozen; anchors ANC-1/ANC-2 pass,
+ANC-1 aligned to the VERIFIED R~2.6 tie region rather than forced):
+
+1. Section 4's four-regime map becomes a DERIVED PARTITION of
+   (p*, heterogeneity ratio R, margin) into winner regions, each with
+   a TIE-BAND WIDTH (the ~ cells: winner within 5% of runner-up, where
+   the three-region form says design choice is free). The single->WSR
+   flip moves with margin exactly as the phase boundary predicts:
+   at m=0.080 single holds to R~15-40; at m=0.030 WSR takes over by
+   R~2.5. The widths, not the lines, are the practically useful part.
+
+2. UI+RR IS DOMINATED EVERYWHERE: outright fastest at 0 of 84 derived
+   grid cells, matching every measured artifact where UI is observed.
+   The honest partition therefore has TWO winner regions, not four —
+   single below the boundary, WSR above — with UI nowhere optimal and
+   directed/warm-start as the decision-direction and recurring-eval
+   specializations off this spine. Sharper than the observed
+   four-regime table AND falsifiable: any single grid cell where UI is
+   the measured outright winner refutes it.
+
+Honesty: the single-vs-WSR boundary is VERIFIED (phase test v2b); the
+UI-dominated claim is DERIVED from the UI constants (d=4, c=-0.7 grid
+fits) and CONSISTENT with all measured grids, but not yet verified by
+a three-arm harness run (run_phase_test.py extended to UI — queued).
+The optimal-stratification inverse problem (fix the estimand as the
+population mean, treat the partition as a free variance-reduction
+choice, minimize the V_rr-driven crossing time -> a derivable finite
+optimal K) is the larger follow-on.

@@ -451,6 +451,20 @@ somewhere better than where it aimed:
    alongside rate-sacrifice (WSR) and transfer priors
    ([results_frontier.txt](results_frontier.txt)).
 
+### F13. The design-space partition (derived, field-opening)
+
+The four-regime design map is now a DERIVED partition of
+(p*, heterogeneity ratio, margin), one crossing-time equality per
+design pair in the shared expansion (results_partition.txt). Two
+results: winner regions come with TIE-BAND WIDTHS (where design choice
+is free, the practically useful part), and UI+RR is provably DOMINATED
+(outright fastest at 0/84 derived cells, matching every grid where
+observed), collapsing the honest map to TWO regions (single | WSR).
+The single|WSR boundary is verified (phase v2b); the UI-dominated
+claim is derived + grid-consistent, three-arm verification queued.
+Falsifiable: one measured UI-outright-win refutes it. Follow-on:
+optimal stratification as the inverse problem (finite derivable K).
+
 ### F12. Warm-start certification: the bottleneck solved where it matters
 
 The learning tax (F11) binds fully-adaptive cold-start procedures.

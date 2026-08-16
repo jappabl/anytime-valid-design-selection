@@ -62,8 +62,21 @@ is the harness; streams are CRN-seeded.
 
 ## FROZEN and executable by anyone
 
-- Nothing currently frozen-but-unrun. (All frozen predictions have been
-  executed and scored; see the 27-row miss ledger in paper §6.2.)
+- Design-space PARTITION derived and frozen (results_partition.txt):
+  two regions (single | WSR), UI dominated 0/84. Single|WSR verified
+  (phase v2b); the UI-dominated claim needs a THREE-ARM harness run
+  (extend scripts/run_phase_test.py with a UI arm at partition cells)
+  — the frozen-but-unrun verification.
+
+## OPEN — field-opening questions (Hao directive, in sequence)
+
+1. PARTITION (near done): run the three-arm verification; then paper 4
+   becomes a derived partition.
+2. OPTIMAL STRATIFICATION (bigger): fix the estimand as the POPULATION
+   mean (weights prop to stratum sizes) so the target is
+   partition-invariant, then minimize the V_rr-driven crossing time
+   over partitions -> predicts a FINITE optimal K (learning tax grows,
+   rate gain saturates). Unasked in this literature.
 
 ## IN FLIGHT
 
