@@ -1039,7 +1039,11 @@ Honesty: the single-vs-WSR boundary is VERIFIED (phase test v2b); the
 UI-dominated claim is DERIVED from the UI constants (d=4, c=-0.7 grid
 fits) and CONSISTENT with all measured grids, but not yet verified by
 a three-arm harness run (run_phase_test.py extended to UI — queued).
-The optimal-stratification inverse problem (fix the estimand as the
+[Forward note: the inverse problem was run — see F14 rev 2 /
+results_gain.txt: K* is population-dependent (census 1:4, 2:4, 4:2 on
+the ten real pools), the finite-interior prediction confirmed on four;
+the first-pass universal K*=1 was a synthetic-population artifact,
+retracted.] The optimal-stratification inverse problem (fix the estimand as the
 population mean, treat the partition as a free variance-reduction
 choice, minimize the V_rr-driven crossing time -> a derivable finite
 optimal K) is the larger follow-on.
