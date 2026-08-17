@@ -1201,3 +1201,17 @@ within 1000 samples in this regime.
   "derivable on the idealization, unresolved at measurement
   precision on the shipped arm" — discrimination needs more reps
   (future run). results_floor_d.txt authoritative.
+- 2026-08-17 (final floored-d + v2c): floor_d artifact updated (3x
+  reps: d = 1.3614 +/- 0.2006; committed 1.27 was biased LOW by the
+  grid defect, not high; external 1.12 traced to invalid arithmetic;
+  kappa gap not load-bearing ~0.01). d_regular = 1 DERIVED and
+  verified once the floor binds; warmup adds +0.507 (pred_shipped
+  1.53). STRUCTURAL headline: warmup decays as 1/log t_c, so the
+  shipped floored arm has NO fixed d either — a slowly drifting
+  effective d, milder than stock; {1, 1.12, 1.27, 1.53} mutually
+  indistinguishable at any feasible rep budget on this ladder. 4.3
+  final form: derivable (d=1) on the post-warmup idealization;
+  drifting on the literal class; discriminating experiment does not
+  exist at this budget. v2c (Harrell-Davis): below-band 4/4 resolving
+  + 6 ties, curve CONFIRMED under correct sizing — the calibration
+  fix resolved exactly the predicted extra point.

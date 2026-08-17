@@ -13,6 +13,15 @@ KELLY-FLOORED WSR: GRID-CORRECTED d — DERIVED AND RE-MEASURED
     0.009   0.4910   0.4905 +0.000500     0.4905         0.8975   10.2%
    VERIFIED: every rung is mid-cell, offset 0.000500..0.000500; nearest-grid tie -> lower, so tau_grid == binding m and crossing times are unchanged.
    DIRECTION: rho < 1 and FALLING down the ladder depresses the deep rungs more, so the defect biases d DOWNWARD.
+   PROVENANCE CHECK on the committed crossing times [1838, 3784, 8446, 18054, 38390] (pure re-scoring):
+     score at tau_nom (mid-cell)      d = +1.2727   reproduces the committed +1.27
+     score at grid point BELOW tau    d = +1.6525   VALID: binding point unchanged, so n is unchanged
+     score at grid point ABOVE tau    d = +0.9158   INVALID: raising tau above the old
+       binding point makes tau itself binding at margin g-0.0005, lengthening every
+       crossing time — n CANNOT be held fixed. This is the only arithmetic that turns
+       the grid correction into a sub-1.27 figure, and it is the likely provenance of
+       any 'exact-tau' d below the committed fit. Done properly the upper alignment
+       also raises d (n grows fastest at the deep rungs, but the ordinate rises more).
 
 2. EXACT CONSTANTS AT THE GRID-ALIGNED TAU (16-atom law)
     delta   m=tau       g  lam_inf     lam*     V*(m)     |V"|    AVar   c_reg  s^2/2nu  rho_ov
@@ -80,25 +89,26 @@ KELLY-FLOORED WSR: GRID-CORRECTED d — DERIVED AND RE-MEASURED
    P-B  d = +1.5301   ; derivation half-width 0.1295 (+ 2*se_meas, section 8)
 
 7. GRID-CORRECTED RE-MEASUREMENT (real classes, seeds of run_wsr_expansion.py)
-   floored arm reps [300, 300, 300, 200, 150]; stock arm reps divided by 2 (contrast only), disclosed taper.
-    delta    arm    n_med  cert  V(tau_grid)  nV_grid  nV_old  correction
-    0.035  floor     1838  1.00   0.00250788    4.609   4.481      +0.128
-    0.035  stock     2492  1.00   0.00250788    6.250   6.076      +0.174
-    0.025  floor     3784  1.00   0.00129713    4.908   4.718      +0.190
-    0.025  stock     5166  1.00   0.00129713    6.701   6.441      +0.260
-    0.018  floor     8446  1.00   0.00068356    5.773   5.466      +0.307
-    0.018  stock    10750  1.00   0.00068356    7.348   6.957      +0.391
-    0.013  floor    18054  1.00   0.00036423    6.576   6.098      +0.478
-    0.013  stock    32014  1.00   0.00036423   11.661  10.813      +0.847
-    0.009  floor    38390  1.00   0.00018043    6.927   6.217      +0.710
-    0.009  stock    73244  1.00   0.00018043   13.216  11.862      +1.354
-   bit-identity vs results_wsr_expansion.txt floored n_med [1838, 3784, 8446, 18054, 38390]: CONFIRMED -> the correction is a pure re-scoring.
+   floored arm reps [900, 900, 900, 600, 450] (3x the artifact's, leading subset = the artifact's); stock arm reps divided by 2 (contrast only).
+    delta    arm    n_med    n_art  cert  V(tau_grid)  nV_grid  nV_old  correction
+    0.035  floor     1766     1838  1.00   0.00250788    4.429   4.306      +0.123
+    0.035  stock     2492           1.00   0.00250788    6.250   6.076      +0.174
+    0.025  floor     3890     3784  1.00   0.00129713    5.046   4.850      +0.195
+    0.025  stock     5166           1.00   0.00129713    6.701   6.441      +0.260
+    0.018  floor     8164     8446  1.00   0.00068356    5.581   5.283      +0.297
+    0.018  stock    10750           1.00   0.00068356    7.348   6.957      +0.391
+    0.013  floor    16610    18054  1.00   0.00036423    6.050   5.610      +0.440
+    0.013  stock    32014           1.00   0.00036423   11.661  10.813      +0.847
+    0.009  floor    35854    38390  1.00   0.00018043    6.469   5.806      +0.663
+    0.009  stock    73244           1.00   0.00018043   13.216  11.862      +1.354
+   bit-identity of the artifact-precision subset vs results_wsr_expansion.txt n_med [1838, 3784, 8446, 18054, 38390]: CONFIRMED -> the correction is a pure re-scoring.
 
 8. VERDICTS
-   grid-corrected measured d (floored arm) = +1.6525  (intercept -4.6987); bootstrap se_meas = 0.3813
+   grid-corrected measured d (floored arm) = +1.3614  (intercept -3.6011); bootstrap se_meas = 0.2006
+   at the artifact's own rep counts: d = +1.6525, se = 0.3813 — non-discriminating, which is why 3x reps were drawn.
    committed grid-biased fit was +1.27; stock arm under the same correction = +4.4969
-   P-A  idealization d = 1: window [+0.1530, +1.8470]  (W = 0.0844 + 2*0.3813)  -> HIT
-   P-B  this derivation   : window [+0.6380, +2.4222]  (W = 0.1295 + 2*0.3813)  -> HIT
+   P-A  idealization d = 1: window [+0.5144, +1.4856]  (W = 0.0844 + 2*0.2006)  -> HIT
+   P-B  this derivation   : window [+0.9993, +2.0608]  (W = 0.1295 + 2*0.2006)  -> HIT
    windows are NOT widened; a MISS is reported as a MISS.
    ADJUDICATION (rule fixed in the docstring): UNRESOLVED: both windows contain the measurement — the ladder does not
      discriminate d = 1 from the warmup-corrected value at this precision.
@@ -108,5 +118,5 @@ KELLY-FLOORED WSR: GRID-CORRECTED d — DERIVED AND RE-MEASURED
    its DIRECTION is not — correcting it moves d away from 1, not toward it.
 
 ============================================================================
-Checksum (SHA256): 293048b7aa6ad615
+Checksum (SHA256): 28f029828284b752
 ============================================================================
