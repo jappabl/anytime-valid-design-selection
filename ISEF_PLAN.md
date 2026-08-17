@@ -100,9 +100,25 @@ is the harness; streams are CRN-seeded.
    Follow-ups: WSR block-granularity K*; temp>0 per-prompt pools for
    finer K.
 
-## IN FLIGHT
+## IN FLIGHT — HIGHEST-VALUE TARGET (Hao directive): derive floored-arm d
 
-- None. Repo clean at HEAD.
+Derive the Kelly-floored WSR expansion dimension d with zero fit; the
+measured target-not-tuning value is d = +1.27 (results_wsr_expansion.txt
+P3; within-implementation, survives the simulator discrepancy). If it
+closes, both sides of the phase boundary are derived on the floored arm
+and the design map becomes PROVABLE (BOUNDARY_THEOREM 4.3). Method:
+(1) exact floored schedule from src/eval_harness/stats/wsr_kelly_floor.py
+— where the floor binds; (2) log wealth = S_T + xi_T (positive-drift
+walk + perturbation, mirroring the Beta-mixture decomposition);
+(3) d from xi_T's log n coefficient — candidate mechanism: one-parameter
+adaptive-Kelly regret, Sum_j (V(lam*)-V(lam_j)) ~ (c/2) log n with
+c = |V''(lam*)| x AVar(plug-in lam) computed exactly from the 16-atom
+block distribution; (4) PREDICT BEFORE COMPARING to 1.27; severity_sim
+the window; state (d_check, n0); R9 applies. If it does not close, name
+the obstruction precisely (that settles 4.3 permanently as a scoped
+limitation — a publishable negative). A first derivation agent died on
+a model usage limit mid-prototype (no files written); relaunched.
+Everything else (safety domain, new arms) HELD until this resolves.
 
 ## HELD for Hao's explicit go (do NOT start autonomously)
 
