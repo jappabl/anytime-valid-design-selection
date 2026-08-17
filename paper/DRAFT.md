@@ -2,14 +2,27 @@
 
 **Hao Lin**
 
-*Draft v4 — 2026-08-15. Supersedes v3 (2026-08-12), whose spine was a
+*Draft v4.1 — 2026-08-17. Supersedes v3 (2026-08-12), whose spine was a
 four-regime empirical design map; that map survives here as the
 empirical origin of a derived boundary (§4.1). New in v4: the boundary
-derivation and its three-attempt verification (§4.2–4.4), the derived
-fourth expansion term (§5.3), and the relation gate (§6.2). Every number
-below traces to a checksummed `results_*.txt` artifact or to
-[FINDINGS.md](../FINDINGS.md); artifact filenames are cited inline.
-Figures live in `paper/figures/`.*
+derivation and its verification (§4.2–4.4), the derived fourth expansion
+term (§5.3), and the relation gate (§6.2). v4.1 is a **consolidation,
+not a restructure**: the section skeleton is v4's, and it absorbs the
+results that landed after v4 froze — the renewal constant computed
+**exactly** (§4.2, §5.3, `results_cren_exact.txt`), the phase
+verification's final v2c scoring after a scored defect in our own
+bootstrap (§4.3), the derived **and** verified two-region design-space
+partition (§4.7, `results_partition.txt`, `results_partition_test.txt`),
+the optimal-stratification census and the universal-K\* retraction it
+forced (§4.7, `results_gain.txt`), the WSR expansion arc and its
+floored-arm resolution (§5.5, `results_wsr_expansion.txt`,
+`results_floor_d.txt`), two new gate rules (§6.2), and six new miss-ledger
+rows (§6.3). The formal companion is
+[paper/BOUNDARY_THEOREM.md](BOUNDARY_THEOREM.md), whose statements this
+draft mirrors. Every number below traces to a checksummed
+`results_*.txt` artifact, to [FINDINGS.md](../FINDINGS.md), or to the
+dated audit trail in [AUDIT_PREP.md](../AUDIT_PREP.md); artifact
+filenames are cited inline. Figures live in `paper/figures/`.*
 
 ---
 
@@ -31,34 +44,54 @@ sample: the **stratum heterogeneity ratio** of the prompt pool, the
 §5, setting the two candidate designs' predicted crossing times equal
 yields a **boundary curve** R\*(m) in heterogeneity ratio, at a pilot
 estimate of the pool rate. The curve was frozen before any verification
-data existed (`results_phase_curve.txt`), and the single-stream side of
-it uses **derived** constants — no fitted pairs — thanks to a fourth
-expansion term we derive in §5.3.
+data existed (`results_phase_curve.txt` at commit f75eb8d; it has since
+been regenerated under an exactly computed renewal term, which moves the
+band edges without changing an anchor or a verdict, §4.2), and the
+single-stream side of it uses **derived** constants — no fitted pairs —
+thanks to a fourth expansion term we derive in §5.3.
 
 **Verification, strong arm first.** On constructed pools built from real
 gpt-4o-mini outcomes at placed (p\*, R), **WSR-on-blocks dominance above
 the band is verified 10 of 10 points** (`results_phase_test.txt` plus
 its v1 revision at commit 065f9a8; every point enumerated in §4.3–4.4)
-**across rounds v1 and v2b, at large effect sizes** — paired-bootstrap
-CIs on the median difference as wide as [+192, +438] samples and never
+**across rounds v1 and v2c, at large effect sizes** — paired-bootstrap
+CIs on the median difference as wide as [+192, +421] samples and never
 straddling zero. Points *inside* the band are unresolved by design and
-unscored. **Below** the band the three points that resolve go 3 of 3 to
-the single stream (`results_phase_test.txt`) — and **7 of the 10
+unscored. **Below** the band the four points that resolve go 4 of 4 to
+the single stream (`results_phase_test.txt`) — and **6 of the 10
 below-band points are statistical ties**. The ties are the finding, not
-a shortfall: below the boundary the two designs are indistinguishable at
-realistic budgets, so **the boundary marks where design selection is
-worth doing at all**. Wrong certifications: 0 in v2b's 6,000 runs, and
-1 each in v1's 4,400 and v2's 6,000 — all inside the α budget.
+a shortfall: an independent power analysis at 20,000 paired reps
+confirms they are real effects too small to resolve at 200 reps
+(11–33% power), not an artifact of the instrument. Below the boundary
+the two designs are indistinguishable at realistic budgets, so **the
+boundary marks where design selection is worth doing at all**. Wrong
+certifications: 0 in v2c's 6,000 runs, and 1 each in v1's 4,400 and v2's
+6,000 — all inside the α budget.
 
-The verification took three attempts and we report all three: v1 failed
-as frozen (0 of 2 below-band points) *and* had put 7 of its 9 scored
-points in the region where the answer was already known; v2 failed at 4
-of 10 under a scoring rule with no common-random-number pairing and no
-error bars; v2b re-ran with the paired-bootstrap instrument this project
-had already built for §4.1, with the tie outcome pre-stated by a
-reviewer before the run, and CONFIRMED. Both of v1's "misses" are ties
+The verification took four scoring rounds and we report all four: v1
+failed as frozen (0 of 2 below-band points) *and* had put 7 of its 9
+scored points in the region where the answer was already known; v2
+failed at 4 of 10 under a scoring rule with no common-random-number
+pairing and no error bars; v2b re-ran with the paired-bootstrap
+instrument this project had already built for §4.1, with the tie outcome
+pre-stated by a reviewer before the run, and CONFIRMED; v2c re-froze
+after a **defect in our own instrument was scored** — v2b's lattice
+median bootstrap was conservative (actual size 1.8–2.6% against a
+nominal 5%), so it was replaced by a calibrated Harrell-Davis estimator
+of the same estimand (size 4.4–5.2%), which resolved exactly the one
+extra point the calibration predicted. Both of v1's "misses" are ties
 under the honest instrument, which dissolves the missing-constant
 hypothesis v1's diagnosis had proposed.
+
+**The same construction partitions the whole design space.** One
+crossing-time equality per design pair turns the four-regime map into a
+derived partition of (p\*, heterogeneity ratio, margin) with explicit
+tie-band widths, and it makes a falsifiable dominance claim: the
+union-intersection design is outright fastest at **0 of 84** derived
+grid cells (`results_partition.txt`) and at **0 of 10** three-arm
+real-outcome cells including its own best case
+(`results_partition_test.txt`), so the honest map has **two** winner
+regions, not four (§4.7).
 
 Underneath sits a **calibrated classical expansion**,
 n·V = log(1/α) + (d/2)·log n + c. We do not discover it — the d = 1 case
@@ -73,9 +106,13 @@ zero-fitted-parameter term collapses the per-point p\*-slope of a frozen
 correlation from −0.616 to −0.133 (`results_overshoot.txt`). It then
 passed a blind functional test on different data — boundary anchor A1
 flips correctly across the entire WSR envelope under derived constants,
-where fitted constants had failed by 8%. What remains open is a
-renewal constant c_ren(p\*,τ,α,d,n0), **exactly computable at −1.1700824 nats (absorption recursion) and not by a scalar formula,
-derived**, whose numerical decomposition closes to within 0.125 nats.
+where fitted constants had failed by 8%. The residual renewal term is
+**not** a fitted constant and not a universal scalar: c_ren is a full
+function c_ren(p\*, τ, α, d, n0), **exactly computable with zero fit by
+a finite absorption recursion** (−1.1700824 nats at the reference
+point; `results_cren_exact.txt`), which makes the four-term expansion
+fully predictive in practice. What remains open is its reduction to a
+scalar closed form, and the obstruction is named rather than fudged.
 
 We report failures as prominently as wins, because the honest scoring is
 the credibility. A Bonferroni design portfolio **lost its headline** to
@@ -85,9 +122,19 @@ only **11 of 16** cells (`results_auto_select.txt`). Our conservation
 hypothesis was **falsified** (`results_frontier.txt`). A prior-routed
 portfolio failed its pre-registered target in **two** iterations and we
 stopped rather than iterate to a win. The centerpiece margin sweep
-**failed twice**. Audit round 2 downgraded our own dimension-rule score
-from 3-for-3 to 2-for-3 and reclassified our live capstone from "severe
-test" to "consistency check". Total API spend: under $6.
+**failed twice**. Our own first answer to "how many strata are optimal"
+was **retracted**: a universal K\* = 1 read off one synthetic population
+is refuted on 6 of 10 committed real pools, where the census is
+K\* = 1 : 4, 2 : 4, 4 : 2 (`results_gain.txt`). A frozen test of an
+externally supplied claim that WSR's stock schedule admits *no*
+expansion **failed its divergence criterion** (1.23× against a
+pre-registered 1.5×), leaving that claim a hypothesis and the
+derive-WSR's-fourth-term route open (`results_wsr_expansion.txt`); the
+Kelly-floored variant where an expansion does exist is measured at
+d = 1.36 ± 0.20 and is **unresolved** against its own derivation
+(`results_floor_d.txt`). Audit round 2 downgraded our own dimension-rule
+score from 3-for-3 to 2-for-3 and reclassified our live capstone from
+"severe test" to "consistency check". Total API spend: under $6.
 
 ---
 
@@ -127,12 +174,16 @@ What is **original to this work**, stated plainly:
    curve R\*(m) — obtained by bisection on the derived crossing times,
    not in closed form — that is a design-selection rule computed
    *before* data, rather than read off a scoreboard. The single-stream side carries no fitted
-   pairs; its constants are derived (§5.3) apart from one disclosed
-   measured renewal scalar. The WSR side uses a measured envelope, and
-   the published bands span **only** that envelope's uncertainty.
+   pairs: its constants are derived (§5.3), and the one residual
+   renewal term is *computed exactly* by an absorption recursion rather
+   than measured (§5.3, `results_cren_exact.txt`). The WSR side uses a
+   measured envelope, and the published bands span **only** that
+   envelope's uncertainty.
 2. **The verification of that boundary on constructed real-outcome
    pools** (§4.3–4.4), scored under frozen predictions with an
-   instrument that reports ties, and its three-region final form.
+   instrument that reports ties, and its three-region final form; and
+   the extension of the same construction to a derived **and**
+   three-arm-verified two-region partition of the design space (§4.7).
 3. **The derived fourth term** of the expansion (§5.3),
    −½·log(2π p\*q\*), which explains structure that a frozen 17-point
    margin sweep had *measured* before the derivation existed, and which
@@ -140,8 +191,9 @@ What is **original to this work**, stated plainly:
 4. **The relation gate** (§6.2): a 16-defect census of this project
    found that in 16 of 16 cases the local object was correct and in 15
    of 16 an unchecked *relation between* objects failed; the gate
-   mechanizes the missing checks and has caught four instances of that
-   one generator in the boundary work alone.
+   mechanizes the missing checks, and **eight** further instances of
+   that one generator have since been caught and scored — four in the
+   boundary work, four after it, each one converted into a rule.
 
 The v3 contributions stand and are retained: the replay testbed with
 exact ground truth (§3), the four-regime empirical map (§4.1), the
@@ -175,12 +227,21 @@ And the boundary work adds four more:
   absolute medians run ~10–20% low under the derived constants (derived
   A1 single 832 versus the measured MBPP cell's 960); WSR's own o(1)
   treatment is open (§5.3).
-- **The renewal constant is exactly computable, not scalar-closed** (−1.1700824 nats via absorption recursion, and
-  its own dispersion criterion FAILED at std 0.286 versus ≤ 0.25,
-  `results_overshoot.txt` C3). Its closed form is stated as open.
-- **Below the boundary we resolved almost nothing**: 7 of 10 below-band
+- **The renewal term is exactly computable, not scalar-closed.** c_ren
+  is a function of (p\*, τ, α, d, n0) — schedule-dependent, so it is
+  *not* a universal constant — computed with zero fit by a finite
+  absorption recursion (−1.1700824 at the reference point,
+  `results_cren_exact.txt`). Its scalar closed form is stated as open,
+  and the earlier Monte-Carlo estimate of it (−1.105) missed its own
+  dispersion criterion and was, separately, noise-high by 0.065 nats.
+- **Below the boundary we resolved almost nothing**: 6 of 10 below-band
   points are ties at 200 reps per arm. "Indistinguishable at this
-  budget" is not "equal".
+  budget" is not "equal" — and the power analysis that confirms the
+  effects are real also confirms they are out of reach here.
+- **WSR's own expansion is not established.** The single arm is derived;
+  the WSR arm's envelope is measured on a schedule that may admit no
+  fixed (d, c) at all, and the frozen test of that hypothesis failed its
+  own divergence criterion (§5.5).
 - **Automating the rule is not solved.** A shipped pilot-based selector
   matched the oracle design in 11 of 16 cells (`results_auto_select.txt`).
 
@@ -348,7 +409,9 @@ the axis the derived curve does not cover. §4.1 is where the choice was
 first mapped
 empirically. §4.2 derives the boundary between the two. §4.3 tests the
 derived boundary. §4.4 states the final three-region form and the
-practitioner rule.
+practitioner rule. §4.7 shows that the same construction, applied to
+every design pair rather than one, partitions the whole design space —
+and that the partition's sharpest claim survives a three-arm test.
 
 ### 4.1 The empirical origin: the four-regime map
 
@@ -607,18 +670,29 @@ closer to the real pools' shapes than the first profile tried.
 **Which constants are derived and which are measured.** The single arm
 is fully derived: its crossing solves
 
-    n·KL(p*, τ) = log(1/α) + ½·log n − ½·log(2π p* q*) + C_ren
+    n·KL(p*, τ) = log(1/α) + ½·log n − ½·log(2π p* q*) + c_ren
 
 where the third term is the fourth expansion term derived in §5.3 and
-c_ren = **−1.1700824** is exactly computable (absorption recursion; not a scalar
-(`results_overshoot.txt` C3; closed form open). No fitted pairs remain
-on the single side. The WSR arm keeps a **measured** two-regime
-envelope: central (c_short, d_long, c_long) = (2.3, 1.95, −4.6), with
-corners (1.6, 1.81, −3.4) and (3.0, 2.34, −5.9) bracketing the MBPP
-WSR fits (d = 1.81, c = −3.37 for qwen; d = 2.34, c = −5.49 for llama;
+c_ren is the residual renewal term. **c_ren is computed, not fitted and
+not assumed universal.** It is a function c_ren(p\*, τ, α, d, n0),
+evaluated with zero fit by a finite absorption recursion over the
+killed chain (`results_cren_exact.txt`, verified against an independent
+transfer operator to 7 decimals): **−1.1700824** at the reference point
+(p\*, τ, α, d, n0) = (0.202, 0.157, 0.05, 4, 20) under the discrete-median
+convention, and demonstrably not a constant — −1.1449169 at p\* = 0.150,
+−1.1866026 at p\* = 0.300, **−1.2985462 at check period d = 1**, and
+−1.1443421 at n0 = 40. The check-period dependence is the point: any
+scalar "renewal constant" quoted without (d, n0) is under-specified, and
+earlier statements of ours that implied universality are corrected here.
+No fitted pairs remain on the single side. The WSR arm keeps a
+**measured** two-regime envelope: central
+(c_short, d_long, c_long) = (2.3, 1.95, −4.6), with corners
+(1.6, 1.81, −3.4) and (3.0, 2.34, −5.9) bracketing the MBPP WSR fits
+(d = 1.81, c = −3.37 for qwen; d = 2.34, c = −5.49 for llama;
 `results_mbpp_law.txt`). **The published bands therefore span only WSR's
 envelope uncertainty** — a fact we state because it caps what the bands
-mean.
+mean, and one that §5.5 sharpens further: those fitted WSR dimensions
+may be horizon-dependent artifacts of a class with no fixed d.
 
 **The derivation refused itself three times.** Four passes are on the
 record, and the first three did not freeze
@@ -640,9 +714,15 @@ curve to reproduce winners already measured on real pools:
 
 | anchor | pool shape | R | derived single median | expectation | verdict |
 |---|---|---|---|---|---|
-| A1 | MBPP-like (qwen2.5-7b MBPP rates) | ~2.6 | 832 | single | PASS at all corners |
-| A3 | llama3-8b-like | ~7.5 | 1266 | WSR | PASS at all corners |
-| A2 | llama3.2-like | ~31 | 1283 | WSR | reported, **NOT scored** |
+| A1 | MBPP-like (qwen2.5-7b MBPP rates) | ~2.6 | 820 | single | PASS at all corners |
+| A3 | llama3-8b-like | ~7.5 | 1240 | WSR | PASS at all corners |
+| A2 | llama3.2-like | ~31 | 1256 | WSR | reported, **NOT scored** |
+
+(Medians as regenerated under the exact recursion; at the freeze they
+read 832 / 1266 / 1283 under the Monte-Carlo renewal estimate. Every
+anchor verdict is unchanged by the correction — which is the propagation
+check the gate's R6 exists to force, not a claim that the correction was
+small.)
 
 A2 is excluded by **gate rule R1** (§6.2): the relation gate evaluated
 it under every corner of the constant band and its verdict never
@@ -651,14 +731,23 @@ changes, so it cannot fail and is not evidence
 therefore "two discriminating anchors, both pass", and A1/A3 bracket the
 flip in R (2.6, 7.5).
 
-**The frozen curve** (`results_phase_curve.txt`, checksum
-c4a4720dbba3ccb8; R\* central with the WSR-envelope band in brackets):
+**The curve** (`results_phase_curve.txt`, checksum 040d60191cbbe608 as
+regenerated under the exact recursion; R\* central with the
+WSR-envelope band in brackets, and the frozen pre-correction values in
+parentheses where they differ):
 
 | p\* | m = 0.030 | m = 0.045 | m = 0.060 | m = 0.080 |
 |---|---|---|---|---|
-| 0.20 | 1.1 [1.1, 3.3] | 2.5 [1.1, 12.3] | 7.3 [1.1, 400] | 400 [4.5, 400] |
-| 0.30 | 1.1 [1.1, 2.2] | 1.7 [1.1, 4.1] | 3.1 [1.1, 7.0] | 6.1 [2.2, 20.9] |
-| 0.40 | 1.1 [1.1, 1.8] | 1.5 [1.1, 2.8] | 2.3 [1.1, 3.7] | 3.4 [1.7, 5.4] |
+| 0.20 | 1.1 [1.1, 4.4] | 2.8 [1.1, 14.8] | 6.8 [1.1, 400] | 400 [**3.4**, 400] |
+| 0.30 | 1.1 [1.1, 2.8] | 2.0 [1.1, 4.5] | 3.2 [1.1, 7.1] | 5.3 [**1.8**, 15.6] |
+| 0.40 | 1.1 [1.1, 2.2] | 1.8 [1.1, 3.1] | 2.3 [1.1, 3.8] | 3.3 [**1.7**, 5.3] |
+
+*Frozen version* (commit f75eb8d, checksum c4a4720dbba3ccb8), which is
+the version §4.3's predictions were committed against and scored under:
+the m = 0.080 lower edges read **4.5 / 2.2 / 1.7**, and the central
+values 400 / 6.1 / 3.4. **We do not re-score a frozen test after a
+constant changes**, but we do disclose the sensitivity, so §4.3 reports
+which points would move.
 
 Read it as: at your (p\*, margin), compute your pool's ratio R; above
 the band's upper edge the curve says WSR, below the lower edge it says
@@ -675,7 +764,7 @@ margin are won by single-stream (lower median, ≥ 90% certification in
 both arms); above the upper edge, by WSR; in-band points are
 unresolved-by-design and not scored.
 
-### 4.3 Verification: three attempts, reported in order
+### 4.3 Verification: four rounds, reported in order
 
 **The instrument.** Verification pools are **constructed from real
 outcomes**: each constructed stratum is a mixture of draws from the
@@ -736,41 +825,87 @@ re-scoring was not a search for a pass: a reviewer **pre-stated the
 falsifiable outcome before the run** — *most below-band points will come
 back TIE, making the honest claim "below the boundary the designs are
 statistically indistinguishable" rather than "single wins"* — and that
-prediction is scored in the artifact as CONFIRMED (7 of 13).
+prediction is scored in the artifact as CONFIRMED (7 of 13 ties at the
+time; 6 of 13 after the calibration described next, still CONFIRMED).
 
-Below-band points, m = 0.08 (`results_phase_test.txt`, checksum
-33adc872c71e5193; CI on median(single) − median(wsr), negative favors
-single):
+**v2c: our own instrument was audited, found conservative, and
+re-frozen.** v2b's paired bootstrap resampled the *plain* median of a
+heavily tied lattice of crossing times. A peer power analysis at 20,000
+paired reps checked what that bootstrap's stated 5% size actually was
+and found **1.8–2.6%** — a conservative interval, which inflates ties
+and is the same defect class as R1b one level down: the verdict rule
+stated a resolution it did not have. The fix keeps the estimand fixed
+(difference of *marginal* medians, not the median of paired differences,
+which is a different quantity) and replaces the estimator with a
+calibrated Harrell-Davis quantile inside the same paired bootstrap,
+measured at **4.4–5.2%** actual size. The predicted consequence was
+stated before the re-run — one below-band point should move from tie to
+resolving — and that is exactly what happened. Two things this does
+*not* change: the arms, the seeds and the pools are identical, and the
+frozen predictions were not touched.
+
+The same power analysis settles what the remaining ties are. Of v2b's
+seven, four are **real but underpowered** median effects (11–33% power
+at 200 reps per arm), one is ~zero, one is unresolved, and one favors
+WSR. The ties are a budget statement about the reader's experiment, not
+a defect in ours. (This analysis is peer-supplied and recorded in
+`AUDIT_PREP.md`; it has no committed artifact of its own, and we mark it
+as such rather than citing it as one of ours. A prior premise of that
+same analysis — that CRN pairing had been lost — was withdrawn by its
+author after checking: pairing was intact, arm correlation 0.77–0.79.)
+
+Below-band points, m = 0.08 (`results_phase_test.txt` v2c, checksum
+85ab64297762127a; CI on median(single) − median(wsr), negative favors
+single; band-lo is the **frozen** curve's lower edge, the one these
+points were selected and scored against):
 
 | p\* | R | band-lo | single | WSR | 95% CI | verdict |
 |---|---|---|---|---|---|---|
-| 0.20 | 1.2 | 4.5 | **172** | 208 | [−60, −8] | SINGLE |
-| 0.20 | 1.5 | 4.5 | **174** | 206 | [−58, −10] | SINGLE |
-| 0.20 | 2.0 | 4.5 | 174 | 192 | [−48, +4] | tie |
-| 0.20 | 2.6 | 4.5 | 176 | 184 | [−40, +16] | tie |
-| 0.20 | 3.5 | 4.5 | **166** | 204 | [−56, −10] | SINGLE |
-| 0.30 | 1.2 | 2.2 | 306 | 296 | [−28, +48] | tie |
-| 0.30 | 1.5 | 2.2 | 274 | 286 | [−66, +22] | tie |
-| 0.30 | 2.0 | 2.2 | 260 | 246 | [−22, +36] | tie |
-| 0.40 | 1.3 | 1.7 | 284 | 244 | [−14, +64] | tie |
-| 0.40 | 1.5 | 1.7 | 318 | 304 | [−36, +48] | tie |
+| 0.20 | 1.2 | 4.5 | **172** | 208 | [−53, −10] | SINGLE |
+| 0.20 | 1.5 | 4.5 | **174** | 206 | [−55, −14] | SINGLE |
+| 0.20 | 2.0 | 4.5 | **174** | 192 | [−49, −1] | SINGLE |
+| 0.20 | 2.6 | 4.5 | 176 | 184 | [−36, +13] | tie |
+| 0.20 | 3.5 | 4.5 | **166** | 204 | [−52, −13] | SINGLE |
+| 0.30 | 1.2 | 2.2 | 306 | 296 | [−22, +41] | tie |
+| 0.30 | 1.5 | 2.2 | 274 | 286 | [−60, +17] | tie |
+| 0.30 | 2.0 | 2.2 | 260 | 246 | [−18, +33] | tie |
+| 0.40 | 1.3 | 1.7 | 284 | 244 | [−9, +54] | tie |
+| 0.40 | 1.5 | 1.7 | 318 | 304 | [−27, +42] | tie |
+
+The point that moved is (p\* = 0.20, R = 2.0), from [−48, +4] under the
+conservative estimator to [−49, −1] under the calibrated one — the
+predicted extra resolution, and a reminder that a CI edge one sample
+from zero is not a strong result on its own. It is scored because the
+rule was fixed in advance, not because it is impressive.
 
 Above-band sanity points, same run:
 
 | p\* | m | R | single | WSR | 95% CI | verdict |
 |---|---|---|---|---|---|---|
-| 0.30 | 0.045 | 8.0 | 1058 | **752** | [+192, +438] | WSR |
-| 0.40 | 0.060 | 6.5 | 640 | **332** | [+246, +386] | WSR |
-| 0.20 | 0.045 | 20.0 | 672 | **556** | [+56, +236] | WSR |
+| 0.30 | 0.045 | 8.0 | 1058 | **752** | [+192, +421] | WSR |
+| 0.40 | 0.060 | 6.5 | 640 | **332** | [+251, +384] | WSR |
+| 0.20 | 0.045 | 20.0 | 672 | **556** | [+68, +225] | WSR |
 
 In-band points are printed and left unscored, as the frozen protocol
 requires: p\* = .3, m = .06, R = 3 (single 458 vs WSR 412) and
 p\* = .2, m = .06, R = 7 (370 vs 344). No CI is computed for them and
 none is claimed.
 
-Scored verdicts: **P1 3 of 3 resolving below-band points → single:
+Scored verdicts: **P1 4 of 4 resolving below-band points → single:
 PASS. P2 3 of 3 above-band → WSR: PASS. P3 wrong-certification rate
 0/6,000 = 0.0000 ≤ 0.05: PASS.** Artifact verdict: **CONFIRMED**.
+
+**Sensitivity to the c_ren correction, disclosed and not acted on.**
+These points were selected against the frozen curve, whose m = 0.080
+lower edges were 4.5 / 2.2 / 1.7. Under the curve regenerated with the
+exact recursion (§4.2) those edges move to 3.4 / 1.8 / 1.7, which would
+reclassify two of the ten below-band points as *in-band*
+(p\* = 0.20, R = 3.5, whose v2c verdict is SINGLE, and p\* = 0.30,
+R = 2.0, a tie). P1 would then read 3 of 3 resolving with 5 ties instead
+of 4 of 4 with 6. No verdict changes sign either way, and all three
+above-band and both in-band points keep their classification. We report
+the frozen scoring and this recomputation side by side rather than
+adopting whichever is more flattering.
 
 **What this did to the c_short(R) hypothesis.** v1's two below-band
 misses re-measure, under CRN pairing, as ties (p\* = .3, R = 1.5:
@@ -787,8 +922,8 @@ instrument instead of the theory.
 **Above the band, WSR dominance is verified 10 of 10** — the seven
 above-band points of v1 (`results_phase_test.txt` at 065f9a8: single/WSR
 784/608, 1084/792, 540/402, 306/202, 1260/816, 720/334, 368/168) plus
-the three of v2b tabulated above (`results_phase_test.txt`), at large
-effect sizes, with paired CIs far from zero in v2b and consistent
+the three of v2c tabulated above (`results_phase_test.txt`), at large
+effect sizes, with paired CIs far from zero in v2c and consistent
 nominal margins in v1. This is the region where hard-margin certification
 decisions actually live, and it is where the derived curve is now
 verified rather than merely consistent.
@@ -797,9 +932,11 @@ verified rather than merely consistent.
 uncertainty; in-band points are unresolved by design and were never
 scored.
 
-**Below the band, the designs are indistinguishable.** Three points
-resolve, all to single-stream; **seven of ten are ties**. Read
-positively, this is the more useful half of the result:
+**Below the band, the designs are indistinguishable.** Four points
+resolve, all to single-stream; **six of ten are ties**, and the power
+analysis of §4.3 puts most of those ties at 11–33% power — real effects,
+out of reach at 200 reps. Read positively, this is the more useful half
+of the result:
 
     above the band  ->  WSR blocks dominate (verified 10 of 10)
     in the band     ->  unresolved by design
@@ -885,6 +1022,118 @@ makes that conclusion trustworthy — and it is why §4.2 spends its
 effort on *choosing between* existing designs rather than inventing a
 fifth.
 
+### 4.7 The capstone: one construction, the whole design space
+
+§4.2 derived one curve because one pair of designs mattered most. The
+construction is not specific to that pair. Writing *every* design's
+crossing time in the same expansion and solving each pairwise equality
+turns the four-regime table of §4.1 from a scoreboard into a **derived
+partition** of (p\*, heterogeneity ratio R, margin), with the constants
+frozen from prior artifacts and nothing fitted to the partition itself
+(`results_partition.txt`). Both discrimination anchors pass: ANC-2 at
+R ≈ 200 crisply (WSR at every corner), and ANC-1 at R ≈ 2.6 through the
+**tie band** with a 1% runner-up gap — aligned to the tie region §4.3
+verified rather than forced to a winner, which is a weaker pass and is
+labelled as one.
+
+Winner regions at α = 0.05, K = 4, with `~` marking the **tie band**
+(winner within 5% of runner-up — where the choice does not matter):
+
+| p\* | margin | R = 1.5 | R = 2.5 | R = 4 | R = 7 | R = 15 | R = 40 |
+|---|---|---|---|---|---|---|---|
+| 0.20 | 0.030 | single~ | single~ | WSR | WSR | WSR | WSR |
+| 0.20 | 0.045 | single~ | single~ | WSR~ | WSR | WSR | WSR |
+| 0.20 | 0.060 | single | single | single~ | WSR~ | WSR~ | WSR |
+| 0.20 | 0.080 | single | single | single | single | single | single~ |
+| 0.30 | 0.030 | single | single~ | WSR | WSR | WSR | WSR |
+| 0.30 | 0.045 | single~ | WSR~ | WSR | WSR | WSR | WSR |
+| 0.30 | 0.060 | single | single~ | WSR~ | WSR | WSR | WSR |
+| 0.30 | 0.080 | single | single | single~ | WSR~ | WSR | WSR |
+| 0.40 | 0.030 | single | WSR~ | WSR | WSR | WSR | WSR |
+| 0.40 | 0.045 | single~ | WSR | WSR | WSR | WSR | WSR |
+| 0.40 | 0.060 | single | WSR~ | WSR | WSR | WSR | WSR |
+| 0.40 | 0.080 | single | single | WSR | WSR | WSR | WSR |
+
+**The widths, not the lines, are the useful part.** A practitioner wants
+to know whether their cell is one where the choice is worth making, and
+the `~` cells answer that directly — which is the same message §4.4
+extracted from the tie fraction, now available before any data is
+collected.
+
+**The falsifiable claim, and its three-arm test.** The partition makes
+one prediction sharper than anything the four-regime table could:
+**UI + round-robin is nowhere optimal.** It is the outright fastest arm
+at **0 of 84** derived grid cells (`results_partition.txt`, ANC-3). One
+measured cell where UI wins outright refutes it, so we went looking
+(`results_partition_test.txt`, frozen at commit eeeecfd; ten cells
+spanning the space, three arms, 100 reps per arm per cell, CRN pairing,
+paired-bootstrap three-way verdicts):
+
+- **UI is outright fastest at 0 of 10 cells: PASS.** The cells include
+  the mild-heterogeneity, easy-margin corner where UI's variance
+  advantage is largest and where, if it wins anywhere, it should win.
+  In that corner (p\* = 0.20, m = 0.080, R = 2) UI's median is **426**
+  against single's 200 and WSR's 222; in its worst (p\* = 0.20,
+  m = 0.045, R = 2) it is **1,924** against 652 and 630. All ten cells'
+  medians are printed in the artifact.
+- **0 of 3,000 wrong certifications.**
+- Among single | WSR, the four CI-resolving cells all fall on the
+  **derived WSR side**, and the six ties are the boundary-and-below
+  region the three-region form of §4.4 predicts. **No cell contradicts
+  the derived partition.**
+
+So the design map is now a **derived and verified two-region partition**
+— single below the boundary, WSR above, UI provably and empirically
+nowhere optimal — with directed allocation (§4.1.2) and warm start
+(§4.1.4) as specializations off that spine rather than peers of it. This
+is a sharper statement than v3's four-regime table and a strictly more
+falsifiable one. ("Two regions" here counts *winners*; §4.4's "three
+regions" counts *epistemic states* of the single | WSR comparison — WSR
+wins, unresolved-by-design, indistinguishable. The tie bands above are
+the derived form of §4.4's third state.)
+
+**The inverse problem, and the retraction it produced.** If the
+partition is free, so is the partition *size*: fix the estimand as the
+population mean, treat the split into K strata as a variance-reduction
+choice, and ask whether there is a derivable finite optimal K. On a
+synthetic heterogeneous population the pre-registered
+finite-interior-K\* prediction **FAILED**: the mixture arm's optimum sat
+at K\* = 1 at every difficulty-signal quality, because V_rr(K) rises
+only ~50% across K = 1…24 while the (K/2)·log n tax grows linearly,
+while the flat-overhead (WSR-like) arm wanted strata all the way to the
+saturation knee (`results_optimal_k.txt`). We wrote that up as a failed
+prediction that had yielded a mechanism, and drew a conclusion from it:
+that mixture-K\* = 1 *explained* UI-domination.
+
+**Both of those readings were wrong, and a peer-triggered check on the
+committed real pools overturned them** (`results_gain.txt`, now
+authoritative):
+
+| | synthetic population (rev 1) | ten committed real pools (rev 2) |
+|---|---|---|
+| mixture K\* | 1, at every signal quality | **K\* = 1 : 4 pools, K\* = 2 : 4 pools, K\* = 4 : 2 pools** |
+| stratification gain | +7% to +50% | **1.06× to 4.31×** (variance gain 1.02–5.23×) |
+| finite-interior K\* prediction | FAILED | **CONFIRMED on the four K\* = 2 pools** |
+
+The universal "mixture K\* = 1" is **refuted on 6 of 10 real pools**. It
+was an artifact of generalizing from one synthetic population whose
+gains were an order of magnitude off the real range — real pools
+concentrate their mass in near-boundary strata that carry almost no
+variance, which the synthetic construction did not reproduce. And the
+conclusion built on it is **RETRACTED**: K\* = 1 does not explain
+UI-domination, because UI beats the single stream on 6 of 10 real pools.
+UI is dominated because **WSR** beats it everywhere measured, not
+because single does — which is what §4.4's two-region form said on its
+own evidence, and is why the partition survives the retraction intact.
+Saturation is not uniform either: llama3.2-3b gets 3.87 of its 4.31×
+by K = 2, while qwen2.5-7b (1.51 → 3.33) and gemma2-9b (1.63 → 3.25)
+get most of theirs between K = 2 and K = 4. **Scope**, stated with the
+result: these are temperature-0 pools, where the designed strata are the
+finest honest partition available; finer-K behaviour needs per-prompt
+rates at temperature > 0, which is a future collection, and the
+well-posedness construction of `scripts/derive_optimal_k.py` is retained
+as such with its superseded-in-part conclusion marked.
+
 ---
 
 ## 5. The calibrated expansion
@@ -963,6 +1212,15 @@ requires **one fitted constant c per model** (−1.56 / +1.91); with
 c = 0 its errors are ±12%. The honest phrasing for UI is "d from the
 rule, c fitted once per model."
 
+**And one relation between this table and §5.3, since the two are easy
+to confuse.** The c used here is the three-term closed form
+−½·log(2π p\*q\*) − ρ/2, with ρ the stratification variance ratio: the
+protocol correction for round-robin streams, not a renewal constant.
+§5.3's c_ren(p\*, τ, α, d, n0) is a different object on a different
+accounting, and the correction to its value (§5.3) leaves this table
+untouched — every number above is recomputed from the same closed form
+it was published with (`audit/out_law_accounting.txt`).
+
 ### 5.3 The fourth term, derived
 
 **First, the failure that measured it.** A power-checked 17-point margin
@@ -993,20 +1251,33 @@ same pooled rate (median 1024 vs 844 at one matched point) — c depends
 on the sampling protocol, not just on (p\*, τ).
 
 **Then the derivation.** Stirling on the Beta-mixture e-value gives the
-exact-to-O(1/n) identity
+identity with an **explicit remainder interval** — no unspecified tail —
 
-    log E_n = n·KL(p̂, τ) − ½·log n + ½·log(2π p̂ q̂),
+    log E_n = n·KL(p̂, τ) − ½·log n + ½·log(2π p̂ q̂) + r_n,
+    r_n = [1/p̂ + 1/(1−p̂) − 13]/(12 n) + 1/(2 n²) + O(n⁻³),
 
 so the predicted crossing residual is **−½·log(2π p\*q\*)** — a term
-with *nothing fitted*. Scored on the frozen 17-point grid
-(`results_overshoot.txt`, checksum 0b7fa43558e3530f):
+with *nothing fitted*. The proof, the interval and the scope live in
+[paper/BOUNDARY_THEOREM.md](BOUNDARY_THEOREM.md); two corrections it
+carries belong here because they were ours. The coefficient is **−13,
+not −1** (the (n+1) shift in Γ(2+n) contributes −12/(12n)), verified
+exactly at n = 10⁴; and an earlier version of the proof asserted a
+residual of O(log n / n) on a line whose true residual is O(log n) — the
+displayed equation survived only because a −log n − 1 cancels
+downstream. An external audit (gpt-5.6-sol lineage) found both; we
+verified both here before adopting them, and the repaired proof displays
+the cancellation instead of hiding it in a wrong order estimate.
+
+Scored on the frozen 17-point grid (`results_overshoot.txt`, checksum
+0b7fa43558e3530f):
 
 | check | result | criterion | verdict |
 |---|---|---|---|
-| C1 identity | max abs difference between `betaln` and the four-term form 0.00374 over the grid | ≤ Stirling remainder bound 0.00632 | PASS |
+| C1 identity **rev 1** | max grid error 0.00374 compared against a threshold built as (the displayed bound, evaluated at a *different* grid point) × 1.5 | the multiplier was not from theory | **DEFECTIVE — passed while the error exceeded the displayed bound** |
+| C1 identity **rev 2** | every grid point's r_n tested pointwise against the rigorous interval of BOUNDARY_THEOREM §2 | 0 of 12 violations, float64 accumulation ≤ 3×10⁻¹¹ (peer's 13,579-point high-precision grid: zero failures) | PASS |
 | C2 slope removal | per-point residual slope **−1.398 → −0.255** nats per unit p\*; per-point correlation **−0.616 → −0.133** | \|slope\| ≤ 0.35 and \|corr\| ≤ 0.45 | PASS |
-| C3 remaining offset (superseded) | 8000-rep MC **−1.105**; EXACT **−1.1700824** (recursion) | — | MC was noise-high 0.065 |
-| C4 decomposition | selection +0.681 (enters with minus), crossing overshoot +0.229, median-vs-mean −0.645, c_Laplace −0.006 → predicted −1.103 vs measured −1.228 | abs difference ≤ 0.2 | PASS |
+| C3 remaining offset | 8,000-rep MC **−1.105**, dispersion std 0.286 | ≤ 0.25 | **FAILED** — and the value was also wrong: exact **−1.1700824** |
+| C4 decomposition | selection +0.681, overshoot +0.229, median-vs-mean −0.645, c_Laplace −0.006 → −1.103 vs measured −1.228 | abs difference ≤ 0.2 | **SUPERSEDED** — passed on two cancelling errors |
 
 C2 removes **82% of the p\*-dependence** with zero fitted parameters.
 Units note, because an earlier commit mixed them and was corrected: the
@@ -1016,28 +1287,81 @@ is the correlation on the **6 group means** and is never mixed with the
 per-point numbers (the artifact was regenerated on one unit after the
 mix was caught).
 
-C3 is a **failure we keep in view**: the residual after the derived term
-is a c_ren(p\*,τ,α,d,n0) term, exactly −1.1700824 by recursion; the MC estimate's dispersion misses
-its own criterion. C4 shows what it is made of — selection (the stopped
-p̂ exceeds p\*), discrete-check overshoot, and the median-versus-mean
-gap — numerically, at p = 0.202, τ = 0.157, 8,000 reps of an exact
-simulator, closing to within 0.125 nats. **Its closed form (Woodroofe
-ladder heights) is open** and is stated as the remaining clause, not
-quietly absorbed.
+**C1 is a check that failed by passing.** Rev 1 compared the grid error
+against a number that wore the Stirling bound's name but was a tolerance
+multiplier applied to that bound at the wrong grid point — and the
+actual error *exceeded* the displayed bound while the check printed
+PASS. The artifact-identity rule R4 was satisfied, because a verdict
+line was printed; what was never computed was the relation between the
+threshold and the theory it named. That is now **gate rule R4b** (§6.2).
+Rev 2 tests the rigorous interval pointwise and passes cleanly. The
+expansion was always right; the check was not testing it.
+
+**C3 and C4 are the correction that matters, and it goes the
+uncomfortable way.** The residual after the derived term is
+c_ren(p\*, τ, α, d, n0). We previously reported it as a measured scalar
+−1.105 from an 8,000-rep Monte Carlo whose own dispersion criterion
+FAILED, and we reported a three-piece decomposition (selection,
+discrete-check overshoot, median-versus-mean) that closed to within
+0.125 nats. The exact value, computed by a finite absorption recursion
+over the killed chain and verified to 7 decimals against an independent
+transfer operator, is **−1.1700824** (`results_cren_exact.txt`): the
+Monte-Carlo estimate was **noise-high by 0.065 nats**. That single
+correction dissolves the decomposition, because its closure had been two
+noise errors cancelling — the selection term was independently
+re-measured at 0.6387 ± 0.0034 against the repo's +0.681 (z = −12.6),
+and with the corrected selection the three pieces sum to ≈ −1.06 against
+a target of −1.170. **C4 is superseded and does not sum exactly**; we
+record it as a diagnostic that was approximate all along rather than as
+a result that closed.
+
+What replaces it is stronger. c_ren is **exactly computable for any
+(p\*, τ, α, d, n0) with zero fit**, so the four-term expansion is fully
+predictive in practice — and it is demonstrably *not* a universal
+constant: −1.1449169 at p\* = 0.150 and −1.1866026 at p\* = 0.300 (the
+residual C2 slope was this dependence), −1.2985462 at check period
+d = 1, −1.1443421 at n0 = 40. The median convention matters at the
+0.008-nat level and is stated: crossings occur only on multiples of d,
+so we use the **discrete** median (−1.1700824) rather than the
+interpolated one (−1.1785).
+
+**What is open, named rather than fudged.** A scalar
+elementary/special-function reduction of c_ren. The obstruction is a
+time-inhomogeneous, **noncommuting** killed kernel — the
+continuation-then-draw operators do not commute across check times, so
+the product does not collapse to one eigenvalue. Its pieces are in
+different states: the median-versus-mean gap is closed (Cornish-Fisher);
+selection has an exact closed *form* E[N·D(p̂‖p\*)] whose first-order
+term is exactly zero by Wald's identity (E[M_N] = 0, measured
+−0.01 ± 0.05, `results_selection.txt`); the overshoot has a closed
+**asymptotic** constant ρ_d = E[H_d²]/(2E[H_d]) — the first strict
+ascending ladder height of the d-sample block skeleton, by a Spitzer
+identity, with ρ_1 = 0.0942 and ρ_4 = 0.1703 re-verified here two ways
+to < 0.0003 (`results_overshoot_closed.txt`). The ratio
+ρ_4/ρ_1 = 1.81 is itself the proof that the constant carries the check
+period, which had previously been a conjecture — and it retires an
+earlier diagnosis of ours that blamed a lattice span. The single
+remaining obstruction is finite-boundary behaviour: at L = log 20 ≈ 3.0
+the measured overshoot is 0.228 against the asymptotic 0.170, a real gap
+shared by selection and overshoot, whose right frame is Kim & Woodroofe
+nonlinear renewal with slowly-changing perturbations (math/0611695). We
+keep the asymptotic and finite-L numbers distinct and fit neither.
 
 **The blind test.** A term derived to explain one dataset's residual
 structure is worth little until it makes a different kind of prediction
 on different data. The pre-committed test was the boundary anchor gate:
 the four-term expansion had to make anchor A1 (MBPP-like, R ≈ 2.6) pass
 where the fitted constants of pass 3 had failed by 8%. It does, and
-across the whole envelope — derived single **832** versus WSR **835**
+across the whole envelope — derived single **832** at the freeze
+(**820** on regeneration under the exact recursion) versus WSR **835**
 (central), **908** and **945** at the two WSR envelope corners, so the
 winner relation matches the measured MBPP cell (single 960 vs WSR 1052
 at margin 0.042, single by 9%, `results_mbpp_law.txt`) at every corner
-of the band rather than at one lucky point.
+of the band rather than at one lucky point — and it still does after the
+c_ren correction, which is the propagation check, not a re-scoring.
 
 **And its caveat, stated with it.** Both arms' *absolute* medians come
-out ~10–20% low (derived A1 single 832 versus measured 960); WSR still
+out ~10–20% low (derived A1 single 820–832 versus measured 960); WSR still
 lacks its own o(1) treatment, and the symmetric derivation is open. The
 boundary's **winner** predictions are what §4.3 verified; its absolute-n
 predictions carry this caveat.
@@ -1087,7 +1411,17 @@ predicts +1, and a formula-pass obtained via a censored fit is disclosed
 as hollow (`results_lineage_d.txt`, 2-of-4 as frozen). Net status: a
 coarse regularity that survives where it is testable, not a law.
 
-### 5.5 The WSR anti-result
+**One further caution, which §5.5 turns into a measurement.** Every
+number in this subsection is a *fitted* d, and a fitted d only means
+something if the statistic actually admits an expansion of the form (†).
+For the UI arm we have no proof that it does, only the empirical
+regularity above. §5.5 exhibits the failure mode concretely on a
+different arm: a statistic whose overhead genuinely diverges will still
+return a well-behaved fitted "dimension", and that number will simply
+drift with the horizon. Read the drift of fitted d with τ inside a
+single pool (6.23 → 5.04) with that possibility in view.
+
+### 5.5 The WSR anti-result, and what a frozen test of it settled
 
 Our early reading of WSR as having a *flat* overhead ("zero-dimensional,
 ~1.7-nat constant tax") was a **finite-window artifact**. The referee's
@@ -1103,6 +1437,107 @@ advantage is correctly stated as "a **bounded rate sacrifice** beats a
 that inequality reverses as the horizon grows. It is also why the
 boundary of §4.2 gives WSR a *two-regime* envelope (a short-horizon
 constant and a long-horizon growing term) rather than a single constant.
+
+**A candidate explanation arrived from outside, and it is still a
+hypothesis.** An external lineage derived that the stock predictable
+schedule admits **no** fixed (d, c) at all: the true growth is
+n·V ~ A·log n·(log log n)², so n·V/log n diverges and any fitted
+"dimension" is a horizon-dependent artifact that must drift upward —
+which would reproduce the 1.8–2.3 above from a constant measured
+independently of those fits. We froze a test of it on the **shipped**
+classes rather than adopting it (`results_wsr_expansion.txt`, freeze at
+commit 7e80dbe; p = 0.5, K = 4, margins 0.035 → 0.009, crossing medians
+2,566 → 67,226):
+
+| clause | prediction | result | verdict |
+|---|---|---|---|
+| P1 divergence | stock n·V/log n grows monotonically, ≥ 1.5× across the ladder | **1.23×**, non-monotone at the deep end | **FAILED** |
+| P2 form | n·V/(log n·(log log n)²) flat within ±10%, deepest rung excluded | max deviation from the mean 6.1% (total spread 11.9%) | PASS |
+| P3 floored-arm contrast | — | n·V/log n drift **1.2%** floored vs **22.9%** stock | an expansion exists on the floored arm |
+
+(P2's criterion was ambiguous as first written — "flat within ±10%"
+admits both a max-deviation-from-mean and a total-spread reading, which
+disagree here, 6.1% versus 11.9%. It was disambiguated to
+max-deviation-from-mean and the artifact regenerated, commit eaf6a14.
+The first run of this test was also **INVALID and is committed as
+such**: it computed block means with numpy boolean addition, so nothing
+ever crossed and P3 printed a verdict from two censored constants. v2
+adds a crossing-fraction validity guard; see §6.2 instance 6.)
+
+So the honest status is: **the no-expansion claim is a hypothesis, not a
+result.** Its functional form is consistent with our ladder; its own
+pre-registered divergence criterion failed on the code we actually ship.
+The external lineage's supporting 1.80× came from a *reimplementation*
+of the schedule that runs 43% off the shipped code at matched settings
+and is withdrawn; the coefficient H/16 = 0.2306 was refuted by that
+lineage's own measurement, and we report only the measured mean
+A = 0.1769 with the peer's 0.1469 alongside. The route of *deriving*
+WSR's fourth term is therefore **open and unresolved** — neither derived
+nor proven impossible — and §4.2's WSR envelope stays measured.
+
+**A process failure preceded that verdict, and it is the reason for a
+new gate rule.** The no-expansion paragraph was absorbed into
+`BOUNDARY_THEOREM.md` and `THEORY.md` at commit 805ae03 **while the
+frozen test of it was still running**. The test then failed P1. Nothing
+about the claim's plausibility excuses the ordering: an external result
+absorbed before its own pending test scores is an unchecked relation
+between a claim and its evidence, exactly the generator of §6.2. The
+absorption was unwound (commit 8d43eb2), the claim downgraded to a
+hypothesis everywhere it appeared, and the ordering is now **gate rule
+R9**: no absorption while a frozen test of the same result is pending,
+and every absorption commit must cite the scored artifact it rests on.
+
+**Where an expansion does exist: the Kelly-floored arm, and how far we
+got.** P3 is a within-implementation contrast — identical code, ladder
+and seeds, so absolute-level bias cancels — and it says the floored
+variant restores the regularity the stock schedule lacks. That made it
+the live route to a full boundary theorem, and we chased it
+(`results_floor_d.txt`). Three things came back, in order of how much
+they cost us:
+
+1. **Our committed d = 1.27 was biased, and not in the direction the
+   audit predicted.** An external audit found a real defect: the τ grid
+   places every rung mid-cell at a fixed +0.0005 offset, which is 1.4%
+   of the margin at the top rung and 5.3% at the deepest, inducing a
+   2.8% → 10.2% bias in the rate V. We reproduced the defect exactly.
+   Its **direction** we could not reproduce: correcting it moves d
+   *away* from 1, not toward it (grid-corrected d = +1.3614 ± 0.2006 at
+   3× reps; the stock arm under the same correction is +4.4969). The
+   only arithmetic we found that turns the grid correction into a
+   sub-1.27 figure is scoring at a grid point *above* τ (which yields
+   +0.9158), and that is invalid: raising τ above the old binding point
+   makes τ itself binding and lengthens every crossing time, so n cannot
+   be held fixed. We record that as the artifact does — the likely
+   provenance of any "exact-τ" d below the committed fit, including the
+   externally circulated 1.12 — rather than as a proven attribution.
+2. **d = 1 is derivable — on the post-warmup idealization.** Once the
+   Kelly floor binds, the plug-in bet is first-order efficient
+   (c_reg = |V''(λ\*)|·AVar → 1 across the ladder, 0.9619 … 0.9971), so
+   the regular arm costs exactly (1/2)·log T: **d_regular = 1** (the
+   derivation's own point value is +1.0354, half-width 0.0844), the
+   same as the single stream. The shipped class is that idealization
+   plus a warmup: before the floor binds the stock schedule over-bets,
+   and the slope attribution charges **+0.5071** to that residual
+   against +1.0664 for the regular law, predicting d = 1.5301 for the
+   shipped class (attribution sum and direct regression agree to four
+   decimals). The plug-in-versus-optimizer gap the audit raised is real,
+   exactly computable, and **not load-bearing**: ~0.01 in d.
+3. **The shipped class has no fixed d either — only a slower drift.**
+   The warmup contribution decays as 1/log t_c, so the literal shipped
+   floored arm has a **slowly drifting effective d**, milder than
+   stock's but not constant. This is the structural finding, and it
+   makes the measurement question moot: **{1, 1.12, 1.27, 1.53} are
+   mutually indistinguishable at any feasible rep budget on this
+   ladder.**
+
+Both pre-registered windows — P-A for the idealization (d = 1,
+[+0.5144, +1.4856]) and P-B for the warmup-corrected derivation
+(+1.5301, [+0.9993, +2.0608]) — contain the measurement, so the frozen
+adjudication is **UNRESOLVED**. We did not widen the windows and we do
+not report a miss as a hit. The final form of the claim is therefore:
+*derivable (d = 1) on the post-warmup idealization; drifting on the
+literal shipped class; and the experiment that would discriminate the
+two does not exist at this budget.*
 
 ### 5.6 The conservation hypothesis: FALSIFIED
 
@@ -1249,13 +1684,17 @@ non-experiment forms:
 | **R1** discrimination | an anchor whose verdict is invariant across the entire constant band discriminates nothing; `--anchors` evaluates every anchor at every corner and flags invariant ones |
 | **R1b** scoring resolution | any verdict comparing two measured quantities must state its resolution (CI) and report ties as unresolved-by-measurement; a comparison with no error bar is an anchor with no discrimination check |
 | **R4** artifact–claim identity | any artifact cited *with a verdict* must itself print PASS/FAIL/VERDICT lines |
+| **R4b** threshold identity | any check whose pass criterion cites a *named* theoretical quantity must COMPUTE that quantity from the theory at the point being tested — never a tolerance multiplier wearing the bound's name; `--thresholds` scans for multiplicative fudge adjacent to bound-naming words |
 | **R5** aggregation transparency | n-of-m and "all pass" claims must cite an artifact that enumerates the cells |
 | **R6** propagation | `--propagate <term>` lists every site asserting a quantity, so changing it comes with an explicit still-holds check |
 | **R7** resource invariants | the shipped wall-clock regression runs, so "fast enough" is a tested relation |
 | **R8** allocation discrimination | a verification whose scored points concentrate where the hypothesis is already established is not discriminating regardless of point count; ≥ 50% of scored points must carry the novel-region prediction |
+| **R9** absorption ordering | an external result may not be absorbed into the paper or THEORY while a frozen test *of that same result* is pending; every absorption commit must cite the scored artifact it rests on |
 
-**Four instances of the one generator were caught in the boundary work
-alone**, which is why §4 reads the way it does:
+**Eight instances of the one generator have now been caught and
+scored** — four in the boundary work, four after it — which is why §4
+and §5 read the way they do. Each one is a relation nobody computed, and
+each is now a rule:
 
 1. **Anchor A2** (R1): its WSR verdict is invariant across the whole
    constant band, so it was never evidence. Mechanically confirmed by
@@ -1266,10 +1705,39 @@ alone**, which is why §4 reads the way it does:
    attributed to it (§4.3). The relation was later shown to be below
    measurement noise — so the diagnosis itself was an uncomputed
    relation.
-3. **v1's allocation** (R8): 7 of 9 scored points in the
-   already-established region. Now a gate rule.
-4. **v2's scoring rule** (R1b): two medians compared with no CRN pairing
-   and no error bars. Now a gate rule, and the reason v2b exists.
+3. **Allocation** (R8): v1 put 7 of 9 scored points in the
+   already-established region — a verification that concentrates where
+   the answer is known. Now a gate rule.
+4. **Scoring resolution** (R1b): v2 compared two medians with no CRN
+   pairing and no error bars. Now a gate rule, and the reason v2b
+   exists.
+5. **Threshold identity** (R4b): C1 rev 1 printed PASS against a
+   threshold that named the Stirling bound but was that bound at the
+   wrong grid point times an unexplained 1.5 — while the true error
+   exceeded the displayed bound (§5.3). R4 was satisfied; the relation
+   between the threshold and the theory it cited was not computed. Found
+   under external audit, verified here, now mechanized.
+6. **Verdict without validity**: the first run of the WSR expansion test
+   computed block means with numpy boolean addition (logical OR, capped
+   at 0.25 < τ), so nothing ever crossed — both arms returned identical
+   censored rows and P3 printed "expansion EXISTS" from two censored
+   constants. The per-clause verdicts were all locally well-formed; what
+   was never computed was the relation between a verdict and the
+   *validity of the run producing it*. v2 adds a crossing-fraction guard
+   (≥ 90% per rung or the artifact declares itself INVALID), and the
+   invalid v1 is committed as the record rather than discarded
+   (commit bb618ec). The same shape recurs at §4.3, where v2b's ties
+   came from a bootstrap whose stated 5% size was really 1.8–2.6%.
+7. **Absorption ordering** (R9): an external no-expansion claim entered
+   the documents while its own frozen test was still running; the test
+   then failed P1 (§5.5). The relation between a claim and the evidence
+   pending for it.
+8. **Synthetic-population generalization**: a universal K\* = 1 was read
+   off one synthetic population and used to explain UI-domination
+   (§4.7). The relation between the population the claim was measured on
+   and the populations it was asserted over was never checked; on the
+   ten real pools the census is 1 : 4, 2 : 4, 4 : 2 and the explanation
+   is retracted.
 
 **The gate caught itself.** Its first R4 implementation flagged 27
 artifacts by checking each artifact *as an object* (does it contain
@@ -1278,22 +1746,34 @@ exact defect the gate exists to catch, found by a reviewer running the
 gate on the gate. Rev 2 flags only verdict-asserting citations. In the
 same episode, a commit message reported "18 R4" where the artifact
 printed 27 — an R5 violation inside the R5 commit — and the correct
-count is recorded in `AUDIT_PREP.md` rather than quietly fixed. Re-run
-after three retrofit batches (commits 6656373, 66cecd5, b6b7151), the
-gate reports **4 remaining R4 flags** and passes R8 for the phase
-verification (10 of 13 scored points in the novel region, 77% ≥ 50%).
+count is recorded in `AUDIT_PREP.md` rather than quietly fixed. After
+three retrofit batches (commits 6656373, 66cecd5, b6b7151) R4 came back
+clean, and R8 passes for the phase verification (10 of 13 scored points
+in the novel region, 77% ≥ 50%).
 
-**And it flags this draft.** Run against v4, R5 raises **33 n-of-m
-claims** — up from 4 against v3, because a verification section is made
-of such claims. Most of them are enumerated *in this paper* (the
-per-point tables of §4.3, the anchor table of §4.2, the ledger of §6.3),
-which R5 as implemented does not see: it looks only for enumeration
-inside a cited artifact. That is the same object-versus-relation gap R4
-already had to fix, and it is recorded here as an open methodology item
-rather than waived. Two of the flags are substantive rather than
-cosmetic: "10 of 10" above-band and the v1 counts span a *superseded*
-artifact version (065f9a8), so no single committed artifact enumerates
-them — which is why §4.3–4.4 print those points in full.
+**And it flags this draft — including one flag this consolidation
+created.** Run against v4.1:
+
+- **R4 raises one flag**: `results_cren_exact.txt` is cited here with a
+  verdict but prints a `STATUS:` block rather than a PASS/FAIL/VERDICT
+  line, so it does not self-score. The citation is new in v4.1, which
+  means the retrofit that closed R4 did not cover an artifact written
+  after it. Recorded as an open item, not waived and not fixed by
+  editing the artifact to suit the paper.
+- **R5 raises 46 n-of-m claims** against the draft (33 against v4, 4
+  against v3), because a verification section and a partition section
+  are made of such claims. Most are enumerated *in this paper* — the
+  per-point tables of §4.3, the anchor table of §4.2, the partition
+  tables of §4.7, the ledger of §6.3 — which R5 as implemented does not
+  see: it looks only for enumeration inside a cited artifact. That is
+  the same object-versus-relation gap R4 already had to fix, and it
+  stays an open methodology item. Two flags are substantive rather than
+  cosmetic: "10 of 10" above-band and the v1 counts span a *superseded*
+  artifact version (065f9a8), so no single committed artifact enumerates
+  them — which is why §4.3–4.4 print those points in full.
+- **R4b and R8 are clean**, and R4b is clean on a mechanical scan only:
+  it is semi-mechanical by construction, so a clean scan is weaker
+  evidence than a clean R8.
 
 The census's falsifiable prediction stands: **the next defect will also
 be an uncomputed relation.**
@@ -1332,26 +1812,40 @@ complete miss ledger for the second half of the project:
 | Overshoot C3 (renewal offset dispersion ≤ 0.25) | **FAILED** (std 0.286); C1/C2/C4 passed; closed form declared open (`results_overshoot.txt`) |
 | Phase-curve verification v1 (P1: below-band → single) | **FAILED as frozen** (0 of 2); verdict then *restated* — the novel region was untested at resolution and 7 of 9 scored points sat in the established region (now gate rule R8) |
 | Phase-curve verification v2 (P1 ≥ 8 of 10) | **FAILED as frozen** (4 of 10) — then shown **instrument-limited**: arms not CRN-paired, verdicts by bare median comparison (now gate rule R1b) |
-| Phase-curve verification v2b (P1/P2/P3 under CRN pairing + paired bootstrap) | **CONFIRMED** — 3 of 3 resolving below-band → single, 3 of 3 above-band → WSR, 7 of 13 points TIES (reviewer's pre-stated tie prediction confirmed), 0/6,000 wrong (`results_phase_test.txt`) |
+| Phase-curve verification v2b (P1/P2/P3 under CRN pairing + paired bootstrap) | **CONFIRMED** — 3 of 3 resolving below-band → single, 3 of 3 above-band → WSR, 7 of 13 points TIES (reviewer's pre-stated tie prediction confirmed), 0/6,000 wrong — *later superseded by v2c after its own bootstrap was found conservative* |
+| v2b's paired median bootstrap: stated size 5% | **DEFECT, ours** — actual size 1.8–2.6% on the tied crossing-time lattice; re-frozen as v2c with a calibrated Harrell-Davis estimator (4.4–5.2%), same estimand, and the one predicted extra resolution appeared: 4 of 4 resolving + 6 ties (`results_phase_test.txt` v2c) |
+| Stratification-gain magnitude quoted from one synthetic population | **MISQUOTED** — the +7%/+50% synthetic gains are an order of magnitude below the real committed-pool range 1.06–4.31× (`results_gain.txt`) |
+| F14 rev 1: "the mixture's optimal K\* = 1", and "K\* = 1 explains UI-domination" | **REFUTED on 6 of 10 real pools** (census K\* = 1 : 4, 2 : 4, 4 : 2); the pre-registered finite-interior-K\* prediction, declared failed in rev 1, is **CONFIRMED** on the four K\* = 2 pools; the UI-domination explanation is **RETRACTED** (`results_gain.txt`) |
+| WSR stock-schedule no-expansion P1 (n·V/log n monotone, ≥ 1.5× across the ladder) | **FAILED as frozen** (1.23×, non-monotone at depth) — the claim is downgraded to a hypothesis, form-consistent only (P2 max deviation 6.1%); the external 1.80× came from a reimplementation 43% off the shipped code and is withdrawn (`results_wsr_expansion.txt`) |
+| Absorption ordering at commit 805ae03 | **PROCESS MISS, ours** — an external result was absorbed into the documents while its own frozen test was pending; the test then failed P1. Unwound at 8d43eb2; now gate rule R9 |
+| Floored-arm d: committed +1.27, and the frozen windows P-A (idealization d = 1) / P-B (warmup-corrected +1.5301) | **GRID-BIASED** — the τ grid sits mid-cell (+0.0005, 1.4→5.3% of margin), biasing d **low**, not high as the external audit claimed; corrected +1.3614 ± 0.2006. Both windows contain the measurement → **UNRESOLVED**; windows not widened (`results_floor_d.txt`) |
 
-Two entries deserve emphasis rather than burial. The **margin-sweep
+Three entries deserve emphasis rather than burial. The **margin-sweep
 pair**: the centerpiece experiment failed, received one legitimate
 mechanical bug fix, and **failed again** under the corrected protocol —
 while excluding d = 0 and d = 2 decisively both times, and while
 measuring the structure §5.3 later derived. The **phase-verification
-trio**: two frozen failures preceded the confirmation, the second
-failure was of our *instrument* rather than our theory, and the
-re-scoring that produced the confirmation was gated by a reviewer's
-pre-stated prediction of the tie outcome — without that pre-statement it
-would have been indistinguishable from iterating until a pass.
+sequence**: two frozen failures preceded the confirmation, the second
+failure was of our *instrument* rather than our theory, the re-scoring
+that produced the confirmation was gated by a reviewer's pre-stated
+prediction of the tie outcome — without that pre-statement it would have
+been indistinguishable from iterating until a pass — and then the
+confirming instrument was itself audited and found conservative, which
+cost a fourth round. The **optimal-K pair**: a prediction we declared
+failed on synthetic data turns out to be confirmed on 4 of 10 real
+pools, and the explanation we built on the failure is retracted. Getting
+a *failure* wrong is the same error as getting a success wrong, and it
+is listed the same way.
 
 Against this ledger, the **load-bearing passes** are: the single-stream
 zero-fit prediction (§5.2), the out-of-family dimension prediction
 (§5.4), the live WSR arm (predicted UNSAFE ≥ 7/8, median ∈ [150, 450],
 zero SAFE; observed 7/8, median 224, zero SAFE, $0.25 —
 `results_live_wsr.txt`), the blind anchor test of the derived fourth
-term (§5.3), and the above-band verification of the boundary (§4.4).
-Others passed too — chain P2–P4, local-pool P1–P3, MBPP P2, the drift
+term (§5.3), the above-band verification of the boundary (§4.4), and the
+three-arm partition test, whose UI-dominance clause was falsifiable by a
+single cell and came back 0 of 10 (§4.7). Others passed too — chain
+P2–P4, local-pool P1–P3, MBPP P2, the drift
 validity and saturation clauses, the capstone (at the severity of §5.7)
 — but several of those were, by our own audit's finding,
 near-unfalsifiable, and we say so rather than counting them.
@@ -1408,26 +1902,51 @@ this bound.
     their banded AGRAPA version may reduce the abstentions that drive
     our reliability finding.
 12. **Formalization is open.** (†) is calibrated, not proved, for these
-    three statistics: overshoot, median-versus-mean, tracking terms and
-    the exact regret constants are unproven here — and the renewal
-    constant of §5.3 is exactly computable (−1.1700824, absorption recursion) though not scalar-closed.
+    three statistics. The single-stream arm is the exception and is
+    formalized in `paper/BOUNDARY_THEOREM.md` with an explicit remainder
+    interval; even there, Eq. (3) is a *definition* of c_ren, not a
+    corollary of the expansion. c_ren itself is exactly computable
+    (−1.1700824 at the reference point, absorption recursion) but has no
+    scalar closed form, and the named obstruction — a noncommuting
+    killed kernel, plus a finite-boundary gap at L ≈ 3 shared by the
+    selection and overshoot pieces — is mathematical, not a matter of
+    more compute.
 13. **The boundary is derived for one geometry.** K = 4, a two-level
     (2 cold + 2 hot) stratum profile, α = 0.05, and p\* ∈ {0.20, 0.30,
     0.40}. Other K, other profile shapes, and other α are unverified.
 14. **The boundary's bands are WSR's uncertainty only.** The single arm
     is derived; the WSR arm's two-regime envelope is measured, so the
     published band understates total uncertainty by whatever the single
-    arm's own error is (~10–20% on absolute medians, §5.3).
-15. **Below the boundary, almost nothing was resolved.** 7 of 10
+    arm's own error is (~10–20% on absolute medians, §5.3). Worse than
+    "measured": the schedule that envelope describes may admit no fixed
+    (d, c) at all, which would make its fitted dimensions
+    horizon-dependent. That is a hypothesis whose own divergence test
+    failed, and the derivation route is open (§5.5).
+15. **Below the boundary, almost nothing was resolved.** 6 of 10
     below-band points are ties at 200 reps per arm.
-    "Indistinguishable at this budget" is not "equal", and a larger
-    budget could reopen the region.
-16. **Verification pools are constructed.** Real gpt-4o-mini outcomes
+    "Indistinguishable at this budget" is not "equal": a power analysis
+    puts four of them at 11–33% power, so a larger budget should reopen
+    the region rather than confirm equality.
+16. **A frozen scoring boundary moved under a later correction.** The
+    verification points were selected against the pre-correction curve;
+    under the regenerated one, two of the ten below-band points become
+    in-band (§4.3). No verdict changes, but the classification is not
+    invariant to the constant.
+17. **The floored-arm dimension is unresolved, and may be
+    unresolvable.** {1, 1.12, 1.27, 1.53} are mutually indistinguishable
+    at any feasible rep budget on this ladder, and the shipped class's
+    warmup term decays as 1/log t_c, so it has no fixed d to measure in
+    the first place (§5.5).
+18. **The optimal-K census is ten pools at temperature 0.** The
+    designed strata are the finest honest partition available there;
+    finer-K behaviour and the interior optimum's shape need per-prompt
+    rates at temperature > 0 (§4.7).
+19. **Verification pools are constructed.** Real gpt-4o-mini outcomes
     remixed to place (p\*, R) — real behavior in a designed
     configuration, not an independently sampled model × task pair. The
     two anchors (MBPP-like, llama3-8b-like) are the closest thing here
     to naturally occurring test points.
-17. **Automated selection is unsolved.** The pilot-based selector
+20. **Automated selection is unsolved.** The pilot-based selector
     matched the oracle design in 11 of 16 cells
     (`results_auto_select.txt`), and the hedge that avoids choosing lost
     outright (`results_portfolio.txt`).
@@ -1466,9 +1985,14 @@ Barron (1997)** (and Watanabe's RLCT) for the boundary/singular
 coefficient behind d = K + #boundary. The fourth term we derive in §5.3
 is a Stirling/Laplace evaluation of the same Beta mixture those lines
 study, and the residual it leaves is exactly the overshoot and
-median-versus-mean structure of nonlinear renewal theory; we claim the
-calibration and the design boundary built on it, not the classical
-apparatus. Armitage (1954) and Armitage, McPherson & Rowe (1969) are the
+median-versus-mean structure of nonlinear renewal theory. Its pieces are
+classical too: **Spitzer's (1956)** fluctuation identity gives the
+overshoot's asymptotic ladder-height constant, and **Kim & Woodroofe
+(2006, math/0611695)** — nonlinear renewal with slowly-changing
+perturbations — is the right frame for the finite-boundary gap we
+report as open. We claim the calibration, the exact absorption recursion
+for the residual, and the design boundary built on them, not the
+classical apparatus. Armitage (1954) and Armitage, McPherson & Rowe (1969) are the
 peeking and sequential-McNemar ancestors; Mahalanobis (1946) is the
 interpenetrating-subsampling ancestor of the block reduction.
 **Wasserman, Ramdas & Balakrishnan** (universal inference / split-LRT)
@@ -1491,9 +2015,21 @@ reproduction — `reproduce.sh` is the actual demonstration. Raw
 generations for every call are stored under `data/`, including the
 pre-fix archives (`data/archive_pre_multipleof_fix/`). The boundary
 artifacts print their own checksums (`results_phase_curve.txt`
-c4a4720dbba3ccb8; `results_phase_test.txt` 33adc872c71e5193;
-`results_overshoot.txt` 0b7fa43558e3530f) and their superseded versions
-remain in the history (phase test v1 at commit 065f9a8, v2 at 80c9e14).
+040d60191cbbe608 as regenerated, c4a4720dbba3ccb8 as frozen at f75eb8d;
+`results_phase_test.txt` 85ab64297762127a for v2c;
+`results_overshoot.txt` 0b7fa43558e3530f;
+`results_cren_exact.txt` 7b03c4008a44bc83;
+`results_partition.txt` 633da7306797abd8;
+`results_partition_test.txt` 9394f2ca9ee52755;
+`results_gain.txt` 6741923850ff0c66;
+`results_wsr_expansion.txt` 1d90b32264342885;
+`results_floor_d.txt` 28f029828284b752) and their superseded versions
+remain in the history (phase test v1 at commit 065f9a8, v2 at 80c9e14,
+v2b at a1f37ac, v2c at 52b6c9f; the pre-correction phase curve at
+f75eb8d).
+Superseded artifacts are kept, not deleted: `results_cren.txt` and
+`results_overshoot.txt`'s C4 row are retained for history and marked
+superseded in place.
 
 **Ledger.** ≈ 8,600 OpenAI API calls through the bolstering round at
 ≈ $2.02 (FINDINGS ledger; includes the $0.25 live WSR arm,
@@ -1522,20 +2058,23 @@ yet drawn.
 | §3 testbed | `results_crossmodel.txt`, `results_local_law.txt`, `results_mbpp_law.txt`, `results_overhead_law_code.txt` |
 | §3.4 prerequisites | `results_advanced.txt`, `results_codetask.txt`, `results_realllm_betting.txt`, `results_block_reduction.txt` |
 | §4.1 empirical map | `results_wsr_hard.txt`, `results_tasc_hard.txt`, `results_uncertainty.txt`, `results_spertus_baseline.txt`, `results_spertus_crn.txt`, `results_local_law.txt`, `results_crossmodel.txt`, `results_ui_grow.txt`, `results_mbpp_law.txt`, `results_warmstart*.txt`, `results_router.txt`, `results_router2.txt` |
-| §4.2 derived curve | `results_phase_curve.txt`, `scripts/derive_phase_boundary.py`, `results_relation_gate.txt` |
-| §4.3–4.4 verification | `results_phase_test.txt` (v2b; v1 at 065f9a8, v2 at 80c9e14), `results_portfolio.txt`, `results_auto_select.txt` |
-| §5 expansion | `results_overhead_law.txt`, `results_overhead_fit.txt`, `results_overhead_law_code.txt`, `results_margin_sweep.txt`, `results_overshoot.txt`, `results_adjudication.txt`, `results_lineage_d.txt`, `results_frontier.txt`, `results_live_prediction.txt`, `audit/out_law_accounting.txt` |
-| §6 methodology | `audit/AUDIT_LAW_CAPSTONE.md`, `audit/AUDIT_WARMSTART.md`, `AUDIT_PREP.md`, `results_relation_gate.txt`, `results_live_wsr.txt` |
+| §4.2 derived curve | `results_phase_curve.txt`, `scripts/derive_phase_boundary.py`, `results_cren_exact.txt`, `results_relation_gate.txt` |
+| §4.3–4.4 verification | `results_phase_test.txt` (v2c; v1 at 065f9a8, v2 at 80c9e14, v2b at a1f37ac), `results_portfolio.txt`, `results_auto_select.txt` |
+| §4.7 partition | `results_partition.txt`, `results_partition_test.txt`, `results_optimal_k.txt`, `results_gain.txt`, `scripts/derive_partition.py`, `scripts/run_partition_test.py`, `scripts/derive_optimal_k.py`, `scripts/measure_gain.py` |
+| §5 expansion | `results_overhead_law.txt`, `results_overhead_fit.txt`, `results_overhead_law_code.txt`, `results_margin_sweep.txt`, `results_overshoot.txt`, `results_cren_exact.txt`, `results_selection.txt`, `results_overshoot_closed.txt`, `results_adjudication.txt`, `results_lineage_d.txt`, `results_frontier.txt`, `results_live_prediction.txt`, `audit/out_law_accounting.txt`, `paper/BOUNDARY_THEOREM.md` |
+| §5.5 WSR expansion | `results_wsr_expansion.txt`, `results_floor_d.txt`, `scripts/run_wsr_expansion.py`, `scripts/derive_floor_d.py`, `results_mbpp_law.txt` |
+| §6 methodology | `audit/AUDIT_LAW_CAPSTONE.md`, `audit/AUDIT_WARMSTART.md`, `AUDIT_PREP.md`, `results_relation_gate.txt`, `results_live_wsr.txt`, `scripts/relation_gate.py` |
 
 ---
 
 ## References
 
 Armitage (1954); Armitage, McPherson & Rowe (1969); Wald (1945);
-Mahalanobis (1946); Schwarz (1962); Pollak & Siegmund (1975); Pollak
-(1978); Woodroofe (1982); Rissanen (1984); Lai (1988); Lai & Zhang
-(1994); Clarke & Barron (1990); Krichevsky & Trofimov (1981); Xie &
-Barron (1997); Watanabe (2009); Maurer & Pontil (2009); Wasserman,
+Mahalanobis (1946); Spitzer (1956); Schwarz (1962); Pollak & Siegmund
+(1975); Pollak (1978); Woodroofe (1982); Rissanen (1984); Lai (1988);
+Lai & Zhang (1994); Clarke & Barron (1990); Krichevsky & Trofimov
+(1981); Xie & Barron (1997); Kim & Woodroofe (2006, math/0611695);
+Watanabe (2009); Maurer & Pontil (2009); Wasserman,
 Ramdas & Balakrishnan (2020); Waudby-Smith, Stark & Ramdas (2021,
 RiLACS); Spertus & Stark (2022); Turner, Ly & Grünwald (2022);
 Waudby-Smith & Ramdas (2023); Shekhar & Ramdas (2023); Turner & Grünwald
