@@ -145,8 +145,20 @@ committed before this derivation existed):
    two-regime envelope, not derived.
 3. **The boundary as a theorem.** §4's phase boundary equates Eq. (3)
    (derived) with WSR's *empirical* envelope; it is a verified
-   prediction (v2b: above-band 10/10, below-band 3/3 resolving + 7
-   ties), not a proof. The stock-WSR side's status
+   prediction (v2c, results_phase_test.txt: below-band 4/4 resolving
+   + 6 ties, above-band 3/3 — 10/10 counting v1's seven — and a
+   wrong-certification rate of 0/6000), not a proof. The v2b counts
+   displayed here earlier (below-band 3/3 resolving + 7 ties) were
+   scored by a paired bootstrap of the PLAIN median of a tied lattice,
+   whose actual size was 1.8–2.6% against a nominal 5%: a
+   conservative interval inflates ties and states a resolution it
+   does not have. That is a SCORED defect (the R1b class, one level
+   down), not a re-scoring for a pass — v2c holds the estimand, arms,
+   seeds, pools, and frozen predictions fixed and replaces only the
+   estimator with a calibrated Harrell-Davis quantile (measured size
+   4.4–5.2%); the pre-stated consequence, exactly one below-band
+   point moving from tie to resolving, is what occurred. The
+   stock-WSR side's status
    (results_wsr_expansion.txt, frozen test on the SHIPPED classes):
    the externally-derived "no expansion — nV ~ A log n (loglog n)²"
    claim is a HYPOTHESIS, not established. The form is consistent
@@ -165,9 +177,31 @@ committed before this derivation existed):
    in the contrast): the Kelly-FLOORED variant restores the
    regularity the stock schedule lacks — nV/log n drift 1.2% vs stock
    22.9% across the ladder — so an expansion EXISTS on the floored
-   arm (measured d = +1.27, c = −3.35; a target for derivation, not a
-   result). The floored arm is the live route to a full boundary
-   theorem.
+   arm. Chasing it (results_floor_d.txt) settled the regular half and
+   restructured the rest. **d = 1 is DERIVED** and verified on the
+   post-warmup idealization: once the Kelly floor binds the plug-in
+   bet is first-order efficient (c_reg = |V''(λ\*)|·AVar → 1, spread
+   0.9619…0.9971 across the ladder), so the regular arm costs exactly
+   (1/2) log T — the same as the single stream. The SHIPPED floored
+   class is that idealization plus a warmup over-bet, charged +0.5071
+   in d by the slope attribution (predicting +1.5301; attribution sum
+   and direct regression agree to four decimals). That contribution
+   decays as 1/log t_c, so the literal shipped class has NO fixed d
+   either — only a slowly drifting effective d, milder than stock's.
+   The earlier measured (d, c) = (+1.27, −3.35) is SUPERSEDED: the
+   externally reported τ-grid defect (every rung mid-cell at a fixed
+   +0.0005 offset, biasing V by 2.8% → 10.2% down the ladder) is
+   CONFIRMED, but its claimed DIRECTION is REFUTED — correcting it
+   moves d AWAY from 1, to +1.3614 ± 0.2006 (intercept −3.6011) at 3×
+   reps, with the stock arm at +4.4969 under the same correction; the
+   only arithmetic yielding a sub-1.27 figure scores at a grid point
+   ABOVE τ, which cannot hold n fixed and is invalid. Both
+   pre-registered windows (P-A, the idealization d = 1; P-B, the
+   warmup-corrected +1.5301) contain the measurement, so the frozen
+   adjudication is UNRESOLVED, and {1, 1.12, 1.27, 1.53} are mutually
+   indistinguishable at any feasible rep budget on this ladder. The
+   floored arm remains the live route to a full boundary theorem, now
+   with its regular half derived rather than fitted.
 
 ## 5. Relation to classical results
 
