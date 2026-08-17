@@ -1169,3 +1169,13 @@ within 1000 samples in this regime.
   (drift 1.2% vs stock 22.9%), expansion exists there, d=+1.27
   measured — the live theorem route. P2 criterion disambiguated
   (max-dev-from-mean, 6.1% pass) and the artifact regenerated.
+- 2026-08-16 (floored-d intercept): external audit found the WSR grid
+  bias (tau always mid-cell, fixed 0.0005 offset, grows 1.4->5.6% of
+  margin at deep rungs — verified here) making measured d=1.27
+  ill-determined (d=1 indistinguishable); idealized floored arm gives
+  d_regular=1 (same as single-stream), shipped class misses the
+  optimizer condition by a quantified kappa gap (external, NOT fully
+  blinded — disclosed). Derivation agent redirected mid-flight: grid-
+  corrected re-measurement + frozen d=1 test + independent derivation
+  + kappa-gap quantification. No absorption into docs until the
+  frozen test scores (R9).
