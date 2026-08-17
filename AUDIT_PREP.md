@@ -1179,3 +1179,14 @@ within 1000 samples in this regime.
   corrected re-measurement + frozen d=1 test + independent derivation
   + kappa-gap quantification. No absorption into docs until the
   frozen test scores (R9).
+- 2026-08-16 (measurement threshold resolved): peer power analysis at
+  20k paired reps CONFIRMS the below-band ties are real (not
+  instrument): four real-but-underpowered median effects (11-33%
+  power at 200 reps), one ~zero, one unresolved, one favoring WSR.
+  Peer self-corrected their own premise (CRN pairing was already
+  preserved; corr 0.77-0.79). One scored defect: the lattice median
+  bootstrap was CONSERVATIVE (1.8-2.6% vs nominal 5%) — v2c frozen
+  with calibrated Harrell-Davis (4.4-5.2%), same estimand; expected
+  4/4 resolving + 6 ties. RMST rejected for validation (different
+  estimand; may appear later as a labelled practitioner metric).
+  Power table queued for Section 4 at consolidation.
