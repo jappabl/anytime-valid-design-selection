@@ -1,0 +1,112 @@
+============================================================================
+KELLY-FLOORED WSR: GRID-CORRECTED d — DERIVED AND RE-MEASURED
+============================================================================
+
+1. GRID AUDIT (independent verification of the defect)
+   grid = linspace(.0005,.9995,1000), step 0.001000; 16-atom block law -> 5 distinct atoms, weights [1. 4. 6. 4. 1.]/16
+   mu2 = 0.0625000000  mu3 = 0.0000000000  mu4 = 0.0097656250
+    delta  tau_nom  nearest    offset  binding m  V*(tau)/V*(m)    bias
+    0.035   0.4650   0.4645 +0.000500     0.4645         0.9722    2.8%
+    0.025   0.4750   0.4745 +0.000500     0.4745         0.9613    3.9%
+    0.018   0.4820   0.4815 +0.000500     0.4815         0.9467    5.3%
+    0.013   0.4870   0.4865 +0.000500     0.4865         0.9273    7.3%
+    0.009   0.4910   0.4905 +0.000500     0.4905         0.8975   10.2%
+   VERIFIED: every rung is mid-cell, offset 0.000500..0.000500; nearest-grid tie -> lower, so tau_grid == binding m and crossing times are unchanged.
+   DIRECTION: rho < 1 and FALLING down the ladder depresses the deep rungs more, so the defect biases d DOWNWARD.
+
+2. EXACT CONSTANTS AT THE GRID-ALIGNED TAU (16-atom law)
+    delta   m=tau       g  lam_inf     lam*     V*(m)     |V"|    AVar   c_reg  s^2/2nu  rho_ov
+    0.035  0.4645  0.0355   0.5568   0.5623  0.010032  0.06575  14.629  0.9619   0.9858  0.0762
+    0.025  0.4745  0.0255   0.4038   0.4059  0.005189  0.06415  15.273  0.9798   0.9926  0.0568
+    0.018  0.4815  0.0185   0.2944   0.2952  0.002734  0.06336  15.612  0.9892   0.9961  0.0422
+    0.013  0.4865  0.0135   0.2154   0.2157  0.001457  0.06296  15.792  0.9942   0.9979  0.0312
+    0.009  0.4905  0.0095   0.1518   0.1519  0.000722  0.06273  15.896  0.9971   0.9990  0.0225
+   c_reg = |V''(lam*)| * AVar -> 1 as g -> 0 (spread over the ladder 0.9619..0.9971): the plug-in bet is first-order efficient, so the regular arm costs (1/2)log T.
+   s^2/(2nu) -> 1 exactly (s^2 ~ g^2/mu2, nu ~ g^2/(2 mu2)), so the median shift is ~-1 nat at every rung.
+   unresolved ladder sims: 0
+   v_kelly_block(m=0.4645)*K = 0.01003154 vs exact 0.01003154 (rel 1.8e-07)
+
+3. SHIPPED PLUG-IN vs INTERIOR OPTIMIZER (kappa gap), two rungs
+        tau  lam_inf (plug-in)  lam* (optimizer)       gap    V(lam*)  V(lam_inf)  rate loss
+     0.4645           0.556773          0.562336 +0.005563  0.0100315   0.0100305  1.01e-04
+     0.4905           0.151781          0.151890 +0.000110  0.0007217   0.0007217  5.21e-07
+     0.4650           0.549235          0.554570 +0.005335  0.0097523   0.0097514  9.58e-05  <- nominal tau (external's point)
+   The plug-in limit lam_inf = g/(mu2+g^2) is the second-order
+   truncation optimum; lam* - lam_inf = mu3 g^2/mu2^3 + O(g^4), so
+   the loss is O(g^4) absolute / O(g^2) relative — a RATE (linear)
+   effect that moves the intercept. Its drift across the ladder
+   is ~0.01 in d: real, exactly computable, and NOT load-bearing.
+
+4-5. ESTIMATOR ERROR LAW AND EXACT SHORTFALL OF THE SHIPPED SCHEDULE (3000 reps/rung)
+    delta      t  E[lam_hat]  lam_inf    t*Var    AVar  2t*E[D_t]   c_reg  P(floor)
+    0.035     50      0.4775   0.5568   11.821  14.629     0.3933  0.9619      0.30
+    0.035    500      0.5402   0.5568   14.574  14.629     0.9372  0.9619      0.98
+    0.025     50      0.3728   0.4038   12.124  15.273     0.6255  0.9798      0.23
+    0.025    500      0.3996   0.4038   15.555  15.273     0.8032  0.9798      0.87
+    0.018     50      0.2656   0.2944   12.006  15.612     0.8685  0.9892      0.17
+    0.018    500      0.2886   0.2944   14.429  15.612     0.5741  0.9892      0.71
+    0.018   5000      0.2959   0.2944   15.360  15.612     0.9743  0.9892      1.00
+    0.013     50      0.1922   0.2154   11.917  15.792     1.0686  0.9942      0.13
+    0.013    500      0.2210   0.2154   15.307  15.792     0.5163  0.9942      0.57
+    0.013   5000      0.2151   0.2154   15.915  15.792     1.0003  0.9942      1.00
+    0.009     50      0.1254   0.1518   12.272  15.896     1.2788  0.9971      0.10
+    0.009    500      0.1458   0.1518   15.138  15.896     0.4951  0.9971      0.39
+    0.009   5000      0.1526   0.1518   15.443  15.896     0.9053  0.9971      0.96
+   Reading: 2t*E[D_t] -> c_reg only AFTER the floor binds (P(floor) -> 1); before that the
+   stock schedule over-bets and the shortfall is governed by lam_wsr, not by the estimator.
+
+   DERIVED CROSSING (grid-aligned scoring, rho = 1)
+    delta    T_med    n_der    t_c  ER_tot  nV_der
+    0.035    443.3     1773     95  1.6672   4.446
+    0.025    980.0     3920    143  2.3315   5.085
+    0.018   2057.6     8231    254  2.8912   5.626
+    0.013   4254.9    17020    395  3.4770   6.199
+    0.009   9404.8    37619    792  4.0754   6.788
+
+   SLOPE ATTRIBUTION for the shipped class  (x = (1/2)log n, so d = sum of slopes)
+     L = log(2/alpha)                   d-contribution +0.0000
+     + overshoot                        d-contribution -0.0351
+     - median shift                     d-contribution -0.0084
+     + ER (total)                       d-contribution +1.5736
+       of ER: regular law (c_reg/2)log T      d-contribution +1.0664
+       of ER: warmup/stock over-bet residual  d-contribution +0.5071
+     SUM                                d-contribution +1.5301  (regression +1.5301)
+     log T -> log n is a pure intercept shift of (d/2)log 4 = +1.061; d is invariant.
+
+6. FROZEN PREDICTIONS  (printed BEFORE the re-measurement runs)
+   derivation of the REGULAR idealization: d_pred_regular = +1.0354  (renewal dropped +1.0844)
+   derivation of the SHIPPED class:        d_pred_shipped = +1.5301  (renewal dropped +1.5896; level +-1 nat +1.5483/+1.5001; se_MC 0.0200)
+   P-A  d = 1        ; derivation half-width 0.0844 (+ 2*se_meas, section 8)
+   P-B  d = +1.5301   ; derivation half-width 0.1295 (+ 2*se_meas, section 8)
+
+7. GRID-CORRECTED RE-MEASUREMENT (real classes, seeds of run_wsr_expansion.py)
+   floored arm reps [300, 300, 300, 200, 150]; stock arm reps divided by 2 (contrast only), disclosed taper.
+    delta    arm    n_med  cert  V(tau_grid)  nV_grid  nV_old  correction
+    0.035  floor     1838  1.00   0.00250788    4.609   4.481      +0.128
+    0.035  stock     2492  1.00   0.00250788    6.250   6.076      +0.174
+    0.025  floor     3784  1.00   0.00129713    4.908   4.718      +0.190
+    0.025  stock     5166  1.00   0.00129713    6.701   6.441      +0.260
+    0.018  floor     8446  1.00   0.00068356    5.773   5.466      +0.307
+    0.018  stock    10750  1.00   0.00068356    7.348   6.957      +0.391
+    0.013  floor    18054  1.00   0.00036423    6.576   6.098      +0.478
+    0.013  stock    32014  1.00   0.00036423   11.661  10.813      +0.847
+    0.009  floor    38390  1.00   0.00018043    6.927   6.217      +0.710
+    0.009  stock    73244  1.00   0.00018043   13.216  11.862      +1.354
+   bit-identity vs results_wsr_expansion.txt floored n_med [1838, 3784, 8446, 18054, 38390]: CONFIRMED -> the correction is a pure re-scoring.
+
+8. VERDICTS
+   grid-corrected measured d (floored arm) = +1.6525  (intercept -4.6987); bootstrap se_meas = 0.3813
+   committed grid-biased fit was +1.27; stock arm under the same correction = +4.4969
+   P-A  idealization d = 1: window [+0.1530, +1.8470]  (W = 0.0844 + 2*0.3813)  -> HIT
+   P-B  this derivation   : window [+0.6380, +2.4222]  (W = 0.1295 + 2*0.3813)  -> HIT
+   windows are NOT widened; a MISS is reported as a MISS.
+   ADJUDICATION (rule fixed in the docstring): UNRESOLVED: both windows contain the measurement — the ladder does not
+     discriminate d = 1 from the warmup-corrected value at this precision.
+
+   d_check: attribution sum +1.5301 vs regression +1.5301; n0 (first rung, blocks) = 443, floor onset t_c = 95 blocks.
+   NOTE on the external audit: the mid-cell grid defect is CONFIRMED independently here;
+   its DIRECTION is not — correcting it moves d away from 1, not toward it.
+
+============================================================================
+Checksum (SHA256): 293048b7aa6ad615
+============================================================================

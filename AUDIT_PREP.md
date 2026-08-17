@@ -1190,3 +1190,14 @@ within 1000 samples in this regime.
   4/4 resolving + 6 ties. RMST rejected for validation (different
   estimand; may appear later as a labelled practitioner metric).
   Power table queued for Section 4 at consolidation.
+- 2026-08-17 (floored-d, frozen verdict): grid-corrected floored-arm
+  d = +1.65 +/- 0.38 (bootstrap); grid defect CONFIRMED but the
+  external direction claim REFUTED (correction moves d AWAY from 1);
+  stock arm still irregular (+4.50) under the same correction. Both
+  pre-registered windows (idealization d=1 [0.15,1.85]; warmup-
+  corrected derivation [0.64,2.42]) contain the measurement ->
+  UNRESOLVED: ladder precision cannot discriminate. Windows not
+  widened; attribution sum matches regression (1.5301). 4.3 stays
+  "derivable on the idealization, unresolved at measurement
+  precision on the shipped arm" — discrimination needs more reps
+  (future run). results_floor_d.txt authoritative.
