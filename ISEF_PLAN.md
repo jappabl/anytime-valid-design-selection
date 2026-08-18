@@ -100,7 +100,31 @@ is the harness; streams are CRN-seeded.
    Follow-ups: WSR block-granularity K*; temp>0 per-prompt pools for
    finer K.
 
-## IN FLIGHT — HIGHEST-VALUE TARGET (Hao directive): derive floored-arm d
+## IN FLIGHT — SAFETY DOMAIN (#50, Hao authorized directly in chat)
+
+Fourth task family: StrongREJECT (public, 313 prompts, 6 categories),
+deterministic refusal-string grader, category stratification, local
+Ollama x9, temp-0. Collector: scripts/collect_safety_pools.py. Storage
+hashes/labels/outcomes only (raw CSV gitignored — Section 9 exception).
+Pilot llama3.2-3b: compliance 0.46, category R ~ 2.8 (MILD regime).
+Full 9-model collection running (data/llm_outcomes_safety_*.jsonl).
+ANALYSIS PLAN (frozen-prediction discipline — do in this order):
+  1. estimate_safety_noise.py: judge a random ~60-prompt subsample with
+     a strong local model (gemma2:9b) vs the string grader; report the
+     label-noise rate, disclose like Section 3.3's temp-0 flip rate.
+  2. Per model: measure heterogeneity ratio R and pooled compliance mu.
+  3. FREEZE the boundary's design prediction (single vs WSR) per model
+     from R + a fixed margin, BEFORE any certification — via the
+     partition machinery (derive_partition single_fourterm vs WSR
+     envelope). Record the frozen table.
+  4. Run the three-arm certification (single/UI/WSR) offline on each
+     safety pool; score HIT/MISS vs the frozen prediction per model.
+  5. severity_sim the prediction (must discriminate); relation gate;
+     self-scoring artifact results_safety.txt; ledger row either way.
+  6. A boundary that MISpredicts out-of-domain is a reportable finding.
+Then: RLA bridge (per scope decision), only after safety is scored.
+
+## DONE EARLIER — floored-arm d (kept for reference): derive-first target
 
 Derive the Kelly-floored WSR expansion dimension d with zero fit; the
 measured target-not-tuning value is d = +1.27 (results_wsr_expansion.txt
