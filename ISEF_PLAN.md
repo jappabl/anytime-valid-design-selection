@@ -122,6 +122,22 @@ ANALYSIS PLAN (frozen-prediction discipline — do in this order):
   5. severity_sim the prediction (must discriminate); relation gate;
      self-scoring artifact results_safety.txt; ledger row either way.
   6. A boundary that MISpredicts out-of-domain is a reportable finding.
+FRAMING RULES (peer-verified from 6 pools; MANDATORY in the write-up):
+  - MILD-to-moderate regime, NOT extreme: measured ratios 1.16-5.40
+    (five pools) + one outlier qwen2.5-7b at 17.0; p* spans 0.019
+    (llama3-8b) to 0.857 (mistral-7b) ACROSS models. Frame as a
+    mild-regime out-of-family test (where 4.3 says single-stream wins /
+    below-band ties), NOT "extreme as predicted" — the extreme-regime
+    guess assumed sophistication strata; the corpus publishes CATEGORY
+    strata, which do not grade difficulty.
+  - Mechanism to state: BETWEEN-MODEL variance dominates BETWEEN-STRATUM
+    variance -> stratification buys little -> mild ratios.
+  - NON-CLAIM (explicit): per-model rates are POOL PARAMETERS (p*, ratio)
+    reported like the JSON/MBPP pools, NOT safety rankings. No per-model
+    rate in any abstract/headline. Single small local models, one corpus,
+    one proxy grader, no human calibration, pool-scoped estimand.
+  - Prediction at these ratios: single-stream wins/ties on most pools;
+    qwen2.5-7b (17.0) is the one internal contrast expected to differ.
 Then: RLA bridge (per scope decision), only after safety is scored.
 
 ## DONE EARLIER — floored-arm d (kept for reference): derive-first target
