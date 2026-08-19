@@ -451,6 +451,46 @@ somewhere better than where it aimed:
    alongside rate-sacrifice (WSR) and transfer priors
    ([results_frontier.txt](results_frontier.txt)).
 
+### F15. The design boundary ported out-of-family: what survives, what breaks (safety domain)
+
+A fourth task family stress-tests the derived single-vs-WSR boundary in a
+domain nobody built it for: StrongREJECT harmful-compliance on eight small
+local models (313 prompts, 6 published category strata, a deterministic
+refusal-string proxy grader). Per-model numbers here are POOL PARAMETERS
+(pooled compliance p\*, category heterogeneity ratio R) reported exactly like
+the JSON/MBPP pools — **not** safety rankings; single small models, one
+corpus, one proxy grader, no human calibration, pool-scoped estimand. This is
+the MILD-to-moderate regime (five ratios 1.16–5.40, one outlier 17.0; p\*
+0.019–0.857 *across* models): between-**model** variance dominates
+between-stratum variance, so stratification buys little. FROZEN before any
+certification ([results_safety.txt](results_safety.txt)), the reused machinery
+(single_fourterm; wsr_crossing with its K=4 envelope; v_kelly_block
+generalized to K=6) called **SINGLE** on two pools and **TIE** on four —
+WSR outright on none. Measurement (three CRN-paired arms, v2c Harrell-Davis
+bootstrap, 150 reps/arm) splits the map cleanly: the **single-arm predictor
+PORTS** (measured single medians within ~5% of single_fourterm on all six
+pools), but the **WSR arm certifies 19–37% faster than its K=4 envelope
+predicts** on the four mid/high-p\* pools, so WSR is the faster arm on 4/6
+(single wins only on the lowest-p\* pool, qwen2-7b; qwen2.5 ties, as frozen).
+**P1 FAILS — 1/2 resolving HITs (qwen2-7b HIT; mistral-7b MISS: predicted
+single, WSR won).** The miss localizes precisely: the WSR overhead envelope is
+K=4-derived and under-models the larger variance reduction of K=6 stratified
+blocks — the boundary's *structure* and *single-arm predictor* port, the
+fitted WSR *constant* does not (re-derive it for K=6). What else ports: UI+RR
+is dominated everywhere (P2 — UI 2–5× slower than the faster arm, min median
+gap 945), the α guarantee holds (P3 — 4/2700 = 0.0015 wrong certifications),
+and the boundary's one TIE call it could resolve (qwen2.5) is confirmed. A
+reportable MISS, not tuned to pass — the out-of-family test names the single
+non-portable constant and confirms the rest of the map transfers. The string
+grader is a coarse proxy — it disagrees with a gemma2:9b judge on **43%** of a
+60-response regeneration (over-counting compliance: 26/28 of its "complied"
+calls the judge reads as refusals; a head-prefix-vs-whole-response construct
+gap, [results_safety_noise.txt](results_safety_noise.txt)) — which is exactly
+why p\* here is a *pool-graded parameter*, never a compliance measurement. The
+design-selection result is invariant to that: the certification mechanics
+(which arm crosses first, α coverage) depend only on the binary labels, not on
+what they mean.
+
 ### F13. The design-space partition (derived, field-opening)
 
 The four-regime design map is now a DERIVED partition of

@@ -100,7 +100,27 @@ is the harness; streams are CRN-seeded.
    Follow-ups: WSR block-granularity K*; temp>0 per-prompt pools for
    finer K.
 
-## IN FLIGHT — SAFETY DOMAIN (#50, Hao authorized directly in chat)
+## DONE — SAFETY DOMAIN (#50, scored 2026-08-19)
+
+SCORED: results_safety.txt (checksum a369e454bc5450fd). Frozen-prediction
+out-of-family test of the single-vs-WSR boundary, mild regime. Freeze
+(committed before results, machinery-derived): mistral-7b/qwen2-7b SINGLE,
+four scored pools TIE, WSR outright nowhere; llama3-8b/gemma2-9b boundary-
+regime (tau<0, not scored). Measurement (v2c HD, 150 reps, CRN): the
+single-arm predictor PORTS (measured single within ~5% of single_fourterm
+on 6/6); the reused K=4 WSR envelope does NOT — WSR certifies 19-37% faster
+than predicted on the four mid/high-p* pools, so WSR is fastest on 4/6,
+single only on lowest-p* qwen2-7b, qwen2.5 TIE (frozen TIE confirmed).
+P1 FAIL (1/2 HIT: qwen2-7b HIT, mistral MISS — a REPORTABLE out-of-domain
+miss, NOT tuned; localizes to the WSR overhead constant's K=4->K=6
+portability, not the boundary structure). P2 PASS (UI dominated 0/6, min
+gap 945). P3 PASS (4/2700=0.0015). Discrimination gate ok; relation gate
+unchanged (only the known-permanent A2 non-evidence flag). Grader
+label-noise disclosed (results_safety_noise.txt). Two commits: freeze
+(8aa3e7e) then results+docs. NEXT: the RLA bridge (below).
+
+Frozen-prediction record and the mandatory framing rules (kept for the
+writeup):
 
 Fourth task family: StrongREJECT (public, 313 prompts, 6 categories),
 deterministic refusal-string grader, category stratification, local

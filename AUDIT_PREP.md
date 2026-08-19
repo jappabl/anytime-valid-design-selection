@@ -1215,3 +1215,47 @@ within 1000 samples in this regime.
   exist at this budget. v2c (Harrell-Davis): below-band 4/4 resolving
   + 6 ties, curve CONFIRMED under correct sizing — the calibration
   fix resolved exactly the predicted extra point.
+- 2026-08-19 (safety domain #50 SCORED; frozen-prediction discipline;
+  miss ledger +1): results_safety.txt (checksum a369e454bc5450fd) —
+  the derived single-vs-WSR boundary ported OUT-OF-FAMILY to
+  StrongREJECT harmful-compliance (8 local-model pools, 313 prompts, 6
+  CATEGORY strata, deterministic refusal-string proxy grader). FRAMING
+  (locked): per-model numbers are POOL PARAMETERS (p*, R), NOT safety
+  rankings; MILD regime (five ratios 1.16-5.40 + one outlier 17.0; p*
+  0.019-0.857 across models); mechanism = between-MODEL variance
+  dominates between-stratum. Margin m=0.045, tau=mu-m, direction
+  rejects_le per pool (all six scored pools certify p*>tau). FREEZE
+  (committed BEFORE results at 8aa3e7e, machinery-derived: single_
+  fourterm + wsr_crossing K=4 envelope + v_kelly_block generalized to
+  K=6/64-atom): mistral-7b & qwen2-7b SINGLE, four scored pools TIE,
+  WSR outright NOWHERE; llama3-8b (p*0.019) & gemma2-9b (p*0.035)
+  boundary-regime (tau<0, exact-zero strata, NOT scored). CERTIFY (v2c
+  Harrell-Davis paired bootstrap, 150 reps/arm, CRN, n_max 12000):
+  single-arm predictor PORTS (measured single medians within ~5% of
+  single_fourterm on 6/6); the reused K=4 WSR envelope does NOT —
+  WSR certifies 19-37% faster than predicted on the four mid/high-p*
+  pools (the K=6 block gives more variance reduction than the K=4
+  overhead encodes), so WSR is fastest on 4/6, single only on lowest-
+  p* qwen2-7b, qwen2.5 measured TIE (frozen TIE CONFIRMED). P1 FAIL
+  (1/2 resolving HIT: qwen2-7b HIT, mistral-7b MISS — predicted
+  single, WSR won; REPORTED, NOT tuned). P2 PASS (UI dominated 0/6,
+  min UI-to-faster-arm median gap 945 >> 24 poll). P3 PASS (wrong
+  SAFE-dir certs 4/2700 = 0.0015 <= 0.05). Discrimination/severity
+  gate ok (2 resolving predictions, 2/2 flip under a wrong-theory
+  single arm — not trivially satisfiable). Relation gate --anchors
+  --allocation UNCHANGED (only the known-permanent A2 non-evidence
+  flag; derive_phase_boundary/run_phase_test untouched). The MISS
+  localizes to the WSR overhead envelope's stratum-count (K=4->K=6)
+  portability, NOT the boundary structure or the single-arm predictor
+  — re-derive the WSR overhead for K=6 is the fix. LABEL-NOISE
+  (results_safety_noise.txt, checksum 923a301bde114ced): string grader
+  vs gemma2:9b judge on a 60-prompt llama3.2:3b regeneration disagree
+  43.3% (26/60); direction = grader OVER-counts compliance (26/28 of
+  its "complied" calls the judge reads as refusals — a head-prefix-vs-
+  whole-response construct gap), 0 missed real compliances. Disclosed
+  like Section 3.3's temp-0 flip rate; it caps how well the labels
+  track true harmful-compliance (so p* is pool-graded, not a safety
+  measurement) but does NOT enter the exact alpha guarantee, and the
+  design-selection verdict is invariant to label meaning. No raw
+  generations stored. Two commits: freeze (8aa3e7e) then results+docs.
+  NEXT per sequence: the RLA bridge (Spertus already implemented).

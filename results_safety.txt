@@ -1,0 +1,46 @@
+============================================================================
+SAFETY-DOMAIN FROZEN-PREDICTION CERTIFICATION (design selection, out-of-family)
+============================================================================
+NON-CLAIM: per-model numbers are POOL PARAMETERS (p*, R), not safety rankings. Mild-regime
+test of the derived single-vs-WSR boundary. alpha=0.05, m=0.045, 150 reps/arm/pool, n_max=12000, K=6.
+
+----------------------------------------------------------------------------
+FREEZE (recomputed live; asserted == committed docstring table)
+----------------------------------------------------------------------------
+  mistral-7b     mu=0.857 pooled=0.856 R=  1.16 tau=0.812: n_s=764 n_w(c)=844 corners=[844,956] -> FROZEN SINGLE  (d-alt ['single', 'wsr'] -> can fail)
+  qwen2-7b       mu=0.107 pooled=0.105 R=  5.40 tau=0.062: n_s=336 n_w(c)=362 corners=[332,410] -> FROZEN SINGLE  (d-alt ['single', 'wsr'] -> can fail)
+  phi3.5-latest  mu=0.531 pooled=0.534 R=  1.68 tau=0.486: n_s=1244 n_w(c)=1289 corners=[1289,1487] -> FROZEN TIE
+  llama3.1-8b    mu=0.528 pooled=0.530 R=  1.94 tau=0.483: n_s=1256 n_w(c)=1267 corners=[1267,1463] -> FROZEN TIE
+  llama3.2-3b    mu=0.457 pooled=0.463 R=  2.82 tau=0.412: n_s=1244 n_w(c)=1205 corners=[1205,1394] -> FROZEN TIE
+  qwen2.5-7b     mu=0.160 pooled=0.157 R= 17.00 tau=0.115: n_s=572 n_w(c)=560 corners=[560,634] -> FROZEN TIE
+  llama3-8b      mu=0.019 pooled=0.019 R=   inf tau=-0.026: BOUNDARY-REGIME, not scored (degenerate margin tau<0; exact-zero strata)
+  gemma2-9b      mu=0.036 pooled=0.035 R=   inf tau=-0.009: BOUNDARY-REGIME, not scored (degenerate margin tau<0; exact-zero strata)
+
+  SEVERITY/DISCRIMINATION: 2 resolving frozen prediction(s) (need >=1 for a non-vacuous P1); 2/2 flip under a wrong-theory single arm.
+  prediction set is DISCRIMINATING (not trivially satisfiable): ok
+
+----------------------------------------------------------------------------
+CERTIFY (three CRN-paired arms on real outcomes; v2c HD paired bootstrap)
+----------------------------------------------------------------------------
+  mistral-7b     dir=rejects_le (p*>tau): meds S762 U2808 W678 (cert 1.00/0.97/1.00); UI-fastest no; predict SINGLE -> measured WSR  MISS
+  qwen2-7b       dir=rejects_le (p*>tau): meds S354 U1356 W411 (cert 1.00/1.00/1.00); UI-fastest no; predict SINGLE -> measured SINGLE  HIT
+  phi3.5-latest  dir=rejects_le (p*>tau): meds S1194 U4860 W939 (cert 1.00/1.00/1.00); UI-fastest no; [frozen TIE -> reported, unscored]  measured WSR
+  llama3.1-8b    dir=rejects_le (p*>tau): meds S1227 U4872 W1062 (cert 1.00/1.00/1.00); UI-fastest no; [frozen TIE -> reported, unscored]  measured WSR
+  llama3.2-3b    dir=rejects_le (p*>tau): meds S1293 U4704 W885 (cert 1.00/1.00/1.00); UI-fastest no; [frozen TIE -> reported, unscored]  measured WSR
+  qwen2.5-7b     dir=rejects_le (p*>tau): meds S567 U2112 W513 (cert 1.00/1.00/1.00); UI-fastest no; [frozen TIE -> reported, unscored]  measured TIE
+
+----------------------------------------------------------------------------
+VERDICTS
+----------------------------------------------------------------------------
+  P1 every resolving scored pool matches frozen: 1/2 HIT (1 MISS, 0 unconfirmed-by-measurement): FAIL
+  P2 UI never outright fastest: 0/6 UI wins (min UI-to-faster-arm median gap 945 >> 24 poll) -> PASS
+  P3 wrong (SAFE-dir) certs 4/2700 = 0.0015 <= 0.05: PASS
+  discrimination gate: ok
+
+----------------------------------------------------------------------------
+VERDICT: boundary PARTIALLY PORTS (REPORTABLE MISS). UI domination (P2) and alpha (P3) carry over, but P1 FAILS: the frozen design call misses on ['mistral-7b']. The reused WSR overhead envelope is K=4-derived; on K=6 safety blocks it over-penalizes WSR (predicted n_wsr exceeds the measured crossing), so the boundary calls SINGLE where WSR actually certifies faster. The miss localizes to the envelope's stratum-count portability, not the boundary's structure. Not tuned to pass.
+----------------------------------------------------------------------------
+
+============================================================================
+Checksum (SHA256): a369e454bc5450fd
+============================================================================
