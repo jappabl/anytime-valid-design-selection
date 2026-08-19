@@ -43,6 +43,13 @@ COLLABORATION RULES
 - Respectfully point out logical inconsistencies, technical errors, or claims unsupported by evidence.
 - If uncertain, express your concerns and ask clarifying questions rather than silently implementing something questionable.
 
+README SYNCHRONIZATION
+- README.md is the public face of the repo. Whenever research progress lands
+  (a new result, a corrected claim, a new artifact, a status change), update
+  README.md in the same commit or the immediately following one — headline
+  table, status section, and layout notes must never lag the audit trail.
+- README numbers defer to AUDIT_PREP.md; on any conflict, fix README.
+
 DOCUMENTATION SYNCHRONIZATION
 - Whenever research claims, contributions, or experimental results are changed, AUDIT_PREP.md MUST be updated to reflect those changes.
 - AUDIT_PREP.md is the single source of truth for the audit trail and must remain consistent with all other documentation.
