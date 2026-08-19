@@ -491,6 +491,28 @@ design-selection result is invariant to that: the certification mechanics
 (which arm crosses first, α coverage) depend only on the binary labels, not on
 what they mean.
 
+**Addendum (2026-08-19) — the miss's one constant, measured.**
+[results_wsr_k.txt](results_wsr_k.txt) re-measures the WSR overhead envelope at
+K ∈ {2, 4, 6, 8} on a single frozen grid (iid Bernoulli pools, three p × five
+margins, the shipped `WSRBlockCS`, common random numbers across K, 60/60 rungs
+≥97% certified). The envelope is K-dependent and its constants are **linear in
+K** — d_K = 4.141 − 0.427·K and c_K = 0.964·K − 8.980, residuals ≤5% of each
+constant's range — so larger blocks carry a smaller effective dimension and
+less overhead at the horizons the boundary actually uses; a short-horizon
+plateau appears at K = 4, 6, 8 but not at K = 2. Read from the envelope side,
+the committed K=4 constants over-predict n_wsr by **+19.3% to +37.2%** on the
+four mid/high-p\* safety pools — the same +19–37% the certification measured,
+arrived at independently. A labelled post-hoc diagnostic transports the
+measured K=4→K=6 *difference* onto the committed envelope (the absolute level
+is not transportable: this grid is homogeneous, R = 1, while c_short = 2.3 was
+calibrated on extreme-heterogeneity pools, so the regression anchor P1 FAILS
+for that pre-stated reason and not for a K reason). The transport shrinks the
+over-prediction to [−0.9%, +14.5%] and moves mistral-7b off SINGLE — but to
+TIE, not to the measured WSR, and it collapses the qwen2-7b HIT to TIE as
+well, leaving the domain with zero resolving predictions. **Block size accounts
+for most of the magnitude and none of the resolution**: the miss stands as
+scored, and the honest next clause is a joint c(R, K), not a K-only patch.
+
 ### F13. The design-space partition (derived, field-opening)
 
 The four-regime design map is now a DERIVED partition of

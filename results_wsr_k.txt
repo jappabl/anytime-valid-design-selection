@@ -1,0 +1,166 @@
+============================================================================
+WSR OVERHEAD ENVELOPE: BLOCK-SIZE (K) DEPENDENCE
+============================================================================
+alpha=0.05, K in (2, 4, 6, 8), iid Bernoulli pools (R=1), shipped WSRBlockCS, polled every block.
+Committed K=4 envelope (c_short, d_long, c_long) = (2.3, 1.95, -4.6); corners [(1.6, 1.81, -3.4), (3.0, 2.34, -5.9)].
+V form check: Binomial(K,p)/K block law vs the shipped 2**K enumeration at K=4, max abs diff over the grid = 1.73e-17
+
+----------------------------------------------------------------------------
+MEASURED GRID  (median crossing; O(n) := n*V - log(1/alpha))
+----------------------------------------------------------------------------
+  K = 2
+        p    tau   delta  q_grid          V   n_med  cert      nV       O
+     0.50  0.402  0.0980   0.5%   0.019242     314  1.00   6.042   3.046
+     0.50  0.443  0.0570   0.9%   0.006499    1084  1.00   7.045   4.050
+     0.50  0.464  0.0360   1.4%   0.002592    3585  1.00   9.293   6.297
+     0.50  0.476  0.0240   2.1%   0.001152   10157  1.00  11.701   8.705
+     0.50  0.484  0.0160   3.1%   0.000512   24621  1.00  12.606   9.610
+     0.35  0.260  0.0900   0.6%   0.019443     330  1.00   6.416   3.421
+     0.35  0.297  0.0530   0.9%   0.006483    1349  1.00   8.745   5.750
+     0.35  0.317  0.0330   1.5%   0.002466    4808  1.00  11.855   8.859
+     0.35  0.328  0.0220   2.3%   0.001085   11903  1.00  12.913   9.917
+     0.35  0.334  0.0160   3.1%   0.000571   22449  1.00  12.811   9.816
+     0.20  0.129  0.0710   0.7%   0.019424     300  1.00   5.827   2.832
+     0.20  0.157  0.0430   1.2%   0.006497    1045  1.00   6.789   3.793
+     0.20  0.173  0.0270   1.9%   0.002446    3919  1.00   9.584   6.588
+     0.20  0.182  0.0180   2.8%   0.001061   11264  1.00  11.947   8.951
+     0.20  0.187  0.0130   3.8%   0.000546   24230  1.00  13.229  10.233
+
+  K = 4
+        p    tau   delta  q_grid          V   n_med  cert      nV       O
+     0.50  0.402  0.0980   0.5%   0.018523     224  1.00   4.149   1.153
+     0.50  0.443  0.0570   0.9%   0.006415     694  1.00   4.452   1.456
+     0.50  0.464  0.0360   1.4%   0.002579    2292  1.00   5.910   2.915
+     0.50  0.476  0.0240   2.1%   0.001149    6058  0.99   6.963   3.967
+     0.50  0.484  0.0160   3.1%   0.000511   16974  0.99   8.682   5.686
+     0.35  0.260  0.0900   0.6%   0.018825     236  1.00   4.443   1.447
+     0.35  0.297  0.0530   0.9%   0.006407     864  1.00   5.536   2.540
+     0.35  0.317  0.0330   1.5%   0.002454    3174  0.99   7.790   4.794
+     0.35  0.328  0.0220   2.3%   0.001083    8082  0.99   8.749   5.754
+     0.35  0.334  0.0160   3.1%   0.000570   16988  0.97   9.684   6.688
+     0.20  0.129  0.0710   0.7%   0.018920     262  1.00   4.957   1.961
+     0.20  0.157  0.0430   1.2%   0.006429     784  1.00   5.041   2.045
+     0.20  0.173  0.0270   1.9%   0.002435    2618  1.00   6.375   3.380
+     0.20  0.182  0.0180   2.8%   0.001059    8088  1.00   8.562   5.566
+     0.20  0.187  0.0130   3.8%   0.000545   17078  0.99   9.314   6.319
+
+  K = 6
+        p    tau   delta  q_grid          V   n_med  cert      nV       O
+     0.50  0.402  0.0980   0.5%   0.017730     216  1.00   3.830   0.834
+     0.50  0.443  0.0570   0.9%   0.006328     663  1.00   4.195   1.200
+     0.50  0.464  0.0360   1.4%   0.002565    1800  1.00   4.617   1.621
+     0.50  0.476  0.0240   2.1%   0.001147    4866  1.00   5.580   2.584
+     0.50  0.484  0.0160   3.1%   0.000511   12234  1.00   6.251   3.255
+     0.35  0.260  0.0900   0.6%   0.018185     216  1.00   3.928   0.932
+     0.35  0.297  0.0530   0.9%   0.006329     693  1.00   4.386   1.391
+     0.35  0.317  0.0330   1.5%   0.002443    2157  1.00   5.269   2.273
+     0.35  0.328  0.0220   2.3%   0.001080    6507  1.00   7.029   4.034
+     0.35  0.334  0.0160   3.1%   0.000569   12348  0.99   7.031   4.035
+     0.20  0.129  0.0710   0.7%   0.018414     270  1.00   4.972   1.976
+     0.20  0.157  0.0430   1.2%   0.006361     693  1.00   4.408   1.413
+     0.20  0.173  0.0270   1.9%   0.002425    2154  1.00   5.223   2.227
+     0.20  0.182  0.0180   2.8%   0.001057    6465  1.00   6.830   3.835
+     0.20  0.187  0.0130   3.8%   0.000545   13173  1.00   7.177   4.182
+
+  K = 8
+        p    tau   delta  q_grid          V   n_med  cert      nV       O
+     0.50  0.402  0.0980   0.5%   0.016767     248  1.00   4.158   1.163
+     0.50  0.443  0.0570   0.9%   0.006235     648  1.00   4.040   1.045
+     0.50  0.464  0.0360   1.4%   0.002551    1632  1.00   4.164   1.168
+     0.50  0.476  0.0240   2.1%   0.001144    4136  1.00   4.732   1.736
+     0.50  0.484  0.0160   3.1%   0.000510   10724  1.00   5.474   2.478
+     0.35  0.260  0.0900   0.6%   0.017510     232  1.00   4.062   1.066
+     0.35  0.297  0.0530   0.9%   0.006250     680  1.00   4.250   1.254
+     0.35  0.317  0.0330   1.5%   0.002431    2008  1.00   4.881   1.886
+     0.35  0.328  0.0220   2.3%   0.001078    5328  1.00   5.744   2.748
+     0.35  0.334  0.0160   3.1%   0.000569   10300  1.00   5.858   2.863
+     0.20  0.129  0.0710   0.7%   0.017905     288  1.00   5.157   2.161
+     0.20  0.157  0.0430   1.2%   0.006293     652  1.00   4.103   1.107
+     0.20  0.173  0.0270   1.9%   0.002414    2024  1.00   4.886   1.890
+     0.20  0.182  0.0180   2.8%   0.001054    5412  1.00   5.707   2.711
+     0.20  0.187  0.0130   3.8%   0.000544   10876  1.00   5.920   2.924
+
+
+----------------------------------------------------------------------------
+ENVELOPE FITS PER K  (effective local fits over the measured range; not an expansion claim)
+----------------------------------------------------------------------------
+    K | single-regime d        c      SSE  max|r| |  c_short  d_long   c_long  n_break      SSE  max|r|   plateau
+    2 |           3.386   -6.922    6.412   1.428 |    3.099   3.707   -8.389      492    5.787   1.533        no
+    4 |           2.343   -5.351    4.918   0.887 |    1.521   2.809   -7.395      571    3.427   0.870       YES
+    6 |           1.465   -3.138    3.550   1.014 |    1.291   2.115   -5.958      947    2.491   0.742       YES
+    8 |           0.834   -1.234    2.620   1.034 |    1.299   1.386   -3.579     1142    1.747   0.862       YES
+
+  Short-horizon plateau present at ALL K: NO (3/4 K values) -> reported constant set = single-regime (d, c)
+
+  REPORTED CONSTANTS PER K
+      K         d         c
+      2     3.386    -6.922
+      4     2.343    -5.351
+      6     1.465    -3.138
+      8     0.834    -1.234
+
+----------------------------------------------------------------------------
+PRE-REGISTERED PREDICATES
+----------------------------------------------------------------------------
+  P1 (regression anchor) K=4 fit reproduces the committed envelope: FAIL
+     (a) measured K=4 (c_short, d_long, c_long) = (1.521, 2.809, -7.395) inside committed band ((1.6, 3.0), (1.81, 2.34), (-5.9, -3.4)): FAIL
+     (b) committed central envelope predicts each certified K=4 rung within +/-15%: worst +27.6%, FAIL
+     READING (stated before the run): this grid is R=1; c_short=2.3 was calibrated on extreme-heterogeneity pools and THEORY.md
+     records near-homogeneity running ~0.7-1.0 nats cheaper. A P1 FAIL here is the KNOWN c_short(R) offset, NOT a K result.
+     It is why the diagnostic below transports the K-DIFFERENCE rather than the absolute level.
+
+  P2 reported constants monotone in K: PASS
+     d            decreasing in K: 3.386 -> 2.343 -> 1.465 -> 0.834
+     c            increasing in K: -6.922 -> -5.351 -> -3.138 -> -1.234
+     (reported, NOT scored — the selection rule scored the pair above) two-regime triple in K:
+     c_short    NOT monotone in K: 3.099 -> 1.521 -> 1.291 -> 1.299
+     d_long       decreasing in K: 3.707 -> 2.809 -> 2.115 -> 1.386
+     c_long       increasing in K: -8.389 -> -7.395 -> -5.958 -> -3.579
+
+  P3 validity guard, every rung >= 90% crossings: PASS (0 rung(s) excluded of 60)
+
+----------------------------------------------------------------------------
+OBSERVED REGULARITY (descriptive; no derivation claimed)
+----------------------------------------------------------------------------
+  d         best basis K     : d = -0.4267*K +4.1407; max|resid| 0.1154 vs range 2.5520 (5% of range) -> OBSERVED REGULARITY
+            residuals K=2,4,6,8: +0.0987 -0.0903 -0.1154 +0.1071
+  c         best basis K     : c = +0.9638*K -8.9801; max|resid| 0.2257 vs range 5.6878 (4% of range) -> OBSERVED REGULARITY
+            residuals K=2,4,6,8: +0.1307 -0.2257 +0.0591 +0.0358
+
+----------------------------------------------------------------------------
+POST-HOC DIAGNOSTIC — labeled; does NOT re-score the safety miss
+----------------------------------------------------------------------------
+  results_safety.txt identity: stated a369e454bc5450fd, recomputed a369e454bc5450fd -> OK (expected a369e454bc5450fd)
+  Machinery reused verbatim from run_safety_cert (load_pool, mu, tau=round(mu-0.045,3),
+  single_fourterm, 64-atom v_kelly_block_K at K=6, +/-5% tie band); only the WSR overhead is swapped.
+  err% = (predicted n_wsr - measured WSR median)/measured; POSITIVE = over-predicts, i.e. WSR looks
+  slower than it is (the direction of the safety miss, which was +19 to +37%).
+
+  pool             n_s  W_meas |  COMMIT    err% |  D1(raw)    err% |  D2(tr)    err% |  frozen     D1     D2   meas
+  mistral-7b       764     678 |     844  +24.5% |      750  +10.7% |     735   +8.4% |  single    tie    tie    wsr
+  qwen2-7b         336     411 |     362  -11.8% |      271  -34.1% |     339  -17.6% |  single    wsr    tie single
+  phi3.5-latest   1244     939 |    1289  +37.2% |     1212  +29.0% |    1065  +13.4% |     tie    tie    wsr    wsr
+  llama3.1-8b     1256    1062 |    1267  +19.3% |     1192  +12.3% |    1052   -0.9% |     tie    wsr    wsr    wsr
+  llama3.2-3b     1244     885 |    1205  +36.1% |     1136  +28.4% |    1013  +14.5% |     tie    wsr    wsr    wsr
+  qwen2.5-7b       572     513 |     560   +9.2% |      460  -10.4% |     505   -1.6% |     tie    wsr    wsr    tie
+
+  PREDICTION ERROR, all six scored pools: COMMITTED [-11.8%, +37.2%] -> D2 [-17.6%, +14.5%]
+  the four mid/high-p* pools (p* >= 0.4, where the miss lives): COMMITTED [+19.3%, +37.2%] -> D2 [-0.9%, +14.5%]
+
+  COMMITTED column reproduces the frozen table exactly: YES
+
+  DIAGNOSTIC (not a verdict; the safety MISS stands as scored): PARTIALLY — the transported K=6 overhead moves mistral-7b off SINGLE (to TIE) but breaks the qwen2-7b HIT (TIE);
+  block size explains part of the gap, not all of it.
+  Assumption carried: the heterogeneity offset is additively separable from K (asserted, not proved).
+  D1 is the raw R=1 measurement and is NOT the diagnostic answer.
+
+----------------------------------------------------------------------------
+SUMMARY
+----------------------------------------------------------------------------
+  P1 FAIL  |  P2 PASS  |  P3 PASS
+  The envelope IS K-dependent: d 3.39 -> 2.34 -> 1.46 -> 0.83 over K = (2, 4, 6, 8).
+----------------------------------------------------------------------------
+
+============================================================================
+Checksum (SHA256): f6aea65aa754d0d8
+============================================================================

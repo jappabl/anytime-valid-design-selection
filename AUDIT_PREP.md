@@ -1259,3 +1259,57 @@ within 1000 samples in this regime.
   design-selection verdict is invariant to label meaning. No raw
   generations stored. Two commits: freeze (8aa3e7e) then results+docs.
   NEXT per sequence: the RLA bridge (Spertus already implemented).
+- 2026-08-19 (the safety miss's ONE constant MEASURED; K-dependence):
+  results_wsr_k.txt (checksum f6aea65aa754d0d8) — the WSR overhead
+  envelope re-measured at K in {2,4,6,8} on one frozen grid (iid
+  Bernoulli p in {0.20,0.35,0.50} x 5 margins, K=4 medians ~220-17000,
+  the SHIPPED WSRBlockCS polled every block, CRN across K — every K
+  consumes the same underlying Bernoulli stream regrouped — reps
+  300/300/300/200/150 tapered and disclosed; 60/60 rungs certified
+  >= 97%). V = exact Binomial(K,p)/K block-mean Kelly rate, which agrees
+  with the shipped 2**K enumeration at K=4 to 1.7e-17. RESULT: the
+  envelope IS K-dependent and its constants are LINEAR IN K (OBSERVED
+  REGULARITY, explicitly not derived): d_K = 4.1407 - 0.4267 K
+  (max|resid| 0.115 = 5% of range), c_K = 0.9638 K - 8.9801 (0.226 =
+  4%). Larger blocks -> smaller effective dimension and less overhead at
+  the horizons the boundary uses. Two-regime check: a short-horizon
+  plateau appears at K=4/6/8 but NOT at K=2 (SSE cut 9.7% < the 20%
+  criterion), so the pre-registered uniform selection rule reported the
+  single-regime pair; the triple is printed UNSCORED (c_short NOT
+  monotone 3.099/1.521/1.291/1.299; d_long 3.707->1.386 and c_long
+  -8.389->-3.579 both monotone). P1 FAIL — pre-stated as expected, with
+  the reason committed BEFORE the run: this grid is R=1 while c_short=2.3
+  was calibrated on extreme-heterogeneity pools, i.e. the already-recorded
+  c_short(R) offset (THEORY.md 2026-08-15), NOT a K result. Measured K=4
+  triple (1.521, 2.809, -7.395) sits outside the committed corner band
+  and the committed central envelope is worst +27.6% on the K=4 rungs.
+  P2 PASS (both reported constants strictly monotone in K; direction was
+  not pre-committed). P3 PASS (0/60 rungs excluded; hard guard unused).
+  POST-HOC DIAGNOSTIC (labeled as such; does NOT re-score #50):
+  run_safety_cert's prediction path reused verbatim — its load_pool, mu,
+  tau=round(mu-0.045,3), single_fourterm, 64-atom v_kelly_block_K at K=6,
+  +/-5% tie band — with ONLY the WSR overhead swapped, and the COMMITTED
+  column asserted to reproduce the frozen table exactly (it does).
+  INDEPENDENT CONFIRMATION of the miss's size from the envelope side: the
+  committed K=4 envelope over-predicts n_wsr by +19.3% to +37.2% on the
+  four mid/high-p* pools — the same +19-37% the certification measured,
+  reached by a different route. Transporting the measured K=4->K=6
+  DIFFERENCE onto the committed envelope (function-level transport;
+  additive separability of the R-offset from K is ASSERTED, not proved)
+  cuts that to [-0.9%, +14.5%]. ANSWER: PARTIALLY. mistral-7b moves
+  SINGLE -> TIE (n_w 844 -> 735 against n_s 764), so a K-aware boundary
+  would not have made the wrong RESOLVING call — but it does not flip to
+  WSR, and the qwen2-7b HIT collapses to TIE as well, leaving the domain
+  with ZERO resolving predictions, which the discrimination gate would
+  have REFUSED as vacuous. Block size accounts for most of the MAGNITUDE
+  and none of the RESOLUTION. The #50 MISS STANDS AS SCORED; miss ledger
+  unchanged (33 rows). Scope disclosed in-artifact: homogeneous R=1 grid;
+  stock WSR has no fixed (d,c) asymptotically (results_wsr_expansion.txt)
+  so every envelope here is an EFFECTIVE LOCAL fit over the measured
+  range, not an expansion claim; tau held on the 0.001 lattice (mid-cell
+  on the shipped CS grid, the identical convention to run_safety_cert)
+  across all K so grid quantization (0.5-3.8% of margin) cannot
+  masquerade as K-dependence. Honest next clause: the envelope needs a
+  JOINT c(R, K), not a K-only patch. Freeze convention for this artifact:
+  the protocol is a measurement grid, not a prediction test, so the
+  docstring is committed WITH the results — P1-P3 still print PASS/FAIL.
