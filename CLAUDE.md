@@ -49,6 +49,10 @@ README SYNCHRONIZATION
   README.md in the same commit or the immediately following one — headline
   table, status section, and layout notes must never lag the audit trail.
 - README numbers defer to AUDIT_PREP.md; on any conflict, fix README.
+- PUBLIC REPO: github.com/jappabl/anytime-valid-design-selection is a
+  FRESH-HISTORY mirror (local git history contains a revoked-key blob and
+  must NEVER be pushed). After milestone commits + README update, sync with
+  scripts/publish_sync.sh (snapshot of HEAD, single commit, key-guarded).
 
 DOCUMENTATION SYNCHRONIZATION
 - Whenever research claims, contributions, or experimental results are changed, AUDIT_PREP.md MUST be updated to reflect those changes.
