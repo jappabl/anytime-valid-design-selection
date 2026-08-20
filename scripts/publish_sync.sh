@@ -7,7 +7,8 @@
 #
 # Filter: .env dropped from every commit; the old OpenAI key scrubbed
 # (extracted from local history at runtime, never stored); author
-# hlincontacts@gmail.com -> haogotmilk@gmail.com. filter-repo is
+# hlincontacts/haogotmilk -> jappabl's noreply (both gmails attribute to the
+# wrong GitHub account; the noreply is structurally bound to jappabl). filter-repo is
 # deterministic, so unchanged history keeps identical hashes across syncs.
 set -euo pipefail
 cd "$(git rev-parse --show-toplevel)"
