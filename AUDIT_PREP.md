@@ -1814,3 +1814,4 @@ within 1000 samples in this regime.
   contents). Three refuted candidates with reasons now sit beside the
   open number. Vectorization verified bit-identical vs shipped class.
   Task B (scalar c_ren) is the last briefed item; GO sent.
+- 2026-08-20 (long ladder verdict): floored-arm d = +1.2071 +/- 0.1107 over 10000 journaled reps — d=1.53 warmup-corrected REJECTED (z=-2.92); d=1 idealization CONSISTENT (z=+1.87). The shipped Kelly floor behaves as the derived idealization at scale.
