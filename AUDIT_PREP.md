@@ -1676,3 +1676,15 @@ within 1000 samples in this regime.
   9.5%. Clock-conversion negative: n=KT alone cannot move d.
   Artifacts adopted at scripts/external/ (derive_wsr_envelope.py +
   predictions.json + verification.json; imports the shipped class).
+- 2026-08-20 (freeze-design fix, R4b-adjacent, broker-flagged): the
+  Task-A prediction hash covered created_unix, so it certified tamper-
+  evidence, NOT rerun-reproducibility (the actual freeze guarantee) —
+  reproducibility was established here by the byte-identical rerun,
+  not the hash. Fixed in the adopted copy: provenance now sits outside
+  the hashed object; stable hash 80e2e8e86f99... verified identical
+  across two fresh reruns; predictions.json regenerated (substantive
+  content unchanged). Rule for future frozen artifacts: hash the
+  prediction payload only. Also adopted: the corrected worker-CPU
+  diagnostic (codex parent sits at ~0:00.01 forever; check the WORKER's
+  cumulative CPU advancing over ~60s — instantaneous %CPU is ~0 for
+  healthy API-bound max-effort runs).

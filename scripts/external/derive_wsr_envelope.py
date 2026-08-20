@@ -388,7 +388,13 @@ def predict(out_path: Path) -> None:
         "pdir": predict_pdir(),
         "rk": predict_rk(),
     }
+    # R4b fix (2026-08-20): hash the PREDICTION PAYLOAD ONLY, with
+    # provenance (created_unix, etc.) OUTSIDE the hashed object, so the
+    # hash certifies rerun-reproducibility, not just tamper-evidence.
+    provenance = {k: payload.pop(k) for k in ("created_unix",)
+                  if k in payload}
     payload["prediction_sha256"] = canonical_hash(payload)
+    payload["provenance_unhashed"] = provenance
     out_path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
 
     print(f"SHIPPED IMPORT: {source}")
