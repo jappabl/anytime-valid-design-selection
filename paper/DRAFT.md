@@ -2,22 +2,32 @@
 
 **Hao Lin**
 
-*Draft v4.1 — 2026-08-17. Supersedes v3 (2026-08-12), whose spine was a
+*Draft v4.2 — 2026-08-19. Supersedes v3 (2026-08-12), whose spine was a
 four-regime empirical design map; that map survives here as the
 empirical origin of a derived boundary (§4.1). New in v4: the boundary
 derivation and its verification (§4.2–4.4), the derived fourth expansion
-term (§5.3), and the relation gate (§6.2). v4.1 is a **consolidation,
-not a restructure**: the section skeleton is v4's, and it absorbs the
-results that landed after v4 froze — the renewal constant computed
-**exactly** (§4.2, §5.3, `results_cren_exact.txt`), the phase
+term (§5.3), and the relation gate (§6.2). v4.1 absorbed the results
+that landed after v4 froze — the renewal constant computed **exactly**
+(§4.2, §5.3, `results_cren_exact.txt`), the phase
 verification's final v2c scoring after a scored defect in our own
 bootstrap (§4.3), the derived **and** verified two-region design-space
 partition (§4.7, `results_partition.txt`, `results_partition_test.txt`),
 the optimal-stratification census and the universal-K\* retraction it
 forced (§4.7, `results_gain.txt`), the WSR expansion arc and its
 floored-arm resolution (§5.5, `results_wsr_expansion.txt`,
-`results_floor_d.txt`), two new gate rules (§6.2), and six new miss-ledger
-rows (§6.3). The formal companion is
+`results_floor_d.txt`), two new gate rules (§6.2), and six new
+miss-ledger rows (§6.3). v4.2 is likewise a **consolidation, not a
+restructure** — v4.1's section skeleton is preserved and every addition
+is a new subsection or an in-place sync. It absorbs the boundary's two
+**out-of-family domain exports** and their scoring (new §4.8: the
+safety domain with a reported P1 miss, and the RLA bridge with the
+first prospective test of the direction-matched constants), the three
+designed grids that turned the WSR overhead envelope from a fitted
+constant into a measured **(K, p\*, direction)** surface with
+heterogeneity R **refuted** as a carrier (§5.5), a ninth instance of the
+relation-gate generator found by the domain port (§6.2, and the
+110 → 112 test count it produced), the **thirty-fourth** miss-ledger row
+(§6.3), and two new limitations (§7). The formal companion is
 [paper/BOUNDARY_THEOREM.md](BOUNDARY_THEOREM.md), whose statements this
 draft mirrors. Every number below traces to a checksummed
 `results_*.txt` artifact, to [FINDINGS.md](../FINDINGS.md), or to the
@@ -93,6 +103,30 @@ real-outcome cells including its own best case
 (`results_partition_test.txt`), so the honest map has **two** winner
 regions, not four (§4.7).
 
+**The boundary exports out of family, and the first export scored a
+miss.** Two domains outside the testbed, each frozen before any
+certification and each scored the same way (§4.8). On **StrongREJECT
+harmful-compliance** across six scorable local-model pools the derived
+single-arm predictor **ports** (within ~5% on 6 of 6), UI-domination
+transfers (0 of 6) and the α guarantee holds (4 of 2,700 wrong
+certifications) — but the *reused* WSR overhead envelope, calibrated at
+K = 4, under-models K = 6 blocks by **19–37%**, and **P1 fails at 1 of 2
+resolving calls**. Per-model rates there are **pool parameters, not
+safety rankings**, under a grader whose label noise we measure at 43%
+and disclose. Three designed grids then localize the miss to one fitted
+object: the envelope's constants are **linear in block size**,
+heterogeneity R is **refuted** as its missing argument over R ∈ [1, 30]
+(a scored failure that is itself the finding), and every envelope in
+this project turns out to have been fitted in **one decision direction**
+(§5.5). On a **risk-limiting election audit** of Georgia's 2020 county
+structure — the first *prospective* test of the resulting
+direction-matched constants — the frozen call moves along the margin
+axis and scores **1 of 1**, UI never certifies at all, the risk limit
+holds on a truly tied pool (0.0022 ≤ α), and at Georgia's real 0.239%
+margin every design needs a **majority of the ballots cast**, which is
+why the state hand-counted them. We claim nothing there over SHANGRLA,
+ALPHA or UI-TS, and propose no procedure for a real election.
+
 Underneath sits a **calibrated classical expansion**,
 n·V = log(1/α) + (d/2)·log n + c. We do not discover it — the d = 1 case
 is a fifty-year-old theorem (Pollak & Siegmund 1975; Woodroofe 1982)
@@ -134,7 +168,10 @@ Kelly-floored variant where an expansion does exist is measured at
 d = 1.36 ± 0.20 and is **unresolved** against its own derivation
 (`results_floor_d.txt`). Audit round 2 downgraded our own dimension-rule
 score from 3-for-3 to 2-for-3 and reclassified our live capstone from
-"severe test" to "consistency check". Total API spend: under $6.
+"severe test" to "consistency check". Total API spend: under $6; the
+miss ledger runs to **34 rows** (§6.3) and the suite to **112 tests**,
+the last two added by a defect that only a domain port could reach
+(§6.2).
 
 ---
 
@@ -221,7 +258,8 @@ Every v3 disclaimer stands:
 - The live capstone is a *consistency check*, not a severe test (§5.7).
 - All estimands are pool-scoped under a chosen stratum weighting (§2).
 
-And the boundary work adds four more:
+And the boundary work adds seven more (v4.1 miscounted these as "four";
+the count is corrected here rather than quietly):
 
 - **The boundary predicts winners, not sample counts.** Both arms'
   absolute medians run ~10–20% low under the derived constants (derived
@@ -244,6 +282,19 @@ And the boundary work adds four more:
   own divergence criterion (§5.5).
 - **Automating the rule is not solved.** A shipped pilot-based selector
   matched the oracle design in 11 of 16 cells (`results_auto_select.txt`).
+- **We make no safety claim about any model.** The per-model compliance
+  rates and heterogeneity ratios of §4.8.1 are **pool parameters** of
+  one temperature-0 snapshot under one deterministic proxy grader whose
+  label noise we measure at 43% and report. They are not safety
+  measurements, not model rankings, and not comparable as such. What is
+  tested there is a design-selection rule, and it is invariant to what
+  the labels mean.
+- **We claim nothing over the risk-limiting-audit literature.** §4.8.2
+  improves neither SHANGRLA, BRAVO, ALPHA nor UI-TS, proposes no
+  procedure for use in a real election, and uses public county totals to
+  fix **pool parameters only**. The contribution is *to that field's
+  design-selection question* — which e-process family certifies fastest,
+  decidable before the first ballot is pulled.
 
 ---
 
@@ -1134,6 +1185,219 @@ rates at temperature > 0, which is a future collection, and the
 well-posedness construction of `scripts/derive_optimal_k.py` is retained
 as such with its superseded-in-part conclusion marked.
 
+### 4.8 Export: two out-of-family domains, both frozen, both scored
+
+Everything above was derived and verified *inside* the §3 testbed —
+pools remixed from JSON, code and MBPP outcomes. A design rule that only
+works where it was built is not a design rule. So the boundary was
+carried into two domains it was not built for, each frozen in its own
+commit **before** any certification ran, and each scored with the same
+instrument. One produced a miss and one produced the first prospective
+confirmation of the constants that miss produced. Both are reported at
+the same length.
+
+#### 4.8.1 Safety: the boundary's first export, and a scored miss
+
+The domain is **StrongREJECT harmful-compliance** on eight small local
+models: 313 prompts, the corpus's own six published **category** strata,
+a deterministic refusal-string proxy grader, K = 6 blocks, margin
+m = 0.045, τ = p\* − m, direction `rejects_le` on every pool
+(`results_safety.txt`, checksum `a369e454bc5450fd`).
+
+**The mandatory non-claim, stated adjacent to the table because that is
+where it is needed.** Every per-model number below is a **pool
+parameter** — the pooled compliance rate p\* and the category
+heterogeneity ratio R of one temperature-0 snapshot under one proxy
+grader — in exactly the sense §3.2's p\* is a pool parameter. They are
+**not safety rankings**, not a claim about any model's safety, and not
+comparable across models as such. The grader's own label noise is
+measured and disclosed below, and it is large.
+
+This is the **mild** heterogeneity regime — five ratios in 1.16–5.40
+with one outlier at 17.0 — and the reason is structural: p\* ranges
+0.019–0.857 *across models* while categories within a model move much
+less, so **between-model variance dominates between-stratum variance**
+and stratification buys little. Two pools (llama3-8b at p\* = 0.019,
+gemma2-9b at 0.036) fall in the boundary regime where τ < 0 with
+exact-zero strata; they are declared unscorable in the freeze and are
+not scored.
+
+**Frozen at commit 8aa3e7e**, before any certification, using the
+machinery unchanged — `single_fourterm`, `wsr_crossing` with its K = 4
+envelope, `v_kelly_block` generalized to K = 6 (64 atoms):
+
+| pool | p\* | R | τ | frozen n_s / n_wsr | frozen call | measured S / UI / WSR | measured |
+|---|---|---|---|---|---|---|---|
+| mistral-7b | 0.857 | 1.16 | 0.812 | 764 / 844 | **SINGLE** | 762 / 2,808 / **678** | WSR — **MISS** |
+| qwen2-7b | 0.107 | 5.40 | 0.062 | 336 / 362 | **SINGLE** | **354** / 1,356 / 411 | single — HIT |
+| phi3.5-latest | 0.531 | 1.68 | 0.486 | 1,244 / 1,289 | TIE | 1,194 / 4,860 / **939** | WSR (unscored) |
+| llama3.1-8b | 0.528 | 1.94 | 0.483 | 1,256 / 1,267 | TIE | 1,227 / 4,872 / **1,062** | WSR (unscored) |
+| llama3.2-3b | 0.457 | 2.82 | 0.412 | 1,244 / 1,205 | TIE | 1,293 / 4,704 / **885** | WSR (unscored) |
+| qwen2.5-7b | 0.160 | 17.00 | 0.115 | 572 / 560 | TIE | 567 / 2,112 / 513 | TIE — confirmed |
+
+WSR outright *nowhere* in the freeze; two resolving calls, and 2 of 2
+flip under a wrong-theory single arm, so the set discriminates rather
+than being trivially satisfiable. Measurement was three CRN-paired arms
+on the real outcomes, 150 reps/arm, n_max = 12,000, the v2c
+Harrell-Davis paired bootstrap of §4.3.
+
+**The map splits cleanly, and the split is the finding.**
+
+- **The single-arm predictor ports.** Measured single medians sit within
+  ~5% of `single_fourterm` on 6 of 6 pools (+0.3%, −5.1%, +4.2%, +2.4%,
+  −3.8%, +0.9%). The derived side of the boundary survives the domain
+  change intact.
+- **The reused WSR envelope does not.** WSR certifies **19–37% faster
+  than predicted** on the four mid/high-p\* pools, so WSR is the faster
+  arm on 4 of 6 — single only on the lowest-p\* pool.
+- **P1 FAILS: 1 of 2 resolving HITs.** qwen2-7b HIT; **mistral-7b MISS**
+  — predicted single, WSR won. Reported, not tuned. It is ledger row 34
+  (§6.3).
+- **P2 PASSES**: UI is outright fastest at 0 of 6, minimum UI-to-faster-arm
+  median gap 945 against a 24-sample poll period.
+- **P3 PASSES**: wrong-direction (SAFE) certifications 4 of 2,700
+  = 0.0015 ≤ α.
+
+So the boundary's *structure* and its *derived* side both export; the
+one thing that does not is a **fitted constant** — the WSR overhead
+envelope, calibrated at K = 4 and reused at K = 6. §5.5 takes that
+localization apart on three designed grids and finds the envelope's real
+arguments; the short version is that block size carried the magnitude,
+and p\* together with the decision direction carried the resolution, and
+that a direction- and p\*-matched envelope reconstructs the call **4 of
+5** — a **post-hoc diagnostic, labelled as one throughout**, using
+constants fitted long after the prediction was frozen. **The miss stands
+as scored**, three grids later.
+
+**Label noise, disclosed at the strength it was measured**
+(`results_safety_noise.txt`, checksum `923a301bde114ced`). The
+refusal-string grader was checked against a gemma2:9b judge on a
+60-prompt llama3.2:3b regeneration: they **disagree on 26 of 60
+(43.3%)**, and the disagreement is one-directional — of the grader's 28
+"complied" calls the judge reads **26 as refusals**, with **0** real
+compliances missed. That is a head-prefix-versus-whole-response
+construct gap. It is disclosed exactly as §3.3 discloses the temp-0 flip
+rate, and it does two things: it caps how well these labels track true
+harmful compliance — which is why p\* here is a *pool-graded parameter*
+and never a safety measurement — and it does **not** enter the α
+guarantee, which is exact given the binary labels. The design-selection
+verdict is invariant to what the labels mean: which arm crosses first
+depends on the label stream, not on its interpretation. No raw
+generations for harmful prompts are stored (§9).
+
+#### 4.8.2 Risk-limiting audits: the first prospective test of the direction-matched constants
+
+A risk-limiting election audit is the same object this paper has been
+certifying throughout — an anytime-valid **one-sided** test that a rate
+lies on one side of a threshold, stopped when the evidence crosses
+log(1/α), with counties where we have had prompt families. That field
+already owns the machinery: SHANGRLA (Stark 2020), betting and ALPHA
+supermartingales, and the Spertus–Sridhar–Stark union-intersection
+construction this repo has shipped as `StratifiedUICS` since the
+audit-mandated SOTA comparison (§4.1.1). **Non-claim, mandatory and
+repeated in the artifact: nothing here improves SHANGRLA, BRAVO, ALPHA
+or UI-TS, and no procedure here is proposed for use in a real
+election.** Public county totals fix **pool parameters only**. The
+contribution is *to that field's design-selection question* — which
+e-process family certifies fastest, decidable before the first ballot is
+pulled — and what the domain gives back is a sample unit that costs
+human labour (`results_rla.txt`, checksum `1eefa5b579a1b395`).
+
+**Pool.** Georgia's 2020 presidential contest, from approximate-official
+certified totals: twelve county strata plus one aggregate remainder row,
+size-proportional weights — so the estimand is the population mean and
+the F14 reformulation that licenses unequal weights inside the UI
+construction applies verbatim. **p\* = 0.501193, margin 0.239%,
+R = 3.22, N = 4,935,487** two-candidate ballots, τ = 0.5, direction
+`rejects_le`. Ballots are drawn uniformly statewide and all three arms
+consume the *identical* ballot sequence.
+
+**Frozen at commit 5b831fb**, before any run. The WSR constants are
+taken from `results_wsr_pdir.txt`'s (K = 6, p\* = 0.50, UNSAFE) cell —
+the nearest measured cell in **all three** arguments the envelope is now
+known to take — which makes this the **first prospective test of those
+constants**, their 4-of-5 safety recovery having been a labelled
+post-hoc diagnostic:
+
+| cell | α | frozen | measured S / UI / WSR | verdict |
+|---|---|---|---|---|
+| GA-official, m = 0.239% | 0.05, 0.10 | SINGLE | *predicted only* (3.2M ballots/rep is three orders past the simulation budget) | unscored |
+| GA-2pct, m = 2% | 0.05 | TIE | 35,280 / 150,000+ / 38,376 | TIE — confirmed |
+| GA-5pct, m = 5% | 0.05 | **WSR** | 4,914 / 12,000+ / **4,032** | WSR — **HIT** |
+| GA-5pct, m = 5% | 0.10 | **WSR** | 3,843 / 12,000+ / 3,609 | TIE — unconfirmed |
+
+`+` marks a censored median: that arm did not certify within n_max in
+most reps, so its true cost is larger. Two resolving calls among the
+simulated cells, 2 of 2 flip under a wrong-theory single arm
+(d ∈ {0, 2} against the true d = 1).
+
+- **P1 PASSES, 1 of 1 HIT.** The design call moves *along the margin
+  axis* — single at the real margin, tie at 2%, WSR at 5% — and that
+  ordering is the falsifiable content. The 5%/α = 0.10 cell measures a
+  TIE: **unconfirmed, not a miss**, and counted as neither.
+- **P2 PASSES and then some.** The UI arm never certifies at all inside
+  n_max on any cell (censored at 150,000 / 12,000 ballots). Thirteen
+  nuisance rates is an overhead no audit budget absorbs.
+- **P3 is the risk limit in its own terms**, run on a null pool whose
+  county shares are shifted so p\* = 0.5 exactly — a reported outcome
+  that is genuinely a tie, the worst case a risk limit must survive:
+  **1 of 450 audits ever certifies "the winner leads" = 0.0022 ≤ 0.05**.
+  Wrong-direction certifications on the true-outcome pools are each
+  inside their own α (1/450, 14/450, 29/450 at α = 0.10).
+- **Both predictors are now honest in both signs.** The single arm errs
+  **0.0% / −2.6% / +7.1%** — the exact absorption recursion run at the
+  arm's own check schedule predicted 35,280 ballots at a 2% margin and
+  the measurement returned 35,280. The (K, p\*, direction)-matched WSR
+  envelope errs **−11.6% / +9.8% / +5.0%**: a band with *both* signs,
+  no longer the one-sided +19–37% over-prediction the K = 4 constants
+  produced in §4.8.1.
+
+**The payoff, denominated in hand-counted ballots.**
+
+| cell | α | best arm | ballots | worst arm | saved | fixed-n at equal power | sequential premium |
+|---|---|---|---|---|---|---|---|
+| GA-2pct | 0.05 | single | 35,280 | 38,376 | 3,096 (1.09×) | 39,417 | **−4,137 (0.90×)** |
+| GA-5pct | 0.05 | WSR | 4,032 | 4,914 | 882 (1.22×) | 3,954 | +78 (1.02×) |
+| GA-5pct | 0.10 | WSR | 3,609 | 3,843 | 234 (1.06×) | 3,213 | +396 (1.12×) |
+
+Best and worst are taken over arms that actually certify (≥ 90% of
+reps); an arm that never finishes is not a cheap audit, which is why UI
+is excluded where it is — against it the design choice is worth ≥ 3–4×
+on every cell. The fixed-n column is a one-sided binomial audit at the
+best arm's own measured power, and it buys **no** anytime validity: no
+peeking, no early stopping, no escalation. The premium for validity is
+therefore within ±12%, and at the 2% margin it is *negative* — early
+stopping more than repays the mixture overhead.
+
+**And the real margin says something the synthetic cells cannot.** At
+Georgia's actual 0.239% margin every design costs a **majority of the
+ballots cast**: 3,191,031 single (64.7% of the state) and 3,397,475 WSR
+(68.8%) at α = 0.05, against 4,935,487 cast — and even a fixed-n audit
+at 99% power needs 2,768,762 (56.1%). No ballot-polling audit is cheaper
+than counting them all, **which is exactly what Georgia did** (a full
+statewide hand recount). The margin axis of the design map reproduces
+that decision without being told about it. That is a retrodiction on one
+contest, not a validation of the map; we report it because the map could
+have said otherwise and did not.
+
+**Scope, all disclosed in-artifact.** The GA-official rows are
+**predicted-only and unscored**, and use the four-term closed form,
+which is validated against the exact recursion at both *simulated*
+margins (−1.7% to −3.4%, the schedule term). The 2% and 5% cells are
+**synthetic-margin pools** — one common additive shift of every county
+share, moving R from 3.22 to 3.15 / 3.04 — disclosed as constructed, not
+as elections. The single/UI check period D is a compute choice
+(D·KL ≤ 0.06 nats, ≤ 1.0% of the crossing and below the tie band) and is
+carried in the *predictor* too, so the powered model and the executed
+replay share one stopping rule (`severity_sim` rev 3 rule (c)). R is
+inert for the single and WSR arms under uniform statewide draws,
+licensed **only** by the R null of §5.5 — which is a failure to detect
+over R ∈ [1, 30], never a proof of R-independence.
+
+Porting the certifier into thirteen unequal strata also broke it, in a
+way no configuration inside the testbed had reached. That defect is
+§6.2's ninth instance.
+
 ---
 
 ## 5. The calibrated expansion
@@ -1539,6 +1803,218 @@ not report a miss as a hit. The final form of the claim is therefore:
 literal shipped class; and the experiment that would discriminate the
 two does not exist at this budget.*
 
+**What the envelope's arguments actually are: three designed grids.**
+§4.8.1's miss localized to one fitted object — the WSR overhead
+envelope, calibrated at K = 4 and reused at K = 6 — so we went and
+measured it. Three grids, in the order they were run, each a
+*measurement* grid rather than a prediction test (the freeze convention
+is therefore that the docstring is committed *with* the results; P1–P3
+still print PASS/FAIL, and two of the three FAIL). Read together they
+replace a fitted constant with a **measured (K, p\*, direction)
+surface** on which **R is null** — and one of those three answers is a
+negative result that closed a hypothesis this project had carried for
+weeks.
+
+*(i) Block size: the constants are linear in K.*
+`results_wsr_k.txt` (checksum `f6aea65aa754d0d8`) re-measures the
+envelope at K ∈ {2, 4, 6, 8} on one frozen grid — iid Bernoulli pools
+(so R = 1), p ∈ {0.20, 0.35, 0.50} × five margins, the **shipped**
+`WSRBlockCS` polled every block, common random numbers *across K* (every
+K consumes the same underlying Bernoulli stream, regrouped), reps
+300/300/300/200/150 tapered and disclosed, 60 of 60 rungs certified
+≥ 97%. V is the exact Binomial(K, p)/K block-mean Kelly rate and agrees
+with the shipped 2^K enumeration at K = 4 to 1.7e−17.
+
+| K | 2 | 4 | 6 | 8 |
+|---|---|---|---|---|
+| d | 3.386 | 2.343 | 1.465 | 0.834 |
+| c | −6.922 | −5.351 | −3.138 | −1.234 |
+
+The envelope **is** K-dependent and its constants are **linear in K** —
+**d_K = 4.1407 − 0.4267·K** (max\|resid\| 0.115, 5% of range) and
+**c_K = 0.9638·K − 8.9801** (0.226, 4%) — an **observed regularity, not
+derived**, and labelled as such in the artifact. Larger blocks carry a
+smaller effective dimension and less overhead at the horizons the
+boundary uses. **P2 PASSES** (both reported constants strictly monotone;
+the direction was not pre-committed). **P3 PASSES** (0 of 60 rungs
+excluded). **P1 FAILS, and was pre-stated to** — with the reason
+committed *before* the run: this grid is R = 1 while c_short = 2.3 was
+calibrated on extreme-heterogeneity pools, so the failure is the
+already-recorded c_short(R) offset and not a K result (measured K = 4
+triple 1.521 / 2.809 / −7.395 outside the committed corner band;
+committed central envelope worst +27.6% on the K = 4 rungs). A
+short-horizon plateau appears at K = 4, 6, 8 but **not** at K = 2 (SSE
+cut 9.7% against the 20% criterion), so the pre-registered uniform
+selection rule reported the single-regime pair and the two-regime triple
+is printed **unscored**.
+
+The independent confirmation is the part that matters: read from the
+*envelope* side, the committed K = 4 constants over-predict n_wsr by
+**+19.3% to +37.2%** on the four mid/high-p\* safety pools — the same
++19–37% the certification measured, reached by a different route.
+Transporting the measured K = 4 → K = 6 *difference* onto the committed
+envelope (a function-level transport; additive separability of the
+R-offset from K is **asserted, not proved**) cuts that to
+[−0.9%, +14.5%]. But it moves mistral-7b only from SINGLE to **TIE**,
+never to WSR, and it collapses the qwen2-7b HIT to TIE as well — leaving
+the domain with **zero** resolving predictions, which the discrimination
+gate would have refused as vacuous. **Block size accounts for most of
+the magnitude and none of the resolution.**
+
+*(ii) Heterogeneity: R is refuted as a carrier, and the refutation is
+the result.* The honest next clause was a joint c(R, K), so
+`results_wsr_rk.txt` (checksum `202b167276d05415`) measured one: a
+designed 12-cell grid, K ∈ {2, 4, 6} × R ∈ {1, 3, 10, 30}, at
+p\* ∈ {0.20, 0.35} × four margins (96 rungs). Pools are two-level
+K-stratum profiles (half the strata at p_lo, half at p_hi, ratio R, mean
+exactly p\*); a block is one draw per stratum into the shipped
+`WSRBlockCS`. The τ ladder is solved per (p\*, R) at K = 4 to a
+**common** median window and then shared by every K — deliberately,
+because an effective *local* fit depends on the range it is taken over,
+so unequal per-cell n-ranges would masquerade as R-dependence. CRN is
+one uniform stream per (p\*, rung, rep) **shared by all twelve (K, R)
+arms**, mapped to strata by position mod K, so K and R change the
+mapping and the thresholds, never the randomness. 96 of 96 rungs
+certified ≥ 0.99. V is the exact per-sample Kelly rate of the block mean
+by Poisson-binomial DP convolution in O(K²) — the block mean is a sum of
+*independent non-identical* Bernoullis, so the K grid's Binomial form
+does not apply — and it matches the shipped 2^K enumeration at K = 4 to
+1.4e−17 over the whole K = 4 sub-grid.
+
+| d / c | R = 1 | R = 3 | R = 10 | R = 30 |
+|---|---|---|---|---|
+| K = 2 | 3.566 / −7.282 | 2.722 / −4.428 | 3.324 / −6.994 | 3.525 / −7.919 |
+| K = 4 | 2.084 / −4.174 | 2.319 / −5.052 | 2.194 / −4.923 | 1.990 / −4.326 |
+| K = 6 | 1.562 / −3.235 | 1.393 / −2.723 | 1.515 / −3.354 | 1.267 / −2.601 |
+
+**P2 FAILS — and that is the result.** c is **not monotone in R at any
+K**, and the entire R = 1 → 30 endpoint change is **−0.637 / −0.152 /
++0.634 nats** at K = 2 / 4 / 6: inconsistent in *sign*, and each at most
+**0.37 of its own standard error**. d is likewise non-monotone. The
+long-hypothesized **c_short(R) offset** — carried in THEORY.md since
+2026-08-15 at ~0.7–1.0 nats, and the very quantity grid (i)'s P1 failure
+was pre-attributed to — **is not present over R ∈ [1, 30] on these
+profiles.** This is the first time R was swept at fixed p\* on a
+designed grid rather than inferred across pools, and we record it as a
+**scored P2 FAIL that is itself the finding**, not as a disappointment.
+The fitted surface says it quantitatively:
+**d = 4.1707 − 0.4625·K − 0.0190·log R** and
+**c = −8.2446 + 0.9194·K − 0.1081·log R**, whose log R terms move d by
+−0.065 (3.5% of what K moves it) and c by −0.368 (10.0%) against
+max\|resid\| 0.503 (22% of range) and 2.096 (39%) — so the
+pre-registered rule **rejects log R as a carrier**, and the reason is
+that the R *effect* is null, not that some other R-carrier is wanted.
+The full 12-cell residual table is printed and nothing else was fitted
+to force it. **P1 FAILS on the joint clause but 2 of its 3 sub-checks
+pass**: the R = 1 column reproduces grid (i) inside the pre-registered
+±0.25 / ±0.6 at K = 2 (d +0.180, c −0.360) and K = 6 (+0.097, −0.097)
+and misses on both at K = 4 (−0.259, +1.177) — where post-hoc arithmetic
+(labelled; it scores nothing) shows the two independently measured
+envelopes agree at **function** level within 0.494 / 0.446 / 0.335 nats
+across each cell's measured range, about **7% in n**. That is the d↔c
+trade-off inside a two-parameter local fit — that cell's own OLS
+standard errors are 0.239 in d and 0.886 in c — not an envelope
+disagreement. **P3 PASSES** (0 of 96 excluded). And the K coefficients
+independently reproduce grid (i)'s linear laws (−0.4625 against −0.4267
+in d; +0.9194 against +0.9638 in c) on an entirely different profile
+family. Plugged back into the safety freeze at (K = 6, each pool's own
+R), the joint envelope resolves three pools instead of two and matches
+the measured winners **1 of 2 — exactly the frozen rate**.
+
+*(iii) Direction and p\*: the axis nobody had varied.* The R null left
+p\* as the open candidate, but p\* was entangled with something the whole
+arc had held fixed without ever saying so. **Every envelope in this
+project — grid (i), grid (ii), and the original K = 4 calibration —
+certifies in the UNSAFE direction** (p > τ, the CS *lower* bound
+clearing τ); and in the safety pools a high p\* and the direction that
+favours a high block mean arrive together. `results_wsr_pdir.txt`
+(checksum `eb8f5f8d7eb4efad`) crosses the two axes at fixed K = 6,
+R = 1.2: p\* ∈ {0.20, 0.50, 0.80} × direction ∈ {UNSAFE, SAFE}, five
+margins per cell (30 rungs), the two **shipped** tests (`lo > τ` and
+`hi ≤ τ`) on the shipped `WSRBlockCS`. CRN is tight enough that the two
+direction arms of a rung consume the *identical* Bernoulli sequence
+block for block — only τ and which bound is read differ. 30 of 30 rungs
+certified 1.00.
+
+The Kelly rate itself is **provably direction-asymmetric**, and the
+artifact prints that *before* simulating anything: at δ = 0.09,
+V_SAFE/V_UNSAFE is **0.506** at p\* = 0.20 and **1.994** at p\* = 0.80,
+narrowing to 0.904 / 1.102 at δ = 0.02 (the Gaussian limit). At
+p\* = 0.50 it is **exactly 1**: the two-level profile has
+p_lo + p_hi = 2p\* = 1, so the rate multiset is closed under p → 1 − p,
+the block-mean law is symmetric about 0.5, and V_UNSAFE(0.5 − δ) =
+V_SAFE(0.5 + δ) identically (checked to 2.1e−17). Both branches are
+validated against shipped code — UNSAFE directly to 1.2e−17, SAFE
+through the exact complement identity V_SAFE(rates, τ) =
+V_UNSAFE(1 − rates, 1 − τ) to 3.5e−17. Because O(n) := n·V − log(1/α)
+divides by each direction's **own** V, this entire analytic asymmetry is
+absorbed *before* the fit: **whatever direction effect survives in
+(d, c) belongs to the confidence sequence, not to the information
+rate.** Something survives.
+
+| d / c | p\* = 0.20 | p\* = 0.50 | p\* = 0.80 |
+|---|---|---|---|
+| UNSAFE | 1.142 / −1.693 | 1.257 / −2.773 | 0.152 / +0.582 |
+| SAFE | 0.250 / +0.458 | 1.518 / −3.855 | 1.043 / −0.966 |
+
+**P2 was the discrimination, and only the comparison was pre-committed —
+no winner.** On the scored metric, raw (d, c): the direction axis spans
+max \|Δd\| 0.892 and \|Δc\| 2.151; the p\* axis 1.269 and 4.314. Both
+constants name **p\***, by 1.42× in d and 2.01× in c — **P2 verdict
+p\***. Reported but not scored, because raw gaps are not scale-free and
+the two constants trade off: in mean-OLS-SE units the ordering holds
+(direction 2.90/1.82 SE against p\* 4.13/3.66), but at **function**
+level over the common window the ordering **reverses** to direction
+2.612 nats against p\* 2.349 — a 1.11× margin, which is a wash. The
+scale that settles the reading is the axis this same instrument already
+called null: **the refuted R sweep, measured the identical function-level
+way, spans 0.658 nats**, so *both* new axes are 3.6–4.0× the null one.
+The honest verdict is therefore not "p\*, not direction" but **both,
+comparably — the overhead envelope is direction-dependent, and every
+constant in this project was fitted on one side of it.** **P1 FAILS**
+against grid (ii)'s (K = 6, R = 1) cell (d 1.142 against 1.562; c −1.693
+against −3.235) on a tolerance already widened in advance to ±0.35/±0.9
+with the reason stated — that cell is R = 1 against this grid's 1.2
+*and* pools p\* ∈ {0.20, 0.35} against this cell's 0.20 alone, two
+design differences — and the same labelled function-level arithmetic
+puts the two envelopes within 0.373 nats (~5% in n). Read with P2 the
+failure is not an anomaly: **a p\*-pooled anchor cannot equal a
+single-p\* cell once p\* is shown to move the constants.** **P3 PASSES**
+(0 of 30 excluded).
+
+*What the reconstruction is worth, and what it is not.* Plugged back
+into the safety freeze with direction- and p\*-matched constants, the
+envelope resolves **all six** pools and matches the measured winners
+**4 of 5**, against 1 of 2 for the frozen call and 1 of 2 for the (R, K)
+surface; prediction error goes from [−11.8%, +37.2%] to
+[−23.7%, +18.1%]. mistral-7b — the pool that produced the scored miss —
+moves SINGLE → WSR and lands on the measured winner (n_wsr 844 → 649
+against a measured 678, error +24.5% → −4.3%); llama3.1-8b goes +19.3%
+→ +2.8% and qwen2.5-7b +9.2% → +0.3%; the one new miss is qwen2-7b at
+the *lowest* p\*. **This is a post-hoc diagnostic and is labelled as one
+in all three artifacts**: it reuses `run_safety_cert`'s prediction path
+verbatim with only the overhead swapped (each artifact asserts that its
+COMMITTED column reproduces the frozen table exactly, and each does), it
+uses constants fitted long after the prediction was frozen, and it
+scores nothing. **The §4.8.1 miss stands as scored, three times over,
+and the miss ledger is unchanged by all three grids.**
+
+*The standing statement, and its scope.* The WSR overhead envelope is
+no longer a constant with a corner band: it is a **measured surface in
+block size K, pool rate p\*, and decision direction, with heterogeneity R
+ruled out over [1, 30]**. Three scope conditions travel with that, all
+disclosed in-artifact. Every envelope here is an **effective local fit
+over the range it was measured on**, not an expansion claim — the stock
+schedule may admit no fixed (d, c) at all, which is the open hypothesis
+earlier in this section. τ is held on the 0.001 lattice at mid-cell in
+every grid (0.5–4.5% of margin, printed per rung, and
+direction-symmetric by construction) so grid quantization cannot
+masquerade as a K, R or direction effect. And the R null is a **failure
+to detect over R ∈ [1, 30] on two-level profiles**, never a proof of
+R-independence — every later use of it, including §4.8.2's, is licensed
+only that far. The residual has not vanished; it has **moved**, from the
+high-p\* pools to the low-p\* one.
+
 ### 5.6 The conservation hypothesis: FALSIFIED
 
 **[FIG: frontier overheads]** — `fig8_frontier.png`: *overhead in nats
@@ -1691,8 +2167,8 @@ non-experiment forms:
 | **R8** allocation discrimination | a verification whose scored points concentrate where the hypothesis is already established is not discriminating regardless of point count; ≥ 50% of scored points must carry the novel-region prediction |
 | **R9** absorption ordering | an external result may not be absorbed into the paper or THEORY while a frozen test *of that same result* is pending; every absorption commit must cite the scored artifact it rests on |
 
-**Eight instances of the one generator have now been caught and
-scored** — four in the boundary work, four after it — which is why §4
+**Nine instances of the one generator have now been caught and
+scored** — four in the boundary work, five after it — which is why §4
 and §5 read the way they do. Each one is a relation nobody computed, and
 each is now a rule:
 
@@ -1738,6 +2214,39 @@ each is now a rule:
    and the populations it was asserted over was never checked; on the
    ten real pools the census is 1 : 4, 2 : 4, 4 : 2 and the explanation
    is retracted.
+9. **Configuration space versus asserted scope — a root-selection
+   defect in our own shipped optimizer**, found by porting the
+   certifier to §4.8.2's thirteen unequal county strata.
+   `StratifiedUICS._m_of_lambda` picked the wrong root of the KKT
+   quadratic whenever a stratum is **saturated** (s = 0 or f = 0):
+   there the quadratic factors as (m − 1)(a·m − f) — respectively
+   m·(a·m − (s + a)) — so the admissible root **is** an endpoint of
+   [0, 1] and can land one ulp outside it, after which the test
+   `in1 = (r1 ≥ 0) & (r1 ≤ 1)` rejected it and the code took the other
+   root, which lies outside [0, 1] and is clipped to the **opposite**
+   endpoint. The consequence is not subtle: `min_log_e` returned values
+   exceeding log E at feasible points of its own null set by up to
+   **100 nats**, producing spurious `ge`-direction certifications at
+   n = 42 ballots — wrong-direction certifications in a *majority* of
+   reps on the UI arm. Fixed with an endpoint tolerance, and the
+   regression test asserts the **mathematical invariant** (an infimum
+   cannot exceed a feasible point) on the real Georgia weights rather
+   than a snapshot; it fails on the old code. **110 → 112 tests.** The
+   relation nobody computed is the one instance 8 names in a different
+   costume: **the configurations an object has been exercised in versus
+   the configurations it is asserted over.** The object was correct in
+   every configuration it had ever been run in and wrong in the first
+   one it had not. Scope of impact, checked rather than assumed: the
+   defect lives in the k > 1 constrained optimizer only, so it can move
+   UI-arm results and wrong-direction counts and **cannot** move any
+   frozen prediction, the single arm, or the WSR arm. Prior artifacts
+   that use UI (`results_partition_test.txt`, `results_safety.txt`)
+   reported UI as dominated and their P3 wrong-certification counts were
+   small (4/2,700 in §4.8.1), so **no prior verdict flips**; they were
+   not regenerated, and that exposure is recorded here rather than
+   waived. It is worth naming what caught it: not a proof, not a review,
+   and not the census — **carrying the machinery into a domain whose
+   stratum structure the original design never anticipated.**
 
 **The gate caught itself.** Its first R4 implementation flagged 27
 artifacts by checking each artifact *as an object* (does it contain
@@ -1752,7 +2261,9 @@ clean, and R8 passes for the phase verification (10 of 13 scored points
 in the novel region, 77% ≥ 50%).
 
 **And it flags this draft — including one flag this consolidation
-created.** Run against v4.1:
+created.** Run against v4.1; the v4.2 additions (§4.8, the §5.5 grid
+block) have **not** been re-scanned, and being made of per-cell tables
+they would add to the R5 count below rather than reduce it:
 
 - **R4 raises one flag**: `results_cren_exact.txt` is cited here with a
   verdict but prints a `STATUS:` block rather than a PASS/FAIL/VERDICT
@@ -1775,8 +2286,13 @@ created.** Run against v4.1:
   it is semi-mechanical by construction, so a clean scan is weaker
   evidence than a clean R8.
 
-The census's falsifiable prediction stands: **the next defect will also
-be an uncomputed relation.**
+The census's falsifiable prediction stands, and instance 9 is the one
+test of it that arrived after v4.1 was written: **the next defect will
+also be an uncomputed relation.** It was — though the honest caveat is
+that we classified it ourselves, and a generator broad enough to absorb
+every new defect is a generator that predicts nothing. The check that
+keeps it falsifiable is a defect whose local object is *wrong on its
+own terms*; we have not found one yet, and we are still looking.
 
 ### 6.3 Pre-registration with every miss scored
 
@@ -1819,6 +2335,21 @@ complete miss ledger for the second half of the project:
 | WSR stock-schedule no-expansion P1 (n·V/log n monotone, ≥ 1.5× across the ladder) | **FAILED as frozen** (1.23×, non-monotone at depth) — the claim is downgraded to a hypothesis, form-consistent only (P2 max deviation 6.1%); the external 1.80× came from a reimplementation 43% off the shipped code and is withdrawn (`results_wsr_expansion.txt`) |
 | Absorption ordering at commit 805ae03 | **PROCESS MISS, ours** — an external result was absorbed into the documents while its own frozen test was pending; the test then failed P1. Unwound at 8d43eb2; now gate rule R9 |
 | Floored-arm d: committed +1.27, and the frozen windows P-A (idealization d = 1) / P-B (warmup-corrected +1.5301) | **GRID-BIASED** — the τ grid sits mid-cell (+0.0005, 1.4→5.3% of margin), biasing d **low**, not high as the external audit claimed; corrected +1.3614 ± 0.2006. Both windows contain the measurement → **UNRESOLVED**; windows not widened (`results_floor_d.txt`) |
+| Safety-domain export P1 (every resolving pool matches the frozen design call) | **FAILED as frozen** — 1 of 2 resolving (mistral-7b: predicted single, WSR won; qwen2-7b HIT). P2/P3 passed and the single-arm predictor ported within ~5% on 6/6. Localized to the reused K = 4 WSR overhead envelope; three later designed grids moved a **labelled post-hoc** reconstruction to 4/5 **without re-scoring it** (`results_safety.txt`, §4.8.1) |
+
+**Thirty-four rows, and three scored FAILs that deliberately are not
+rows.** The three envelope grids of §5.5 print P1 FAIL / P2 PASS,
+P1 FAIL / P2 FAIL, and P1 FAIL, and none is entered here. The reason is
+a distinction we would rather state than let a reader discover: those
+are **measurement** grids, not frozen predictions about the world. Their
+P1 clauses are regression anchors against a previously measured
+envelope, two of the three failed for a reason committed *before* the
+run, and grid (ii)'s P2 failure **is the finding** it was run to get.
+Entering them would inflate the ledger with self-scored diagnostics of
+our own instruments while the one prediction that was actually frozen
+about a new domain — the row above — is the entry that carries the cost.
+`AUDIT_PREP.md` records all three verdicts in full and is authoritative
+on the count.
 
 Three entries deserve emphasis rather than burial. The **margin-sweep
 pair**: the centerpiece experiment failed, received one legitimate
@@ -1913,7 +2444,11 @@ this bound.
     more compute.
 13. **The boundary is derived for one geometry.** K = 4, a two-level
     (2 cold + 2 hot) stratum profile, α = 0.05, and p\* ∈ {0.20, 0.30,
-    0.40}. Other K, other profile shapes, and other α are unverified.
+    0.40}. §5.5's three grids since measured the WSR envelope out to
+    K ∈ {2, 4, 6, 8}, p\* ∈ {0.20, 0.50, 0.80}, R ∈ [1, 30] and both
+    decision directions — but that is the *envelope*, not the derived
+    boundary, every cell is still a two-level profile, and α = 0.05
+    throughout. Other profile shapes and other α remain unverified.
 14. **The boundary's bands are WSR's uncertainty only.** The single arm
     is derived; the WSR arm's two-regime envelope is measured, so the
     published band understates total uncertainty by whatever the single
@@ -1950,6 +2485,33 @@ this bound.
     matched the oracle design in 11 of 16 cells
     (`results_auto_select.txt`), and the hedge that avoids choosing lost
     outright (`results_portfolio.txt`).
+21. **The safety domain's labels are a coarse proxy, and we measured how
+    coarse.** The deterministic refusal-string grader disagrees with a
+    gemma2:9b judge on **26 of 60 responses (43.3%)** of a llama3.2:3b
+    regeneration, and the disagreement is one-sided: of its 28
+    "complied" calls the judge reads **26 as refusals**, with **0** real
+    compliances missed — a head-prefix-versus-whole-response construct
+    gap (`results_safety_noise.txt`). This is disclosed at the same
+    standing as limitation 2's temp-0 flip rate, and it bounds one thing
+    and not another. It bounds how well those labels track true harmful
+    compliance, which is why every safety p\* and R in §4.8.1 is a
+    **pool parameter under a named grader** and never a safety
+    measurement or a model ranking. It does **not** enter the α
+    guarantee, which is exact *given* the binary labels, and it does not
+    touch the design-selection verdict: which arm crosses first is a
+    function of the label stream, not of what the labels mean. A
+    better-graded corpus would move p\* and could move the pool into a
+    different cell of the map; it would not change what the map does
+    with a cell.
+22. **Each domain export is one frozen set, and two of the RLA cells are
+    constructed.** §4.8.1 is six scored pools from one corpus with one
+    grader; §4.8.2 is one contest, whose GA-official rows are
+    **predicted-only and unscored** and whose 2% and 5% cells are
+    **synthetic-margin** pools built by a common additive shift of every
+    county share. Both exports treat R as inert for the single and WSR
+    arms on the authority of §5.5's R null, which is a failure to detect
+    over R ∈ [1, 30] on two-level profiles — not a proof of
+    R-independence, and the pools run R up to 17.0.
 
 ---
 
@@ -1965,6 +2527,29 @@ and stratified constructions behind our per-stratum α/K combination.
 Spertus & Stark (2022) and **Spertus, Sridhar & Stark (2024)** give the
 union-intersection test-supermartingale with optimized allocation that
 serves as our state-of-the-art baseline (§4.1.1).
+
+**Risk-limiting audits.** The election-audit literature is where this
+machinery is oldest and most operational, and §4.8.2 borrows from it
+rather than adding to it. **Stark (2020, SHANGRLA)** reduces a very
+general class of social-choice audits to sequential tests that a set of
+nonnegative assorter means each exceed 1/2 — the reduction our τ = 0.5
+formulation is an instance of; **Stark (2023, ALPHA)** and
+**Waudby-Smith & Ramdas (2023)** supply the betting supermartingales
+those tests are now run with, the same family as our WSR arm;
+**Waudby-Smith, Stark & Ramdas (2021, RiLACS)** is the
+confidence-sequence treatment of the same problem; and **Spertus,
+Sridhar & Stark (2024)** is the stratified union-intersection
+construction we ship as `StratifiedUICS` and run as the third arm.
+**Explicit non-claim**: we improve none of these, and propose no
+procedure for a real election. What that literature does not supply — and
+what §4.8.2 tests — is a *pre-observable design-selection rule*: which
+e-process family certifies fastest, decidable from the contest's own
+published margin and county structure before the first ballot is pulled.
+The traffic runs the other way too. The audit setting gave us the first
+prospective test of §5.5's direction-matched constants, a sample unit
+denominated in human labour rather than API calls, and — through a
+stratum geometry no LLM pool had produced — the defect of §6.2's
+instance 9.
 
 **Sequential LLM evaluation.** Wu, Nair & Candès (2026), Hsu & Shekhar
 (2026), CELEUS (2026), PACE (2026) and Zhou et al. (2026) bring
@@ -2013,7 +2598,12 @@ the pools (BASE_SEED = 42; headline comparisons re-verified at seeds
 {7, 2024, 99999}). Checksums are tamper-evidence, not proof of
 reproduction — `reproduce.sh` is the actual demonstration. Raw
 generations for every call are stored under `data/`, including the
-pre-fix archives (`data/archive_pre_multipleof_fix/`). The boundary
+pre-fix archives (`data/archive_pre_multipleof_fix/`), with **one
+exception**: the safety family of §4.8.1 stores prompt hashes, category
+strata and binary outcomes only — **no raw completions for harmful
+prompts are committed**. The StrongREJECT corpus itself is public and
+re-downloadable, and every statistical claim in §4.8.1 reproduces from
+the committed outcome records without the generated text. The boundary
 artifacts print their own checksums (`results_phase_curve.txt`
 040d60191cbbe608 as regenerated, c4a4720dbba3ccb8 as frozen at f75eb8d;
 `results_phase_test.txt` 85ab64297762127a for v2c;
@@ -2023,7 +2613,13 @@ artifacts print their own checksums (`results_phase_curve.txt`
 `results_partition_test.txt` 9394f2ca9ee52755;
 `results_gain.txt` 6741923850ff0c66;
 `results_wsr_expansion.txt` 1d90b32264342885;
-`results_floor_d.txt` 28f029828284b752) and their superseded versions
+`results_floor_d.txt` 28f029828284b752;
+`results_safety.txt` a369e454bc5450fd;
+`results_safety_noise.txt` 923a301bde114ced;
+`results_wsr_k.txt` f6aea65aa754d0d8;
+`results_wsr_rk.txt` 202b167276d05415;
+`results_wsr_pdir.txt` eb8f5f8d7eb4efad;
+`results_rla.txt` 1eefa5b579a1b395) and their superseded versions
 remain in the history (phase test v1 at commit 065f9a8, v2 at 80c9e14,
 v2b at a1f37ac, v2c at 52b6c9f; the pre-correction phase curve at
 f75eb8d).
@@ -2039,8 +2635,9 @@ pilot (`data/severe2_pilot_log.jsonl`) — under $6 total. All local
 pools (llama3.2-3b, llama3.1-8b, llama3-8b, qwen2.5-7b, qwen2-7b,
 both MBPP sets, the fresh populations, and every
 trajectory/sweep/boundary replay) cost nothing: collected locally
-through Ollama with the identical protocol. Test suite: **110 passing
-tests**.
+through Ollama with the identical protocol, as do the eight safety pools
+of §4.8.1. Test suite: **112 passing tests** (110 before §6.2's ninth
+instance added its invariant regression).
 
 **Figures.** Figure 1 (pool heterogeneity), Figure 2 (width vs n),
 Figure 3 (peeking miscoverage), Figure 4 (certification: allocation and
@@ -2062,7 +2659,9 @@ yet drawn.
 | §4.3–4.4 verification | `results_phase_test.txt` (v2c; v1 at 065f9a8, v2 at 80c9e14, v2b at a1f37ac), `results_portfolio.txt`, `results_auto_select.txt` |
 | §4.7 partition | `results_partition.txt`, `results_partition_test.txt`, `results_optimal_k.txt`, `results_gain.txt`, `scripts/derive_partition.py`, `scripts/run_partition_test.py`, `scripts/derive_optimal_k.py`, `scripts/measure_gain.py` |
 | §5 expansion | `results_overhead_law.txt`, `results_overhead_fit.txt`, `results_overhead_law_code.txt`, `results_margin_sweep.txt`, `results_overshoot.txt`, `results_cren_exact.txt`, `results_selection.txt`, `results_overshoot_closed.txt`, `results_adjudication.txt`, `results_lineage_d.txt`, `results_frontier.txt`, `results_live_prediction.txt`, `audit/out_law_accounting.txt`, `paper/BOUNDARY_THEOREM.md` |
+| §4.8 domain exports | `results_safety.txt`, `results_safety_noise.txt`, `results_rla.txt`, `scripts/run_safety_cert.py`, `scripts/run_rla_bridge.py` |
 | §5.5 WSR expansion | `results_wsr_expansion.txt`, `results_floor_d.txt`, `scripts/run_wsr_expansion.py`, `scripts/derive_floor_d.py`, `results_mbpp_law.txt` |
+| §5.5 envelope grids | `results_wsr_k.txt`, `results_wsr_rk.txt`, `results_wsr_pdir.txt` |
 | §6 methodology | `audit/AUDIT_LAW_CAPSTONE.md`, `audit/AUDIT_WARMSTART.md`, `AUDIT_PREP.md`, `results_relation_gate.txt`, `results_live_wsr.txt`, `scripts/relation_gate.py` |
 
 ---
@@ -2074,10 +2673,11 @@ Mahalanobis (1946); Spitzer (1956); Schwarz (1962); Pollak & Siegmund
 (1975); Pollak (1978); Woodroofe (1982); Rissanen (1984); Lai (1988);
 Lai & Zhang (1994); Clarke & Barron (1990); Krichevsky & Trofimov
 (1981); Xie & Barron (1997); Kim & Woodroofe (2006, math/0611695);
-Watanabe (2009); Maurer & Pontil (2009); Wasserman,
-Ramdas & Balakrishnan (2020); Waudby-Smith, Stark & Ramdas (2021,
-RiLACS); Spertus & Stark (2022); Turner, Ly & Grünwald (2022);
-Waudby-Smith & Ramdas (2023); Shekhar & Ramdas (2023); Turner & Grünwald
+Watanabe (2009); Maurer & Pontil (2009); Stark (2020, SHANGRLA);
+Wasserman, Ramdas & Balakrishnan (2020); Waudby-Smith, Stark & Ramdas
+(2021, RiLACS); Spertus & Stark (2022); Turner, Ly & Grünwald (2022);
+Stark (2023, ALPHA); Waudby-Smith & Ramdas (2023); Shekhar & Ramdas
+(2023); Turner & Grünwald
 (2023); Spertus, Sridhar & Stark (2024, arXiv:2409.06680); Wu, Nair &
 Candès (2026, arXiv:2601.20251); Hsu & Shekhar (2026, arXiv:2607.17409);
 CELEUS (2026, arXiv:2606.20820); PACE (2026, arXiv:2606.08106); Zhou et

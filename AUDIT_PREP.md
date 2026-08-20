@@ -1605,3 +1605,48 @@ within 1000 samples in this regime.
   run in, wrong in the first configuration it had not -- the relation
   gate's own thesis, this time caught by a domain port instead of a
   census.
+- 2026-08-19 (PAPER v4.2 CONSOLIDATION; one contradiction in THIS file
+  found and resolved): paper/DRAFT.md v4.1 -> v4.2, consolidation only
+  (v4.1 section skeleton preserved; every addition is a new subsection
+  or an in-place sync). Folded in: NEW 4.8 "Export: two out-of-family
+  domains" (4.8.1 safety #50 with the frozen table, the mandatory
+  pool-parameters-not-rankings non-claim printed adjacent to that table,
+  the scored P1 1/2 MISS, P2 0/6, P3 4/2700, and the 43.3% label-noise
+  disclosure; 4.8.2 the RLA bridge #51 with the frozen margin-axis
+  table, P1 1/1 HIT, TIE confirmed at 2%, P3 1/450 = 0.0022 on the
+  null pool, the ballots-saved table, the real-margin majority result,
+  and the mandatory SHANGRLA/BRAVO/ALPHA/UI-TS non-claim); 5.5 extended
+  with the three envelope grids (K linear laws, the R refutation
+  recorded as a scored P2 FAIL that IS the finding, direction+p* with
+  V's asymmetry divided out before the fit, and the standing statement
+  that the envelope is a measured (K, p*, direction) surface with R
+  null); 6.2 instance 9 (StratifiedUICS KKT root defect, 110 -> 112
+  tests); 6.3 ledger + 1 row; 7 items 21-22 and item 13 synced; 8 new
+  "Risk-limiting audits" paragraph (Stark 2020 SHANGRLA, Stark 2023
+  ALPHA added to References); 1.2 two mandatory non-claims added; 9
+  test count, six new checksums, and the safety raw-generation storage
+  exception that README already cited to paper 9. Abstract updated
+  minimally (one domain-export paragraph naming the miss first, 112
+  tests, 34-row ledger).
+  CONTRADICTION FOUND AND RESOLVED -- MISS LEDGER COUNT. This file's
+  #50 entry says "miss ledger +1" against a v4.1 baseline of 33 rows
+  (commit 9fa5758, "ledger 33 rows"), which makes the post-#50 count
+  34. The four entries that follow it (wsr_k, wsr_rk, wsr_pdir, #51)
+  each say "miss ledger unchanged (33 rows)". Both cannot be true.
+  RESOLUTION: the "+1" is authoritative on the DELTA -- v4.1's table
+  demonstrably lacked any safety row and was counted at 33 -- and the
+  four "(33 rows)" parentheticals are a stale count copied forward;
+  their load-bearing content is "unchanged BY THIS ARTIFACT", which is
+  correct in every case (all four are measurement grids that added no
+  miss). THE LEDGER IS 34 ROWS as of the safety P1 row, and v4.2 prints
+  34. The four stale parentheticals are left in place as the record
+  rather than back-edited; this entry is the correction.
+  Also recorded, both disclosed in-draft rather than silently fixed:
+  (a) v4.1's 1.2 said "the boundary work adds four more" above five
+  bullets -- an off-by-one predating this pass, corrected to seven with
+  the two new non-claims and the miscount named; (b) the relation gate
+  was last run against v4.1 and the v4.2 additions have NOT been
+  re-scanned -- 6.2 says so, and says the new per-cell tables would ADD
+  to the R5 count rather than reduce it. No verdict, no artifact and no
+  number was changed by this pass; nothing was re-run except the test
+  suite (112 passed). publish_sync.sh untouched and not run.
