@@ -513,6 +513,38 @@ well, leaving the domain with zero resolving predictions. **Block size accounts
 for most of the magnitude and none of the resolution**: the miss stands as
 scored, and the honest next clause is a joint c(R, K), not a K-only patch.
 
+**Second addendum (2026-08-19) — the joint (R, K) surface: R is not the missing
+argument.** [results_wsr_rk.txt](results_wsr_rk.txt) measures that clause on a
+designed 12-cell grid — K ∈ {2, 4, 6} × R ∈ {1, 3, 10, 30}, two-level
+K-stratum pools (half the strata at p_lo, half at p_hi, ratio R, mean exactly
+p\*), one draw per stratum per block into the shipped `WSRBlockCS`, the τ ladder
+solved per (p\*, R) to a *common* median window so that no cell's effective
+local fit spans a different n-range, and V the exact Poisson-binomial
+block-mean Kelly rate (it matches the shipped 2^K enumeration at K = 4 to
+1.4e−17); 96/96 rungs certified ≥99%. The result is a **null on R**: at fixed K,
+c is non-monotone in R, and the entire R = 1 → 30 endpoint change is −0.64 /
+−0.15 / +0.63 nats at K = 2 / 4 / 6 — inconsistent in sign and each at most
+0.37 of its own standard error, so the pre-registered monotonicity predicate
+fails in the informative direction. The fitted surface says it quantitatively:
+d = 4.171 − 0.463·K − 0.019·log R and c = −8.245 + 0.919·K − 0.108·log R, whose
+log R terms move the constants by 3.5% and 10.0% of what K moves them by, well
+inside the residual scatter — log R is rejected as a carrier because the R
+*effect* is null, not because some other R-carrier is wanted, and the K
+coefficients independently reproduce the K artifact's linear laws on a
+different profile family. The regression anchor (P1) passes at K = 2 and K = 6
+and fails at K = 4, where the two independently measured envelopes nonetheless
+agree to within 0.45 nats — about 7% in n — across the fitted range: a d↔c
+trade-off inside a two-parameter local fit, not a disagreement about the
+envelope. Plugged back into the safety freeze at (K = 6, each pool's own R),
+the joint envelope resolves three pools instead of two but matches the measured
+winners **1/2, exactly the frozen rate** (llama3.2-3b gained, the qwen2-7b HIT
+lost, mistral-7b again moving only to TIE). The miss stands as scored, twice
+over, and the outstanding clause is closed in the negative: *heterogeneity is
+not what the K = 4 envelope was missing.* Across the six safety pools p\* and
+log R are confounded at −0.87, so the pools alone could never have separated
+those two — which is exactly why a designed grid was needed, and what it says
+is that with p\* held fixed, R does essentially nothing.
+
 ### F13. The design-space partition (derived, field-opening)
 
 The four-regime design map is now a DERIVED partition of

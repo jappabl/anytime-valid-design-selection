@@ -1313,3 +1313,100 @@ within 1000 samples in this regime.
   JOINT c(R, K), not a K-only patch. Freeze convention for this artifact:
   the protocol is a measurement grid, not a prediction test, so the
   docstring is committed WITH the results — P1-P3 still print PASS/FAIL.
+- 2026-08-19 (the JOINT (R, K) surface measured; the outstanding
+  "envelope needs a joint c(R,K)" clause CLOSED WITH A NULL ON R):
+  results_wsr_rk.txt (checksum 202b167276d05415) — the WSR overhead
+  envelope measured on a designed 12-cell grid, K in {2,4,6} x R in
+  {1,3,10,30}, at p* in {0.20,0.35} x 4 margins (96 rungs). Pools are
+  two-level K-stratum profiles (half the strata at p_lo, half at p_hi,
+  p_hi/p_lo = R, mean exactly p*); a block is one draw per stratum
+  (round-robin) fed to the SHIPPED WSRBlockCS polled every block;
+  certify UNSAFE at tau = p* - delta. The tau ladder is solved per
+  (p*, R) at K=4 to a COMMON median window {250,800,2500,8000} and then
+  shared by every K — deliberate, because an effective LOCAL fit depends
+  on the range it is taken over, so unequal per-cell n-ranges would
+  masquerade as R-dependence. Reps 250/250/180/120 tapered and
+  disclosed; CRN = one uniform stream per (p*, rung, rep) SHARED by all
+  twelve (K,R) arms, mapped to strata by position mod K, so K and R
+  change the mapping and thresholds, never the randomness; 96/96 rungs
+  certified >= 0.99. V = exact per-sample Kelly rate of the block mean
+  computed by Poisson-binomial DP convolution in O(K^2) (the block mean
+  is a sum of INDEPENDENT NON-IDENTICAL Bernoullis, so the K artifact's
+  Binomial form does not apply); it agrees with the shipped 2**K
+  enumeration at K=4 to 1.39e-17, both at (K=4,R=1) and over the WHOLE
+  K=4 sub-grid. Per (K,R) cell the two p* ladders are POOLED (8 rungs)
+  and O = (d/2) log n + c is fit by OLS with standard errors printed.
+  12-CELL RESULT (d/c): K=2 3.566/-7.282, 2.722/-4.428, 3.324/-6.994,
+  3.525/-7.919; K=4 2.084/-4.174, 2.319/-5.052, 2.194/-4.923,
+  1.990/-4.326; K=6 1.562/-3.235, 1.393/-2.723, 1.515/-3.354,
+  1.267/-2.601 (columns R=1,3,10,30).
+  P1 FAIL (regression anchor) — but 2 of its 3 sub-checks PASS: at K=2
+  (d +0.180, c -0.360) and K=6 (d +0.097, c -0.097) the R=1 column
+  reproduces results_wsr_k.txt inside the pre-registered +/-0.25 / +/-0.6;
+  K=4 misses on both (d -0.259, c +1.177). POST-HOC ARITHMETIC (labeled,
+  computed from the two artifacts' own printed constants, scores
+  nothing): the two independently measured envelopes agree at FUNCTION
+  level within 0.494 / 0.446 / 0.335 nats across each cell's measured
+  n-range at K=2/4/6, i.e. ~7% in n — the K=4 pairwise failure is the
+  d<->c trade-off of a two-parameter local fit (that cell's own OLS SEs
+  are 0.239 in d and 0.886 in c), not an envelope disagreement. The
+  anchor's identity was re-verified in-artifact (checksum recomputed AND
+  its (d_K,c_K) table parsed and asserted against the values scored).
+  P2 FAIL — AND THAT IS THE RESULT. c is NOT monotone in R at any K, and
+  the R=1 -> R=30 endpoint change is -0.637 / -0.152 / +0.634 nats at
+  K=2/4/6: inconsistent in SIGN and each at most 0.37 of its own
+  standard error. d is likewise non-monotone. The long-hypothesized
+  c_short(R) offset (THEORY.md 2026-08-15, ~0.7-1.0 nats) is NOT PRESENT
+  over R in [1,30] on these profiles; this is the first time R was swept
+  at fixed p* on a designed grid rather than inferred across pools.
+  P3 PASS (0/96 rungs excluded; hard guard unused).
+  SURFACE (observed regularity, not derived): d = 4.1707 - 0.4625 K
+  - 0.0190 log R and c = -8.2446 + 0.9194 K - 0.1081 log R. Over the
+  whole R sweep the log R terms move d by -0.065 (3.5% of the K effect)
+  and c by -0.368 (10.0%), against max|residual| 0.503 (22% of range)
+  and 2.096 (39%) — so the pre-registered rule REJECTS log R as a
+  carrier, and the reason is that the R effect is NULL, not that some
+  other R-carrier is wanted; nothing else was fitted to force it and the
+  full 12-cell residual table is printed. The K coefficients reproduce
+  the K artifact's linear laws (-0.4625 vs -0.4267 in d, +0.9194 vs
+  +0.9638 in c) on an entirely new grid with a different profile family
+  — an INDEPENDENT confirmation of the K law.
+  POST-HOC DIAGNOSTIC (labeled; does NOT re-score #50): run_safety_cert's
+  prediction path reused verbatim (load_pool, mu, tau=round(mu-0.045,3),
+  single_fourterm, 64-atom v_kelly_block_K at K=6, +/-5% tie band), only
+  the WSR overhead swapped, COMMITTED column asserted to reproduce the
+  frozen table (it does). The joint envelope at (K=6, R_pool) gives 3
+  RESOLVING calls (vs the frozen 2) but matches the measured winners 1
+  HIT / 1 MISS / 1 unconfirmed = 1/2 — the SAME rate as the frozen call.
+  ANSWER: PARTIAL (Q1 >= 2 resolving YES; Q2 better than 1/2 NO). Errors
+  COMMITTED [-11.8%,+37.2%] -> JOINT-S [-35.2%,+31.2%]: better on the
+  mid/high-p* pools (+37.2 -> +31.2, +19.3 -> +13.5, +36.1 -> +28.0),
+  worse on the low-p* ones. mistral-7b again moves SINGLE -> TIE and
+  never to WSR; llama3.2-3b TIE -> WSR (matching measurement); and
+  qwen2-7b's HIT is LOST (SINGLE -> WSR, a new miss). The #50 MISS
+  STANDS AS SCORED; miss ledger unchanged (33 rows).
+  RESIDUAL OBSERVATION (labeled, six points, explicitly NOT a claim):
+  the JOINT-S error orders with pool p* (corr +0.75) and anti-orders
+  with log R (corr -0.71) — but p* and log R are CONFOUNDED at -0.87
+  across these six pools, so the pool set cannot separate them. What the
+  DESIGNED grid settles is the R side: with p* held fixed and R swept
+  1 -> 30, c moves by less than 0.4 SE. The residual over-prediction is
+  therefore NOT heterogeneity; p* (or the profile shape, or the
+  short-horizon plateau the K artifact saw at K=4/6/8) is the open
+  candidate and is NOT established here.
+  SCOPE, disclosed in-artifact: the grid's R is a two-level half-half
+  ratio while a real pool's R is max/min over six category rates
+  (asserted equivalent, not proved); the surface carries no p* term and
+  extrapolates to pool p* up to 0.857; stock WSR has no fixed (d,c)
+  asymptotically (results_wsr_expansion.txt), so every envelope here is
+  an EFFECTIVE LOCAL fit over the measured range, not an expansion
+  claim; tau's 0.001-lattice mid-cell offset (0.6-3.1% of margin) is
+  held FIXED across all twelve cells so it cannot masquerade as R- or
+  K-dependence. DISCLOSED DEVIATION from the requested protocol: four
+  margins per cell span ~32x in n, not ~8x — two free parameters fit
+  from eight points need leverage in log n and ~8x cannot reach the
+  requested 200-15000 window; the operative constraint is met (measured
+  medians 222-13158). Freeze convention as for the K artifact: a
+  measurement grid, docstring committed WITH the results, P1-P3 print
+  PASS/FAIL. Next clause: the envelope's missing argument is block size
+  alone as far as this grid can see — R is ruled out, p* is open.
