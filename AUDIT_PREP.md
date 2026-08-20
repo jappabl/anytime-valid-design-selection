@@ -1817,3 +1817,100 @@ within 1000 samples in this regime.
 - 2026-08-20 (long ladder verdict): floored-arm d = +1.2071 +/- 0.1107 over 10000 journaled reps — d=1.53 warmup-corrected REJECTED (z=-2.92); d=1 idealization CONSISTENT (z=+1.87). The shipped Kelly floor behaves as the derived idealization at scale.
 - 2026-08-20 (ladder phrasing amendment, broker-verified z's): d=1 is NOT REJECTED (two-sided p=0.061), not 'confirmed' — point estimate 1.2071 sits 1.87 SE above 1, and the SE-distance from 1 GREW (1.71->1.80->1.87) as precision improved 3.4x: signature of a small real offset (~0.2), candidate = slow 1/log t_c warmup remnant. Strong claim: 1.53 REJECTED (p=0.0035). Extrapolation check queued before any 'floored arm = idealization' claim; boundary route on that arm may inherit a small quantified offset rather than closing exactly.
 - 2026-08-20 (Task B, verified: jump identity reproduced here 0.025740, bound dV/2=0.014263 exceeded): IMPOSSIBILITY PROVED — c_ren has infinitely many discrete-median jumps >= dV/2 > 0 for every (tau,p*), so no limit C0 and no smooth scalar expansion; resonance-free proof, resonance reinforces (O(1) periodic phase / arbitrarily slow convergence); nonresonant cells admit pointwise leading asymptotics only. Scope limit preserved verbatim: excluded class = smooth finite-dim renewal reductions, power series, universal thresholds, single-eigenvalue formulas. Theory thread TERMINAL: c_ren exactly computable + scalar form proved impossible in the relevant class. Jump bound carries d explicitly — vindicates schedule-dependence. Grid-differencing trap documented (jump - dL, not jump). HAO'S THREE-TASK DIRECTIVE COMPLETE: A derived (both lineages), C split (selection closed, overshoot refuted), B impossibility proved. Residue open with 3 refuted candidates.
+- 2026-08-20 (PAPER v4.3 CONSOLIDATION; ONE CONTRADICTION IN THIS FILE
+  FOUND, VERIFIED, AND RESOLVED AGAINST THE TWO ENTRIES ABOVE):
+  paper/DRAFT.md v4.2 -> v4.3 and paper/BOUNDARY_THEOREM.md updated,
+  consolidation only (v4.1/v4.2 section skeleton preserved; every
+  addition is a new subsection or an in-place sync). Folded in: 5.5
+  gains the DERIVED envelope law (both routes, the frozen 4/4 HIT
+  table, the chord-of-a-convex-d(K) reading with the (+,-,-,+) residual
+  signature, DIRECTION-IS-NOT-AN-AXIS superseding v4.2's "both axes,
+  comparably" interpretation of grid (iii) while leaving its scored P2
+  verdict untouched, the block-skewness carrier and the joint
+  odd-under-the-reflection argument, the shared 4.4%/9.6% slope residue
+  and the three refuted candidates, and the four carried assumptions);
+  5.3 gains the c_ren IMPOSSIBILITY (median-jump argument, bound
+  dV/2 = 0.014263 vs reproduced jump 0.025740, resonance-free with
+  resonance reinforcing, the class-relative scope limit stated before
+  it is leaned on, the grid-differencing trap) plus the finite-L split
+  (selection closed exactly, d-independent, 8.9% high at L=3; overshoot
+  REFUTED as any smooth correction, 111x quasi-lattice near-resonance
+  at (.3,.2,4), rho_d an L->infinity limit, NO universal L threshold);
+  new 6.5 (two-route mutually-blind protocol, the two transfer episodes
+  — criterion-kills-its-authors-favourite and off-grid self-refusal —
+  and the freeze-design rule "hash the prediction payload only");
+  6.2 instances 10 and 11 (nine -> eleven, both R4b in new costumes)
+  with the generator's thinning predictive content stated; 6.3 ledger
+  34 -> 36 rows (+ the scored triple negative, + the ladder convention
+  defect) and the existing floored-arm row extended with its
+  resolution; 7 limitations 12/14/17 rewritten and 23-24 added
+  (no universal L threshold; the two single-route derivations are
+  verified but not independently derived); 9 gains the
+  results_wsr_envelope.txt checksum c052f57840f4f670, the two-route
+  artifact map, the same-basename filename warning, and the declared
+  R4 exposure that the ladder verdict has no self-scoring artifact;
+  abstract, 1.1 (new item 4, envelope law) and 1.2 (eighth non-claim:
+  deriving the law is not deriving the envelope) synced. Relation gate
+  re-run over v4.3: R4 one flag (results_cren_exact.txt, unchanged
+  class), R4b clean, R8 ok (10/13, 77%), R5 84 against the draft
+  (was 46 at v4.2) — no new flag CLASS, and the new R4 exposure is
+  declared in-draft because the gate cannot see it. Test suite 112
+  passed. No artifact, script or results_* file was touched.
+  CONTRADICTION FOUND AND RESOLVED -- THE LONG-LADDER SCORING
+  CONVENTION. The two entries immediately above report the 10,000-rep
+  floored-arm ladder as d = +1.2071 +/- 0.1107, "1.53 REJECTED
+  (p=0.0035), d=1 NOT REJECTED (p=0.061)". That reading is WRONG, and
+  the defect is ours, not the ladder's. Reconstructed here from
+  data/floor_ladder_long.jsonl (all 10,000 records; medians
+  [1828, 3746, 8216, 17236, 38120]; zero rungs censored at n_max):
+  scoring the SAME crossings at the NOMINAL mid-cell tau reproduces
+  d = +1.2071 EXACTLY (bootstrap se 0.0966 at 4,000 within-rung
+  resamples), while scoring them at the BINDING GRID POINT
+  m = tau - 0.0005 gives d = +1.5824, se 0.1016. tau_nom is the
+  GRID-BIASED convention that results_floor_d.txt already identified,
+  confirmed and superseded: its section 1 states the direction
+  ("rho < 1 and FALLING down the ladder ... biases d DOWNWARD"), its
+  provenance check prints tau_nom -> +1.2727 as the reproduction of the
+  superseded committed +1.27, and derive_floor_d.py line 308 computes
+  the DERIVATION's own ordinate as T * vstar_m with the comment
+  "grid-aligned scoring: rho = 1". The prediction being scored
+  (d_pred_shipped = +1.5301) is therefore expressed at the binding
+  point, so the measurement must be too. Mechanism confirmed
+  independently here: WSRBlockCS.get_bounds returns lo = alive[0], a
+  GRID POINT, so `lo > tau` requires the death of max{grid <= tau} =
+  tau - 0.0005, which is the binding point and the rate that governs
+  the crossing time. CORRECTED VERDICT: d = +1.5824 +/- 0.1016 --
+  d = 1 is REJECTED at z = +5.73, d = 1.5301 is NOT rejected
+  (z = +0.51), and against the frozen windows re-evaluated at the new
+  se, P-A MISSES and P-B HITS. The frozen adjudication that
+  results_floor_d.txt left UNRESOLVED therefore RESOLVES, in favour of
+  the WARMUP-CORRECTED derivation and against the idealization -- the
+  opposite of the two entries above. WHAT ELSE THE CORRECTION KILLS:
+  the "growing SE-gap" caution (1.71 -> 1.80 -> 1.87 as precision
+  improved 3.4x) MIXED CONVENTIONS -- 1.6525 and 1.3614 are
+  grid-CORRECTED, 1.2071 is grid-BIASED. The corrected-convention
+  sequence is 1.6525 (se 0.3813) -> 1.3614 (se 0.2006) -> 1.5824
+  (se 0.1016), which does not fall and shows no growing offset from
+  1.5301; the ~0.2 "small real offset from 1" and its 1/log t_c
+  candidate were artifacts of the mix. Also withdrawn: "the shipped
+  Kelly floor behaves as the derived idealization at scale" -- it
+  behaves as the warmup-corrected derivation, which is what that
+  derivation predicted. STILL TRUE AND KEPT: the shipped class has no
+  fixed d (warmup decays as 1/log t_c), so +1.5824 is an EFFECTIVE d
+  over this ladder's horizon window n ~ 1.8k-38k and should be
+  expected to drift on a longer ladder; the queued extrapolation check
+  is still the right next step, now aimed at the drift rather than at
+  an offset from 1. The two entries above are LEFT IN PLACE as the
+  record rather than back-edited; this entry is the correction, and the
+  defect is entered in the miss ledger (row 36) and as relation-gate
+  instance 10 -- both fits locally correct, the relation between the
+  measurement's rate convention and the derivation's never computed,
+  and, worse, computed once in results_floor_d.txt section 1 and then
+  not carried forward. NOTHING ELSE in the 2026-08-20 arc is affected:
+  Task A (both routes), Task C (selection closed / overshoot refuted)
+  and Task B (impossibility) were each re-verified here during this
+  pass -- dV/2 = 0.014263 recomputed from KL(0.202||0.157) at d = 4,
+  the selection leading form reproduced at 0.197431 vs the exact
+  0.181355 (8.9% high), the (.3,.2,4) atom ratio recomputed at 110.7,
+  and scripts/external/finite_l/verify_finite_l_all.py re-run clean
+  over all 42 oracle cases. publish_sync.sh untouched and not run.

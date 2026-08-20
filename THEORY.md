@@ -1263,3 +1263,64 @@ overshoot demoted (level-shift character, intercepts already agree).
 FIRST CHECK, before any derivation: chord-vs-tangent geometry of the
 convex d(K) over K in [2,8] — bounds how much residue is real vs an
 artifact of fitting a line to a convex function.
+
+
+## Thread terminal: c_ren impossible, finite-L split, ladder resolved
+
+Three closures land together, and one of them is a correction of this
+project rather than of the literature.
+
+TASK B — c_ren SCALAR CLOSED FORM: PROVED IMPOSSIBLE (in the stated
+class). Crossings occur only on multiples of the check period d, so the
+discrete-median crossing is a STEP function of the barrier
+L = log(1/alpha): between steps c_ren falls at unit rate in L, at a step
+n rises by d and c_ren jumps by ~ dV. The steps never thin out, so
+c_ren(L) has infinitely many jumps of size >= dV/2 > 0 for EVERY
+(tau, p*) -- no limit constant, no smooth scalar expansion. Verified at
+the reference point: bound dV/2 = 0.014263, reproduced jump 0.025740.
+Resonance-free; the quasi-lattice resonance only reinforces it. SCOPE:
+the excluded class is smooth finite-dimensional renewal reductions,
+power series, universal thresholds and single-eigenvalue formulas -- an
+absolute proof would first have to fix a class, and none is claimed. The
+bound carries d EXPLICITLY, which derives the schedule-dependence this
+thread had only measured. Reproduction trap: differencing across a grid
+of L returns (jump - dL), not the jump.
+
+TASK C — FINITE-L SPLIT. Selection CLOSED by an exact
+likelihood-differentiation identity: Delta_sel = (1 + (1-2p) theta)/(2L)
++ o(1/L), INDEPENDENT of d, 8.9% high at L = 3 (0.197431 vs an exact
+0.181355) and ~5% by L = 20. Overshoot REFUTED as any smooth finite-L
+correction: at (p, tau, d) = (.3, .2, 4) the k=1 block atom is 0.004871
+against a lattice spacing 0.538997 -- 111x smaller -- so the renewal
+phase never mixes, the error survives past L = 200 and changes sign
+there. rho_d is an L -> infinity LIMIT; the finite-L gap is exactly
+computable by the absorption recursion and there is NO universal L
+threshold, because the resonance is (p, tau, d)-dependent. A candidate
+closed form was refused by its own author on an off-grid self-test
+(0.568 vs an exact 0.416); the refusal is the record, not the near-hit.
+
+FLOORED-ARM LADDER — RESOLVED, AFTER A CONVENTION ERROR OF OURS
+REVERSED IT ONCE. The 10,000-rep journaled ladder
+(data/floor_ladder_long.jsonl; medians [1828, 3746, 8216, 17236, 38120];
+zero rungs censored) was first analysed at the NOMINAL mid-cell tau and
+gave d = +1.2071, from which "1.53 rejected, d=1 not rejected" was
+recorded. That is the grid bias results_floor_d.txt had already found,
+confirmed and superseded (its section 1: rho < 1 and FALLING down the
+ladder biases d DOWNWARD; its provenance check prints tau_nom -> 1.2727
+as the reproduction of the superseded committed +1.27). The prediction
+d_pred_shipped = +1.5301 is derived at the BINDING GRID POINT
+m = tau - 0.0005 (derive_floor_d.py: T * vstar_m, "grid-aligned scoring:
+rho = 1"), and WSRBlockCS.get_bounds returns a GRID POINT, so `lo > tau`
+is the death of max{grid <= tau} = m and m's rate is what governs the
+crossing. Scored in the derivation's own convention the same 10,000
+crossings give d = +1.5824, bootstrap se 0.1016: d = 1 REJECTED at
+z = +5.73, d = 1.5301 NOT rejected at z = +0.51, P-A MISSES and P-B
+HITS. The frozen adjudication resolves FOR the warmup-corrected
+derivation. Withdrawn with it: the "growing SE-gap" caution, which mixed
+conventions (1.6525 and 1.3614 grid-corrected against 1.2071
+grid-biased; the corrected sequence 1.6525 -> 1.3614 -> 1.5824 neither
+falls nor drifts from 1.5301), and the ~0.2 offset and its 1/log t_c
+candidate that were read off that mix. KEPT: the shipped class has no
+fixed d (the warmup decays as 1/log t_c), so +1.5824 is an EFFECTIVE d
+over n ~ 1.8k-38k and the extrapolation check is still owed -- aimed now
+at the drift, not at an offset from 1.

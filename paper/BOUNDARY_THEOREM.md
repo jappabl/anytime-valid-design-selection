@@ -9,9 +9,15 @@ corollary whose remaining input (WSR's overhead envelope) is empirical,
 not proved. Every numerical claim is checked in
 [results_overshoot.txt](../results_overshoot.txt) (identity C1, slope
 C2), [results_cren_exact.txt](../results_cren_exact.txt) (the exact
-c_ren value, superseding the old C4 decomposition), and
+c_ren value, superseding the old C4 decomposition),
 [results_phase_test.txt](../results_phase_test.txt) (the boundary
-verification). Scope is stated plainly at the end.
+verification), and — for the WSR side of §4 —
+[results_wsr_envelope.txt](../results_wsr_envelope.txt) (the derived
+envelope law, checksum `c052f57840f4f670`) together with
+[results_floor_d.txt](../results_floor_d.txt) and the 10,000-rep
+journal `data/floor_ladder_long.jsonl`. Scope is stated plainly at the
+end, and §4 states one impossibility whose scope is a named function
+class rather than "all closed forms".
 
 ## 1. Setup
 
@@ -93,7 +99,8 @@ with q\* = 1−p\*. The p\*-dependent constant is **derived**:
 c_Laplace(p\*) = −½ log(2π p\* q\*). The residual carries one further
 term c_ren = c_ren(p\*, tau, alpha, d, n0) — NOT p\*-independent and
 NOT a universal scalar; it is a full function, EXACTLY COMPUTABLE by a
-finite absorption recursion (§4, results_cren_exact.txt).
+finite absorption recursion (§4, results_cren_exact.txt), and PROVED
+in §4 to admit no scalar closed form within the class stated there.
 
 ## 3. What the theorem buys (measured, zero fitted parameters)
 
@@ -127,17 +134,63 @@ committed before this derivation existed):
 
 ## 4. What is NOT proved (stated open)
 
-1. **c_ren scalar closed form.** c_ren is EXACTLY COMPUTABLE for any
-   (p\*, τ, α, d, n0) by the finite absorption recursion (zero fit) —
-   so the four-term expansion is fully predictive in practice. What is
-   OPEN is a scalar elementary/special-function reduction: the
-   obstruction is a time-inhomogeneous, NONCOMMUTING killed kernel
-   (continuation-then-draw operators do not commute across check
-   times), a genuine mathematical obstruction, not an unfitted
-   constant. The overshoot piece has an asymptotic closed form
-   (ρ_d = E[H_d²]/(2E[H_d]), Spitzer) but a finite-L gap (0.170 vs
-   0.228 at α = 0.05); selection has an exact closed form
-   E[N·D(p̂‖p\*)] with first-order term exactly zero (Wald).
+1. **c_ren scalar closed form: PROVED IMPOSSIBLE in the stated class;
+   the exact algorithm is retained and is the answer.** c_ren is
+   EXACTLY COMPUTABLE for any (p\*, τ, α, d, n0) by the finite
+   absorption recursion (zero fit), so the four-term expansion is fully
+   predictive in practice. What was listed here as OPEN — a scalar
+   elementary/special-function reduction — is now CLOSED NEGATIVELY.
+   The argument does not use the kernel obstruction previously named
+   (a time-inhomogeneous, NONCOMMUTING killed kernel, continuation-
+   then-draw operators failing to commute across check times); that
+   obstruction stands but is no longer what carries the result.
+
+   THE MEDIAN-JUMP ARGUMENT. Crossings occur only on multiples of the
+   check period d, so the discrete-median crossing n_med is a STEP
+   function of the barrier L = log(1/α): between steps n is constant
+   and c_ren falls at unit rate in L; at a step n rises by d and c_ren
+   jumps by ≈ d·V. The steps do not thin out. c_ren(L) therefore has
+   INFINITELY MANY JUMPS of size ≥ d·V/2 > 0 for EVERY (τ, p\*), so no
+   limit constant C₀ exists and no smooth scalar expansion can
+   represent the function. Verified at the reference point
+   (p\* = 0.202, τ = 0.157, d = 4): bound d·V/2 = 0.014263, reproduced
+   jump 0.025740 (above the bound, as required). The proof is
+   RESONANCE-FREE; the quasi-lattice resonance of the increment law
+   only reinforces it (O(1) periodic phase at rational resonance,
+   arbitrarily slow convergence nearby). Non-resonant cells admit
+   pointwise leading asymptotics and nothing stronger. Reproduction
+   trap, documented: differencing c_ren across a grid of L returns
+   (jump − ΔL), not the jump — read the jump AT a step.
+
+   SCOPE LIMIT, stated rather than elided. An absolute proof excluding
+   every imaginable closed form would first have to fix the function
+   class; no such theorem is claimed. What IS excluded is the class the
+   question meant: SMOOTH FINITE-DIMENSIONAL RENEWAL REDUCTIONS, POWER
+   SERIES in the natural parameters, UNIVERSAL THRESHOLDS, and
+   SINGLE-EIGENVALUE FORMULAS. Inside that class the answer is *no*,
+   not *unknown*. Note that the bound carries d EXPLICITLY: the check
+   period sits inside the obstruction, which derives from first
+   principles the schedule-dependence of c_ren that this project had
+   previously only measured.
+
+   THE TWO FINITE-L PIECES, split verdict. SELECTION is CLOSED: on top
+   of the exact form E[N·D(p̂‖p\*)] with first-order term exactly zero
+   (Wald), an exact likelihood-differentiation identity gives the
+   leading finite-L behaviour Δ_sel = (1 + (1 − 2p\*)·θ)/(2L) + o(1/L)
+   with θ as in §2 — INDEPENDENT of the check period d — overpredicting
+   the exact value by 8.9% at L = 3 and ~5% by L = 20 (0.19743 vs an
+   exact 0.181355 at the reference point). OVERSHOOT is REFUTED as any
+   smooth finite-L correction: its asymptotic constant
+   ρ_d = E[H_d²]/(2E[H_d]) (Spitzer) is an L → ∞ LIMIT, and the
+   approach is controlled by a quasi-lattice near-resonance of the
+   d-block increment law — at (p, τ, d) = (0.3, 0.2, 4) the k = 1 atom
+   is 0.004871 against a lattice spacing 0.538997, 111× smaller, so the
+   renewal phase never mixes, the error is visible past L = 200 and
+   changes sign there. The finite-L gap (exact 0.228658 vs ρ_4 = 0.1703
+   at α = 0.05) is exactly computable by the absorption recursion, is
+   NOT closed in smooth form, and admits NO UNIVERSAL L THRESHOLD,
+   since the resonance is (p, τ, d)-dependent. The absorption recursion
+   is the operational answer.
 2. **The other statistics.** Eqs. (2)–(3) are the single-stream arm only.
    The UI product e-process has d = K + #boundary empirically (a coarse
    regularity, downgraded to 2-of-3 and shown margin-structure-dependent
@@ -172,6 +225,37 @@ committed before this derivation existed):
    revision of this paragraph asserted the no-expansion claim as
    settled while the frozen test of it was still running; the test
    then failed P1. Recorded in the miss ledger; now gate rule R9.)
+   WHAT IS NOW DERIVED, and what it does not settle: the WSR overhead
+   envelope's K-LINEAR LAW (d_K = 4.1407 − 0.4267·K,
+   c_K = 0.9638·K − 8.9801, measured in results_wsr_k.txt) is derived
+   ZERO-FIT by TWO INDEPENDENT ROUTES, mutually blind until frozen and
+   each verified in-repo against the committed grids — a finite-window
+   projection of the stock schedule's cumulative drift, and a loglog
+   Kelly-deficit integral with warm-up t0 = K/(4p(1−p)) fixed by the
+   SHIPPED prior sq0 = 1/4 (results_wsr_envelope.txt, checksum
+   c052f57840f4f670: 4 of 4 frozen constants HIT). Two structural
+   results come with it, both exact: WSRBlockCS is x → 1 − x
+   EQUIVARIANT (lo(x) = 1 − hi(1−x) to 1.1e−16, crossing times
+   bit-identical), so decision DIRECTION is not an independent axis but
+   a reflection of the p\* axis; and the p\* carrier is the block
+   skewness μ₃/μ₂² = (1 − 2p)/(p(1−p)), exact, K-free, odd under
+   precisely that reflection. The measured K-linearity is a CHORD of a
+   convex d(K), the convexity confirmed by the sign pattern (+,−,−,+)
+   of the measured grid's own linear-fit residuals. THIS DOES NOT MAKE
+   THE WSR SIDE DERIVED. Both routes overshoot the measured SLOPES by
+   +4.4% / +9.6% in the same direction (intercepts agree to 1.4–1.6%),
+   an unexplained K-dependent slope-damping term omitted by both; three
+   candidates were scored against a criterion frozen in advance
+   ((a) K-dependent, (b) damps both slopes, (c) leaves intercepts
+   untouched) and ALL THREE were REFUTED — chord geometry (on a
+   symmetric grid the OLS slope IS the midpoint tangent exactly, so the
+   convexity cancels), median-versus-mean (hard-fails (c); also already
+   inside route 2's first-passage operator; its 0.10-nat accuracy does
+   not transfer, 0.170 avg / 0.481 max here), and finite-boundary
+   overshoot (wrong sign, fails (b)). §4's bands therefore still use
+   the MEASURED envelope, and the law is derived as a finite-window
+   projection rather than as an asymptotic — consistent with, not a
+   refutation of, the no-fixed-(d, c) hypothesis above.
    What the same frozen test DID establish, within-implementation
    (identical code, ladder, and seeds, so absolute-level bias cancels
    in the contrast): the Kelly-FLOORED variant restores the
@@ -195,13 +279,36 @@ committed before this derivation existed):
    moves d AWAY from 1, to +1.3614 ± 0.2006 (intercept −3.6011) at 3×
    reps, with the stock arm at +4.4969 under the same correction; the
    only arithmetic yielding a sub-1.27 figure scores at a grid point
-   ABOVE τ, which cannot hold n fixed and is invalid. Both
-   pre-registered windows (P-A, the idealization d = 1; P-B, the
-   warmup-corrected +1.5301) contain the measurement, so the frozen
-   adjudication is UNRESOLVED, and {1, 1.12, 1.27, 1.53} are mutually
-   indistinguishable at any feasible rep budget on this ladder. The
-   floored arm remains the live route to a full boundary theorem, now
-   with its regular half derived rather than fitted.
+   ABOVE τ, which cannot hold n fixed and is invalid. At that
+   artifact's precision both pre-registered windows (P-A, the
+   idealization d = 1; P-B, the warmup-corrected +1.5301) contained the
+   measurement, so the frozen adjudication was UNRESOLVED.
+   THE ADJUDICATION IS NOW RESOLVED, at 10,000 journaled reps on the
+   same ladder and class (data/floor_ladder_long.jsonl, zero censored
+   rungs). Scored in the DERIVATION'S OWN convention — at the binding
+   grid point m = τ − 0.0005, which is the rate derive_floor_d.py
+   itself uses (vstar_m, "grid-aligned scoring: rho = 1") — the ladder
+   gives d = +1.5824 with bootstrap SE 0.1016 (4,000 within-rung
+   resamples). That REJECTS the post-warmup idealization d = 1 at
+   z = +5.73 and is CONSISTENT with the warmup-corrected +1.5301 at
+   z = +0.51: P-A MISSES, P-B HITS. The earlier claim that
+   {1, 1.12, 1.27, 1.53} are mutually indistinguishable at any feasible
+   rep budget is WITHDRAWN.
+   THE CONVENTION TRAP, recorded because it briefly inverted this
+   verdict. The first analysis of the same 10,000 crossings scored at
+   the NOMINAL mid-cell τ and returned d = +1.2071 ± 0.11, from which
+   "d = 1.53 rejected, d = 1 not rejected" was recorded in the audit
+   trail. That is the grid bias this very artifact had already
+   identified and corrected: ρ = V\*(τ)/V\*(m) < 1 and FALLS down the
+   ladder, so scoring at τ_nom depresses the deep rungs more and biases
+   d DOWNWARD. One dataset, two conventions, opposite verdicts; the
+   corrected reading is the one above. Scoped honestly: the shipped
+   class's warmup term decays as 1/log t_c, so it has no fixed d, and
+   what is measured here is an EFFECTIVE d over this ladder's horizon
+   window (n ≈ 1.8k–38k). The floored arm remains the live route to a
+   full boundary theorem, now with its regular half derived rather than
+   fitted and its shipped half measured in agreement with the
+   warmup-corrected derivation over the reachable window.
 
 ## 5. Relation to classical results
 

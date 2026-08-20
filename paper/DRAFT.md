@@ -2,7 +2,7 @@
 
 **Hao Lin**
 
-*Draft v4.2 — 2026-08-19. Supersedes v3 (2026-08-12), whose spine was a
+*Draft v4.3 — 2026-08-20. Supersedes v3 (2026-08-12), whose spine was a
 four-regime empirical design map; that map survives here as the
 empirical origin of a derived boundary (§4.1). New in v4: the boundary
 derivation and its verification (§4.2–4.4), the derived fourth expansion
@@ -27,7 +27,20 @@ constant into a measured **(K, p\*, direction)** surface with
 heterogeneity R **refuted** as a carrier (§5.5), a ninth instance of the
 relation-gate generator found by the domain port (§6.2, and the
 110 → 112 test count it produced), the **thirty-fourth** miss-ledger row
-(§6.3), and two new limitations (§7). The formal companion is
+(§6.3), and two new limitations (§7). **v4.3** is a consolidation on the
+same terms and absorbs the theory results that closed after v4.2: the
+§5.5 envelope law **derived zero-fit by two mutually blind routes**,
+with direction shown not to be an independent axis and an unexplained
+4–10% slope residue carrying three refuted candidates; the proof that
+c_ren admits **no scalar closed form** in the stated class, with the
+finite-L selection term closed exactly and the finite-L overshoot
+correction **refuted** (§5.3); the floored-arm ladder at 10,000 reps,
+whose frozen adjudication resolves — after our own first analysis of it
+scored the measurement in the wrong rate convention and reported the
+opposite verdict (§5.5, §6.2 instance 10, and a ledger row); a new §6.5
+on the two-route protocol and the freeze-hash rule it produced; and two
+further miss-ledger rows (**36**) and two further limitations (§7).
+The formal companion is
 [paper/BOUNDARY_THEOREM.md](BOUNDARY_THEOREM.md), whose statements this
 draft mirrors. Every number below traces to a checksummed
 `results_*.txt` artifact, to [FINDINGS.md](../FINDINGS.md), or to the
@@ -118,7 +131,16 @@ object: the envelope's constants are **linear in block size**,
 heterogeneity R is **refuted** as its missing argument over R ∈ [1, 30]
 (a scored failure that is itself the finding), and every envelope in
 this project turns out to have been fitted in **one decision direction**
-(§5.5). On a **risk-limiting election audit** of Georgia's 2020 county
+(§5.5). That linear law is then **derived zero-fit by two independent
+routes, mutually blind until frozen and each verified here against the
+committed grids** — 4 of 4 frozen constants hit, the measured linearity
+is identified as a *chord* of a convex d(K), and the decision direction
+turns out **not** to be an independent axis at all but the image of an
+exact x → 1 − x equivariance of the shipped class, with block skewness
+(1 − 2p)/(p(1−p)) as the p\* carrier. Both routes overshoot the measured
+*slopes* by 4–10% in the same direction and neither explains it; three
+candidate explanations were scored against a criterion fixed in advance
+and **all three were refuted**. On a **risk-limiting election audit** of Georgia's 2020 county
 structure — the first *prospective* test of the resulting
 direction-matched constants — the frozen call moves along the margin
 axis and scores **1 of 1**, UI never certifies at all, the risk limit
@@ -145,8 +167,15 @@ where fitted constants had failed by 8%. The residual renewal term is
 function c_ren(p\*, τ, α, d, n0), **exactly computable with zero fit by
 a finite absorption recursion** (−1.1700824 nats at the reference
 point; `results_cren_exact.txt`), which makes the four-term expansion
-fully predictive in practice. What remains open is its reduction to a
-scalar closed form, and the obstruction is named rather than fudged.
+fully predictive in practice. Its reduction to a scalar closed form is
+no longer open: it is **proved impossible** in the class that would make
+one useful — c_ren has infinitely many discrete-median jumps of size
+≥ d·V/2 > 0 for every (τ, p\*), so no limit constant and no smooth
+scalar expansion exists (§5.3). The proof is class-relative and we say
+which class; what it buys is that the exact recursion is the answer
+rather than a stopgap, and that the check period sits inside the
+obstruction itself, deriving the schedule-dependence we had only
+measured.
 
 We report failures as prominently as wins, because the honest scoring is
 the credibility. A Bonferroni design portfolio **lost its headline** to
@@ -163,15 +192,17 @@ K\* = 1 : 4, 2 : 4, 4 : 2 (`results_gain.txt`). A frozen test of an
 externally supplied claim that WSR's stock schedule admits *no*
 expansion **failed its divergence criterion** (1.23× against a
 pre-registered 1.5×), leaving that claim a hypothesis and the
-derive-WSR's-fourth-term route open (`results_wsr_expansion.txt`); the
-Kelly-floored variant where an expansion does exist is measured at
-d = 1.36 ± 0.20 and is **unresolved** against its own derivation
-(`results_floor_d.txt`). Audit round 2 downgraded our own dimension-rule
-score from 3-for-3 to 2-for-3 and reclassified our live capstone from
-"severe test" to "consistency check". Total API spend: under $6; the
-miss ledger runs to **34 rows** (§6.3) and the suite to **112 tests**,
-the last two added by a defect that only a domain port could reach
-(§6.2).
+derive-WSR's-fourth-term route open (`results_wsr_expansion.txt`). On
+the Kelly-floored variant where an expansion does exist, a 10,000-rep
+ladder finally separated the candidates — and our own first analysis of
+it scored the measurement in the **wrong rate convention**, returning
+d = 1.21 and the verdict *opposite* to the corrected d = 1.58 ± 0.10
+(which rejects the idealization d = 1 and confirms the warmup-corrected
+derivation, §5.5). Audit round 2 downgraded our own dimension-rule score
+from 3-for-3 to 2-for-3 and reclassified our live capstone from "severe
+test" to "consistency check". Total API spend: under $6; the miss ledger
+runs to **36 rows** (§6.3) and the suite to **112 tests**, two of them
+added by a defect that only a domain port could reach (§6.2).
 
 ---
 
@@ -225,12 +256,24 @@ What is **original to this work**, stated plainly:
    −½·log(2π p\*q\*), which explains structure that a frozen 17-point
    margin sweep had *measured* before the derivation existed, and which
    passes a blind functional test on different data.
-4. **The relation gate** (§6.2): a 16-defect census of this project
+4. **The WSR envelope law, derived** (§5.5). The block-size law that the
+   WSR side of the boundary had carried as an *observed regularity* is
+   derived **zero-fit** by two independent routes, mutually blind until
+   frozen, agreeing to 1–4% and each re-verified here against the
+   committed grids (§6.5). The same derivation shows the decision
+   direction is **not** an independent axis — the shipped class is
+   exactly x → 1 − x equivariant — and identifies block skewness as the
+   p\* carrier. Both routes overshoot the measured slopes by 4–10% and
+   neither explains it; that residue is reported open, with three
+   candidates scored and refuted.
+5. **The relation gate** (§6.2): a 16-defect census of this project
    found that in 16 of 16 cases the local object was correct and in 15
    of 16 an unchecked *relation between* objects failed; the gate
-   mechanizes the missing checks, and **eight** further instances of
+   mechanizes the missing checks, and **eleven** further instances of
    that one generator have since been caught and scored — four in the
-   boundary work, four after it, each one converted into a rule.
+   boundary work, seven after it, each one converted into a rule. The
+   generator's predictive content thins as the count grows, and §6.2
+   says so.
 
 The v3 contributions stand and are retained: the replay testbed with
 exact ground truth (§3), the four-regime empirical map (§4.1), the
@@ -258,20 +301,25 @@ Every v3 disclaimer stands:
 - The live capstone is a *consistency check*, not a severe test (§5.7).
 - All estimands are pool-scoped under a chosen stratum weighting (§2).
 
-And the boundary work adds seven more (v4.1 miscounted these as "four";
+And the boundary work adds eight more (v4.1 miscounted these as "four";
 the count is corrected here rather than quietly):
 
 - **The boundary predicts winners, not sample counts.** Both arms'
   absolute medians run ~10–20% low under the derived constants (derived
   A1 single 832 versus the measured MBPP cell's 960); WSR's own o(1)
   treatment is open (§5.3).
-- **The renewal term is exactly computable, not scalar-closed.** c_ren
-  is a function of (p\*, τ, α, d, n0) — schedule-dependent, so it is
-  *not* a universal constant — computed with zero fit by a finite
-  absorption recursion (−1.1700824 at the reference point,
-  `results_cren_exact.txt`). Its scalar closed form is stated as open,
-  and the earlier Monte-Carlo estimate of it (−1.105) missed its own
-  dispersion criterion and was, separately, noise-high by 0.065 nats.
+- **The renewal term is exactly computable, and provably not
+  scalar-closed.** c_ren is a function of (p\*, τ, α, d, n0) —
+  schedule-dependent, so it is *not* a universal constant — computed
+  with zero fit by a finite absorption recursion (−1.1700824 at the
+  reference point, `results_cren_exact.txt`). Its scalar closed form is
+  **proved impossible**, but only *within a stated class* (smooth
+  finite-dimensional renewal reductions, power series, universal
+  thresholds, single-eigenvalue formulas); we claim no theorem against
+  every conceivable form, because such a theorem would have to fix a
+  class anyway (§5.3). The earlier Monte-Carlo estimate of c_ren
+  (−1.105) missed its own dispersion criterion and was, separately,
+  noise-high by 0.065 nats.
 - **Below the boundary we resolved almost nothing**: 6 of 10 below-band
   points are ties at 200 reps per arm. "Indistinguishable at this
   budget" is not "equal" — and the power analysis that confirms the
@@ -280,6 +328,12 @@ the count is corrected here rather than quietly):
   the WSR arm's envelope is measured on a schedule that may admit no
   fixed (d, c) at all, and the frozen test of that hypothesis failed its
   own divergence criterion (§5.5).
+- **Deriving the envelope law is not deriving the envelope.** §5.5's two
+  routes derive the *K-linear law* — as a finite-window projection, not
+  as an asymptotic — and both overshoot the measured slopes by 4–10% in
+  the same unexplained direction. The boundary's bands in §4.2 therefore
+  still come from the measured envelope, and "the WSR side is derived"
+  is not a claim we make.
 - **Automating the rule is not solved.** A shipped pilot-based selector
   matched the oracle design in 11 of 16 cells (`results_auto_select.txt`).
 - **We make no safety claim about any model.** The per-model compliance
@@ -1589,27 +1643,91 @@ d = 1, −1.1443421 at n0 = 40. The median convention matters at the
 so we use the **discrete** median (−1.1700824) rather than the
 interpolated one (−1.1785).
 
-**What is open, named rather than fudged.** A scalar
-elementary/special-function reduction of c_ren. The obstruction is a
-time-inhomogeneous, **noncommuting** killed kernel — the
-continuation-then-draw operators do not commute across check times, so
-the product does not collapse to one eigenvalue. Its pieces are in
-different states: the median-versus-mean gap is closed (Cornish-Fisher);
-selection has an exact closed *form* E[N·D(p̂‖p\*)] whose first-order
-term is exactly zero by Wald's identity (E[M_N] = 0, measured
-−0.01 ± 0.05, `results_selection.txt`); the overshoot has a closed
-**asymptotic** constant ρ_d = E[H_d²]/(2E[H_d]) — the first strict
-ascending ladder height of the d-sample block skeleton, by a Spitzer
-identity, with ρ_1 = 0.0942 and ρ_4 = 0.1703 re-verified here two ways
-to < 0.0003 (`results_overshoot_closed.txt`). The ratio
-ρ_4/ρ_1 = 1.81 is itself the proof that the constant carries the check
-period, which had previously been a conjecture — and it retires an
-earlier diagnosis of ours that blamed a lattice span. The single
-remaining obstruction is finite-boundary behaviour: at L = log 20 ≈ 3.0
-the measured overshoot is 0.228 against the asymptotic 0.170, a real gap
-shared by selection and overshoot, whose right frame is Kim & Woodroofe
-nonlinear renewal with slowly-changing perturbations (math/0611695). We
-keep the asymptotic and finite-L numbers distinct and fit neither.
+**What was open is now closed, and it closed negatively.** We carried
+"a scalar elementary/special-function reduction of c_ren" as the open
+item, with the obstruction named — a time-inhomogeneous, **noncommuting**
+killed kernel, whose continuation-then-draw operators do not commute
+across check times, so the product does not collapse to one eigenvalue.
+That reduction is now **proved impossible**, by an argument that needs
+none of the kernel machinery. Crossings occur only on multiples of the
+check period d. So the discrete-median crossing n_med is a **step
+function** of the barrier L = log(1/α): between steps n is constant and
+c_ren falls at unit rate in L, and at a step n rises by d and c_ren
+jumps up by ≈ d·V. The steps do not thin out — c_ren(L) has infinitely
+many jumps of size **≥ d·V/2 > 0 for every (τ, p\*)** — so there is no
+limit constant C₀ to converge to and no smooth scalar expansion that
+could represent the function. At the reference point
+(p\* = 0.202, τ = 0.157, d = 4) the bound is d·V/2 = **0.014263** and the
+reproduced jump is **0.025740**, verified here and above the bound as
+the argument requires. The proof is **resonance-free**; the quasi-lattice
+resonance of the increment law only reinforces it (at rational resonance
+the phase is O(1) and periodic, and arbitrarily slow convergence appears
+in a neighbourhood of it). In non-resonant cells one gets pointwise
+leading asymptotics and nothing stronger.
+
+**The scope of "impossible", stated before it is leaned on.** An
+absolute proof excluding every *imaginable* closed form would first have
+to fix the function class it excludes; no such theorem is claimed here.
+What is excluded is the class the question actually meant: **smooth
+finite-dimensional renewal reductions, power series in the natural
+parameters, universal thresholds, and single-eigenvalue formulas.**
+Inside that class the answer is *no*, not *unknown*. Two consequences
+are worth stating. The jump bound carries **d explicitly**, which
+derives from first principles the schedule-dependence we had only
+recorded empirically: c_ren fails to be a universal constant *because
+the check period sits inside the obstruction*. And the finite absorption
+recursion stops being a stopgap for a formula that might yet arrive — it
+**is** the answer, and the four-term expansion is fully predictive with
+it. One reproduction trap is documented rather than left to be
+rediscovered: differencing c_ren across a grid of L returns
+(jump − ΔL), not the jump, because c_ren falls at unit rate between
+steps. The jump must be read *at* a step.
+
+**The two finite-L pieces: one closed exactly, one refuted.** The
+median-versus-mean gap was already closed (Cornish–Fisher). **Selection
+is now closed too**, by an exact likelihood-differentiation identity on
+top of the closed *form* E[N·D(p̂‖p\*)] whose first-order term is
+exactly zero by Wald (E[M_N] = 0, measured −0.01 ± 0.05,
+`results_selection.txt`). Its leading finite-L behaviour is
+
+    Δ_sel = (1 + (1 − 2p\*)·θ) / (2L) + o(1/L),
+    θ = log[p\*(1−τ)/(τ(1−p\*))],
+
+**independent of the check period d** — which is the part worth
+noticing, since d governs the overshoot piece. It overpredicts the exact
+value by **8.9% at L = 3** and by roughly 5% by L = 20 (0.19743 against
+an exact 0.181355 at the reference point; the exact oracle grid, 42
+cases at two (p\*, τ) pairs × d ∈ {1, 2, 4} × seven α, reproduces here
+to ≤ 2.2×10⁻¹⁰, `scripts/external/finite_l/`). **Overshoot is refuted**
+in the same pass, and that is the more useful of the two answers. The
+overshoot has a closed **asymptotic** constant
+ρ_d = E[H_d²]/(2E[H_d]) — the first strict ascending ladder height of
+the d-sample block skeleton, by a Spitzer identity, with ρ_1 = 0.0942
+and ρ_4 = 0.1703 re-verified here two ways to < 0.0003
+(`results_overshoot_closed.txt`), and the ratio ρ_4/ρ_1 = 1.81 is itself
+the proof that the constant carries the check period, retiring an
+earlier diagnosis of ours that blamed a lattice span. At L = log 20 ≈ 3.0
+the exact finite-L overshoot is **0.228658** against that asymptotic
+0.1703 — and **no smooth finite-L correction closes the gap.** The
+d-block increment law is a **quasi-lattice**: at (p, τ, d) = (0.3, 0.2, 4)
+the k = 1 atom sits at **0.004871** against a lattice spacing of
+**0.538997** — 111× smaller — so the renewal phase never mixes at
+moderate L, the error remains visible past L = 200, and it changes sign
+there. A candidate closed form was produced, scored a near-hit on its
+own grid, and was then **refused by its own author** on an off-grid
+self-test (0.568 against an exact 0.416); we record the refusal rather
+than the near-hit (§6.5).
+
+**The regime statement this forces, which is a limitation and reads
+like one.** ρ_d is an **L → ∞ limit**. The finite-L gap is exactly
+computable by the absorption recursion and **is not closed** in any
+smooth form, and — because the resonance is (p, τ, d)-dependent —
+**there is no universal L threshold** past which the asymptotic constant
+is safe to substitute. Anyone using ρ_d at finite L must go through the
+recursion or carry the gap explicitly. We keep the asymptotic and
+finite-L numbers distinct and fit neither; the right frame for the
+finite-L side remains Kim & Woodroofe nonlinear renewal with
+slowly-changing perturbations (math/0611695).
 
 **The blind test.** A term derived to explain one dataset's residual
 structure is worth little until it makes a different kind of prediction
@@ -1789,19 +1907,66 @@ they cost us:
 3. **The shipped class has no fixed d either — only a slower drift.**
    The warmup contribution decays as 1/log t_c, so the literal shipped
    floored arm has a **slowly drifting effective d**, milder than
-   stock's but not constant. This is the structural finding, and it
-   makes the measurement question moot: **{1, 1.12, 1.27, 1.53} are
-   mutually indistinguishable at any feasible rep budget on this
-   ladder.**
+   stock's but not constant. This is the structural finding, and at the
+   artifact's own precision it made the measurement question look moot:
+   both pre-registered windows — P-A for the idealization (d = 1,
+   [+0.5144, +1.4856]) and P-B for the warmup-corrected derivation
+   (+1.5301, [+0.9993, +2.0608]) — contained the measurement, so the
+   frozen adjudication was **UNRESOLVED**. We did not widen the windows
+   and we did not report a miss as a hit.
 
-Both pre-registered windows — P-A for the idealization (d = 1,
-[+0.5144, +1.4856]) and P-B for the warmup-corrected derivation
-(+1.5301, [+0.9993, +2.0608]) — contain the measurement, so the frozen
-adjudication is **UNRESOLVED**. We did not widen the windows and we do
-not report a miss as a hit. The final form of the claim is therefore:
-*derivable (d = 1) on the post-warmup idealization; drifting on the
-literal shipped class; and the experiment that would discriminate the
-two does not exist at this budget.*
+**A 10,000-rep ladder then resolved it — and a scoring convention
+nearly reversed the answer.** The artifact's own diagnosis was that its
+precision, not its design, was the limit, so the ladder was re-run
+journaled at ~8× the reps: identical class, identical five rungs, offset
+seeds, one line per (rung, rep) appended to
+`data/floor_ladder_long.jsonl` (`scripts/run_floor_ladder_long.py`),
+10,000 crossings in total and **zero censored at any rung**. Scored the
+way `derive_floor_d.py` scores — at the **binding grid point**
+m = τ − 0.0005, which is the rate the derivation itself uses (`vstar_m`,
+commented in that script as *"grid-aligned scoring: ρ = 1"*) — the
+ladder gives
+
+    d = +1.5824,  bootstrap SE 0.1016  (4,000 within-rung resamples of
+                                        the crossing times)
+
+which **rejects the post-warmup idealization d = 1 at z = +5.73** and is
+**consistent with the warmup-corrected derivation d = 1.5301 at
+z = +0.51**. Against the frozen windows re-evaluated at the new SE,
+**P-A MISSES and P-B HITS**: the adjudication `results_floor_d.txt` left
+UNRESOLVED now resolves, and it resolves *for the shipped class's
+warmup*, not for the idealization.
+
+We came within one arithmetic convention of publishing the opposite, and
+the near-miss is worth more than the result. The first analysis of this
+journal scored the same 10,000 crossings at the **nominal mid-cell τ**
+instead of at the binding grid point and returned **d = +1.2071 ± 0.11**
+— from which we recorded, in the audit trail, "d = 1.53 rejected,
+d = 1 not rejected". That is precisely the grid bias `results_floor_d.txt`
+had already found, confirmed and corrected: ρ = V\*(τ)/V\*(m) < 1 and
+*falls* down the ladder, so scoring at τ_nom depresses the deep rungs
+more and biases d **downward** — the artifact says so in its own first
+section, and it is the same defect that produced the superseded
+committed +1.27. Two readings of one dataset, **1.2071 versus 1.5824**,
+with opposite verdicts. It is §6.2's generator in its purest form: both
+fits are locally correct, and the relation nobody computed is the one
+between *the rate convention used to score a measurement* and *the rate
+convention the prediction was derived in*. It is entered in the ledger
+as a miss of ours and as instance 10 in §6.2.
+
+**What the ladder settles and what it does not.** The structural finding
+of point 3 stands untouched: the warmup contribution decays as
+1/log t_c, so the literal shipped class has no fixed d and the quantity
+this ladder measures is an **effective d over this ladder's horizon
+window** (n ≈ 1.8k → 38k), not a constant of the class. What is
+withdrawn is the *measurement-limitation* claim built on top of it:
+"{1, 1.12, 1.27, 1.53} are mutually indistinguishable at any feasible
+rep budget on this ladder" is **false** — at 10,000 reps, scored in the
+derivation's own convention, d = 1 is excluded at 5.7 SE. The final form
+of the claim is therefore: *derived (d = 1) on the post-warmup
+idealization; drifting on the literal shipped class; and over the
+horizon window we can actually reach, the shipped class behaves like the
+warmup-corrected derivation and not like the idealization.*
 
 **What the envelope's arguments actually are: three designed grids.**
 §4.8.1's miss localized to one fitted object — the WSR overhead
@@ -1813,7 +1978,9 @@ still print PASS/FAIL, and two of the three FAIL). Read together they
 replace a fitted constant with a **measured (K, p\*, direction)
 surface** on which **R is null** — and one of those three answers is a
 negative result that closed a hypothesis this project had carried for
-weeks.
+weeks. A fourth part, (iv), then **derives** the surface's block-size
+law and shows that its direction argument is not independent, so read
+(i)–(iii) as the measurement and (iv) as the account of it.
 
 *(i) Block size: the constants are linear in K.*
 `results_wsr_k.txt` (checksum `f6aea65aa754d0d8`) re-measures the
@@ -1832,8 +1999,9 @@ with the shipped 2^K enumeration at K = 4 to 1.7e−17.
 
 The envelope **is** K-dependent and its constants are **linear in K** —
 **d_K = 4.1407 − 0.4267·K** (max\|resid\| 0.115, 5% of range) and
-**c_K = 0.9638·K − 8.9801** (0.226, 4%) — an **observed regularity, not
-derived**, and labelled as such in the artifact. Larger blocks carry a
+**c_K = 0.9638·K − 8.9801** (0.226, 4%) — at the time an **observed
+regularity, not derived**, and labelled as such in the artifact; (iv)
+below derives it. Larger blocks carry a
 smaller effective dimension and less overhead at the horizons the
 boundary uses. **P2 PASSES** (both reported constants strictly monotone;
 the direction was not pre-committed). **P3 PASSES** (0 of 60 rungs
@@ -1969,9 +2137,14 @@ level over the common window the ordering **reverses** to direction
 scale that settles the reading is the axis this same instrument already
 called null: **the refuted R sweep, measured the identical function-level
 way, spans 0.658 nats**, so *both* new axes are 3.6–4.0× the null one.
-The honest verdict is therefore not "p\*, not direction" but **both,
-comparably — the overhead envelope is direction-dependent, and every
-constant in this project was fitted on one side of it.** **P1 FAILS**
+The honest verdict at the time was therefore not "p\*, not direction"
+but **both, comparably — the overhead envelope is direction-dependent,
+and every constant in this project was fitted on one side of it.**
+*(That reading is superseded by (iv) below: the direction dependence is
+real, but it is not an independent axis — it is the image of an exact
+x → 1 − x equivariance of the shipped class, so this table folds across
+its anti-diagonal. The scored P2 verdict here is unaffected; the
+interpretation is.)* **P1 FAILS**
 against grid (ii)'s (K = 6, R = 1) cell (d 1.142 against 1.562; c −1.693
 against −3.235) on a tolerance already widened in advance to ±0.35/±0.9
 with the reason stated — that cell is R = 1 against this grid's 1.2
@@ -1999,21 +2172,184 @@ uses constants fitted long after the prediction was frozen, and it
 scores nothing. **The §4.8.1 miss stands as scored, three times over,
 and the miss ledger is unchanged by all three grids.**
 
+*(iv) The law behind the measurement: derived twice, independently, and
+both derivations miss the same few per cent.* Grid (i)'s linear laws
+were published as "an **observed regularity, not derived**". They are
+now derived, **zero-fit**, by **two independent routes that were
+mutually blind until each was frozen** and each of whose adopted
+constants was re-verified in this repository against the committed grids
+(the protocol, and what it cost and bought, is §6.5). The two routes
+agree with each other to **1–4%** and with measurement to **1.4–9.6%**.
+
+*Route 1 — finite-window projection.* The law is what a **finite window**
+of the stock schedule's cumulative drift looks like when a fixed (d, c)
+is fitted to it. There is no fixed-d asymptotic behind it, which is the
+consistent reading alongside the divergence hypothesis earlier in this
+section rather than a competing one. Constants: d slope −0.4453 against
+a measured −0.4267 (4.4%), d intercept 4.206 against 4.141 (1.6%),
+c slope 1.056 against 0.964 (9.5%), c intercept −9.107 against −8.980
+(1.4%), with the per-K rows inside the same envelope. Two of its
+by-products are negatives and are reported as such: the R null closes at
+**function** level (0.667 against 0.658 nats) but **not** in
+fitted-coordinate signs — near-null *in effect*, not an exact invariance
+— and converting the clock (n = KT) cannot by itself move d.
+
+*Route 2 — the loglog Kelly deficit.* The stock bet is a **decaying
+Kelly fraction**. With λ_t = √(2 log(2/α) / (ŝ_t log(t+1))) and
+E[ŝ_t] ≈ μ₂(t + t₀ − 1) for block variance μ₂ = p(1−p)/K, the warm-up
+constant is **t₀ = K/(4p(1−p))** — the *shipped prior* ŝ₀ = 1/4 divided
+by that variance, not a tuned quantity. The Kelly fraction is then
+r_t = λ_t/λ\* = √(L₂ / (V\*(t + t₀ − 1) log(t+1))), the per-block growth
+is the quadratic Kelly loss V\*(2r_t − r_t²), and summing gives
+W(T) = 2√(L₂V\*)·G₁(T) − L₂·G₂(T): a √(T/log T) gross gain minus a
+**loglog** Kelly deficit. Implicit differentiation of the crossing
+W(T) = L₂ against the ordinate n·V = T·V\* gives
+d_eff = 2ρ·T·V\*·[1 − 2T·w_T/A] with A = Λ + L₂·G₂(T; t₀). **K enters
+only through G₂**, and both of G₂'s loglog limits are K-driven: the
+upper limit T = n/K (fewer blocks per sample budget) and the lower limit
+t₀ = K/(4pq) (a longer warm-up, in blocks), so
+dA/dK = −(L₂/K)·[1/log T + 1/log t₀].
+
+**The measured linearity is a chord, not the law.** That 1/K prefactor
+makes d(K) **convex**, so a straight line through K ∈ {2, 4, 6, 8} is a
+chord of a curve. The check is grid (i)'s own linear-fit residuals,
+whose signs (+, −, −, +) are exactly the convexity signature — scored as
+a fourth clause, **P4 PASS**. The evaluation deliberately avoids the
+reduction that the earlier floored-arm derivation used: the exact
+(K+1)-atom increment law is pushed through an exact grid-convolution
+first-passage operator absorbing at log(2/α), which returns the **median
+crossing block** directly, so overshoot, the median-versus-mean shift
+and the strongly non-homogeneous early variance are carried exactly and
+no homogeneous renewal level convention is assumed. The operator is
+validated against a **direct simulation of the shipped `WSRBlockCS`** on
+five probe rungs with the derivation's own seeds: derived/shipped in
+[0.974, 1.038] at 500 reps, against a ~3% median sampling error.
+
+Frozen, then scored (`results_wsr_envelope.txt`, checksum
+`c052f57840f4f670`; window = the sum of three variant spreads + 2·SE_meas,
+the rule fixed before any derived constant was evaluated):
+
+| constant | derived | measured | window | verdict |
+|---|---|---|---|---|
+| d slope | −0.4542 | −0.4267 | 0.174 | **HIT** |
+| d intercept | +4.3004 | +4.1405 | 1.230 | **HIT** |
+| c slope | +1.0455 | +0.9638 | 0.351 | **HIT** |
+| c intercept | −9.4935 | −8.9805 | 2.780 | **HIT** |
+
+All four also hit on the tight window that drops the most conservative
+variant. **On 2·SE_meas alone only 3 of 4 would hit** (c intercept 0.513
+against 0.468) — that is the honest resolution limit of the test and the
+artifact prints it.
+
+**Two structural results fall out, and one of them corrects (iii)
+above.** First, **direction is not an axis.** `WSRBlockCS` is *exactly*
+equivariant under x → 1 − x: its grid 0.0005 + 0.001k is symmetric, its
+priors 1/2 and 1/4 are symmetric, ŝ_t is invariant, and the two arms
+with their truncations c/m and c/(1−m) swap under the reflection while
+the hedge (K⁺ + K⁻)/2 is symmetric. So lo(x) = 1 − hi(1−x) at **every**
+poll (1.1×10⁻¹⁶, confirmed independently in both directions), and SAFE
+certification of pool P at τ is **pathwise identical** to UNSAFE
+certification of pool 1 − P at 1 − τ — crossing times bit-identical.
+Grid (iii)'s six-cell table must therefore fold across its anti-diagonal,
+and it does: 6 of 6 pairs agree within pooled OLS SE (worst 0.727 nats
+on c against an SE of 1.482), where the same-p\* direction contrast that
+grid reported runs at 2.2–2.3 SE. The whole "direction effect" is
+reproduced from grid (iii)'s **own UNSAFE row** with zero free
+parameters — Δd(p\*) = d_U(1−p\*) − d_U(p\*) gives −0.990 / 0 / +0.990
+against a measured −0.892 / +0.261 / +0.891. **This supersedes (iii)'s
+reading.** Its scored P2 verdict (p\*, by 1.42× in d and 2.01× in c) is
+untouched; what is withdrawn is the interpretation we put on it — "both
+axes, comparably" — because the direction axis is not independent. The
+envelope surface is **(K, p\*) with a reflection**. The practical
+consequence is unchanged: every constant in this project was still
+fitted on one side of that reflection, and the direction-matched
+reconstruction above is still the right correction — it is simply
+*derivable* now rather than a second measured axis.
+
+Second, **the p\* carrier is block skewness.** The carrier is
+μ₃/μ₂² = (1 − 2p)/(p(1−p)) — **exact, K-free**, zero at p\* = 1/2, and
+odd in (p\* − 1/2); its four sign predicates all hit, and it was
+confirmed independently at 15 (p, K) cells to ≤ 1.4×10⁻¹⁴. The two
+results are **one structure**, which is the reason to believe either: the
+carrier is odd under *exactly* the reflection the equivariance defines,
+so a p\*-dependence carried by skewness automatically respects the
+equivariance and an even carrier could not. Route 1's independently
+measured p\* = 0.5 direction identity (|ΔO| < 2.4×10⁻¹⁴) is that
+reflection's **fixed point**, measured before the structure was
+identified.
+
+**The residue neither route closed, and three candidates that failed to
+close it.** Both routes overshoot the measurement on **all four**
+constants **in the same direction**: a shared systematic that survived
+two independent derivations and is explained by neither. Decomposed, it
+is not a uniform bias — the intercepts agree to +1.6% / +1.4% while the
+slopes are overpredicted by **+4.4% / +9.6%** — so the missing term is
+**K-dependent slope damping**. The acceptance criterion for any
+candidate was fixed, falsifiably, before any candidate was evaluated:
+(a) K-dependent, (b) sign damps both slopes, (c) leaves the intercepts
+untouched. Three candidates were scored and **all three were refuted**,
+which is a scored triple negative and a ledger row:
+
+1. **Chord-versus-tangent geometry**, the favoured lead — refuted by its
+   own proposer's check. On a *symmetric* K grid the OLS slope equals
+   the midpoint tangent **exactly**; the convexity cancels, so the chord
+   contributes nothing to the residue.
+2. **Median-versus-mean** (Cornish–Fisher), the weighting-favoured
+   candidate — **hard-fails (c)**, moving the intercepts by −0.724 and
+   +0.762. It is also **double-counted**: route 2's first-passage
+   operator already carries it exactly. And its 0.10-nat Cornish–Fisher
+   accuracy **does not transfer** to WSR here (measured 0.170 average,
+   0.481 maximum).
+3. **Finite-boundary overshoot** — fails (b): wrong sign.
+
+So the residue stands **open at 4.4% / 9.6% of slope**, now with a real
+constraint attached rather than a shrug: the missing term must be
+omitted by **both** routes, which excludes everything already inside
+route 2's first-passage contents. Three refuted candidates with their
+reasons sit beside the open number.
+
+*Assumptions the derivation carries, disclosed in-artifact and none of
+them proved:* (a) the increment law uses the deterministic λ̄ path, the
+schedule's own randomness entering only as a mean correction plus a
+barrier-displacement probe of the dispersion channel; (b) the minus arm
+is dropped from the barrier (the measured leak displaces it by
+3×10⁻⁵ nats); (c) identifying a reflected SAFE cell with the measured
+cell at 1 − p\* leans on the R null, which is a failure to detect and
+not a proof — reflecting an R = 1.2 pool gives R = 1.047 and 2.142, not
+1.2, and only at p\* = 0.50 is the reflected pool the measured pool
+exactly; (d) the asymptotic closed form overstates the exact implicit
+slope by up to ~2× at K = 8 and is kept **only** because it exhibits the
+mechanism — the scored prediction is computed by the exact operator and
+never uses it. One further arithmetic is **labelled and unscored**
+because no predicate was pre-registered on it: 12 of 12 derived
+direction × p\* cell constants land within one OLS SE of measurement.
+
 *The standing statement, and its scope.* The WSR overhead envelope is
-no longer a constant with a corner band: it is a **measured surface in
-block size K, pool rate p\*, and decision direction, with heterogeneity R
-ruled out over [1, 30]**. Three scope conditions travel with that, all
-disclosed in-artifact. Every envelope here is an **effective local fit
+no longer a constant with a corner band, and no longer only a
+measurement: it is a **surface in block size K and pool rate p\*, with a
+reflection that accounts for decision direction and with heterogeneity R
+ruled out over [1, 30]** — measured on three designed grids and
+**derived zero-fit by two independent routes** whose slopes still run
+4–10% high. Four scope conditions travel with that, all disclosed
+in-artifact. Every *fitted* envelope here is an **effective local fit
 over the range it was measured on**, not an expansion claim — the stock
 schedule may admit no fixed (d, c) at all, which is the open hypothesis
-earlier in this section. τ is held on the 0.001 lattice at mid-cell in
-every grid (0.5–4.5% of margin, printed per rung, and
-direction-symmetric by construction) so grid quantization cannot
-masquerade as a K, R or direction effect. And the R null is a **failure
-to detect over R ∈ [1, 30] on two-level profiles**, never a proof of
-R-independence — every later use of it, including §4.8.2's, is licensed
-only that far. The residual has not vanished; it has **moved**, from the
-high-p\* pools to the low-p\* one.
+earlier in this section, and the derivation above is consistent with
+that: it derives the law as a finite-window projection, not as an
+asymptotic. τ is held on the 0.001 lattice at mid-cell in every grid
+(0.5–4.5% of margin, printed per rung, and direction-symmetric by
+construction) so grid quantization cannot masquerade as a K, R or
+direction effect — and the floored-arm episode above is the reminder of
+what happens when that same lattice is not respected on the *scoring*
+side. The R null is a **failure to detect over R ∈ [1, 30] on two-level
+profiles**, never a proof of R-independence — every later use of it,
+including §4.8.2's, is licensed only that far, and the derivation leans
+on it in assumption (c) above rather than repairing it. And the derived
+constants do **not** replace the measured envelope in §4.2's bands:
+until the slope residue is explained, the measurement is the tighter
+object. The residual has not vanished; it has **moved**, from the
+high-p\* pools to the low-p\* one, and from a fitted constant to a named
+4–10% term.
 
 ### 5.6 The conservation hypothesis: FALSIFIED
 
@@ -2167,8 +2503,8 @@ non-experiment forms:
 | **R8** allocation discrimination | a verification whose scored points concentrate where the hypothesis is already established is not discriminating regardless of point count; ≥ 50% of scored points must carry the novel-region prediction |
 | **R9** absorption ordering | an external result may not be absorbed into the paper or THEORY while a frozen test *of that same result* is pending; every absorption commit must cite the scored artifact it rests on |
 
-**Nine instances of the one generator have now been caught and
-scored** — four in the boundary work, five after it — which is why §4
+**Eleven instances of the one generator have now been caught and
+scored** — four in the boundary work, seven after it — which is why §4
 and §5 read the way they do. Each one is a relation nobody computed, and
 each is now a rule:
 
@@ -2247,6 +2583,31 @@ each is now a rule:
    waived. It is worth naming what caught it: not a proof, not a review,
    and not the census — **carrying the machinery into a domain whose
    stratum structure the original design never anticipated.**
+10. **Scoring convention versus derivation convention — ours, and it
+    briefly inverted a verdict.** The 10,000-rep floored-arm ladder was
+    first analysed at the nominal mid-cell τ while the prediction it was
+    being scored against had been derived at the **binding grid point**
+    m = τ − 0.0005 (§5.5). Both the fit and the derivation were locally
+    correct; the relation between the two conventions was never
+    computed, and the two readings of one dataset — d = 1.2071 and
+    d = 1.5824 — disagree on which of two frozen windows the measurement
+    falls in. The corrective is not a new rule but the oldest one, R4b,
+    applied to a rate rather than to a threshold: **a measurement scored
+    against a derived quantity must be computed in the derivation's own
+    convention, and the two conventions must be printed together.** The
+    biased reading had already been identified, confirmed and superseded
+    in `results_floor_d.txt`'s own first section, which is the
+    uncomfortable part — the relation was not merely uncomputed, it was
+    computed once and then not carried forward.
+11. **What a freeze hash certifies versus what it is cited for.** An
+    adopted external freeze hashed its prediction payload *together with
+    its provenance*, including a creation timestamp. Such a hash
+    certifies tamper-evidence; the property it was cited for was
+    **rerun-reproducibility**, which it cannot certify, since a rerun
+    changes the timestamp and therefore the hash. Reproducibility was
+    established here by a byte-identical rerun instead, and the freeze
+    was repaired on adoption (§6.5). R4b in a new costume: a check whose
+    stated guarantee was not the guarantee it computes.
 
 **The gate caught itself.** Its first R4 implementation flagged 27
 artifacts by checking each artifact *as an object* (does it contain
@@ -2260,20 +2621,31 @@ three retrofit batches (commits 6656373, 66cecd5, b6b7151) R4 came back
 clean, and R8 passes for the phase verification (10 of 13 scored points
 in the novel region, 77% ≥ 50%).
 
-**And it flags this draft — including one flag this consolidation
-created.** Run against v4.1; the v4.2 additions (§4.8, the §5.5 grid
-block) have **not** been re-scanned, and being made of per-cell tables
-they would add to the R5 count below rather than reduce it:
+**And it flags this draft — including one flag a consolidation
+created.** The gate was re-run over v4.2 and raised no new flag classes,
+which discharged v4.2's own note that its additions were unscanned. The
+v4.3 additions of §5.3, §5.5 and §6.5 are scanned on the same basis and
+are reported below with them; being made of per-cell tables and n-of-m
+phrasing they **add** to the R5 count rather than reduce it, and the new
+R4 exposure is named explicitly:
 
 - **R4 raises one flag**: `results_cren_exact.txt` is cited here with a
   verdict but prints a `STATUS:` block rather than a PASS/FAIL/VERDICT
   line, so it does not self-score. The citation is new in v4.1, which
   means the retrofit that closed R4 did not cover an artifact written
   after it. Recorded as an open item, not waived and not fixed by
-  editing the artifact to suit the paper.
-- **R5 raises 46 n-of-m claims** against the draft (33 against v4, 4
-  against v3), because a verification section and a partition section
-  are made of such claims. Most are enumerated *in this paper* — the
+  editing the artifact to suit the paper. v4.3 adds **one R4 exposure
+  the gate cannot see**, so it is declared here instead: §5.5's
+  floored-arm ladder verdict rests on a journal
+  (`data/floor_ladder_long.jsonl`) and an analysis printed in this paper
+  rather than on a self-scoring checksummed artifact. The scan does not
+  flag it because the citation is not to a `results_*.txt` at all —
+  which is exactly the object-versus-relation gap R4 keeps re-opening in
+  new places.
+- **R5 raises 84 n-of-m claims** against the draft (46 against v4.2),
+  because a verification section, a partition section and now two
+  derivation sections are made of such claims. Most are enumerated *in
+  this paper* — the
   per-point tables of §4.3, the anchor table of §4.2, the partition
   tables of §4.7, the ledger of §6.3 — which R5 as implemented does not
   see: it looks only for enumeration inside a cited artifact. That is
@@ -2286,13 +2658,16 @@ they would add to the R5 count below rather than reduce it:
   it is semi-mechanical by construction, so a clean scan is weaker
   evidence than a clean R8.
 
-The census's falsifiable prediction stands, and instance 9 is the one
-test of it that arrived after v4.1 was written: **the next defect will
-also be an uncomputed relation.** It was — though the honest caveat is
-that we classified it ourselves, and a generator broad enough to absorb
-every new defect is a generator that predicts nothing. The check that
-keeps it falsifiable is a defect whose local object is *wrong on its
-own terms*; we have not found one yet, and we are still looking.
+The census's falsifiable prediction stands, and instances 9–11 are the
+tests of it that arrived after v4.1 was written: **the next defect will
+also be an uncomputed relation.** All three were — though the caveat
+gets *heavier*, not lighter, with each one: we classified them
+ourselves, and a generator broad enough to absorb every new defect is a
+generator that predicts nothing. At eleven instances the honest reading
+is that the generator is a productive *lens* whose predictive content is
+now thin. The check that would keep it falsifiable is a defect whose
+local object is *wrong on its own terms*; we have not found one yet, and
+we are still looking.
 
 ### 6.3 Pre-registration with every miss scored
 
@@ -2334,10 +2709,12 @@ complete miss ledger for the second half of the project:
 | F14 rev 1: "the mixture's optimal K\* = 1", and "K\* = 1 explains UI-domination" | **REFUTED on 6 of 10 real pools** (census K\* = 1 : 4, 2 : 4, 4 : 2); the pre-registered finite-interior-K\* prediction, declared failed in rev 1, is **CONFIRMED** on the four K\* = 2 pools; the UI-domination explanation is **RETRACTED** (`results_gain.txt`) |
 | WSR stock-schedule no-expansion P1 (n·V/log n monotone, ≥ 1.5× across the ladder) | **FAILED as frozen** (1.23×, non-monotone at depth) — the claim is downgraded to a hypothesis, form-consistent only (P2 max deviation 6.1%); the external 1.80× came from a reimplementation 43% off the shipped code and is withdrawn (`results_wsr_expansion.txt`) |
 | Absorption ordering at commit 805ae03 | **PROCESS MISS, ours** — an external result was absorbed into the documents while its own frozen test was pending; the test then failed P1. Unwound at 8d43eb2; now gate rule R9 |
-| Floored-arm d: committed +1.27, and the frozen windows P-A (idealization d = 1) / P-B (warmup-corrected +1.5301) | **GRID-BIASED** — the τ grid sits mid-cell (+0.0005, 1.4→5.3% of margin), biasing d **low**, not high as the external audit claimed; corrected +1.3614 ± 0.2006. Both windows contain the measurement → **UNRESOLVED**; windows not widened (`results_floor_d.txt`) |
+| Floored-arm d: committed +1.27, and the frozen windows P-A (idealization d = 1) / P-B (warmup-corrected +1.5301) | **GRID-BIASED** — the τ grid sits mid-cell (+0.0005, 1.4→5.3% of margin), biasing d **low**, not high as the external audit claimed; corrected +1.3614 ± 0.2006. Both windows contain the measurement → **UNRESOLVED**; windows not widened (`results_floor_d.txt`). **Now RESOLVED** by the 10,000-rep journaled ladder: d = +1.5824 ± 0.1016 in the derivation's own scoring convention → **P-A MISSES, P-B HITS** (§5.5) |
 | Safety-domain export P1 (every resolving pool matches the frozen design call) | **FAILED as frozen** — 1 of 2 resolving (mistral-7b: predicted single, WSR won; qwen2-7b HIT). P2/P3 passed and the single-arm predictor ported within ~5% on 6/6. Localized to the reused K = 4 WSR overhead envelope; three later designed grids moved a **labelled post-hoc** reconstruction to 4/5 **without re-scoring it** (`results_safety.txt`, §4.8.1) |
+| Envelope-residue candidates, scored against a criterion frozen before any candidate was evaluated ((a) K-dependent, (b) damps both slopes, (c) leaves intercepts untouched) | **TRIPLE NEGATIVE — all three refuted.** Chord-versus-tangent geometry: on a symmetric grid the OLS slope **is** the midpoint tangent exactly, so the convexity cancels — the lead was killed by its own proposer's check. Median-versus-mean: hard-fails (c) (intercepts move −0.724 / +0.762), is already carried inside route 2's first-passage operator, and its 0.10-nat accuracy does not transfer (0.170 avg / 0.481 max here). Finite-boundary overshoot: fails (b), wrong sign. The residue stands open at 4.4% / 9.6% of slope with a constraint, not an explanation (§5.5) |
+| Floored-arm ladder scored at nominal τ rather than at the binding grid point | **DEFECT, ours** — the 10,000-rep journal returns d = 1.2071 in the grid-biased convention and d = 1.5824 in the derivation's own, and the two give **opposite** verdicts on the frozen P-A/P-B windows. The biased convention had already been identified and superseded in `results_floor_d.txt` §1 and was not carried forward. Corrected reading published (§5.5); §6.2 instance 10 |
 
-**Thirty-four rows, and three scored FAILs that deliberately are not
+**Thirty-six rows, and three scored FAILs that deliberately are not
 rows.** The three envelope grids of §5.5 print P1 FAIL / P2 PASS,
 P1 FAIL / P2 FAIL, and P1 FAIL, and none is entered here. The reason is
 a distinction we would rather state than let a reader discover: those
@@ -2395,6 +2772,65 @@ violating it (`results_spertus_baseline.txt`). We offer it as a small
 methodological export: any comparison of e-process methods should print
 this bound.
 
+### 6.5 Two derivation routes, mutually blind
+
+The §5.5 envelope law and the finite-L results of §5.3 were produced
+under a protocol worth stating separately from what it produced, because
+it is cheap and it is the only reason those results carry any
+independence at all.
+
+**The protocol.** Two derivation routes are run on the same target,
+**mutually blind until each is frozen** — neither route's constants are
+visible to the other while it is being written or run — and then **every
+constant adopted from either route is re-verified in this repository
+against the committed grids** before it enters the paper. For §5.5's
+law: route 2's frozen docstring constants were written and its run
+launched before route 1's numbers existed anywhere in this project's
+audit trail; route 1 was checked by a fresh end-to-end rerun that
+reproduced every substantive prediction block byte-identically; route 2
+was checked by running its first-passage operator against a direct
+simulation of the shipped class. Agreement between two blind routes is
+then evidence, and *disagreement* is a located defect rather than an
+argument. The value showed up in the failure mode we did not plan for:
+the two routes agree with each other to 1–4% and **both miss the
+measurement in the same direction**, which is a far stronger signal of a
+shared missing term than either route's own error bar could have been.
+
+**What it cost, and the two episodes that say it transfers.** Running a
+target twice is roughly twice the work, and it does not remove the need
+to verify. What it bought, twice, was a refusal:
+
+- **The criterion killed its author's favourite.** The residue-candidate
+  criterion of §5.5 — (a) K-dependent, (b) damps both slopes, (c) leaves
+  intercepts untouched — was fixed before any candidate was evaluated,
+  and the first thing it refuted was the chord-geometry lead that the
+  same route had proposed as most likely. The check that killed it was
+  run by its own proposer.
+- **Off-grid self-refusal.** The finite-L overshoot candidate of §5.3
+  scored a near-hit on its own grid and was then **refused by its own
+  author** on an off-grid self-test (0.568 against an exact 0.416),
+  rather than being reported as a near-hit.
+
+Neither route had read this paper's methodology section. That is two
+episodes, which is weak evidence, and we would rather say so than
+generalize from it — but the question of whether pre-registration and
+scored refusal survive being handed to an independent derivation lineage
+has an answer here, and it points the right way.
+
+**And the protocol caught a defect in its own freeze — the rule that
+came out of it.** One adopted route's frozen prediction file hashed the
+prediction payload **together with its provenance**, including a
+creation timestamp. A hash over a timestamp certifies **tamper-evidence**;
+what the hash was cited for was **rerun-reproducibility**, which it
+cannot certify, because any rerun changes the timestamp and therefore
+the hash. Reproducibility was established here by the byte-identical
+rerun, not by the hash. The adopted copy was repaired — provenance moved
+outside the hashed object, and the stable hash verified identical across
+two fresh reruns — and the general rule is now: **hash the prediction
+payload only, and keep provenance outside it.** This is R4b in a new
+costume (§6.2, instance 11): a check whose stated guarantee was not the
+guarantee it computed.
+
 ---
 
 ## 7. Limitations
@@ -2437,11 +2873,14 @@ this bound.
     formalized in `paper/BOUNDARY_THEOREM.md` with an explicit remainder
     interval; even there, Eq. (3) is a *definition* of c_ren, not a
     corollary of the expansion. c_ren itself is exactly computable
-    (−1.1700824 at the reference point, absorption recursion) but has no
-    scalar closed form, and the named obstruction — a noncommuting
-    killed kernel, plus a finite-boundary gap at L ≈ 3 shared by the
-    selection and overshoot pieces — is mathematical, not a matter of
-    more compute.
+    (−1.1700824 at the reference point, absorption recursion) and is now
+    **proved** to have no scalar closed form in the class that would
+    make one useful (§5.3) — so this limitation is permanent rather than
+    pending. Read with care in both directions: the impossibility is
+    *class-relative*, and the class (smooth finite-dimensional renewal
+    reductions, power series, universal thresholds, single-eigenvalue
+    formulas) is stated because a proof against every imaginable form
+    would first have to fix one.
 13. **The boundary is derived for one geometry.** K = 4, a two-level
     (2 cold + 2 hot) stratum profile, α = 0.05, and p\* ∈ {0.20, 0.30,
     0.40}. §5.5's three grids since measured the WSR envelope out to
@@ -2456,7 +2895,12 @@ this bound.
     "measured": the schedule that envelope describes may admit no fixed
     (d, c) at all, which would make its fitted dimensions
     horizon-dependent. That is a hypothesis whose own divergence test
-    failed, and the derivation route is open (§5.5).
+    failed. §5.5's derivation of the envelope **law** does not repair
+    this: it derives the law as a finite-window projection (consistent
+    with, not a refutation of, the divergence hypothesis), it leaves an
+    unexplained 4–10% slope residue shared by both routes, and the bands
+    in §4.2 therefore still come from the measurement, not from the
+    derived constants.
 15. **Below the boundary, almost nothing was resolved.** 6 of 10
     below-band points are ties at 200 reps per arm.
     "Indistinguishable at this budget" is not "equal": a power analysis
@@ -2467,11 +2911,15 @@ this bound.
     under the regenerated one, two of the ten below-band points become
     in-band (§4.3). No verdict changes, but the classification is not
     invariant to the constant.
-17. **The floored-arm dimension is unresolved, and may be
-    unresolvable.** {1, 1.12, 1.27, 1.53} are mutually indistinguishable
-    at any feasible rep budget on this ladder, and the shipped class's
-    warmup term decays as 1/log t_c, so it has no fixed d to measure in
-    the first place (§5.5).
+17. **The floored-arm dimension is resolved only as a horizon-window
+    effective value.** The 10,000-rep ladder separates the candidates —
+    d = +1.5824 ± 0.1016 excludes the idealization d = 1 at 5.7 SE and
+    is consistent with the warmup-corrected +1.5301 — which **withdraws**
+    our earlier claim that they are mutually indistinguishable at any
+    feasible budget. But the shipped class's warmup term decays as
+    1/log t_c, so the class has no fixed d to measure in the first
+    place: what the ladder measures is an effective d over n ≈ 1.8k–38k,
+    and it should be expected to drift on a longer ladder (§5.5).
 18. **The optimal-K census is ten pools at temperature 0.** The
     designed strata are the finest honest partition available there;
     finer-K behaviour and the interior optimum's shape need per-prompt
@@ -2512,6 +2960,21 @@ this bound.
     arms on the authority of §5.5's R null, which is a failure to detect
     over R ∈ [1, 30] on two-level profiles — not a proof of
     R-independence, and the pools run R up to 17.0.
+23. **There is no universal L threshold for the asymptotic overshoot
+    constant.** ρ_d is an L → ∞ limit whose approach is controlled by a
+    quasi-lattice resonance that depends on (p, τ, d); at
+    (0.3, 0.2, 4) the error is still visible past L = 200 and changes
+    sign there. So no "L large enough" rule exists, any finite-L use has
+    to go through the absorption recursion or carry the gap explicitly,
+    and the finite-L correction is **refuted** as a smooth function
+    rather than merely unknown (§5.3).
+24. **Two of §5's derivations are single-artifact, not cross-checked by
+    a third route.** The c_ren impossibility argument (§5.3) and the
+    finite-L split were each produced by one route and verified here —
+    the jump identity reproduced at 0.025740 against a bound
+    d·V/2 = 0.014263, the finite-L oracle reproduced over all 42 cases —
+    but unlike §5.5's envelope law they have no independent second
+    derivation. Verification is not independence.
 
 ---
 
@@ -2619,6 +3082,7 @@ artifacts print their own checksums (`results_phase_curve.txt`
 `results_wsr_k.txt` f6aea65aa754d0d8;
 `results_wsr_rk.txt` 202b167276d05415;
 `results_wsr_pdir.txt` eb8f5f8d7eb4efad;
+`results_wsr_envelope.txt` c052f57840f4f670;
 `results_rla.txt` 1eefa5b579a1b395) and their superseded versions
 remain in the history (phase test v1 at commit 065f9a8, v2 at 80c9e14,
 v2b at a1f37ac, v2c at 52b6c9f; the pre-correction phase curve at
@@ -2626,6 +3090,23 @@ f75eb8d).
 Superseded artifacts are kept, not deleted: `results_cren.txt` and
 `results_overshoot.txt`'s C4 row are retained for history and marked
 superseded in place.
+
+**Two-route derivations, and a filename warning.** The §5.5 envelope law
+has two independent derivations (§6.5) and they live in two places with
+the **same basename**, which is a trap worth naming rather than
+renaming: `scripts/derive_wsr_envelope.py` → `results_wsr_envelope.txt`
+(route 2; checksum above) and `scripts/external/derive_wsr_envelope.py`
+→ `scripts/external/predictions.json` + `verification.json` (route 1,
+whose freeze was repaired on adoption per §6.5). Different directories,
+different derivations, different outputs. The finite-L oracle and
+prediction of §5.3 are at `scripts/external/finite_l/`, and
+`verify_finite_l_all.py` reproduces all 42 oracle cases from source. The
+floored-arm ladder of §5.5 is journaled per (rung, rep) in
+`data/floor_ladder_long.jsonl` (10,000 crossings,
+`scripts/run_floor_ladder_long.py`) with no self-scoring artifact: its
+two scorings and their opposite verdicts are printed in §5.5 and in
+`AUDIT_PREP.md`'s dated entries instead, which is weaker than a
+checksummed artifact and is flagged here as such.
 
 **Ledger.** ≈ 8,600 OpenAI API calls through the bolstering round at
 ≈ $2.02 (FINDINGS ledger; includes the $0.25 live WSR arm,
@@ -2660,8 +3141,10 @@ yet drawn.
 | §4.7 partition | `results_partition.txt`, `results_partition_test.txt`, `results_optimal_k.txt`, `results_gain.txt`, `scripts/derive_partition.py`, `scripts/run_partition_test.py`, `scripts/derive_optimal_k.py`, `scripts/measure_gain.py` |
 | §5 expansion | `results_overhead_law.txt`, `results_overhead_fit.txt`, `results_overhead_law_code.txt`, `results_margin_sweep.txt`, `results_overshoot.txt`, `results_cren_exact.txt`, `results_selection.txt`, `results_overshoot_closed.txt`, `results_adjudication.txt`, `results_lineage_d.txt`, `results_frontier.txt`, `results_live_prediction.txt`, `audit/out_law_accounting.txt`, `paper/BOUNDARY_THEOREM.md` |
 | §4.8 domain exports | `results_safety.txt`, `results_safety_noise.txt`, `results_rla.txt`, `scripts/run_safety_cert.py`, `scripts/run_rla_bridge.py` |
-| §5.5 WSR expansion | `results_wsr_expansion.txt`, `results_floor_d.txt`, `scripts/run_wsr_expansion.py`, `scripts/derive_floor_d.py`, `results_mbpp_law.txt` |
+| §5.5 WSR expansion | `results_wsr_expansion.txt`, `results_floor_d.txt`, `scripts/run_wsr_expansion.py`, `scripts/derive_floor_d.py`, `scripts/run_floor_ladder_long.py`, `data/floor_ladder_long.jsonl`, `results_mbpp_law.txt` |
 | §5.5 envelope grids | `results_wsr_k.txt`, `results_wsr_rk.txt`, `results_wsr_pdir.txt` |
+| §5.5 envelope law (two routes) | `results_wsr_envelope.txt`, `scripts/derive_wsr_envelope.py`, `scripts/external/derive_wsr_envelope.py`, `scripts/external/predictions.json`, `scripts/external/verification.json` |
+| §5.3 finite-L | `scripts/external/finite_l/` (`finite_l_oracle.py`, `finite_l_prediction.py`, `run_finite_l_grid.py`, `verify_finite_l_all.py`), `results_selection.txt`, `results_overshoot_closed.txt`, `results_cren_exact.txt` |
 | §6 methodology | `audit/AUDIT_LAW_CAPSTONE.md`, `audit/AUDIT_WARMSTART.md`, `AUDIT_PREP.md`, `results_relation_gate.txt`, `results_live_wsr.txt`, `scripts/relation_gate.py` |
 
 ---
