@@ -122,3 +122,31 @@ class TestGameSolver:
         lam = np.array([0.4, 0.3, 0.2, 0.1])
         m = mod._inner_min(lam, p, w, 0.15)
         assert float(np.sum(w * m)) == pytest.approx(0.15, abs=1e-4)
+
+
+class TestInfimumIsAnInfimum:
+    """min_log_e must not exceed log E at any point of its own null set."""
+
+    @pytest.mark.parametrize("side,tau", [("le", 0.5), ("ge", 0.5)])
+    def test_boundary_inf_bounded_by_feasible_points(self, side, tau):
+        # Unequal weights and saturated strata (s = 0 / f = 0) put the
+        # constrained optimum exactly on an endpoint of [0, 1].
+        sizes = np.array([518384, 408240, 382901, 366539, 134606, 135609,
+                          110717, 126286, 117050, 97136, 90050, 84914,
+                          2363055], dtype=float)
+        w = sizes / sizes.sum()
+        f = np.array([4, 5, 3, 3, 1, 3, 1, 0, 0, 0, 1, 0, 2])
+        s = np.array([3, 1, 2, 0, 1, 2, 0, 0, 0, 0, 0, 0, 10])
+        cs = StratifiedUICS(k=13, weights=w, alpha=0.1)
+        for i in range(13):
+            for _ in range(int(f[i])):
+                cs.update(i, True)
+            for _ in range(int(s[i])):
+                cs.update(i, False)
+        inf_val = cs.min_log_e(tau, side)
+        for m_const in (0.5, 0.6, 0.75, 0.9):
+            m = np.full(13, m_const)
+            mix = float(np.sum(w * m))
+            feasible = mix <= tau if side == "le" else mix >= tau
+            if feasible:
+                assert inf_val <= cs.log_e_at(m) + 1e-9

@@ -122,7 +122,13 @@ class StratifiedUICS:
             sq = np.sqrt(disc)
             r1 = (b - sq) / (2 * a)
             r2 = (b + sq) / (2 * a)
-        in1 = (r1 >= 0.0) & (r1 <= 1.0)
+        # Root selection with a tolerance: when a stratum has s = 0 (or
+        # f = 0) the quadratic factors as (m - 1)(a m - f) (resp. m (a m -
+        # (s + a))), so the admissible root is EXACTLY an endpoint and can
+        # land one ulp outside [0, 1]. Without the tolerance the other root
+        # -- which lies outside [0, 1] and is then clipped to the opposite
+        # endpoint -- is selected, and log E jumps by tens of nats.
+        in1 = (r1 >= -1e-9) & (r1 <= 1.0 + 1e-9)
         root = np.where(in1, r1, r2)
         m = np.where(np.abs(a) < 1e-12, mle, root)
         return np.clip(m, 1e-12, 1 - 1e-12)
