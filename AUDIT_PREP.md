@@ -1788,3 +1788,17 @@ within 1000 samples in this regime.
   working tree is left for the main session under the cross-lineage
   adoption rules, and no file other than this one and the two new
   artifacts was touched.
+- 2026-08-20 (Task C, split verdict, verified fresh here — all 42
+  oracle cases + target values reproduced exactly): SELECTION CLOSED
+  via exact likelihood-differentiation identity, leading form
+  Delta_sel = (1+(1-2p)c)/(2L) + o(1/L), d-independent (overpredicts
+  8.9% at L=3, ~5% by L=20 — stated). OVERSHOOT REFUTED as any smooth
+  finite-L correction: quasi-lattice NEAR-RESONANCE (at (.3,.2,4) the
+  K=1 block increment is 111x smaller than the lattice spacing, so
+  renewal phase never mixes; error visible past L=200, sign-changing).
+  Sol REFUSED its own near-hit by off-grid self-test (0.568 vs exact
+  0.416) — recorded as the discipline working inside the external
+  lineage. PAPER REGIME STATEMENT: rho_d is an L->infinity limit; the
+  finite-L gap is exactly computable (absorption recursion) but not
+  closed, and no universal L threshold exists (resonance is
+  (p,tau,d)-dependent). Artifacts adopted at scripts/external/finite_l/.
