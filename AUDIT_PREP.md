@@ -1655,3 +1655,24 @@ within 1000 samples in this regime.
   results_cren_exact R4, R5 prose-heuristic hits incl. two new n-of-m
   phrases from v4.2 text). The in-draft 6.2 note about the un-rescanned
   additions is now discharged.
+- 2026-08-20 (Task A, joint attack): WSR ENVELOPE LAW DERIVED ZERO-FIT
+  by the gpt-5.6-sol lineage (explicit max effort, on record) and
+  INDEPENDENTLY VERIFIED here: fresh end-to-end rerun reproduces every
+  substantive prediction block byte-identically (only the created_unix
+  timestamp differs; the hash covers it, explaining the hash delta);
+  freeze structure sound (predict() upstream of any artifact read);
+  measured column matches the committed grids. The law closes as a
+  FINITE-WINDOW PROJECTION of the cumulative stock-schedule drift (no
+  fixed-d asymptotic, consistent with the divergence result): d slope
+  pred -0.4453 vs meas -0.4267 (4.4%), d intercept 4.206 vs 4.141
+  (1.6%), c slope 1.056 vs 0.964 (9.5%), c intercept -9.107 vs -8.980
+  (1.4%); per-K rows within the same envelope. DIRECTION EFFECT
+  confirmed CS-side (asymmetric lambda caps 0.75/m vs 0.75/(1-m)):
+  predicted within 2.3-4.8%, exact SAFE/UNSAFE symmetry at p*=0.5
+  (|Delta O| < 2.4e-14). NOT CLOSED, as prominent as the wins: p*
+  carrier underpredicted (14% d / 19% c); R null closes at FUNCTION
+  level (0.667 vs 0.658 nats) but NOT in fitted-coordinate signs —
+  "near-null in effect, not exact invariance"; c slope loosest at
+  9.5%. Clock-conversion negative: n=KT alone cannot move d.
+  Artifacts adopted at scripts/external/ (derive_wsr_envelope.py +
+  predictions.json + verification.json; imports the shipped class).
