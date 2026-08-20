@@ -25,7 +25,7 @@ python3 -m git_filter_repo --invert-paths --path .env \
 
 fail=0
 # Guard 1: the specific key must be gone from every blob
-hits=$(git rev-list --all | while read c; do git grep -lF "$KEY" "$c" 2>/dev/null; done | head -3)
+hits=$(git rev-list --all | while read c; do git grep -lF "$KEY" "$c" 2>/dev/null || true; done | head -3)
 if [ -n "$hits" ]; then echo "ABORT [old-openai-key]:"; echo "$hits"; fail=1; fi
 # Guard 2: widened secret patterns across every blob of every commit
 for entry in \
@@ -40,13 +40,13 @@ for entry in \
   "google:AIza[A-Za-z0-9_-]{16,}"; do
   name="${entry%%:*}"; pat="${entry#*:}"
   hits=$(git rev-list --all | while read c; do
-    git grep -lE "$pat" "$c" 2>/dev/null | sed "s/^/[$name] /"; done | sort -u | head -5)
+    git grep -lE "$pat" "$c" 2>/dev/null | sed "s/^/[$name] /" || true; done | sort -u | head -5)
   if [ -n "$hits" ]; then echo "ABORT: secret pattern matched:"; echo "$hits"; fail=1; fi
 done
 # Guard 3: banned filenames anywhere in history
 BANNED='(^|/)(\.env(\..*)?|id_rsa|id_ed25519|credentials|.*\.pem)$'
 bad=$(git rev-list --all | while read c; do
-  git ls-tree -r --name-only "$c" | grep -E "$BANNED" | sed "s/^/[$c] /"; done | sort -u | head -5)
+  git ls-tree -r --name-only "$c" | grep -E "$BANNED" | sed "s/^/[$c] /" || true; done | sort -u | head -5)
 if [ -n "$bad" ]; then echo "ABORT: banned filename in history:"; echo "$bad"; fail=1; fi
 # Guard 4: safety raw material must not appear
 raw=$(git ls-tree -r --name-only HEAD | grep -E "strongreject_dataset\.csv|safety.*raw|completions" | head -3 || true)
