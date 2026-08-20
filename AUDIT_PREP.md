@@ -1529,3 +1529,79 @@ within 1000 samples in this regime.
   WITH the results, P1-P3 print PASS/FAIL. Next clause: the envelope's
   arguments are block size K, p*, and DECISION DIRECTION; R remains
   ruled out; the residual now sits at LOW p* rather than high.
+- 2026-08-19 (#51 RLA BRIDGE, second and final domain extension, SCORED;
+  miss ledger unchanged at 33 rows -- this frozen set produced no miss):
+  results_rla.txt (checksum 1eefa5b579a1b395). Freeze committed BEFORE
+  results in its own commit (5b831fb, script + docstring table + the src
+  fix below); results and docs in the follow-up commit. Pool: Georgia
+  2020 presidential, 12 county strata + one aggregate remainder from
+  approximate-official certified totals (source URL in the docstring),
+  size-proportional weights (F14 population-mean estimand verbatim),
+  p* = 0.501193, margin 0.239%, R = 3.22, N = 4,935,487. Threshold
+  tau = 0.5, direction rejects_le (UNSAFE branch) on every cell, stated
+  before the run. FROZEN: SINGLE at the real margin (both alphas),
+  TIE at 2%, WSR at 5% (both alphas); 2 resolving, 2/2 flip under a
+  wrong-theory single arm -> DISCRIMINATING. WSR constants =
+  results_wsr_pdir.txt cell (K=6, p*=0.50, UNSAFE), chosen as nearest in
+  ALL THREE known envelope arguments; this is the FIRST PROSPECTIVE test
+  of those constants (their 4/5 safety recovery was labelled post-hoc).
+  MEASURED (150 CRN-paired reps/arm/cell, v2c HD bootstrap, identical
+  ballot sequence across arms): P1 1/1 HIT (WSR at 5%/alpha=0.05, 4,032
+  vs 4,914 ballots); 5%/alpha=0.10 measured TIE = unconfirmed, NOT a
+  miss; frozen TIE at 2% measured TIE. P2 PASS -- UI never certifies at
+  all within n_max on any cell (censored 150,000 / 12,000). P3 = the
+  risk limit in RLA terms, on a NULL pool shifted to p* = 0.5 exactly:
+  1/450 audits ever certified "winner leads" = 0.0022 <= 0.05; the
+  wrong-direction counts on the true pools are each inside their own
+  alpha (1/450, 14/450, 29/450 at alpha=0.10). Single-arm predictor
+  error 0.0% / -2.6% / +7.1%; WSR envelope error -11.6% / +9.8% / +5.0%
+  (BOTH SIGNS -- no longer the one-sided +19-37% of the K=4 constants).
+  BALLOTS: design choice worth 882 (1.22x) at 5% and 3,096 (1.09x) at
+  2%; >=3-4x against UI; within +-12% of a fixed-n binomial audit at the
+  same power and 4,137 ballots CHEAPER at 2% (early stopping repays the
+  mixture overhead) while buying validity under peeking/escalation. At
+  the real 0.239% margin every design needs a MAJORITY of the ballots
+  cast (3.19M / 3.40M / 2.77M fixed-n vs 4.94M), so no ballot-polling
+  audit beats a full hand count -- which is what Georgia did; the margin
+  axis reproduces that decision unprompted.
+  SCOPE/DISCLOSURES, all in-artifact: the GA-official rows are
+  PREDICTED-ONLY (3.2M ballots/rep is three orders beyond the simulation
+  budget) and unscored, and use the four-term closed form, which is
+  validated against the exact recursion at both simulated margins
+  (-1.7% to -3.4%, the schedule term); the 2% and 5% cells are
+  SYNTHETIC-MARGIN pools (one common additive shift of every county
+  share, R 3.22 -> 3.15/3.04), disclosed as constructed, not elections;
+  the single/UI check period D is a compute choice (D*KL <= 0.06 nats,
+  <=1.0% of the crossing, below the tie band) and is carried in the
+  predictor too, so powered model and executed replay share one stopping
+  rule (severity_sim rev 3 rule (c)); R is inert for the single/WSR
+  arms under uniform statewide draws, licensed ONLY by the R null of
+  results_wsr_rk.txt, which is a failure to detect, never a proof.
+  NON-CLAIM, mandatory in any write-up: nothing here improves SHANGRLA /
+  BRAVO / ALPHA / UI-TS and no procedure here is proposed for a real
+  election; county totals fix pool parameters only.
+- 2026-08-19 (DEFECT, found by #51 and fixed before its results):
+  StratifiedUICS._m_of_lambda selected the wrong root of the KKT
+  quadratic when a stratum is saturated (s = 0 or f = 0). There the
+  quadratic factors as (m-1)(a m - f) (resp. m (a m - (s+a))), so the
+  admissible root IS an endpoint of [0,1] and can land one ulp outside
+  it; `in1 = (r1 >= 0) & (r1 <= 1)` then rejected it and the code took
+  the other root, which lies outside [0,1] and is clipped to the
+  OPPOSITE endpoint. Consequence: min_log_e returned values exceeding
+  log E at feasible points of its own null set by up to 100 nats ->
+  spurious `ge`-direction rejections at n = 42 ballots (measured:
+  wrong-direction certifications in a majority of reps on the UI arm).
+  Fixed with an endpoint tolerance; regression test asserts the
+  mathematical invariant (an infimum cannot exceed a feasible point) on
+  the real Georgia weights and FAILS on the old code. 110 -> 112 tests.
+  Scope of impact, checked: the defect lives in the k>1 constrained
+  optimizer only, so it can move UI-arm results and wrong-direction
+  counts and cannot move any frozen prediction, the single arm, or the
+  WSR arm. Prior artifacts using UI (results_partition_test.txt,
+  results_safety.txt) reported UI as DOMINATED and their P3 wrong-cert
+  counts were small (4/2700 in #50), so no prior verdict flips; not
+  regenerated, and the exposure is recorded here rather than assumed
+  away. Generator: an object correct in every configuration it had been
+  run in, wrong in the first configuration it had not -- the relation
+  gate's own thesis, this time caught by a domain port instead of a
+  census.

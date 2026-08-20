@@ -1,0 +1,107 @@
+============================================================================
+THE RLA BRIDGE: the design boundary on a risk-limiting election audit
+============================================================================
+NON-CLAIM: nothing here improves SHANGRLA/BRAVO/ALPHA/UI-TS, and no procedure here is
+proposed for use in a real election. Public county totals fix POOL PARAMETERS only.
+What is tested is this project's pre-observable DESIGN-SELECTION boundary, in a domain
+where a sample is a hand-counted ballot. K=6 ballots/block, 150 reps/arm/cell, +-5% tie band.
+
+----------------------------------------------------------------------------
+POOL (public record; approximate-official, source in docstring)
+----------------------------------------------------------------------------
+  stratum             winner     loser   ballots   share  weight
+  Fulton             381,144   137,240   518,384  0.7353  0.1050
+  Gwinnett           241,827   166,413   408,240  0.5924  0.0827
+  Cobb               221,834   161,067   382,901  0.5794  0.0776
+  DeKalb             308,162    58,377   366,539  0.8407  0.0743
+  Chatham             82,982    51,624   134,606  0.6165  0.0273
+  Cherokee            41,081    94,528   135,609  0.3029  0.0275
+  Clayton             95,466    15,251   110,717  0.8623  0.0224
+  Forsyth             41,354    84,932   126,286  0.3275  0.0256
+  Henry               71,706    45,344   117,050  0.6126  0.0237
+  Hall                25,986    71,150    97,136  0.2675  0.0197
+  Richmond            63,442    26,608    90,050  0.7045  0.0182
+  Muscogee            51,745    33,169    84,914  0.6094  0.0172
+  REMAINDER(147)     846,904 1,516,151 2,363,055  0.3584  0.4788
+
+  two-candidate ballots N = 4,935,487    p* = 0.501193    margin m = 0.002387 (0.239%)    R = 3.22
+  officially reported margin 11,779 votes; the audited quantity is the winner's
+  two-candidate share against tau = 0.500, direction rejects_le (lower bound clears tau).
+  allocation note: round-robin over these 13 unequal strata would cost K*sum w_k^2 = 3.42x
+  the per-ballot variance of the proportional allocation used here; the UI arm gets the latter.
+
+----------------------------------------------------------------------------
+FREEZE (recomputed live; asserted == the committed docstring table)
+----------------------------------------------------------------------------
+  GA-official  m=0.002387 p*=0.501193 R=3.22 alpha=0.05 D=   0: n_s=   3,191,031 n_wsr=   3,397,475 [K=4 corner    4,696,695] -> FROZEN SINGLE
+  GA-official  m=0.002387 p*=0.501193 R=3.22 alpha=0.10 D=   0: n_s=   2,932,830 n_wsr=   3,136,408 [K=4 corner          nan] -> FROZEN SINGLE
+  GA-2pct      m=0.020000 p*=0.510000 R=3.15 alpha=0.05 D= 294: n_s=      35,280 n_wsr=      33,928 [K=4 corner       44,161] -> FROZEN TIE
+  GA-5pct      m=0.050000 p*=0.525000 R=3.04 alpha=0.05 D=  42: n_s=       4,788 n_wsr=       4,425 [K=4 corner        5,461] -> FROZEN WSR  (d-alt ['single', 'wsr'] -> can fail)
+  GA-5pct      m=0.050000 p*=0.525000 R=3.04 alpha=0.10 D=  42: n_s=       4,116 n_wsr=       3,789 [K=4 corner          nan] -> FROZEN WSR  (d-alt ['single', 'wsr'] -> can fail)
+
+  closed-form vs EXACT single arm where both are affordable (validates the
+  closed form used at GA-official):
+    GA-2pct      alpha=0.05: exact   35,280 vs closed   34,090 (-3.4%; the closed form is schedule-free, the exact recursion carries D)
+    GA-5pct      alpha=0.05: exact    4,788 vs closed    4,657 (-2.7%; the closed form is schedule-free, the exact recursion carries D)
+    GA-5pct      alpha=0.10: exact    4,116 vs closed    4,047 (-1.7%; the closed form is schedule-free, the exact recursion carries D)
+
+  SEVERITY/DISCRIMINATION: 2 resolving frozen prediction(s) among the SIMULATED cells; 2/2 flip under a wrong-theory single arm (d in {0,2} vs the true d=1).
+  prediction set is DISCRIMINATING (not trivially satisfiable): ok
+
+----------------------------------------------------------------------------
+CERTIFY (three arms on the IDENTICAL ballot sequence; v2c HD paired bootstrap)
+----------------------------------------------------------------------------
+  GA-2pct      alpha=0.05: medians S  35,280 U 150,000+ W  38,376 (cert 1.00/0.01/0.99); UI-fastest no; wrong-direction certs 1/450
+               envelope error: single +0.0%, WSR(pdir) -11.6%; [frozen TIE -> reported, unscored]  measured TIE
+  GA-5pct      alpha=0.05: medians S   4,914 U  12,000+ W   4,032 (cert 0.95/0.00/0.93); UI-fastest no; wrong-direction certs 14/450
+               envelope error: single -2.6%, WSR(pdir) +9.8%; predict WSR -> measured WSR  HIT
+  GA-5pct      alpha=0.10: medians S   3,843 U  12,000+ W   3,609 (cert 0.98/0.00/0.94); UI-fastest no; wrong-direction certs 29/450
+               envelope error: single +7.1%, WSR(pdir) +5.0%; predict WSR -> measured TIE [unconfirmed]
+  '+' marks a CENSORED median: that arm failed to certify within n_max in most reps,
+  so its median is the cap and its true cost is larger.
+
+----------------------------------------------------------------------------
+P3 THE RISK LIMIT (null pool: p* = 0.5 exactly -- a reported outcome that is a tie)
+----------------------------------------------------------------------------
+  null pool p* = 0.500000 (uniform shift -0.001193), n_max = 6,000, alpha = 0.05, checks to n_max.
+  audits that EVER certify "winner leads": single 0/150, ui 0/150, wsr 1/150 -> 1/450 = 0.0022 <= 0.05: PASS
+
+----------------------------------------------------------------------------
+PAYOFF IN BALLOTS (median hand-counted ballots to certify)
+----------------------------------------------------------------------------
+  cell         alpha   best   n_best  n_worst  saved vs worst   fixed-n  sequential premium
+  GA-2pct       0.05 single   35,280   38,376     3,096 (1.09x)    39,417        -4,137 (0.90x)
+  GA-5pct       0.05    wsr    4,032    4,914       882 (1.22x)     3,954           +78 (1.02x)
+  GA-5pct       0.10    wsr    3,609    3,843       234 (1.06x)     3,213          +396 (1.12x)
+  best/worst are taken over the arms that actually certify (>=90% of reps); an arm that
+  never finishes is not a cheap audit, and UI is excluded on that ground where it is.
+  fixed-n column: one-sided binomial at the best arm's own measured power; it buys NO
+  anytime validity (no peeking, no early stop, no escalation), so the premium is the
+  price of sequential validity and is reported with whatever sign it has.
+
+  GA-official (PREDICTED ONLY, beyond simulation budget), against N = 4,935,487 ballots cast:
+    alpha=0.05: single   3,191,031 (64.7% of the state), WSR   3,397,475 (68.8%), fixed-n@0.99  2,768,762 (56.1%); cheapest sequential audit = 64.7% of a full hand count
+    alpha=0.10: single   2,932,830 (59.4% of the state), WSR   3,136,408 (63.5%), fixed-n@0.99  2,285,338 (46.3%); cheapest sequential audit = 59.4% of a full hand count
+  At a 0.24% margin every design costs a MAJORITY of the ballots cast, so no ballot-
+  polling audit is cheaper than counting them all -- which is what Georgia in fact did
+  (a full statewide hand recount). The margin axis of the design map reproduces that
+  decision without being told about it.
+
+----------------------------------------------------------------------------
+VERDICTS
+----------------------------------------------------------------------------
+  P1 every resolving scored cell matches frozen: 1/1 HIT (0 MISS, 1 unconfirmed-by-measurement): PASS
+  P2 UI never outright fastest: 0/3 UI wins: PASS
+  P3 risk limit on the null pool 0.0022 <= 0.05: PASS
+  discrimination gate: ok
+
+----------------------------------------------------------------------------
+VERDICT: the design boundary PORTS to risk-limiting audits -- every resolving frozen
+call confirmed on real county structure, UI dominated, and the risk limit held on a
+tied pool. The (K, p*, direction)-matched envelope's first PROSPECTIVE test passes, and
+the margin axis reproduces the full-hand-count decision at Georgia's real margin.
+----------------------------------------------------------------------------
+
+============================================================================
+Checksum (SHA256): 1eefa5b579a1b395
+============================================================================

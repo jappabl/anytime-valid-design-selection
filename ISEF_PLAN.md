@@ -158,7 +158,27 @@ FRAMING RULES (peer-verified from 6 pools; MANDATORY in the write-up):
     one proxy grader, no human calibration, pool-scoped estimand.
   - Prediction at these ratios: single-stream wins/ties on most pools;
     qwen2.5-7b (17.0) is the one internal contrast expected to differ.
-Then: RLA bridge (per scope decision), only after safety is scored.
+Then: RLA bridge (per scope decision), only after safety is scored. DONE
+below.
+
+## DONE — RLA BRIDGE (#51, scored 2026-08-19) — domain extensions COMPLETE
+
+SCORED: results_rla.txt (checksum 1eefa5b579a1b395). Georgia 2020 county
+ballot-polling audit (12 counties + remainder, size-proportional weights per
+F14; p* = 0.501193, margin 0.239%, R = 3.22, N = 4,935,487). Freeze committed
+first (5b831fb): SINGLE at the real margin, TIE at 2%, WSR at 5%, both alphas;
+WSR constants from results_wsr_pdir.txt's (K=6, p*=0.50, UNSAFE) cell — the
+FIRST PROSPECTIVE test of the direction-matched envelope. Measured (150 CRN
+reps/arm/cell, v2c): P1 1/1 HIT, P2 PASS (UI never certifies at all), P3 the
+risk limit on a truly-tied pool 1/450 = 0.0022 <= 0.05. Single-arm predictor
+0.0% error at 2%; WSR envelope ±12%, BOTH signs. Ballots: design choice worth
+1.09-1.22x between live arms, >=3x vs UI, within ±12% of fixed-n (and 4,137
+ballots cheaper at 2%); at the real margin every design needs a majority of
+the ballots cast, i.e. hand-count — what Georgia did. Found and fixed a
+root-selection defect in StratifiedUICS._m_of_lambda (saturated stratum ->
+wrong KKT root -> "infimum" above feasible points -> spurious wrong-direction
+certifications); regression test added, 112 tests. Both scoped domain
+extensions (safety, RLA) are now done; nothing else is queued behind them.
 
 ## DONE EARLIER — floored-arm d (kept for reference): derive-first target
 
@@ -182,11 +202,12 @@ Everything else (safety domain, new arms) HELD until this resolves.
 
 ## HELD for Hao's explicit go (do NOT start autonomously)
 
-- Task #50 LLM-safety domain test: selecting/running a jailbreak or
-  harmful-compliance corpus is a sensitive scope decision — held.
-- After it, the RLA bridge (Spertus construction already implemented/
-  validated → risk-limiting-audit framing; lower risk, writeup-shaped).
-- Sequence is safety → RLA per the scope decision.
+- Both scoped domain extensions are RELEASED and DONE: #50 safety
+  (results_safety.txt) then #51 RLA bridge (results_rla.txt), in the
+  ordered sequence Hao set. No further domain is authorized — a third
+  one would be a new scope decision, not a continuation.
+- paper/DRAFT.md consolidation of #50 + #51 is pending and deliberately
+  untouched by both domain runs.
 
 ## Month 3 — HUMAN-BOUND, untouched
 

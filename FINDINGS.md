@@ -451,6 +451,92 @@ somewhere better than where it aimed:
    alongside rate-sacrifice (WSR) and transfer priors
    ([results_frontier.txt](results_frontier.txt)).
 
+### F16. The RLA bridge: the same mathematics, priced in hand-counted ballots
+
+A risk-limiting election audit (RLA) is the same object this project has been
+certifying all along — an anytime-valid ONE-SIDED test that a rate sits on the
+safe side of a threshold, stopped the moment the evidence crosses log(1/α),
+with strata (counties) instead of prompt families. That field already owns the
+machinery: SHANGRLA (Stark 2020), betting / ALPHA supermartingales
+(Waudby-Smith & Ramdas 2023; Stark 2023), and the Spertus–Sridhar–Stark (2024)
+union-intersection stratified construction this repo has shipped as
+`StratifiedUICS` since the audit-mandated SOTA comparison. What it does not
+have is a **pre-observable design-selection rule** — which e-process family
+certifies fastest, decidable before the first ballot is pulled — and that
+boundary is the only thing exported here. **Non-claim, explicit: nothing in
+this finding improves SHANGRLA, BRAVO, ALPHA or UI-TS, and no procedure here
+is proposed for use in a real election**; public county totals fix POOL
+PARAMETERS only. What the domain gives back is a sample unit that costs human
+labour, so "which design certifies faster" is denominated in hand-counted
+ballots ([results_rla.txt](results_rla.txt)).
+
+**Pool.** Georgia's 2020 presidential contest — the closest state of that
+cycle — as twelve county strata plus one aggregate remainder row, from the
+approximate-official certified totals (2,473,633 / 2,461,854; a reported
+margin of 11,779 votes). Audited quantity: the winner's two-candidate share
+against τ = 0.5. Size-proportional stratum weights, so the estimand is the
+population mean — the F14 reformulation applies verbatim and is what licenses
+unequal weights inside the UI construction. **p\* = 0.501193, margin m =
+0.239%, R = 3.22**, N = 4,935,487 ballots. Ballots are drawn uniformly
+statewide with replacement (the BRAVO convention) and all three arms consume
+the *identical* ballot sequence, ballot for ballot.
+
+**Frozen before any run**, with the WSR envelope taken from
+[results_wsr_pdir.txt](results_wsr_pdir.txt)'s (K = 6, p\* = 0.50, UNSAFE)
+cell — the nearest measured cell in all three arguments the envelope is now
+known to take, and therefore the **first PROSPECTIVE test of the
+(K, p\*, direction)-matched envelope**, whose 4/5 recovery of the #50 miss was
+a labelled post-hoc diagnostic: **SINGLE** at the real 0.239% margin, **TIE**
+at a 2% margin, **WSR** at 5%, at both α = 0.05 and α = 0.10 (2 resolving
+calls, both of which flip under a wrong-theory single arm, so the set
+discriminates). The design call moves along the margin axis, and that ordering
+is the falsifiable content.
+
+**Measured** (150 CRN-paired reps/arm/cell, v2c Harrell-Davis paired
+bootstrap): **P1 1/1 HIT** — WSR wins at 5%/α=0.05 as frozen (4,032 vs 4,914
+ballots); the 5%/α=0.10 cell measures a TIE (unconfirmed, not a miss); the
+frozen TIE at 2% measures a TIE. **P2 PASSES and then some**: the UI arm never
+certifies at all inside n_max on any cell (censored at 150,000 / 12,000
+ballots) — thirteen nuisance rates is an overhead no audit budget absorbs.
+**P3, the risk limit in its own terms**, run on a NULL pool whose county
+shares are shifted so p\* = 0.5 exactly (a reported outcome that is truly a
+tie, the worst case a risk limit must survive): 1/450 audits ever certified
+"the winner leads" = 0.0022 ≤ 0.05. Wrong-direction certifications on the
+true-outcome pools are also each inside their own α (1/450, 14/450, 29/450 at
+α = 0.10). **The single-arm predictor ports again, and harder than in the
+safety domain**: the exact absorption recursion, run at the arm's own check
+schedule, predicted 35,280 ballots at a 2% margin and the measurement returned
+35,280 — a 0.0% error — with −2.6% and +7.1% at 5%. The WSR envelope errs by
+−11.6% / +9.8% / +5.0%, both signs, a band that no longer looks like the
+one-sided +19–37% over-prediction of the K=4 constants.
+
+**The payoff, in ballots.** At a 5% margin the design choice is worth 882
+ballots (1.22×) between the two live arms and the whole audit ~4,000 ballots;
+at 2% it is 3,096 ballots (1.09×) and the audit ~35,000; against the UI arm it
+is worth ≥ 3–4× on every cell. Against a naive fixed-n binomial audit at the
+same power the sequential arms are within ±12% and at the 2% margin actually
+**cheaper by 4,137 ballots** — early stopping more than repays the mixture
+overhead — while buying what the fixed-n audit cannot: validity under peeking,
+early stopping and escalation. And at Georgia's *real* 0.239% margin every
+design costs a **majority of the ballots cast** (3.19M single / 3.40M WSR /
+2.77M even for fixed-n, against 4.94M cast), so no ballot-polling audit is
+cheaper than counting them all — which is precisely what Georgia did (a full
+statewide hand recount). The margin axis of the design map reproduces that
+decision without being told about it.
+
+**A defect the domain found.** Thirteen unequal strata with small per-stratum
+counts is the harshest configuration `StratifiedUICS` has ever run in, and it
+exposed a root-selection bug in its constrained optimizer: when a stratum is
+saturated (s = 0 or f = 0) the KKT quadratic factors so that the admissible
+root *is* an endpoint of [0, 1] and can land one ulp outside it, after which
+the code selected the other root and clipped it to the opposite endpoint. The
+returned "infimum" then exceeded log E at feasible points of its own null set
+by up to 100 nats, producing spurious wrong-direction certifications at 42
+ballots. Fixed, with the infimum property as a regression test that fails on
+the old code (112 tests green). It is worth naming what caught it: not a
+proof, not a review, but porting the certifier into a domain whose stratum
+structure the original design never anticipated.
+
 ### F15. The design boundary ported out-of-family: what survives, what breaks (safety domain)
 
 A fourth task family stress-tests the derived single-vs-WSR boundary in a
