@@ -1815,3 +1815,4 @@ within 1000 samples in this regime.
   open number. Vectorization verified bit-identical vs shipped class.
   Task B (scalar c_ren) is the last briefed item; GO sent.
 - 2026-08-20 (long ladder verdict): floored-arm d = +1.2071 +/- 0.1107 over 10000 journaled reps — d=1.53 warmup-corrected REJECTED (z=-2.92); d=1 idealization CONSISTENT (z=+1.87). The shipped Kelly floor behaves as the derived idealization at scale.
+- 2026-08-20 (ladder phrasing amendment, broker-verified z's): d=1 is NOT REJECTED (two-sided p=0.061), not 'confirmed' — point estimate 1.2071 sits 1.87 SE above 1, and the SE-distance from 1 GREW (1.71->1.80->1.87) as precision improved 3.4x: signature of a small real offset (~0.2), candidate = slow 1/log t_c warmup remnant. Strong claim: 1.53 REJECTED (p=0.0035). Extrapolation check queued before any 'floored arm = idealization' claim; boundary route on that arm may inherit a small quantified offset rather than closing exactly.
