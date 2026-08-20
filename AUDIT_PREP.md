@@ -1650,3 +1650,8 @@ within 1000 samples in this regime.
   to the R5 count rather than reduce it. No verdict, no artifact and no
   number was changed by this pass; nothing was re-run except the test
   suite (112 passed). publish_sync.sh untouched and not run.
+- 2026-08-19 (post-v4.2 gate rescan): relation gate re-run over v4.2 —
+  no new flag classes; same disclosed set (A2 permanent non-evidence,
+  results_cren_exact R4, R5 prose-heuristic hits incl. two new n-of-m
+  phrases from v4.2 text). The in-draft 6.2 note about the un-rescanned
+  additions is now discharged.
