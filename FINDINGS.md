@@ -545,6 +545,45 @@ log R are confounded at −0.87, so the pools alone could never have separated
 those two — which is exactly why a designed grid was needed, and what it says
 is that with p\* held fixed, R does essentially nothing.
 
+**Third addendum (2026-08-19) — the envelope is direction-dependent, and always
+was measured one-sided.** The R null left p\* as the open candidate, but p\* was
+still entangled with something the whole arc had held fixed without saying so:
+every envelope ever measured here — the K grid, the (R, K) grid, and the
+original K=4 calibration — certifies in the **UNSAFE** direction (p > τ, the CS
+*lower* bound clearing τ), and in the safety pools a high p\* and the direction
+that favours a high block mean arrive together.
+[results_wsr_pdir.txt](results_wsr_pdir.txt) crosses the two axes at fixed
+K = 6, R = 1.2: p\* ∈ {0.20, 0.50, 0.80} × direction ∈ {UNSAFE, SAFE}, five
+margins per cell, the two *shipped* tests (`lo > τ` and `hi ≤ τ`) on the shipped
+`WSRBlockCS`, and common random numbers so tight that the two direction arms of
+a rung consume the identical Bernoulli sequence block for block — only τ and
+which bound is read differ. The Kelly rate itself is provably direction-
+asymmetric, and the artifact prints it before simulating anything: at δ = 0.09,
+V_SAFE/V_UNSAFE is 0.51 at p\* = 0.20 and 1.99 at p\* = 0.80, and *exactly* 1 at
+p\* = 0.50, where the two-level profile satisfies p_lo + p_hi = 1 and the
+block-mean law is symmetric. All of that is divided out before the fit, so what
+survives in (d, c) is the confidence sequence alone — and something does
+survive. On the pre-registered raw-(d, c) comparison p\* is the larger axis
+(1.42× in d, 2.01× in c); at *function* level, over the common n-window, the
+ordering reverses to a wash (direction 2.61 nats vs p\* 2.35, a 1.11× margin).
+The scale that matters is the axis this same instrument already called null:
+the refuted R sweep spans 0.66 nats measured the identical way, so **both** new
+axes are ~4× the null. The honest verdict is therefore not "p\*, not direction"
+but *both, comparably* — **the overhead envelope is direction-dependent, and
+every constant in this project was fitted on one side of it.** Plugged back into
+the safety freeze with direction- and p\*-matched constants, the envelope
+resolves all six pools and matches the measured winners **4/5**, against 1/2 for
+the frozen call and 1/2 for the (R, K) surface: mistral-7b — the pool that
+produced the scored miss — moves SINGLE → WSR and lands on the measured winner
+(+24.5% → −4.3% error), llama3.1-8b goes +19.3% → +2.8%, qwen2.5-7b +9.2% →
++0.3%, and the one new miss is qwen2-7b at the *lowest* p\*. So the arc's answer
+finally separates: block size carried the magnitude, and p\*-with-direction
+carries the resolution. This is a labelled post-hoc diagnostic using constants
+fitted long after the prediction was frozen — **the #50 miss stands as scored,
+three times over** — but it names what a re-derived envelope would need: K, p\*,
+and the decision direction. The residual has not vanished, it has moved, from
+the high-p\* pools to the low-p\* one.
+
 ### F13. The design-space partition (derived, field-opening)
 
 The four-regime design map is now a DERIVED partition of

@@ -1,0 +1,211 @@
+============================================================================
+WSR OVERHEAD ENVELOPE: DECISION DIRECTION x p*
+============================================================================
+alpha=0.05, K=6, R=1.2 fixed; p* in (0.2, 0.5, 0.8) x direction in ('UNSAFE', 'SAFE'), two-level
+K-stratum pools (half at p_lo, half at p_hi, p_hi/p_lo = R, mean p*), one draw per stratum
+per block, shipped WSRBlockCS polled every block. UNSAFE certifies p > tau at
+tau = p* - delta (lo > tau); SAFE certifies p < tau at tau = p* + delta (hi <= tau).
+
+Anchor artifact results_wsr_rk.txt: stated 202b167276d05415, recomputed 202b167276d05415 -> OK (expected 202b167276d05415);
+  its parsed K=6 cells at R=1 and R=3 == the values scored here: OK  {R=1: (1.562, -3.235), R=3: (1.393, -2.723)}
+
+V form check vs the SHIPPED 64-atom enumeration (run_safety_cert.v_kelly_block_K, K=6),
+over every tau in the frozen ladder: UNSAFE branch max abs diff = 1.21e-17; SAFE branch
+via the exact complement identity V_SAFE(rates,tau) = V_UNSAFE(1-rates,1-tau), max abs
+diff = 3.47e-17. Both branches are therefore checked against shipped code.
+
+----------------------------------------------------------------------------
+DIRECTION ASYMMETRY OF V — ANALYTIC, BEFORE ANY SIMULATION
+----------------------------------------------------------------------------
+  Same p*, same |margin| delta, same profile; only the direction of the bet differs.
+  V_UNSAFE at tau = p* - delta vs V_SAFE at tau = p* + delta (per-sample nats).
+
+    delta     p*    V_UNSAFE      V_SAFE   V_SAFE/V_UNSAFE
+    0.090   0.20   0.0310339   0.0157153            0.5064
+    0.090   0.50   0.0152504   0.0152504            1.0000
+    0.090   0.80   0.0159016   0.0317076            1.9940
+
+    0.050   0.20   0.0087429   0.0066011            0.7550
+    0.050   0.50   0.0049385   0.0049385            1.0000
+    0.050   0.80   0.0067792   0.0089750            1.3239
+
+    0.020   0.20   0.0013127   0.0011869            0.9041
+    0.020   0.50   0.0008040   0.0008040            1.0000
+    0.020   0.80   0.0012267   0.0013522            1.1023
+
+  READ: the two directions are NOT informationally equivalent. At p* = 0.20 the SAFE
+  bet earns HALF the Kelly rate of the UNSAFE bet at delta = 0.09, and at p* = 0.80 it
+  earns twice as much; the gap shrinks toward 1 as delta -> 0 (Gaussian limit). At
+  p* = 0.50 the ratio is EXACTLY 1: the two-level profile has p_lo + p_hi = 2p* = 1, so
+  the rate multiset is closed under p -> 1-p, the block-mean law is symmetric about
+  0.5, and V_UNSAFE(0.5-d) = V_SAFE(0.5+d) identically (checked: max abs diff 2.08e-17).
+  O(n) := n*V - log(1/alpha) divides by the direction's OWN V, so ALL of this is
+  absorbed before the fit. Any direction effect surviving in (d, c) belongs to the
+  confidence sequence, not to the information rate.
+
+----------------------------------------------------------------------------
+FROZEN TAU LADDER (0.001 lattice; solved per cell by an independent pilot)
+----------------------------------------------------------------------------
+  Profile at p*: p_lo = 0.9091 p*, p_hi = 1.0909 p* (3 strata each, ratio 1.2).
+  Targets (250, 700, 2000, 5000, 12000) (48x span, DISCLOSED as wider than the (R,K) grid's 32x);
+  reps (250, 250, 200, 150, 120); n_max = 10x target.
+  p*=0.20 UNSAFE: p_lo=0.1818 p_hi=0.2182 tau=[0.126, 0.155, 0.17, 0.181, 0.188]
+                 delta=[0.074, 0.045, 0.03, 0.019, 0.012]
+  p*=0.20 SAFE  : p_lo=0.1818 p_hi=0.2182 tau=[0.299, 0.248, 0.224, 0.216, 0.212]
+                 delta=[0.099, 0.048, 0.024, 0.016, 0.012]
+  p*=0.50 UNSAFE: p_lo=0.4545 p_hi=0.5455 tau=[0.414, 0.447, 0.467, 0.477, 0.484]
+                 delta=[0.086, 0.053, 0.033, 0.023, 0.016]
+  p*=0.50 SAFE  : p_lo=0.4545 p_hi=0.5455 tau=[0.59, 0.552, 0.534, 0.522, 0.517]
+                 delta=[0.09, 0.052, 0.034, 0.022, 0.017]
+  p*=0.80 UNSAFE: p_lo=0.7273 p_hi=0.8727 tau=[0.706, 0.757, 0.773, 0.782, 0.789]
+                 delta=[0.094, 0.043, 0.027, 0.018, 0.011]
+  p*=0.80 SAFE  : p_lo=0.7273 p_hi=0.8727 tau=[0.877, 0.847, 0.827, 0.817, 0.813]
+                 delta=[0.077, 0.047, 0.027, 0.017, 0.013]
+
+----------------------------------------------------------------------------
+MEASURED GRID  (median crossing; O(n) := n*V - log(1/alpha))
+----------------------------------------------------------------------------
+     p*    dir    tau  delta  q_grid          V   n_med  cert      nV       O
+   0.20 UNSAFE  0.126  0.074   0.7%   0.020171     246  1.00   4.962   1.966
+   0.20 UNSAFE  0.155  0.045   1.1%   0.007009     657  1.00   4.605   1.609
+   0.20 UNSAFE  0.170  0.030   1.7%   0.003018    1707  1.00   5.153   2.157
+   0.20 UNSAFE  0.181  0.019   2.6%   0.001182    5247  1.00   6.203   3.207
+   0.20 UNSAFE  0.188  0.012   4.2%   0.000464   15252  1.00   7.079   4.083
+
+   0.20   SAFE  0.299  0.099   0.5%   0.017839     246  1.00   4.388   1.393
+   0.20   SAFE  0.248  0.048   1.0%   0.006161     696  1.00   4.288   1.292
+   0.20   SAFE  0.224  0.024   2.1%   0.001689    2259  1.00   3.815   0.819
+   0.20   SAFE  0.216  0.016   3.1%   0.000768    5865  1.00   4.507   1.511
+   0.20   SAFE  0.212  0.012   4.2%   0.000437   11415  1.00   4.989   1.993
+
+   0.50 UNSAFE  0.414  0.086   0.6%   0.014010     285  1.00   3.993   0.997
+   0.50 UNSAFE  0.447  0.053   0.9%   0.005534     786  1.00   4.350   1.354
+   0.50 UNSAFE  0.467  0.033   1.5%   0.002177    2043  1.00   4.447   1.451
+   0.50 UNSAFE  0.477  0.023   2.2%   0.001062    5817  1.00   6.179   3.183
+   0.50 UNSAFE  0.484  0.016   3.1%   0.000515   11676  1.00   6.015   3.020
+
+   0.50   SAFE  0.590  0.090   0.6%   0.015250     246  1.00   3.752   0.756
+   0.50   SAFE  0.552  0.052   1.0%   0.005332     684  1.00   3.647   0.652
+   0.50   SAFE  0.534  0.034   1.5%   0.002309    2211  1.00   5.106   2.110
+   0.50   SAFE  0.522  0.022   2.3%   0.000972    5055  1.00   4.915   1.919
+   0.50   SAFE  0.517  0.017   2.9%   0.000581   11790  1.00   6.855   3.860
+
+   0.80 UNSAFE  0.706  0.094   0.5%   0.016843     264  1.00   4.446   1.451
+   0.80 UNSAFE  0.757  0.043   1.2%   0.005241     720  1.00   3.773   0.778
+   0.80 UNSAFE  0.773  0.027   1.9%   0.002190    1752  1.00   3.836   0.841
+   0.80 UNSAFE  0.782  0.018   2.8%   0.000999    3993  1.00   3.990   0.994
+   0.80 UNSAFE  0.789  0.011   4.5%   0.000380   12300  1.00   4.679   1.683
+
+   0.80   SAFE  0.877  0.077   0.6%   0.022504     225  1.00   5.063   2.068
+   0.80   SAFE  0.847  0.047   1.1%   0.007884     696  1.00   5.487   2.491
+   0.80   SAFE  0.827  0.027   1.9%   0.002500    2157  1.00   5.393   2.398
+   0.80   SAFE  0.817  0.017   2.9%   0.000971    7116  1.00   6.908   3.912
+   0.80   SAFE  0.813  0.013   3.8%   0.000563   12576  1.00   7.077   4.081
+
+----------------------------------------------------------------------------
+ENVELOPE FIT PER CELL
+----------------------------------------------------------------------------
+  5 rungs per cell, fit O = (d/2) log n + c by OLS (SE = OLS standard error).
+  Effective LOCAL fits over the measured n-range, which is by design the same window
+  in every cell; not an expansion claim.
+
+     p*    dir |       n range |       d     SE        c     SE     SSE  max|r|
+   0.20 UNSAFE |    246- 15252 |   1.142  0.288   -1.693  1.104   0.664   0.516
+   0.20   SAFE |    246- 11415 |   0.250  0.278    0.458  1.068   0.562   0.603
+   0.50 UNSAFE |    285- 11676 |   1.257  0.309   -2.773  1.191   0.639   0.567
+   0.50   SAFE |    246- 11790 |   1.518  0.418   -3.855  1.600   1.249   0.700
+   0.80 UNSAFE |    264- 12300 |   0.152  0.296    0.582  1.123   0.582   0.445
+   0.80   SAFE |    225- 12576 |   1.043  0.256   -0.966  0.989   0.534   0.638
+
+  THE 6-CELL TABLE (d/c; rows direction, columns p*)
+      dir\p*           p*=0.20           p*=0.50           p*=0.80
+      UNSAFE    1.142/-1.693       1.257/-2.773       0.152/0.582    
+        SAFE    0.250/0.458        1.518/-3.855       1.043/-0.966   
+
+----------------------------------------------------------------------------
+PRE-REGISTERED PREDICATES
+----------------------------------------------------------------------------
+  P1 (anchor across profile families) cell (p*=0.20, UNSAFE) vs results_wsr_rk.txt K=6, R=1:
+     d   1.142 vs anchor  1.562 (diff -0.420, tol +/-0.35); c  -1.693 vs  -3.235 (diff +1.542, tol +/-0.9)
+     -> FAIL   [tolerance widened from the (R,K) grid's +/-0.25 / +/-0.6 IN ADVANCE:
+        that cell is R=1 vs this grid's R=1.2 AND it pooled p* in {0.20, 0.35} vs this cell's
+        p*=0.20 alone — two design differences, not one.]
+     [reference only, NOT scored: K=6 R=3 cell (1.393, -2.723); the (R,K) surface at (K=6, R=1.2)
+      gives d=1.392, c=-2.748.]
+     POST-HOC ARITHMETIC (labeled, from the two artifacts' own printed constants; scores
+     nothing): over the two fits' OVERLAPPING range n in [261, 7392] the envelopes differ at FUNCTION
+     level by at most 0.373 nats — the same d<->c trade-off inside a two-parameter local
+     fit that the (R,K) grid reported at its own K=4 P1 failure, not an envelope disagreement.
+
+  P2 (THE DISCRIMINATION) — only the comparison was pre-committed; no winner was.
+     DIRECTION axis, fixed p* (SAFE minus UNSAFE):
+       p*=0.20: dd -0.892   dc +2.151
+       p*=0.50: dd +0.261   dc -1.083
+       p*=0.80: dd +0.891   dc -1.548
+     p* axis, fixed direction (max - min over p*):
+       UNSAFE: dd 1.105    dc 3.355   [d 1.142 -> 1.257 -> 0.152; c -1.693 -> -2.773 -> 0.582]
+       SAFE  : dd 1.269    dc 4.314   [d 0.250 -> 1.518 -> 1.043; c 0.458 -> -3.855 -> -0.966]
+
+     EFFECT SIZES: d — direction 0.892 vs p* 1.269  -> larger along p* (1.42x)
+                   c — direction 2.151 vs p* 4.314  -> larger along p* (2.01x)
+     P2 VERDICT: both constants name p*
+
+     (reported, NOT scored — raw (d,c) gaps are not scale-free and the two constants
+      trade off inside a two-parameter local fit)
+       in units of the mean OLS SE (d 0.307, c 1.179): d — direction 2.90 SE vs p* 4.13 SE; c — direction 1.82 SE vs p* 3.66 SE
+       FUNCTION level, max |O_A(n) - O_B(n)| over the common window n in [285, 11415]:
+         direction 2.612 nats vs p* 2.349 nats  -> larger along DIRECTION (1.11x)
+       SCALE REFERENCE (labeled, computed from results_wsr_rk.txt's own printed K=6 cells;
+       scores nothing): its REFUTED R axis, measured the identical function-level way over
+       its own common window n in [261, 6381], spans 0.658 nats across R = 1..30. Both axes here are
+       3.6-4.0x that. Direction is NOT a second null; p* is not either.
+
+  P3 validity guard, every rung >= 90% crossings: PASS (0 rung(s) excluded of 30)
+
+----------------------------------------------------------------------------
+POST-HOC DIAGNOSTIC — labeled; does NOT re-score the safety miss
+----------------------------------------------------------------------------
+  results_safety.txt identity: stated a369e454bc5450fd, recomputed a369e454bc5450fd -> OK (expected a369e454bc5450fd)
+  Machinery reused verbatim from run_safety_cert (load_pool, mu, tau=round(mu-0.045,3),
+  single_fourterm, 64-atom v_kelly_block_K at K=6, +/-5% tie band); only the WSR overhead is swapped.
+  err% = (predicted n_wsr - measured WSR median)/measured; POSITIVE = over-predicts, i.e. WSR
+  looks slower than it is (the direction of the safety miss, which was +19 to +37%).
+  PDIR-N = nearest (p*, direction)-matched cell. PDIR-I = linear-in-p* interpolation across
+  the three UNSAFE cells (clamped). DIR-SWAP = the p*-matched SAFE cell, a SENSITIVITY
+  column only — never a prediction, since every scored pool certifies in the UNSAFE direction.
+
+  pool              p*  cell   n_s  W_meas |  COMMIT    err% |  PDIR-N    err% |  PDIR-I    err% |    SWAP |  frozen   PD-N   PD-I   meas
+  mistral-7b     0.857  0.80   764     678 |     844  +24.5% |     649   -4.3% |     649   -4.3% |     888 |  single    wsr    wsr    wsr
+  qwen2-7b       0.107  0.20   336     411 |     362  -11.8% |     314  -23.7% |     314  -23.7% |     285 |  single    wsr    wsr single
+  phi3.5-latest  0.531  0.50  1244     939 |    1289  +37.2% |    1109  +18.1% |    1094  +16.6% |    1061 |     tie    wsr    wsr    wsr
+  llama3.1-8b    0.528  0.50  1256    1062 |    1267  +19.3% |    1092   +2.8% |    1079   +1.6% |    1044 |     tie    wsr    wsr    wsr
+  llama3.2-3b    0.457  0.50  1244     885 |    1205  +36.1% |    1041  +17.6% |    1066  +20.5% |     993 |     tie    wsr    wsr    wsr
+  qwen2.5-7b     0.160  0.20   572     513 |     560   +9.2% |     515   +0.3% |     515   +0.3% |     446 |     tie    wsr    wsr    tie
+
+  COMMITTED column reproduces the frozen table exactly: YES
+  PREDICTION ERROR, all six scored pools: COMMITTED [-11.8%, +37.2%] -> PDIR-N [-23.7%, +18.1%]
+
+  frozen baseline (COMMITTED, as scored in #50): 2 resolving, 1 HIT 1 MISS = 1/2 matched.
+  (R,K)-surface baseline (results_wsr_rk.txt): 3 resolving, 1 HIT 1 MISS 1 unconfirmed = 1/2.
+  PDIR-N: 6 resolving prediction(s) ['mistral-7b', 'qwen2-7b', 'phi3.5-latest', 'llama3.1-8b', 'llama3.2-3b', 'qwen2.5-7b']; 4 HIT 1 MISS 1 unconfirmed (measured TIE) -> matched 4/5
+  Q1 >= 2 resolving predictions: YES    Q2 matches the measured winners better than 1/2: YES
+
+  DIAGNOSTIC ANSWER (not a verdict; the #50 MISS stands as scored): YES on both — the (p*, direction)-matched envelope is non-vacuous AND beats the frozen call rate.
+  Assumptions carried, all disclosed and none proved: R is held at 1.2 for every cell while
+  the pools run R = 1.16-17.0 (licensed only by the R null of results_wsr_rk.txt, which is a
+  failure to detect, not a proof); the grid's two-level profile stands in for six category
+  rates; and p* = 0.857 extrapolates 0.057 past the top cell.
+
+----------------------------------------------------------------------------
+SUMMARY
+----------------------------------------------------------------------------
+  P1 FAIL  |  P2 axis p*  |  P3 PASS
+  Effect sizes: d — direction 0.892 vs p* 1.269;  c — direction 2.151 vs p* 4.314;
+  function level over n in [285, 11415] — direction 2.612 nats vs p* 2.349 nats.
+  V itself IS direction-asymmetric (up to 2x at delta=0.09, exactly 1x at p*=0.50) and is
+  divided out before the fit, so the (d, c) comparison above is about the CS alone.
+----------------------------------------------------------------------------
+
+============================================================================
+Checksum (SHA256): eb8f5f8d7eb4efad
+============================================================================

@@ -1410,3 +1410,122 @@ within 1000 samples in this regime.
   measurement grid, docstring committed WITH the results, P1-P3 print
   PASS/FAIL. Next clause: the envelope's missing argument is block size
   alone as far as this grid can see — R is ruled out, p* is open.
+- 2026-08-19 (DIRECTION and p* disentangled; the safety miss's
+  RESOLUTION recovered in a labeled diagnostic — the #50 MISS STILL
+  STANDS AS SCORED): results_wsr_pdir.txt (checksum eb8f5f8d7eb4efad)
+  — the WSR overhead envelope measured on a designed 6-cell grid,
+  p* in {0.20, 0.50, 0.80} x direction in {UNSAFE, SAFE} at FIXED
+  K=6 and R=1.2, five margins per cell (30 rungs). MOTIVATION: every
+  envelope in this arc (results_wsr_k.txt, results_wsr_rk.txt, the
+  original K=4 calibration) is UNSAFE-direction (certify p > tau, CS
+  LOWER bound clears tau), and in the safety pools high p* and the
+  favourable direction arrive together, so the residual left open by
+  the R null could be p*, direction, or both. UNSAFE certifies
+  p > tau at tau = p* - delta with lo > tau; SAFE certifies p < tau at
+  tau = p* + delta with hi <= tau — the two SHIPPED tests of
+  run_safety_cert.run_arm, on the SHIPPED WSRBlockCS polled every
+  block. CRN: one uniform stream per (p*, rung, rep) SHARED by both
+  direction arms; since the profile depends only on (p*, R) and R is
+  fixed, the two arms consume the IDENTICAL Bernoulli sequence block
+  for block and only tau and the tested bound differ — the tightest
+  pairing available. Ladder solved PER CELL by an independent pilot
+  (seed block 909000, 60 reps, three fixed-point steps on n ~ delta^-2)
+  to a COMMON window {250,700,2000,5000,12000}; reps 250/250/200/150/
+  120 tapered and disclosed; 30/30 rungs certified 1.00.
+  V IS DIRECTION-ASYMMETRIC, ANALYTICALLY, AND IS PRINTED BEFORE ANY
+  SIMULATION: UNSAFE V = sup_lam E log(1+lam(M-tau))/K over lam in
+  (0,1/tau); SAFE V = sup_lam E log(1+lam(tau-M))/K over lam in
+  (0,1/(1-tau)). At delta=0.09 the ratio V_SAFE/V_UNSAFE is 0.506 at
+  p*=0.20 and 1.994 at p*=0.80, narrowing to 0.904/1.102 at
+  delta=0.02 (Gaussian limit). At p*=0.50 it is EXACTLY 1: the
+  two-level profile has p_lo + p_hi = 2p* = 1, so the rate multiset is
+  closed under p -> 1-p, the block-mean law is symmetric about 0.5 and
+  V_UNSAFE(0.5-d) = V_SAFE(0.5+d) identically (checked to 2.1e-17).
+  BOTH V branches are validated against SHIPPED code (64-atom
+  v_kelly_block_K at K=6): UNSAFE directly to 1.2e-17, SAFE via the
+  exact complement identity V_SAFE(rates,tau) = V_UNSAFE(1-rates,1-tau)
+  to 3.5e-17. Because O(n) := n*V - log(1/alpha) divides by each
+  direction's OWN V, this entire analytic asymmetry is absorbed BEFORE
+  the fit: any direction effect surviving in (d, c) belongs to the
+  confidence sequence, not to the information rate.
+  6-CELL RESULT (d/c, columns p*=0.20/0.50/0.80): UNSAFE
+  1.142/-1.693, 1.257/-2.773, 0.152/+0.582; SAFE 0.250/+0.458,
+  1.518/-3.855, 1.043/-0.966.
+  P1 FAIL — the (p*=0.20, UNSAFE) cell vs results_wsr_rk.txt's K=6,
+  R=1 cell: d 1.142 vs 1.562 (diff -0.420, tol +/-0.35), c -1.693 vs
+  -3.235 (diff +1.542, tol +/-0.9). The tolerance had ALREADY been
+  widened from the (R,K) grid's +/-0.25/+/-0.6 in advance and with the
+  reason stated (that cell is R=1 vs this grid's R=1.2 AND it pooled
+  p* in {0.20,0.35} vs this cell's p*=0.20 alone — two design
+  differences, not one), and it still fails. POST-HOC ARITHMETIC
+  (labeled, from the two artifacts' own printed constants, scores
+  nothing): over the two fits' overlapping range n in [261, 7392] the
+  envelopes differ at FUNCTION level by at most 0.373 nats (~5% in n),
+  the same d<->c trade-off of a two-parameter local fit the (R,K) grid
+  reported at ITS K=4 P1 failure (0.446 nats). Anchor identity
+  re-verified in-artifact (checksum recomputed AND the 12-cell table
+  parsed and asserted against the values scored). Read with P2, the P1
+  failure is not an anomaly: a p*-pooled anchor cannot equal a
+  single-p* cell once p* is shown to move the constants.
+  P2 (the discrimination; ONLY the comparison was pre-committed, no
+  winner) — RAW (d, c), the scored metric: DIRECTION axis max |dd|
+  0.892 / max |dc| 2.151; p* axis max |dd| 1.269 / max |dc| 4.314.
+  Both constants name p*, by 1.42x in d and 2.01x in c: P2 VERDICT
+  p*. Reported NOT scored, because raw gaps are not scale-free and d
+  and c trade off: in mean-OLS-SE units direction is 2.90/1.82 SE vs
+  p* 4.13/3.66 SE (same ordering); at FUNCTION level over the common
+  window n in [285, 11415] the ordering REVERSES to direction 2.612
+  nats vs p* 2.349 nats, a 1.11x margin, i.e. a wash. SCALE REFERENCE
+  (labeled, computed from results_wsr_rk.txt's own printed K=6 cells,
+  scores nothing): the REFUTED R axis measured the identical
+  function-level way spans 0.658 nats across R = 1..30, so BOTH axes
+  here are 3.6-4.0x the axis this same instrument called null. The
+  honest reading: p* wins the pre-registered comparison, but DIRECTION
+  IS NOT A SECOND NULL — the two are comparable at function level and
+  both are real, unlike R. The envelope is DIRECTION-DEPENDENT and
+  every envelope in this arc was measured one-sided.
+  P3 PASS (0/30 rungs excluded; hard guard unused).
+  POST-HOC DIAGNOSTIC (labeled; does NOT re-score #50):
+  run_safety_cert's prediction path reused verbatim (load_pool, mu,
+  tau=round(mu-0.045,3), single_fourterm, 64-atom v_kelly_block_K at
+  K=6, +/-5% tie band), only the WSR overhead swapped, COMMITTED
+  column asserted to reproduce the frozen table (it does). All six
+  scored pools certify UNSAFE (asserted in-artifact), so the matched
+  cells are the three UNSAFE ones at the nearest p*. THIS IS THE FIRST
+  ENVELOPE IN THE ARC THAT RECOVERS THE MISS'S RESOLUTION: PDIR-N
+  gives 6 RESOLVING calls, 4 HIT / 1 MISS / 1 unconfirmed = matched
+  4/5, against the frozen 1/2 and the (R,K) surface's 1/2. Q1 YES,
+  Q2 YES -> ANSWER "YES on both". Errors COMMITTED [-11.8%, +37.2%]
+  -> PDIR-N [-23.7%, +18.1%]. mistral-7b — the pool that produced the
+  scored MISS — moves SINGLE -> WSR and now MATCHES the measured WSR
+  (n_wsr 844 -> 649 vs measured 678, err +24.5% -> -4.3%);
+  llama3.1-8b +19.3% -> +2.8% and qwen2.5-7b +9.2% -> +0.3%. The one
+  new MISS is qwen2-7b (lowest p*, 0.107; predicted WSR, measured
+  SINGLE, err -11.8% -> -23.7%), so the residual has moved from the
+  high-p* pools to the low-p* one. PDIR-I (linear-in-p* interpolation)
+  agrees call-for-call. DIR-SWAP (SENSITIVITY ONLY, never a
+  prediction): using the p*-matched SAFE cell instead moves n_wsr by
+  -37% to +37% (mistral 649 -> 888, qwen2.5 515 -> 446), which is the
+  diagnostic-side statement of the same direction-dependence P2
+  measured. THE #50 MISS STANDS AS SCORED — the diagnostic is
+  post-hoc, uses constants fitted after the miss was recorded, and
+  scores nothing; miss ledger unchanged (33 rows).
+  SCOPE, disclosed in-artifact: R is held at 1.2 for every cell while
+  the pools run R = 1.16-17.0, licensed ONLY by the R null of
+  results_wsr_rk.txt, which is a failure to detect over [1,30], not a
+  proof of R-independence; the two-level profile stands in for six
+  category rates; p* = 0.857 extrapolates 0.057 past the top cell (the
+  (R,K) grid extrapolated 0.507 past ITS top p*, so this is a strict
+  improvement, not a fix); stock WSR has no fixed (d,c) asymptotically
+  (results_wsr_expansion.txt) so every envelope here is an EFFECTIVE
+  LOCAL fit; tau's 0.001-lattice offset is DIRECTION-SYMMETRIC by
+  construction (UNSAFE lo > tau effectively certifies at tau + 0.0005,
+  SAFE hi <= tau at tau - 0.0005, so both lose exactly 0.0005 of
+  margin) and so cannot masquerade as a direction effect — its size
+  (0.5-4.5% of margin) is printed per rung. DISCLOSED DEVIATION: five
+  margins per cell span 48x in n, not the (R,K) grid's 32x, because
+  the requested 250-12000 window is itself 48x. Freeze convention as
+  for the two previous grids: a measurement grid, docstring committed
+  WITH the results, P1-P3 print PASS/FAIL. Next clause: the envelope's
+  arguments are block size K, p*, and DECISION DIRECTION; R remains
+  ruled out; the residual now sits at LOW p* rather than high.
