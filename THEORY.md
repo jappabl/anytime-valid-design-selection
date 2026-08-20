@@ -1206,3 +1206,33 @@ IS regular — nV/log n drift 1.2% vs stock 22.9%, an expansion exists
 there (measured d = +1.27, c = -3.35, derive before claiming). The
 floored arm is the live theorem route. MISS LEDGER: +1 row (P1,
 frozen at 7e80dbe, FAILED as scored).
+
+
+## Task A CLOSED by cross-lineage convergence: the envelope law is derived
+
+Two independent derivations of the WSR envelope law, both zero-fit,
+both freeze-ordered, agreeing to 1-4%:
+
+- SOL LINEAGE (scripts/external/derive_wsr_envelope.py, adopted
+  391c2da): finite-window projection of cumulative stock-schedule
+  drift; coefficients within 1.6-9.5% of measurement.
+- OUR LINEAGE (scripts/derive_wsr_envelope.py, results_wsr_envelope
+  c052f57840f4f670): loglog Kelly-deficit integral G2 with warm-up
+  t0 = K/(4p(1-p)) from the shipped prior sq0 = 1/4; 4/4 constants HIT
+  frozen windows; the measured K-linearity is a CHORD of a convex d(K)
+  and the grid's own residual signs (+,-,-,+) are that signature.
+
+STRUCTURAL SIMPLIFICATIONS (our lineage, verified exactly):
+- DIRECTION IS NOT AN AXIS: WSRBlockCS is x -> 1-x equivariant
+  (lo(x) = 1 - hi(1-x) to 1.1e-16; crossing times bit-identical), so
+  SAFE at p* is pathwise UNSAFE at 1-p*. The pdir 6-cell table
+  collapses across its anti-diagonal 6/6 within pooled SE. The
+  envelope surface is (K, p*) with a reflection, not (K, p*, dir).
+- THE p* CARRIER IS BLOCK SKEWNESS: mu3/mu2^2 = (1-2p)/(p(1-p)),
+  exact, K-free, odd; 4/4 sign predicates hit.
+
+OPEN RESIDUE, shared and unexplained: both routes overshoot the
+measured constants by 2-6% in the same direction — a systematic
+neither lineage accounts for. Named negatives kept: our asymptotic
+closed form overstates the implicit slope up to 98% at K=8 (mechanism
+exhibit only, never scored).

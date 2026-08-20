@@ -1,0 +1,287 @@
+============================================================================
+WSR STOCK-SCHEDULE ENVELOPE: DERIVED FROM THE WEALTH-SUM INTEGRAL
+============================================================================
+alpha=0.05, shipped WSRBlockCS, K in (2,4,6,8), the frozen 15-rung
+R=1 UNSAFE ladder of results_wsr_k.txt. Sections 1-5 read NO measured
+artifact; section 6 is the first line that does.
+
+----------------------------------------------------------------------------
+1. SHIPPED-CODE AUDIT
+----------------------------------------------------------------------------
+   grid = linspace(.0005,.9995,1000), step 0.001000; reflection m -> 1-m closes on the grid:
+     max |grid + grid[::-1] - 1| = 1.11e-16
+   every ladder tau is mid-cell: offset in [0.000500, 0.000500]; binding point m = tau - 0.0005
+   capital stays positive at the truncation cap over every ladder
+     atom: min (1 + (c/m)(a-m)) = 0.2500 > 0, so
+     d/dm log(1+lam(a-m)) = -lam/(1+lam(a-m)) < 0; and where the
+     cap binds (lam = c/m) the capital is log(1 + c a/m - c), also
+     decreasing in m for a > 0 and constant at a = 0. Monotone in
+     BOTH regimes, so the LAST candidate to die is m and the
+     reported crossing is m's death.
+   sq_t recursion vs WSRBlockCS.sq over 60 steps: max abs diff 0.0e+00
+   lam_t = sqrt(2 log(2/alpha)/(sq_t log(t+1))) vs the shipped expression: max abs diff 1.9e-11
+   V convention vs the 2**K enumeration of derive_phase_boundary.v_kelly_block (K=4):
+     max abs diff over the ladder = 1.04e-17
+   minus-arm leak at the crossing: max (log K- - log K+) = -10.37 -> barrier displaced by log(1+e^leak) = 3.14e-05 nats (neglected)
+
+----------------------------------------------------------------------------
+2. THE REDUCTION, CHECKED STEP BY STEP
+----------------------------------------------------------------------------
+   E[sq_t] closed form vs 4000-rep simulation, t<=400 (K=4,p=.5): max rel diff 0.576%
+   quadratic growth law  V(lam;m) = V*(2r - r^2),  r = sqrt(L2/(V*(t+t0-1)log(t+1))):
+      K     p    tau  t0=1/4/mu2    r@T    V_quad   V_exact      rel
+      4  0.50  0.464        4.00  0.304  0.005382  0.005392    0.18%
+      2  0.20  0.157        3.12  0.290  0.005726  0.005765    0.67%
+      8  0.35  0.328        8.79  0.311  0.004594  0.004606    0.26%
+   (the quadratic law is the ANALYTIC route only; the primary uses
+    the exact (K+1)-atom increment law and never invokes it)
+
+----------------------------------------------------------------------------
+3. INSTRUMENT VALIDATION -- derived median crossing vs a DIRECT
+   simulation of the shipped WSRBlockCS (this script's own seeds;
+   no measured artifact is read)
+----------------------------------------------------------------------------
+   500 reps/probe, seed 4242
+      K     p    tau  T_derived  T_shipped   ratio
+      4  0.50  0.402      51.91       50.0   1.038
+      4  0.50  0.464     556.77      553.5   1.006
+      8  0.35  0.297      82.11       81.5   1.008
+      2  0.20  0.157     597.66      579.0   1.032
+      2  0.50  0.443     570.68      586.0   0.974
+   derived/shipped in [0.974, 1.038] (median-of-500 sampling error alone is ~3%)
+
+----------------------------------------------------------------------------
+4. THE CLOSED FORM AND THE K-TRACE
+----------------------------------------------------------------------------
+   d_eff = 2 rho T V* [1 - 2 T w_T / A]           (exact implicit)
+   d_eff ~ rho A (A + 2 L2) / (8 L2 (1+1/log T)^2)  (asymptotic)
+   A = Lambda + L2 G2(T; t0) = 2 V* sum_t r_t,  T = n/K,  t0 = K/(4 p(1-p))
+      K     p    tau      t0         T      G2       A  d_implicit  d_asympt    dA/dK
+      2  0.50  0.464    2.00    1617.0   1.547   9.270       3.645     3.988  -2.9106
+      4  0.50  0.464    4.00     541.5   1.114   7.632       2.249     2.857  -0.8118
+      6  0.50  0.464    6.00     303.2   0.882   6.754       1.540     2.327  -0.4507
+      8  0.50  0.464    8.00     210.5   0.730   6.176       1.014     2.010  -0.3079
+   the dA/dK column is the closed form's own leading term
+   -(L2/K)[1/log T + 1/log t0]; against it, the finite differences
+   of the A column (which include every subleading piece):
+     K=2->4: measured-on-the-form -0.8187 vs endpoint mean of the leading term -1.8612
+     K=4->6: measured-on-the-form -0.4393 vs endpoint mean of the leading term -0.6312
+     K=6->8: measured-on-the-form -0.2887 vs endpoint mean of the leading term -0.3793
+   LIMITATION, stated: the ASYMPTOTIC form overstates the exact
+   implicit one by up to 98% over this K range (the
+   G1 ~ 2 sqrt(T/log T)(1 + 1/log T) step is not converged at
+   T ~ 200-1600). It is kept because it EXHIBITS the mechanism in
+   closed form, not because it is accurate; the scored prediction
+   comes from the exact operator of section 5 and never from (*).
+   BOTH K channels push the same way: T = n/K shrinks the upper
+   loglog limit and t0 = K/(4pq) raises the lower one, so G2 -- the
+   accumulated Kelly deficit that IS the log-n slope -- falls with K.
+   The 1/K prefactor makes d(K) CONVEX, not linear (predicate P4).
+
+----------------------------------------------------------------------------
+5. FROZEN PREDICTIONS  (computed here; no artifact read yet)
+----------------------------------------------------------------------------
+   first-passage mass lost below the wealth grid floor (-25 nats): max 3.8e-09
+
+   DERIVED GRID (primary):  n = K T,  O := n V(tau) - log(1/alpha)
+     K = 2
+           p    tau          V     n_der      nV       O  sigma_J
+        0.50  0.402   0.019242     285.8   5.499   2.504    0.231
+        0.50  0.443   0.006499    1141.4   7.418   4.422    0.357
+        0.50  0.464   0.002592    3657.7   9.481   6.485    0.445
+        0.50  0.476   0.001152   10009.0  11.530   8.535    0.501
+        0.50  0.484   0.000512   26708.2  13.675  10.679    0.542
+        0.35  0.260   0.019443     328.4   6.386   3.390    0.303
+        0.35  0.297   0.006483    1312.8   8.511   5.515    0.480
+        0.35  0.317   0.002466    4415.5  10.887   7.891    0.592
+        0.35  0.328   0.001085   12108.4  13.136  10.140    0.661
+        0.35  0.334   0.000571   26197.7  14.951  11.955    0.701
+        0.20  0.129   0.019424     320.7   6.230   3.234    0.218
+        0.20  0.157   0.006497    1195.3   7.766   4.770    0.319
+        0.20  0.173   0.002446    3971.6   9.713   6.717    0.388
+        0.20  0.182   0.001061   10987.3  11.653   8.658    0.439
+        0.20  0.187   0.000546   24246.3  13.238  10.242    0.474
+     K = 4
+           p    tau          V     n_der      nV       O  sigma_J
+        0.50  0.402   0.018523     207.6   3.846   0.850    0.091
+        0.50  0.443   0.006415     721.0   4.625   1.630    0.096
+        0.50  0.464   0.002579    2227.1   5.743   2.747    0.169
+        0.50  0.476   0.001149    6096.0   7.006   4.011    0.236
+        0.50  0.484   0.000511   16502.7   8.441   5.445    0.291
+        0.35  0.260   0.018825     234.9   4.422   1.426    0.119
+        0.35  0.297   0.006407     846.9   5.426   2.431    0.191
+        0.35  0.317   0.002454    2783.2   6.831   3.835    0.291
+        0.35  0.328   0.001083    7676.2   8.310   5.314    0.369
+        0.35  0.334   0.000570   16803.6   9.579   6.583    0.418
+        0.20  0.129   0.018920     262.7   4.970   1.975    0.158
+        0.20  0.157   0.006429     867.5   5.578   2.582    0.182
+        0.20  0.173   0.002435    2752.8   6.704   3.708    0.251
+        0.20  0.182   0.001059    7545.5   7.987   4.992    0.318
+        0.20  0.187   0.000545   16734.0   9.127   6.131    0.364
+     K = 6
+           p    tau          V     n_der      nV       O  sigma_J
+        0.50  0.402   0.017730     212.1   3.761   0.765    0.117
+        0.50  0.443   0.006328     624.9   3.954   0.959    0.083
+        0.50  0.464   0.002565    1779.3   4.564   1.568    0.072
+        0.50  0.476   0.001147    4724.3   5.417   2.421    0.116
+        0.50  0.484   0.000511   12686.1   6.482   3.486    0.170
+        0.35  0.260   0.018185     220.2   4.004   1.009    0.132
+        0.35  0.297   0.006329     699.6   4.428   1.432    0.097
+        0.35  0.317   0.002443    2165.5   5.290   2.294    0.142
+        0.35  0.328   0.001080    5864.8   6.336   3.340    0.210
+        0.35  0.334   0.000569   12808.5   7.293   4.298    0.260
+        0.20  0.129   0.018414     261.4   4.813   1.818    0.151
+        0.20  0.157   0.006361     761.1   4.841   1.846    0.129
+        0.20  0.173   0.002425    2243.4   5.440   2.444    0.145
+        0.20  0.182   0.001057    5949.0   6.285   3.289    0.187
+        0.20  0.187   0.000545   13052.2   7.111   4.116    0.227
+     K = 8
+           p    tau          V     n_der      nV       O  sigma_J
+        0.50  0.402   0.016767     237.5   3.982   0.986    0.104
+        0.50  0.443   0.006235     617.8   3.852   0.856    0.103
+        0.50  0.464   0.002551    1614.7   4.119   1.124    0.067
+        0.50  0.476   0.001144    4099.2   4.689   1.694    0.065
+        0.50  0.484   0.000510   10784.6   5.505   2.509    0.105
+        0.35  0.260   0.017510     231.0   4.045   1.050    0.143
+        0.35  0.297   0.006250     656.9   4.106   1.110    0.103
+        0.35  0.317   0.002431    1893.5   4.603   1.607    0.083
+        0.35  0.328   0.001078    4964.2   5.351   2.356    0.124
+        0.35  0.334   0.000569   10726.4   6.101   3.105    0.169
+        0.20  0.129   0.017905     279.6   5.006   2.010    0.144
+        0.20  0.157   0.006293     736.9   4.637   1.641    0.120
+        0.20  0.173   0.002414    2015.2   4.865   1.869    0.104
+        0.20  0.182   0.001054    5144.2   5.424   2.428    0.122
+        0.20  0.187   0.000544   11088.9   6.036   3.040    0.153
+
+   PER-K ENVELOPE, ALL FOUR ARMS
+      arm | d(K=2)  d(K=4)  d(K=6)  d(K=8)  | c(K=2)  c(K=4)  c(K=6)  c(K=8) 
+        P |   3.6237   2.2135   1.4212   0.8601 |  -7.7018  -4.9646  -3.0159  -1.3812
+       A1 |   3.5324   2.1493   1.3820   0.8323 |  -7.5530  -4.8072  -2.9040  -1.2942
+       A2 |   3.6465   2.2251   1.4409   0.9028 |  -7.5254  -4.6837  -2.7553  -1.2064
+       A3 |   4.2380   2.5383   1.5656   0.9027 |  -9.1794  -5.7712  -3.3029  -1.3464
+
+   K-LAWS
+        P: d = -0.4542 K +4.3004 | c = +1.0455 K -9.4935
+       A1: d = -0.4434 K +4.1909 | c = +1.0340 K -9.3095
+       A2: d = -0.4508 K +4.3076 | c = +1.0443 K -9.2640
+       A3: d = -0.5489 K +5.0558 | c = +1.2984 K -11.3918
+     residuals of the PRIMARY d-vs-K line (K=2,4,6,8): +0.2316 -0.2703 -0.1542 +0.1929
+
+   VARIANT SPREAD (window terms, |primary - variant|)
+      constant    primary       A1       A2       A3      sum
+       d_slope    -0.4542   0.0108   0.0034   0.0948   0.1089
+         d_int     4.3004   0.1095   0.0073   0.7554   0.8721
+       c_slope     1.0455   0.0116   0.0013   0.2528   0.2656
+         c_int    -9.4935   0.1840   0.2295   1.8983   2.3118
+
+   FROZEN-IDENTITY (docstring constants vs this run): constants OK, variant sums OK
+   FROZEN: d = -0.4542 K +4.3004   c = +1.0455 K -9.4935
+
+----------------------------------------------------------------------------
+6. SCORING vs results_wsr_k.txt  (first artifact read)
+----------------------------------------------------------------------------
+   results_wsr_k.txt: stated f6aea65aa754d0d8, recomputed f6aea65aa754d0d8 -> OK (expected f6aea65aa754d0d8)
+   parsed per-K constants: K=2: d 3.386 c -6.922, K=4: d 2.343 c -5.351, K=6: d 1.465 c -3.138, K=8: d 0.834 c -1.234
+   measured K-laws recomputed here: d = -0.4267 K +4.1405 (SE 0.0327 / 0.1791);  c = +0.9638 K -8.9805 (SE 0.0427 / 0.2339)
+   artifact's own printed law: d = -0.4267*K +4.1407;  c = +0.9638*K -8.9801  -> parse OK
+
+    constant    derived   measured      diff         W     2SE  verdict   tight W
+     d_slope    -0.4542    -0.4267   +0.0275    0.1743  0.0654      HIT       hit
+       d_int     4.3004     4.1405   -0.1599    1.2303  0.3582      HIT       hit
+     c_slope     1.0455     0.9638   -0.0817    0.3511  0.0854      HIT       hit
+       c_int    -9.4935    -8.9805   +0.5130    2.7796  0.4678      HIT       hit
+   'tight W' drops the A3 (barrier-dispersion) term, which is a
+   one-sided probe of a mean-zero channel and therefore the most
+   conservative of the three; it is reported, not scored.
+
+   P4 (mechanism) derived d(K) convex in K: YES; measured linear-in-K residual signs [1, -1, -1, 1] vs the convex signature [1, -1, -1, 1]: MATCH -> PASS
+   P1 d_slope HIT | P2 d_int HIT | P3 c_slope HIT and c_int HIT
+
+----------------------------------------------------------------------------
+7. DIRECTION x p*  (results_wsr_pdir.txt)
+----------------------------------------------------------------------------
+   T1 (EXACT) x -> 1-x equivariance of the shipped CS:
+     max |lo(x) - (1 - hi(1-x))| over all polls = 1.11e-16
+     max |T_UNSAFE(x,tau) - T_SAFE(1-x,1-tau)| over all reps = 0
+   => SAFE certification of pool P at tau IS UNSAFE certification
+      of pool 1-P at 1-tau. Direction is not an independent axis.
+   T2 skewness carrier eps = (2/3) r^3 g mu3/mu2^2, and
+      mu3/mu2^2 = (1-2p)/(p(1-p)) exactly -- K CANCELS:
+      K     p  mu3/mu2^2  (1-2p)/pq
+      2  0.20     3.7500     3.7500
+      2  0.50     0.0000     0.0000
+      2  0.80    -3.7500    -3.7500
+      6  0.20     3.7500     3.7500
+      6  0.50    -0.0000     0.0000
+      6  0.80    -3.7500    -3.7500
+   results_wsr_pdir.txt: stated eb8f5f8d7eb4efad, recomputed eb8f5f8d7eb4efad -> OK (expected eb8f5f8d7eb4efad)
+
+   parsed 6-cell table: 6 cells
+
+   DERIVED 6-cell table (same machinery, same frozen tau ladder):
+        p*     dir |   d_der  d_meas     SE |   c_der  c_meas     SE
+      0.20  UNSAFE |   1.217   1.142  0.288 |  -1.909  -1.693  1.104
+      0.20    SAFE |   0.177   0.250  0.278 |   0.613   0.458  1.068
+      0.50  UNSAFE |   1.415   1.257  0.309 |  -3.464  -2.773  1.191
+      0.50    SAFE |   1.364   1.518  0.418 |  -3.267  -3.855  1.600
+      0.80  UNSAFE |   0.211   0.152  0.296 |   0.458   0.582  1.123
+      0.80    SAFE |   1.082   1.043  0.256 |  -1.408  -0.966  0.989
+   POST-HOC, LABELLED, NOT SCORED (no predicate was pre-registered
+   on the derived cell VALUES): 12/12 derived cell constants
+   land within one OLS SE of their measured counterpart.
+
+   P5 (T1) anti-diagonal collapse of the MEASURED table:
+     the reflection maps SAFE at p* onto UNSAFE at 1-p*, so each
+     pair below must agree within its pooled OLS SE.
+     d: SAFE(p*=0.20) +0.250 vs UNSAFE(p*=0.80) +0.152  diff +0.098  pooled SE 0.406 -> HIT
+     c: SAFE(p*=0.20) +0.458 vs UNSAFE(p*=0.80) +0.582  diff -0.124  pooled SE 1.550 -> HIT
+     d: SAFE(p*=0.50) +1.518 vs UNSAFE(p*=0.50) +1.257  diff +0.261  pooled SE 0.520 -> HIT
+     c: SAFE(p*=0.50) -3.855 vs UNSAFE(p*=0.50) -2.773  diff -1.082  pooled SE 1.995 -> HIT
+     d: SAFE(p*=0.80) +1.043 vs UNSAFE(p*=0.20) +1.142  diff -0.099  pooled SE 0.385 -> HIT
+     c: SAFE(p*=0.80) -0.966 vs UNSAFE(p*=0.20) -1.693  diff +0.727  pooled SE 1.482 -> HIT
+     P5: 6/6 -> PASS
+   for contrast, the SAME-p* direction contrast the artifact
+   reported (SAFE minus UNSAFE at fixed p*), in pooled SE:
+     p*=0.20: d -0.892 = 2.23 SE
+     p*=0.50: d +0.261 = 0.50 SE
+     p*=0.80: d +0.891 = 2.28 SE
+
+   P6 (T2) sign predicates of the skewness carrier:
+     S1 dd odd in (p*-1/2): dd(.20) -0.892 < 0 and dd(.80) +0.891 > 0 -> HIT
+     S2 |dd(.20)| = |dd(.80)| (the (1-2p)/pq antisymmetry): 0.892 vs 0.891 -> HIT
+     S3 both null at p*=1/2: dd +0.261 (SE 0.520), dc -1.082 (SE 1.995) -> HIT
+     S4 c moves opposite to d in every cell -> HIT
+     P6: PASS
+
+   QUANTITATIVE consequence of T1 (reported, folded into P5):
+     the direction effect is PREDICTED from the UNSAFE row alone,
+     dd(p*) = d_UNSAFE(1-p*) - d_UNSAFE(p*):
+       p*=0.20: predicted -0.990, measured -0.892, diff +0.098 (pooled SE 0.400)
+       p*=0.50: predicted +0.000, measured +0.261, diff +0.261 (pooled SE 0.520)
+       p*=0.80: predicted +0.990, measured +0.891, diff -0.099 (pooled SE 0.391)
+   ASSUMPTION CARRIED, disclosed: reflecting an R=1.2 pool at p*
+   gives R = 1.047 at 1-p*=0.80 and 2.142 at 1-p*=0.20, not 1.2, so identifying the
+   reflected cell with the MEASURED cell at 1-p* leans on the R
+   null of results_wsr_rk.txt (a failure to detect, not a proof).
+   At p*=0.50 the reflected pool IS the measured pool exactly, and
+   the tau ladders still differ by ~0.001-0.004 in every cell.
+
+----------------------------------------------------------------------------
+SUMMARY
+----------------------------------------------------------------------------
+  P1 HIT (d slope)  |  P2 HIT (d intercept)  |  P3 HIT/HIT (c slope/intercept)
+  P4 PASS (convexity)  |  P5 PASS (6/6 reflection)  |  P6 PASS (skewness signs)
+  DERIVED   d = -0.4542 K +4.3004   c = +1.0455 K -9.4935
+  MEASURED  d = -0.4267 K +4.1405   c = +0.9638 K -8.9805
+  MECHANISM carrying the K-linearity: the schedule's warm-up length
+  in BLOCKS, t0 = K/(4 p(1-p)) (the prior sq_0 = 1/4 divided by the
+  block variance p(1-p)/K), together with T = n/K, are the two
+  limits of the loglog Kelly-deficit integral G2 whose value IS the
+  envelope slope. Both move with K in the same direction; the 1/K
+  prefactor makes the true law convex, and the measured linear fit
+  is its chord over K in [2, 8].
+----------------------------------------------------------------------------
+
+============================================================================
+Checksum (SHA256): c052f57840f4f670
+============================================================================

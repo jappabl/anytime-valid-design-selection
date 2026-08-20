@@ -1688,3 +1688,103 @@ within 1000 samples in this regime.
   diagnostic (codex parent sits at ~0:00.01 forever; check the WORKER's
   cumulative CPU advancing over ~60s — instantaneous %CPU is ~0 for
   healthy API-bound max-effort runs).
+- 2026-08-20 (Task A, SECOND LINEAGE, independent of the entry above):
+  the same WSR envelope law derived by a DIFFERENT route and scored
+  4/4 HIT plus three mechanism predicates.
+  scripts/derive_wsr_envelope.py -> results_wsr_envelope.txt (checksum
+  c052f57840f4f670). NAMING WARNING: this is NOT
+  scripts/external/derive_wsr_envelope.py, the gpt-5.6-sol artifact
+  adopted in the entry immediately above -- same basename, different
+  directory, different derivation, different output file.
+  INDEPENDENCE: this script's FROZEN docstring constants were written
+  and its run launched BEFORE that entry existed in this file; no
+  number was taken from it. The two lineages agree to 1-4%, which is
+  itself the cross-check (see the CONVERGENCE paragraph below).
+  MECHANISM (this lineage's route). The stock bet is a decaying Kelly
+  FRACTION. lam_t = sqrt(2 log(2/alpha)/(sq_t log(t+1))) with
+  E[sq_t] ~ mu2 (t + t0 - 1), mu2 = p(1-p)/K the block variance and
+  t0 = (1/4)/mu2 = K/(4 p(1-p)) -- the SHIPPED PRIOR sq_0 = 1/4
+  divided by that variance -- so the Kelly fraction is
+  r_t := lam_t/lam* = sqrt(L2/(V* (t+t0-1) log(t+1))) and the
+  per-block growth is the quadratic Kelly loss V*(2 r_t - r_t^2).
+  Summing: W(T) = 2 sqrt(L2 V*) G1(T) - L2 G2(T), a sqrt(T/log T)
+  gross gain minus a LOGLOG Kelly deficit. Implicit differentiation of
+  the crossing W(T) = L2 against the ordinate nV = T V* gives
+  d_eff = 2 rho T V* [1 - 2 T w_T / A], A = Lambda + L2 G2(T; t0).
+  K ENTERS ONLY THROUGH G2, and BOTH of its loglog limits are
+  K-driven: upper T = n/K (fewer blocks per sample budget), lower
+  t0 = K/(4pq) (longer warm-up, in blocks). Hence
+  dA/dK = -(L2/K)[1/log T + 1/log t0]. THE MEASURED K-LINEARITY IS A
+  CHORD, NOT THE LAW: the 1/K prefactor makes d(K) convex, and
+  results_wsr_k.txt's own linear-fit residual signs (+,-,-,+) are that
+  convexity's signature -- scored as P4, PASS.
+  EVALUATION, and the methodological step past derive_floor_d.py. The
+  ladder is solved WITHOUT the quadratic reduction: the exact
+  (K+1)-atom increment law is pushed through an exact grid-convolution
+  first-passage operator absorbing at log(2/alpha), which returns the
+  MEDIAN crossing block directly. Overshoot, the median-vs-mean shift
+  and the strongly non-homogeneous early variance are therefore carried
+  exactly and NO renewal level convention (derive_floor_d's homogeneous
+  kappa = s^2/2nu) is assumed. Validated in-artifact against a DIRECT
+  simulation of the shipped WSRBlockCS on five probe rungs with this
+  script's own seeds: derived/shipped in [0.974, 1.038] at 500 reps,
+  against a ~3% median sampling error.
+  FROZEN then SCORED. Window = sum of three variant spreads + 2
+  SE_meas, the rule fixed before any derived constant was evaluated;
+  the coarser G1/G2 closed form is deliberately NOT a window term
+  (including a strictly worse approximation would only widen the
+  window, i.e. weaken the test).
+    d slope   -0.4542 vs measured -0.4267  (W 0.174)  HIT
+    d int     +4.3004 vs measured +4.1405  (W 1.230)  HIT
+    c slope   +1.0455 vs measured +0.9638  (W 0.351)  HIT
+    c int     -9.4935 vs measured -8.9805  (W 2.780)  HIT
+  All four also HIT on the "tight" window that drops the most
+  conservative variant. On 2 SE_meas ALONE only 3/4 would hit (c int
+  0.513 vs 0.468 would miss) -- that is the honest resolution limit and
+  it is printed.
+  DIRECTION x p* (results_wsr_pdir.txt). T1 is a THEOREM about the
+  shipped class, verified to machine precision here: WSRBlockCS is
+  equivariant under x -> 1-x (its grid 0.0005+0.001k is symmetric, its
+  priors 1/2 and 1/4 are symmetric, sq_t is invariant, the two arms and
+  their truncations c/m and c/(1-m) swap, the hedge (K+ + K-)/2 is
+  symmetric), so lo(x) = 1 - hi(1-x) at EVERY poll (1.1e-16) and SAFE
+  certification of pool P at tau is PATHWISE IDENTICAL to UNSAFE
+  certification of pool 1-P at 1-tau (crossing times bit-identical).
+  DIRECTION IS THEREFORE NOT AN INDEPENDENT ENVELOPE ARGUMENT. The
+  6-cell table must collapse across its anti-diagonal, and it does:
+  6/6 pairs agree within pooled OLS SE (P5 PASS; worst 0.727 nats on c
+  against SE 1.482), whereas the same-p* direction contrast that
+  artifact reported runs 2.2-2.3 SE. The entire "direction effect" is
+  predicted from that artifact's own UNSAFE row with zero free
+  parameters: dd(p*) = d_U(1-p*) - d_U(p*) gives -0.990 / 0 / +0.990
+  against measured -0.892 / +0.261 / +0.891. T2, the p* carrier itself,
+  is the BLOCK SKEWNESS: eps = (2/3) r^3 g mu3/mu2^2 with
+  mu3/mu2^2 = (1-2p)/(p(1-p)) EXACTLY, so K cancels, it vanishes at
+  p* = 1/2 (matching that artifact's exact V-symmetry there) and is odd
+  in (p* - 1/2); its four sign predicates all HIT (P6 PASS).
+  CONVERGENCE AND THE RESIDUAL THAT NEITHER LINEAGE CLOSED. Against the
+  gpt-5.6-sol numbers in the entry above, the two independent routes
+  agree to 2.0% (d slope), 2.2% (d int), 1.0% (c slope) and 4.2%
+  (c int). But BOTH overshoot the measurement on ALL FOUR constants, in
+  the same direction: a shared systematic of order 2-6% survives two
+  independent derivations and is NOT explained by either. Stated as an
+  open item, not as agreement.
+  ASSUMPTIONS CARRIED, all disclosed in-artifact, none proved: (a) the
+  increment LAW uses the deterministic lam-bar path, the schedule's own
+  randomness entering only as a mean correction delta_t plus a
+  barrier-displacement probe of the dispersion channel; (b) the minus
+  arm is dropped from the barrier (measured leak displaces it 3e-5
+  nats); (c) identifying a reflected SAFE cell with the MEASURED cell
+  at 1-p* leans on the R null of results_wsr_rk.txt, which is a failure
+  to detect and not a proof -- reflecting an R=1.2 pool gives R = 1.047
+  and 2.142, not 1.2, and only at p* = 0.50 is the reflected pool the
+  measured pool exactly; (d) the ASYMPTOTIC closed form overstates the
+  exact implicit slope by up to ~2x at K=8 and is kept only because it
+  exhibits the mechanism -- the scored prediction never uses it.
+  POST-HOC, labelled and NOT scored (no predicate was pre-registered on
+  the derived cell VALUES): 12/12 derived pdir cell constants land
+  within one OLS SE of measurement.
+  Miss ledger unchanged BY THIS ARTIFACT. Nothing committed; the
+  working tree is left for the main session under the cross-lineage
+  adoption rules, and no file other than this one and the two new
+  artifacts was touched.
