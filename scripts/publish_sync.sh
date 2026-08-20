@@ -18,7 +18,8 @@ T=$(mktemp -d)
 git clone -q --no-local . "$T/pub"
 cd "$T/pub"
 printf '%s==>OPENAI_API_KEY_REDACTED\n' "$KEY" > "$T/replace.txt"
-printf 'Hao Lin <haogotmilk@gmail.com> <hlincontacts@gmail.com>\n' > "$T/mailmap.txt"
+{ printf 'Hao Lin <129558989+jappabl@users.noreply.github.com> <hlincontacts@gmail.com>\n'
+  printf 'Hao Lin <129558989+jappabl@users.noreply.github.com> <haogotmilk@gmail.com>\n'; } > "$T/mailmap.txt"
 python3 -m git_filter_repo --invert-paths --path .env \
   --replace-text "$T/replace.txt" --mailmap "$T/mailmap.txt" --force >/dev/null
 
