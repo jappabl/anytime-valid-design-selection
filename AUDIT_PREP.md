@@ -1802,3 +1802,15 @@ within 1000 samples in this regime.
   finite-L gap is exactly computable (absorption recursion) but not
   closed, and no universal L threshold exists (resonance is
   (p,tau,d)-dependent). Artifacts adopted at scripts/external/finite_l/.
+- 2026-08-20 (residue run: SCORED TRIPLE NEGATIVE, adopted): chord
+  geometry refuted (symmetric grid: OLS slope = midpoint tangent
+  EXACTLY, convexity cancels — broker's own lead, killed by their
+  check); median-vs-mean HARD FAIL on criterion (c) (moves intercepts
+  -0.724/+0.762) + double-counted (Route 2 already carries it) + CF
+  0.10-nat accuracy does NOT transfer to WSR (measured 0.170 avg,
+  0.481 max); finite-boundary overshoot fails (b), wrong sign. Residue
+  stands at 4.4%/9.5% slope damping with a REAL constraint: the term
+  must be omitted by BOTH routes (excludes Route 2's first-passage
+  contents). Three refuted candidates with reasons now sit beside the
+  open number. Vectorization verified bit-identical vs shipped class.
+  Task B (scalar c_ren) is the last briefed item; GO sent.
