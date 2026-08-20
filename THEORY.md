@@ -1236,3 +1236,18 @@ measured constants by 2-6% in the same direction — a systematic
 neither lineage accounts for. Named negatives kept: our asymptotic
 closed form overstates the implicit slope up to 98% at K=8 (mechanism
 exhibit only, never scored).
+
+ADDENDUM (broker cross-verification, both exact): equivariance
+confirmed independently (lo(x)=1-hi(1-x) AND hi(x)=1-lo(1-x), both
+1.11e-16); skewness carrier confirmed at 15 (p,K) cells (<=1.4e-14,
+K-free, zero at p=1/2). THE TWO ARE ONE STRUCTURE: the carrier is ODD
+under exactly the reflection the equivariance defines — a
+p*-dependence carried by skewness automatically respects the
+equivariance, an even carrier could not. Sol's p*=0.5
+direction-identity (|Delta O| < 2.4e-14) is the reflection's FIXED
+POINT, measured before the structure was identified; the cap
+asymmetry is the equivariance's image, not a separate mechanism.
+Sequencing per joint decision: the shared 2-6% same-sign residue
+(signature of a common missing term across two independent routes)
+takes the third max-effort call after Task C; scalar c_ren (Task B)
+retained behind it.
