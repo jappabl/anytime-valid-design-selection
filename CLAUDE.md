@@ -56,7 +56,12 @@ README SYNCHRONIZATION
   (hlincontacts is linked to the wrong GitHub account — never let it appear
   in public commits; repo-local git config already sets haogotmilk). NEVER
   push the local repo directly; always go through publish_sync.sh (it has
-  hard key/identity guards). After milestone commits + README update, run it.
+  hard key/identity/filename guards with diagnosable aborts).
+- HARD CONSTRAINT: scripts/publish_sync.sh runs ONLY on Hao's explicit
+  per-run go-ahead, given directly in chat. Never autonomously — not after
+  a milestone, not after a README update, not in any routine. Public pushes
+  are cached and indexed; a bad snapshot cannot be recalled. Preparing and
+  testing the script is fine; EXECUTING it is gated on Hao.
 
 DOCUMENTATION SYNCHRONIZATION
 - Whenever research claims, contributions, or experimental results are changed, AUDIT_PREP.md MUST be updated to reflect those changes.
