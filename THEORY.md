@@ -1251,3 +1251,15 @@ Sequencing per joint decision: the shared 2-6% same-sign residue
 (signature of a common missing term across two independent routes)
 takes the third max-effort call after Task C; scalar c_ren (Task B)
 retained behind it.
+
+RESIDUE DECOMPOSED (broker; divisions verified here): intercepts agree
++1.57%/+1.42%, slopes overpredicted +4.37%/+9.55% — the missing term
+is K-DEPENDENT SLOPE DAMPING, not uniform bias. Acceptance criterion
+for any candidate (falsifiable): (a) K-dependent, (b) sign damps both
+slopes, (c) leaves intercepts untouched — failing (c) refutes
+immediately. Weighting: median-vs-mean gap FAVOURED (Cornish-Fisher,
+already closed, naturally K-dependent via crossing skewness/sd);
+overshoot demoted (level-shift character, intercepts already agree).
+FIRST CHECK, before any derivation: chord-vs-tangent geometry of the
+convex d(K) over K in [2,8] — bounds how much residue is real vs an
+artifact of fitting a line to a convex function.
