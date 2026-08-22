@@ -1,0 +1,39 @@
+============================================================================
+FINER-K OPTIMAL STRATIFICATION ON TEMP>0 PER-PROMPT RATES
+============================================================================
+margin 0.045, split-draws (even=signal, odd=eval), K grid [1, 2, 3, 4, 6, 8, 12]
+
+  llama3.2-3b: 200 prompts, eval mu = 0.5892, signal-vs-eval corr r = 0.943 (P1 PASS)
+      K      V(K)   gain      n(K)
+      1   0.00411  1.000      1629
+      2   0.00965  2.349      1029
+      3   0.00823  2.002      1722
+      4   0.01015  2.470      1769
+      6   0.01055  2.566      2511
+      8   0.01074  2.614      3295
+     12   0.01131  2.751      4759
+    -> K* = 2 (P2 PASS: finite interior); designed-strata census gave K*=2 [reported, not scored — different temp/subset]
+
+  qwen2.5-7b: 200 prompts, eval mu = 0.3075, signal-vs-eval corr r = 0.992 (P1 PASS)
+      K      V(K)   gain      n(K)
+      1   0.00506  1.000      1302
+      2   0.00804  1.591      1260
+      3   0.01788  3.536       720
+      4   0.02230  4.411       725
+      6   0.02013  3.982      1206
+      8   0.02438  4.823      1299
+     12   0.02592  5.127      1858
+    -> K* = 3 (P2 PASS: finite interior); designed-strata census gave K*=4 (at the K<=4 ceiling) [reported, not scored — different temp/subset]
+
+  P1 signal validity both pools: PASS
+  P2 finite interior K* both pools: PASS
+
+  READING: with genuine per-prompt rates and an independent
+  stratification signal, this is the clean form of the F14 question.
+  A finite interior K* here is the mechanism's honest confirmation at
+  real resolution; a range-edge K* is a reportable miss. Scope: two
+  models, one task family, temp 0.7, 200-prompt subset.
+
+============================================================================
+Checksum (SHA256): 6dbfc47d06ab9772
+============================================================================

@@ -1914,3 +1914,10 @@ within 1000 samples in this regime.
   0.181355 (8.9% high), the (.3,.2,4) atom ratio recomputed at 110.7,
   and scripts/external/finite_l/verify_finite_l_all.py re-run clean
   over all 42 oracle cases. publish_sync.sh untouched and not run.
+- 2026-08-22: temp>0 per-prompt pools collected (2 models, journaled,
+  one Ollama restart survived) and the frozen finer-K analysis scored:
+  P1 PASS (signal r = 0.943/0.992), P2 PASS (finite interior K* = 2
+  and 3) — the F14 finite-interior mechanism confirmed at real
+  per-prompt resolution with the split-draws rule preventing
+  self-selection. results_temp_k.txt authoritative; K<=4 scope caveat
+  discharged for this family.
